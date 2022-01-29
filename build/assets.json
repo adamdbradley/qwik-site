@@ -1,0 +1,31 @@
+{
+  "version": "a897bb4d",
+  "entry": {
+    "module": "/build/entry.client-J3VBIBNQ.js",
+    "imports": [
+      "/build/_shared/chunk-OPPMOXML.js"
+    ]
+  },
+  "routes": {
+    "root": {
+      "id": "root",
+      "path": "",
+      "module": "/build/root-IBC3PBRS.js",
+      "hasAction": false,
+      "hasLoader": false,
+      "hasCatchBoundary": false,
+      "hasErrorBoundary": false
+    },
+    "routes/index": {
+      "id": "routes/index",
+      "parentId": "root",
+      "index": true,
+      "module": "/build/routes/index-LVHWS4BH.js",
+      "hasAction": false,
+      "hasLoader": false,
+      "hasCatchBoundary": false,
+      "hasErrorBoundary": false
+    }
+  },
+  "url": "/build/manifest-A897BB4D.js"
+}
