@@ -1,7 +1,9 @@
 import { Links, LiveReload, Meta, Outlet } from "remix";
 import type { MetaFunction } from "remix";
-import { QwikLoader } from "./loader";
 import styles from "./styles/app.css";
+import { QwikLoader } from "./components/QwikLoader";
+import { Head } from "./components/Head";
+import { Header } from "./components/Header";
 
 export const meta: MetaFunction = () => {
   return { title: "Qwik" };
@@ -16,17 +18,17 @@ export default function App() {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <Head />
         <Meta />
         <Links />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: QwikLoader,
-          }}
-        />
+        <QwikLoader />
       </head>
-      <body>
-        <Outlet />
+      <body className="bg-gray-900 text-slate-100 overflow-hidden antialiased">
+        <Header />
+        <main className="p-4">
+          <Outlet />
+        </main>
+
         {process.env.NODE_ENV === "development" && <LiveReload />}
         <script />
       </body>
