@@ -1,6 +1,6 @@
 import { Links, LiveReload, Meta, Outlet } from "remix";
 import type { MetaFunction } from "remix";
-import { getQwikLoaderScript } from "./qwikloader";
+import { QwikLoader } from "./loader";
 import styles from "./styles/app.css";
 
 export const meta: MetaFunction = () => {
@@ -21,7 +21,7 @@ export default function App() {
         <Links />
         <script
           dangerouslySetInnerHTML={{
-            __html: getQwikLoaderScript(),
+            __html: QwikLoader,
           }}
         />
       </head>
