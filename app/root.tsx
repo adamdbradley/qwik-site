@@ -1,10 +1,15 @@
 import { Links, LiveReload, Meta, Outlet } from "remix";
 import type { MetaFunction } from "remix";
 import { getQwikLoaderScript } from "@builder.io/qwik/server";
+import styles from "./styles/app.css";
 
 export const meta: MetaFunction = () => {
   return { title: "Qwik" };
 };
+
+export function links() {
+  return [{ rel: "stylesheet", href: styles }];
+}
 
 export default function App() {
   return (
@@ -16,9 +21,7 @@ export default function App() {
         <Links />
         <script
           dangerouslySetInnerHTML={{
-            __html:
-              getQwikLoaderScript() +
-              `console.log("⚡️ QwikLoader Ready: ${Date.now()} ⚡️")`,
+            __html: getQwikLoaderScript(),
           }}
         />
       </head>
