@@ -1,6 +1,6 @@
 import { Links, LiveReload, Meta, Outlet } from "remix";
 import type { MetaFunction } from "remix";
-import { getQwikLoaderScript } from "@builder.io/qwik/server";
+import { getQwikLoaderScript } from "./qwikloader";
 import styles from "./styles/app.css";
 
 export const meta: MetaFunction = () => {
