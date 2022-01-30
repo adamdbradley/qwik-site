@@ -13,7 +13,14 @@ export const Head = () => (
       sizes="32x32"
       href="/favicons/favicon-32x32.png"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicons/favicon-16x16.png"
+    />
     <link rel="shortcut icon" href="/favicons/favicon.ico" />
+
     <meta name="apple-mobile-web-app-title" content="Qwik" />
     <meta name="application-name" content="Qwik" />
     <meta name="theme-color" content="#ffffff" />

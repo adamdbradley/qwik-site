@@ -4,7 +4,7 @@ export const GithubLogo = () => (
     className="ml-6 block text-slate-400 hover:text-slate-500"
     target="_blank"
   >
-    <span className="sr-only">Tailwind CSS on GitHub</span>
+    <span className="sr-only">Qwik on GitHub</span>
     <svg
       viewBox="0 0 16 16"
       className="w-5 h-5"
