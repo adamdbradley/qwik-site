@@ -14,8 +14,12 @@ export default function handleRequest(
 
   responseHeaders.set("Content-Type", "text/html");
 
+  // Enable Atomics for Partytown
+  responseHeaders.set("Cross-Origin-Embedder-Policy", "credentialless");
+  responseHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
+
   return new Response("<!DOCTYPE html>" + markup, {
     status: responseStatusCode,
-    headers: responseHeaders
+    headers: responseHeaders,
   });
 }
