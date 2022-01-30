@@ -37,7 +37,19 @@ export const Head = () => (
     <meta name="twitter:card" content="summary" />
 
     <QwikLoader />
-    <Partytown />
-    <GoogleTagManager containerId="xxx" />
+    <GoogleTagManager containerId="GTM-N3WSTXZ" />
+    <Partytown
+      resolveUrl={(url) => {
+        if (
+          url.hostname.includes("www.google-analytics.com") ||
+          url.hostname.includes("snap.licdn.com")
+        ) {
+          const proxyUrl = new URL("https://cdn.builder.io/api/v1/proxy-api");
+          proxyUrl.searchParams.append("url", url.href);
+          return proxyUrl;
+        }
+        return null;
+      }}
+    />
   </>
 );
