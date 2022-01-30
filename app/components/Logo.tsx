@@ -64,9 +64,9 @@ export const QwikLogo = () => (
           y2="83.258"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#4340C4" />
-          <stop offset="0.1181" stop-color="#4642C8" />
-          <stop offset="1" stop-color="#594EE4" />
+          <stop stopColor="#4340C4" />
+          <stop offset="0.1181" stopColor="#4642C8" />
+          <stop offset="1" stopColor="#594EE4" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_24_2"
@@ -76,9 +76,9 @@ export const QwikLogo = () => (
           y2="53.6179"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#4340C4" />
-          <stop offset="0.74" stop-color="#534ADB" />
-          <stop offset="1" stop-color="#594EE4" />
+          <stop stopColor="#4340C4" />
+          <stop offset="0.74" stopColor="#534ADB" />
+          <stop offset="1" stopColor="#594EE4" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_24_2"
@@ -88,9 +88,9 @@ export const QwikLogo = () => (
           y2="32.1648"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.2254" stop-color="#4340C4" />
-          <stop offset="0.5978" stop-color="#4F48D5" />
-          <stop offset="1" stop-color="#594EE4" />
+          <stop offset="0.2254" stopColor="#4340C4" />
+          <stop offset="0.5978" stopColor="#4F48D5" />
+          <stop offset="1" stopColor="#594EE4" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_24_2"
@@ -100,8 +100,8 @@ export const QwikLogo = () => (
           y2="57.3442"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#0080FF" />
-          <stop offset="1" stop-color="#00B9FF" />
+          <stop stopColor="#0080FF" />
+          <stop offset="1" stopColor="#00B9FF" />
         </linearGradient>
         <linearGradient
           id="paint4_linear_24_2"
@@ -111,10 +111,10 @@ export const QwikLogo = () => (
           y2="80.1059"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="3.8147e-07" stop-color="#0080FF" />
-          <stop offset="0.1725" stop-color="#008BFF" />
-          <stop offset="0.4727" stop-color="#00A7FF" />
-          <stop offset="0.629" stop-color="#00B9FF" />
+          <stop offset="3.8147e-07" stopColor="#0080FF" />
+          <stop offset="0.1725" stopColor="#008BFF" />
+          <stop offset="0.4727" stopColor="#00A7FF" />
+          <stop offset="0.629" stopColor="#00B9FF" />
         </linearGradient>
         <linearGradient
           id="paint5_linear_24_2"
@@ -124,11 +124,11 @@ export const QwikLogo = () => (
           y2="108.984"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#00B9FF" />
-          <stop offset="0.2979" stop-color="#0080FF" />
-          <stop offset="0.6009" stop-color="#2D67F1" />
-          <stop offset="0.8578" stop-color="#4D55E8" />
-          <stop offset="1" stop-color="#594EE4" />
+          <stop stopColor="#00B9FF" />
+          <stop offset="0.2979" stopColor="#0080FF" />
+          <stop offset="0.6009" stopColor="#2D67F1" />
+          <stop offset="0.8578" stopColor="#4D55E8" />
+          <stop offset="1" stopColor="#594EE4" />
         </linearGradient>
         <linearGradient
           id="paint6_linear_24_2"
@@ -138,9 +138,9 @@ export const QwikLogo = () => (
           y2="108.499"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#4340C4" />
-          <stop offset="0.1181" stop-color="#4642C8" />
-          <stop offset="1" stop-color="#594EE4" />
+          <stop stopColor="#4340C4" />
+          <stop offset="0.1181" stopColor="#4642C8" />
+          <stop offset="1" stopColor="#594EE4" />
         </linearGradient>
       </defs>
     </svg>

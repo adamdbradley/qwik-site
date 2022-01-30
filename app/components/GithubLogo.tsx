@@ -1,7 +1,7 @@
 export const GithubLogo = () => (
   <a
     href="https://github.com/BuilderIO/qwik"
-    className="ml-6 block text-slate-400 hover:text-slate-500"
+    className="ml-2 block text-slate-400 hover:text-slate-500"
     target="_blank"
   >
     <span className="sr-only">Qwik on GitHub</span>

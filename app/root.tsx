@@ -15,7 +15,7 @@ export function links() {
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className="h-screen">
       <head>
         <meta charSet="utf-8" />
         <Head />
@@ -23,14 +23,12 @@ export default function App() {
         <Links />
         <QwikLoader />
       </head>
-      <body className="bg-gray-900 text-slate-100 overflow-hidden antialiased">
+      <body className="bg-gray-900 text-slate-100 antialiased h-screen">
         <Header />
-        <main className="p-4">
+        <main className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
           <Outlet />
         </main>
-
         {process.env.NODE_ENV === "development" && <LiveReload />}
-        <script />
       </body>
     </html>
   );
