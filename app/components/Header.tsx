@@ -2,8 +2,8 @@ import { GithubLogo } from "./GithubLogo";
 import { QwikLogo } from "./Logo";
 
 export const Header = () => (
-  <header className="sticky top-0 z-40 w-full flex-none p-4">
-    <div className="flex justify-between flex-wrap">
+  <header className="sticky top-0 z-40 w-full flex-none p-4 bg-gray-900">
+    <div className="flex justify-between flex-wrap max-w-7xl mx-auto">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <QwikLogo />
       </div>

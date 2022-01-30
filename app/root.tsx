@@ -25,7 +25,7 @@ export default function App() {
       </head>
       <body className="bg-gray-900 text-slate-100 antialiased h-screen">
         <Header />
-        <main className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <Outlet />
         </main>
         {process.env.NODE_ENV === "development" && <LiveReload />}
