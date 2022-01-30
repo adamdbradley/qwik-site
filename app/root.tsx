@@ -1,7 +1,6 @@
 import { Links, LiveReload, Meta, Outlet } from "remix";
 import type { MetaFunction } from "remix";
 import styles from "./styles/app.css";
-import { QwikLoader } from "./components/QwikLoader";
 import { Head } from "./components/Head";
 import { Header } from "./components/Header";
 
@@ -21,7 +20,6 @@ export default function App() {
         <Head />
         <Meta />
         <Links />
-        <QwikLoader />
       </head>
       <body className="bg-gray-900 text-slate-100 antialiased h-screen">
         <Header />

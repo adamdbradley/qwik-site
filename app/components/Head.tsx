@@ -1,3 +1,6 @@
+import { QwikLoader } from "../components/QwikLoader";
+import { Partytown, GoogleTagManager } from "@builder.io/partytown/react";
+
 export const Head = () => (
   <>
     <meta name="viewport" content="width=device-width" />
@@ -32,5 +35,9 @@ export const Head = () => (
       content="Web Framework focusing on Time-to-Interactive."
     />
     <meta name="twitter:card" content="summary" />
+
+    <QwikLoader />
+    <Partytown />
+    <GoogleTagManager containerId="xxx" />
   </>
 );

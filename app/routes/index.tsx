@@ -8,8 +8,8 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <>
-      <section className="homepage">
-        <p style={{ padding: "0 0 800px 0" }}>Homepage</p>
+      <section className="min-h-screen">
+        <p>Homepage</p>
       </section>
       <Footer />
     </>
