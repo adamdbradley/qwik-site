@@ -1,6 +1,6 @@
 # Qwik Test App ⚡️
 
-- [Cloudflare Pages](https://dash.cloudflare.com/)
+- [Cloudflare Pages](https://qwik-site.pages.dev/)
 - [Netlify Edge Functions](https://app.netlify.com/)
 
 ## Netlify
