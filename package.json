@@ -7,8 +7,9 @@
   "private": true,
   "scripts": {
     "build.client": "vite build",
-    "build.preview": "vite build --ssr src/entry.preview.tsx",
+    "build.cloudflare": "npm run build.client && vite build -c adaptors/cloudflare-pages/vite.config.ts",
     "build.netlify": "npm run build.client && vite build -c adaptors/netlify-edge/vite.config.ts",
+    "build.preview": "vite build --ssr src/entry.preview.tsx",
     "build.types": "tsc --incremental --noEmit",
     "dev": "vite --mode ssr",
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
@@ -17,7 +18,7 @@
     "netlify.deploy": "netlify deploy",
     "netlify.dev": "netlify dev",
     "preview": "qwik build preview && vite preview --open",
-    "serve": "netlify deploy",
+    "serve": "wrangler pages dev ./dist",
     "start": "vite --open --mode ssr",
     "qwik": "qwik"
   },
@@ -33,6 +34,7 @@
     "prettier": "2.7.1",
     "typescript": "4.8.4",
     "vite": "3.2.2",
-    "vite-tsconfig-paths": "3.5.0"
+    "vite-tsconfig-paths": "3.5.0",
+    "wrangler": "latest"
   }
 }
