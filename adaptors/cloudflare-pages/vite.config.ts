@@ -30,7 +30,7 @@ export default extendConfig(baseConfig, () => {
               const routesPath = path.join(root, "dist", "_routes.json");
               console.log("closeBundle1", routesPath);
               const routes = JSON.parse(fs.readFileSync(routesPath, "utf8"));
-              routes.include = ["/"];
+              routes.include = ["/*"];
               routes.exclude = routes.exclude.filter((r) => {
                 return r.startsWith("/");
               });
