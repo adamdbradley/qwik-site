@@ -6,10 +6,9 @@
   },
   "private": true,
   "scripts": {
-    "build": "npm run build.client && npm run build.cloudflare && npm run build.netlify",
     "build.client": "vite build",
-    "build.cloudflare": "vite build -c adaptors/cloudflare-pages/vite.config.ts",
-    "build.netlify": "vite build -c adaptors/netlify-edge/vite.config.ts",
+    "build.cloudflare": "npm run build.client && vite build -c adaptors/cloudflare-pages/vite.config.ts",
+    "build.netlify": "npm run build.client && vite build -c adaptors/netlify-edge/vite.config.ts",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
     "build.types": "tsc --incremental --noEmit",
     "dev": "vite --mode ssr",
