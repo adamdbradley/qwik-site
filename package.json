@@ -1,8 +1,37 @@
 {
-  "private": true,
-  "name": "qwik-site",
-  "scripts": {
-    "build": "echo 'no build'"
+  "name": "my-qwik-basic-starter",
+  "description": "App with Routing built-in (recommended)",
+  "engines": {
+    "node": ">=15.0.0"
   },
-  "dependencies": {}
+  "private": true,
+  "scripts": {
+    "build.client": "vite build",
+    "build.netlify": "npm run build.client && vite build -c adaptors/netlify-edge/vite.config.ts",
+    "build.preview": "vite build --ssr src/entry.preview.tsx",
+    "build.types": "tsc --incremental --noEmit",
+    "dev": "vite --mode ssr",
+    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
+    "fmt": "prettier --write .",
+    "fmt.check": "prettier --check .",
+    "preview": "qwik build preview && vite preview --open",
+    "netlify.deploy": "netlify deploy",
+    "start": "vite --open --mode ssr",
+    "qwik": "qwik",
+    "netlify.dev": "netlify dev"
+  },
+  "devDependencies": {
+    "@builder.io/qwik": "0.13.0-dev20221109122410",
+    "@builder.io/qwik-city": "0.0.118",
+    "@types/eslint": "8.4.9",
+    "@types/node": "latest",
+    "@typescript-eslint/eslint-plugin": "5.42.0",
+    "@typescript-eslint/parser": "5.42.0",
+    "netlify-cli": "^12.0.11",
+    "node-fetch": "3.2.10",
+    "prettier": "2.7.1",
+    "typescript": "4.8.4",
+    "vite": "3.2.2",
+    "vite-tsconfig-paths": "3.5.0"
+  }
 }
