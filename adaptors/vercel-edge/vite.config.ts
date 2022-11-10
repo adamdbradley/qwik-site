@@ -1,4 +1,4 @@
-import { cloudflarePagesAdaptor } from "@builder.io/qwik-city/adaptors/cloudflare-pages/vite";
+import { vercelEdgeAdaptor } from "../../fake_modules/qwik-city/adaptors/vercel-edge/vite/index.mjs";
 import { extendConfig } from "@builder.io/qwik-city/vite";
 import baseConfig from "../../vite.config";
 
@@ -7,13 +7,14 @@ export default extendConfig(baseConfig, () => {
     build: {
       ssr: true,
       rollupOptions: {
-        input: ["src/entry.cloudflare-pages.tsx", "@qwik-city-plan"],
+        input: ["src/entry.vercel-edge.tsx", "@qwik-city-plan"],
       },
+      outDir: ".vercel/output/qwik-city.func",
     },
     plugins: [
-      cloudflarePagesAdaptor({
+      vercelEdgeAdaptor({
         staticGenerate: true,
-      }),
+      }) as any,
     ],
   };
 });
