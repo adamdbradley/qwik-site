@@ -21,9 +21,7 @@ function viteAdaptor(opts) {
       var _a;
       isSsrBuild = !!build.ssr;
       if (isSsrBuild) {
-        qwikCityPlugin = plugins.find(
-          (p) => p.name === "vite-plugin-qwik-city"
-        );
+        qwikCityPlugin = plugins.find((p) => p.name === "vite-plugin-qwik-city");
         if (!qwikCityPlugin) {
           throw new Error("Missing vite-plugin-qwik-city");
         }
@@ -37,11 +35,7 @@ function viteAdaptor(opts) {
             `"build.ssr" must be set to "true" in order to use the "${opts.name}" adaptor.`
           );
         }
-        if (
-          !((_a = build == null ? void 0 : build.rollupOptions) == null
-            ? void 0
-            : _a.input)
-        ) {
+        if (!((_a = build == null ? void 0 : build.rollupOptions) == null ? void 0 : _a.input)) {
           throw new Error(
             `"build.rollupOptions.input" must be set in order to use the "${opts.name}" adaptor.`
           );
@@ -73,33 +67,32 @@ function viteAdaptor(opts) {
       }
     },
     async closeBundle() {
-      if (
-        isSsrBuild &&
-        serverOutDir &&
-        (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) &&
-        (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api)
-      ) {
+      if (isSsrBuild && serverOutDir && (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) && (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api)) {
         const serverPackageJsonPath = join(serverOutDir, "package.json");
         const serverPackageJsonCode = `{"type":"module"}`;
         await fs.promises.mkdir(serverOutDir, { recursive: true });
-        await fs.promises.writeFile(
-          serverPackageJsonPath,
-          serverPackageJsonCode
-        );
+        await fs.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
         let staticGenerateResult = null;
         if (opts.staticGenerate && renderModulePath && qwikCityPlanModulePath) {
+          let origin = opts.origin;
+          if (!origin) {
+            origin = `https://yoursite.qwik.builder.io`;
+          }
+          if (origin.length > 0 && !origin.startsWith("https://") && !origin.startsWith("http://")) {
+            origin = `https://${origin}`;
+          }
           const staticGenerate = await import("../../../static/index.mjs");
           let generateOpts = {
             basePathname: qwikCityPlugin.api.getBasePathname(),
             outDir: qwikVitePlugin.api.getClientOutDir(),
-            origin: opts.origin,
+            origin,
             renderModulePath,
-            qwikCityPlanModulePath,
+            qwikCityPlanModulePath
           };
           if (opts.staticGenerate && typeof opts.staticGenerate === "object") {
             generateOpts = {
               ...generateOpts,
-              ...opts.staticGenerate,
+              ...opts.staticGenerate
             };
           }
           staticGenerateResult = await staticGenerate.generate(generateOpts);
@@ -114,16 +107,13 @@ function viteAdaptor(opts) {
             serverOutDir,
             clientOutDir: qwikVitePlugin.api.getClientOutDir(),
             routes: qwikCityPlugin.api.getRoutes(),
-            staticPaths:
-              (staticGenerateResult == null
-                ? void 0
-                : staticGenerateResult.staticPaths) ?? [],
+            staticPaths: (staticGenerateResult == null ? void 0 : staticGenerateResult.staticPaths) ?? [],
             warn: (message) => this.warn(message),
-            error: (message) => this.error(message),
+            error: (message) => this.error(message)
           });
         }
       }
-    },
+    }
   };
   return plugin;
 }
@@ -149,20 +139,15 @@ function vercelEdgeAdaptor(opts = {}) {
   var _a;
   return viteAdaptor({
     name: "vercel-edge",
-    origin:
-      ((_a = process == null ? void 0 : process.env) == null
-        ? void 0
-        : _a.VERCEL_URL) || "https://yoursitename.vercel.app",
+    origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.VERCEL_URL) || "https://yoursitename.vercel.app",
     staticGenerate: opts.staticGenerate,
     config(config) {
       var _a2;
-      const outDir =
-        ((_a2 = config.build) == null ? void 0 : _a2.outDir) ||
-        ".vercel/output/qwik-city.func";
+      const outDir = ((_a2 = config.build) == null ? void 0 : _a2.outDir) || ".vercel/output/qwik-city.func";
       return {
         ssr: {
           target: "webworker",
-          noExternal: true,
+          noExternal: true
         },
         build: {
           ssr: true,
@@ -170,25 +155,23 @@ function vercelEdgeAdaptor(opts = {}) {
           rollupOptions: {
             output: {
               format: "es",
-              hoistTransitiveImports: false,
-            },
-          },
+              hoistTransitiveImports: false
+            }
+          }
         },
-        publicDir: false,
+        publicDir: false
       };
     },
     async generateRoutes({ serverOutDir, routes, staticPaths }) {
-      console.log("routes", routes);
-      console.log("staticPaths", staticPaths);
       const ssrRoutes = routes.filter((r) => !staticPaths.includes(r.pathname));
       const vercelOutputConfig = {
         routes: ssrRoutes.map((r) => {
           return {
             src: r.pattern.toString(),
-            middlewarePath: "qwik-city",
+            middlewarePath: "qwik-city"
           };
         }),
-        version: 3,
+        version: 3
       };
       const vercelOutputDir = getParentDir(serverOutDir, "output");
       await fs2.promises.writeFile(
@@ -198,13 +181,12 @@ function vercelEdgeAdaptor(opts = {}) {
       const vcConfigPath = join2(serverOutDir, ".vc-config.json");
       const vcConfig = {
         runtime: "edge",
-        entrypoint: "entry.vercel-edge.js",
+        entrypoint: "entry.vercel-edge.js"
       };
-      await fs2.promises.writeFile(
-        vcConfigPath,
-        JSON.stringify(vcConfig, null, 2)
-      );
-    },
+      await fs2.promises.writeFile(vcConfigPath, JSON.stringify(vcConfig, null, 2));
+    }
   });
 }
-export { vercelEdgeAdaptor };
+export {
+  vercelEdgeAdaptor
+};

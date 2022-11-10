@@ -74,11 +74,18 @@ function viteAdaptor(opts) {
         await fs.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
         let staticGenerateResult = null;
         if (opts.staticGenerate && renderModulePath && qwikCityPlanModulePath) {
+          let origin = opts.origin;
+          if (!origin) {
+            origin = `https://yoursite.qwik.builder.io`;
+          }
+          if (origin.length > 0 && !origin.startsWith("https://") && !origin.startsWith("http://")) {
+            origin = `https://${origin}`;
+          }
           const staticGenerate = await import("../../../static/index.mjs");
           let generateOpts = {
             basePathname: qwikCityPlugin.api.getBasePathname(),
             outDir: qwikVitePlugin.api.getClientOutDir(),
-            origin: opts.origin,
+            origin,
             renderModulePath,
             qwikCityPlanModulePath
           };

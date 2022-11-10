@@ -1,7 +1,8 @@
 # Qwik Test App ⚡️
 
 - [Cloudflare Pages](https://qwik-site.pages.dev/)
-- [Netlify Edge Functions](https://636bd96a4badee007ec41254--jazzy-blini-178bfb.netlify.app/)
+- [Netlify Edge](https://636bd96a4badee007ec41254--jazzy-blini-178bfb.netlify.app/)
+- [Vercel Edge](https://qwik-site.vercel.app)
 
 ## Netlify
 

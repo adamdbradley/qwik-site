@@ -77,11 +77,18 @@ function viteAdaptor(opts) {
         await fs.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
         let staticGenerateResult = null;
         if (opts.staticGenerate && renderModulePath && qwikCityPlanModulePath) {
+          let origin = opts.origin;
+          if (!origin) {
+            origin = `https://yoursite.qwik.builder.io`;
+          }
+          if (origin.length > 0 && !origin.startsWith("https://") && !origin.startsWith("http://")) {
+            origin = `https://${origin}`;
+          }
           const staticGenerate = await import("../../../static/index.mjs");
           let generateOpts = {
             basePathname: qwikCityPlugin.api.getBasePathname(),
             outDir: qwikVitePlugin.api.getClientOutDir(),
-            origin: opts.origin,
+            origin,
             renderModulePath,
             qwikCityPlanModulePath
           };
@@ -174,8 +181,9 @@ function netifyEdgeAdaptor(opts = {}) {
         }),
         version: 1
       };
+      const netlifyEdgeFnsDir = getParentDir(serverOutDir, "edge-functions");
       await fs2.promises.writeFile(
-        join2(getParentDir(serverOutDir, "edge-functions"), "manifest.json"),
+        join2(netlifyEdgeFnsDir, "manifest.json"),
         JSON.stringify(netlifyEdgeManifest, null, 2)
       );
     }
