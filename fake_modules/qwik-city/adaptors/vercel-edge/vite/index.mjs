@@ -205,8 +205,8 @@ function vercelEdgeAdaptor(opts = {}) {
         version: 3,
       };
 
-      vercelOutputConfig.routes[0].src = "/(.*)";
-      vercelOutputConfig.routes[0].continue = true;
+      // vercelOutputConfig.routes[0].src = "/(.*)";
+      // vercelOutputConfig.routes[0].continue = true;
 
       const vercelOutputDir = getParentDir(serverOutDir, "output");
       await fs2.promises.writeFile(
