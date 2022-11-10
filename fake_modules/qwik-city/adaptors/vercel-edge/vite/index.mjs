@@ -194,11 +194,15 @@ function vercelEdgeAdaptor(opts = {}) {
         routes: ssrRoutes.map((r) => {
           return {
             src: r.pattern.toString(),
-            middlewarePath: "qwik-city",
+            middlewarePath: "_qwik-city",
           };
         }),
         version: 3,
       };
+
+      vercelOutputConfig.routes[0].src = "/(.*)";
+      vercelOutputConfig.routes[0].continue = true;
+
       const vercelOutputDir = getParentDir(serverOutDir, "output");
       await fs2.promises.writeFile(
         join2(vercelOutputDir, "config.json"),
