@@ -215,6 +215,9 @@ function vercelEdgeAdaptor(opts = {}) {
       );
 
       const staticDir = join(vercelOutputDir, "static");
+      if (fs.existsSync(staticDir)) {
+        await fs.promises.rm(staticDir, { recursive: true });
+      }
       fs.renameSync(clientOutDir, staticDir);
     },
   });

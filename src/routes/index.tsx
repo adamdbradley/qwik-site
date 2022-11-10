@@ -1,14 +1,28 @@
-import { component$ } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { component$, Resource } from "@builder.io/qwik";
+import {
+  DocumentHead,
+  RequestHandler,
+  useEndpoint,
+} from "@builder.io/qwik-city";
 import { Link } from "@builder.io/qwik-city";
 
 export default component$(() => {
+  const resource = useEndpoint<typeof onGet>();
+
   return (
     <div>
       <h1>
-        {Date.now()} <span class="lightning">⚡️</span>
-        {Date.now()}
+        Qwik <span class="lightning">⚡️</span>
       </h1>
+
+      <Resource
+        value={resource}
+        onPending={() => <div>Loading...</div>}
+        onRejected={() => <div>Failed to load resource</div>}
+        onResolved={(r) => {
+          return <div>Now: {r.now}</div>;
+        }}
+      />
 
       <Link class="mindblow" href="/flower">
         Blow my mind 🤯
@@ -16,6 +30,12 @@ export default component$(() => {
     </div>
   );
 });
+
+export const onGet: RequestHandler<{ now: number }> = () => {
+  return {
+    now: Date.now(),
+  };
+};
 
 export const head: DocumentHead = {
   title: "Welcome to Qwik",
