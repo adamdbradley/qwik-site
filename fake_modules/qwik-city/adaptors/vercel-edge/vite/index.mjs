@@ -188,7 +188,7 @@ function vercelEdgeAdaptor(opts = {}) {
         publicDir: false,
       };
     },
-    async generateRoutes({ serverOutDir, routes, staticPaths }) {
+    async generateRoutes({ serverOutDir, clientOutDir, routes, staticPaths }) {
       const ssrRoutes = routes.filter((r) => !staticPaths.includes(r.pathname));
       const vercelOutputConfig = {
         routes: ssrRoutes.map((r) => {
@@ -215,8 +215,7 @@ function vercelEdgeAdaptor(opts = {}) {
       );
 
       const staticDir = join(vercelOutputDir, "static");
-      fs.mkdirSync(staticDir, { recursive: true });
-      await fs2.promises.writeFile(join(staticDir, "index.html"), "index.html");
+      fs.renameSync(clientOutDir, staticDir);
     },
   });
 }
