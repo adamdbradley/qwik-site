@@ -219,6 +219,9 @@ function vercelEdgeAdaptor(opts = {}) {
         await fs.promises.rm(staticDir, { recursive: true });
       }
       fs.renameSync(clientOutDir, staticDir);
+
+      const indexPath = join(staticDir, "index.html");
+      fs.unlinkSync(indexPath);
     },
   });
 }
