@@ -192,8 +192,13 @@ function vercelEdgeAdaptor(opts = {}) {
       const ssrRoutes = routes.filter((r) => !staticPaths.includes(r.pathname));
       const vercelOutputConfig = {
         routes: ssrRoutes.map((r) => {
+          let src = r.pattern.toString().slice(1, -2).replace(/\\\//g, "/");
+          if (src === "^/") {
+            src = "^/?";
+          }
+
           return {
-            src: r.pattern.toString(),
+            src,
             middlewarePath: "_qwik-city",
           };
         }),
