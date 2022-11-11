@@ -1,7 +1,3 @@
-// packages/qwik-city/adaptors/cloudflare-pages/vite/index.ts
-import { join as join2 } from "path";
-import fs2 from "fs";
-
 // packages/qwik-city/adaptors/shared/vite/index.ts
 import fs from "fs";
 import { basename, dirname, join, resolve } from "path";
@@ -123,6 +119,8 @@ function viteAdaptor(opts) {
 }
 
 // packages/qwik-city/adaptors/cloudflare-pages/vite/index.ts
+import fs2 from "fs";
+import { join as join2 } from "path";
 function cloudflarePagesAdaptor(opts = {}) {
   var _a;
   return viteAdaptor({
@@ -162,7 +160,7 @@ function cloudflarePagesAdaptor(opts = {}) {
       }).filter(isNotNullable);
       const include = ["/*"];
       const hasRoutesJson = exclude.includes("/_routes.json");
-      if (!hasRoutesJson) {
+      if (!hasRoutesJson && opts.functionRoutes !== false) {
         staticPaths.sort();
         staticPaths.sort((a, b) => a.length - b.length);
         exclude.push(...staticPaths);

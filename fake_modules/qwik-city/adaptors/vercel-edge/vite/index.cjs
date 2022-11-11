@@ -175,7 +175,7 @@ function vercelEdgeAdaptor(opts = {}) {
     staticGenerate: opts.staticGenerate,
     config(config) {
       var _a2;
-      const outDir = ((_a2 = config.build) == null ? void 0 : _a2.outDir) || ".vercel/output/qwik-city.func";
+      const outDir = ((_a2 = config.build) == null ? void 0 : _a2.outDir) || ".vercel/output/functions/_qwik-city.func";
       return {
         ssr: {
           target: "webworker",
@@ -194,28 +194,40 @@ function vercelEdgeAdaptor(opts = {}) {
         publicDir: false
       };
     },
-    async generateRoutes({ serverOutDir, routes, staticPaths }) {
-      const ssrRoutes = routes.filter((r) => !staticPaths.includes(r.pathname));
-      const vercelOutputConfig = {
-        routes: ssrRoutes.map((r) => {
-          return {
-            src: r.pattern.toString(),
-            middlewarePath: "qwik-city"
-          };
-        }),
-        version: 3
-      };
+    async generateRoutes({ clientOutDir, serverOutDir, routes, staticPaths }) {
       const vercelOutputDir = getParentDir(serverOutDir, "output");
-      await import_node_fs2.default.promises.writeFile(
-        (0, import_node_path2.join)(vercelOutputDir, "config.json"),
-        JSON.stringify(vercelOutputConfig, null, 2)
-      );
+      if (opts.outputConfig !== false) {
+        const ssrRoutes = routes.filter((r) => !staticPaths.includes(r.pathname));
+        const vercelOutputConfig = {
+          routes: ssrRoutes.map((r) => {
+            let src = r.pattern.toString().slice(1, -2).replace(/\\\//g, "/");
+            if (src === "^/") {
+              src = "^/?";
+            }
+            return {
+              src,
+              middlewarePath: "_qwik-city"
+            };
+          }),
+          version: 3
+        };
+        await import_node_fs2.default.promises.writeFile(
+          (0, import_node_path2.join)(vercelOutputDir, "config.json"),
+          JSON.stringify(vercelOutputConfig, null, 2)
+        );
+      }
       const vcConfigPath = (0, import_node_path2.join)(serverOutDir, ".vc-config.json");
       const vcConfig = {
         runtime: "edge",
-        entrypoint: "entry.vercel-edge.js"
+        entrypoint: opts.vcConfigEntryPoint || "entry.vercel-edge.js",
+        envVarsInUse: opts.vcConfigEnvVarsInUse
       };
       await import_node_fs2.default.promises.writeFile(vcConfigPath, JSON.stringify(vcConfig, null, 2));
+      const staticDir = (0, import_node_path2.join)(vercelOutputDir, "static");
+      if (import_node_fs2.default.existsSync(staticDir)) {
+        await import_node_fs2.default.promises.rm(staticDir, { recursive: true });
+      }
+      await import_node_fs2.default.promises.rename(clientOutDir, staticDir);
     }
   });
 }

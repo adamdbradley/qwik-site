@@ -29,7 +29,6 @@ __export(vite_exports, {
   netifyEdgeAdaptor: () => netifyEdgeAdaptor
 });
 module.exports = __toCommonJS(vite_exports);
-var import_node_path2 = require("path");
 
 // packages/qwik-city/adaptors/shared/vite/index.ts
 var import_node_fs = __toESM(require("fs"), 1);
@@ -167,6 +166,7 @@ function getParentDir(startDir, dirName) {
 
 // packages/qwik-city/adaptors/netlify-edge/vite/index.ts
 var import_node_fs2 = __toESM(require("fs"), 1);
+var import_node_path2 = require("path");
 function netifyEdgeAdaptor(opts = {}) {
   var _a;
   return viteAdaptor({
@@ -195,27 +195,29 @@ function netifyEdgeAdaptor(opts = {}) {
       };
     },
     async generateRoutes({ serverOutDir, routes, staticPaths }) {
-      const ssrRoutes = routes.filter((r) => !staticPaths.includes(r.pathname));
-      const netlifyEdgeManifest = {
-        functions: ssrRoutes.map((r) => {
-          if (r.paramNames.length > 0) {
+      if (opts.functionRoutes !== false) {
+        const ssrRoutes = routes.filter((r) => !staticPaths.includes(r.pathname));
+        const netlifyEdgeManifest = {
+          functions: ssrRoutes.map((r) => {
+            if (r.paramNames.length > 0) {
+              return {
+                pattern: r.pattern.toString(),
+                function: "entry.netlify-edge"
+              };
+            }
             return {
-              pattern: r.pattern.toString(),
+              path: r.pathname,
               function: "entry.netlify-edge"
             };
-          }
-          return {
-            path: r.pathname,
-            function: "entry.netlify-edge"
-          };
-        }),
-        version: 1
-      };
-      const netlifyEdgeFnsDir = getParentDir(serverOutDir, "edge-functions");
-      await import_node_fs2.default.promises.writeFile(
-        (0, import_node_path2.join)(netlifyEdgeFnsDir, "manifest.json"),
-        JSON.stringify(netlifyEdgeManifest, null, 2)
-      );
+          }),
+          version: 1
+        };
+        const netlifyEdgeFnsDir = getParentDir(serverOutDir, "edge-functions");
+        await import_node_fs2.default.promises.writeFile(
+          (0, import_node_path2.join)(netlifyEdgeFnsDir, "manifest.json"),
+          JSON.stringify(netlifyEdgeManifest, null, 2)
+        );
+      }
     }
   });
 }

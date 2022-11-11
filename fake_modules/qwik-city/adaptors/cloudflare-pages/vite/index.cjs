@@ -29,8 +29,6 @@ __export(vite_exports, {
   cloudflarePagesAdaptor: () => cloudflarePagesAdaptor
 });
 module.exports = __toCommonJS(vite_exports);
-var import_node_path2 = require("path");
-var import_node_fs2 = __toESM(require("fs"), 1);
 
 // packages/qwik-city/adaptors/shared/vite/index.ts
 var import_node_fs = __toESM(require("fs"), 1);
@@ -153,6 +151,8 @@ function viteAdaptor(opts) {
 }
 
 // packages/qwik-city/adaptors/cloudflare-pages/vite/index.ts
+var import_node_fs2 = __toESM(require("fs"), 1);
+var import_node_path2 = require("path");
 function cloudflarePagesAdaptor(opts = {}) {
   var _a;
   return viteAdaptor({
@@ -192,7 +192,7 @@ function cloudflarePagesAdaptor(opts = {}) {
       }).filter(isNotNullable);
       const include = ["/*"];
       const hasRoutesJson = exclude.includes("/_routes.json");
-      if (!hasRoutesJson) {
+      if (!hasRoutesJson && opts.functionRoutes !== false) {
         staticPaths.sort();
         staticPaths.sort((a, b) => a.length - b.length);
         exclude.push(...staticPaths);

@@ -1,5 +1,3 @@
-/// <reference path="./modules.d.ts" />
-
 import { Component } from '@builder.io/qwik';
 import { JSXNode } from '@builder.io/qwik';
 import { QwikIntrinsicElements } from '@builder.io/qwik';

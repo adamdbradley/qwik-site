@@ -1,6 +1,3 @@
-// packages/qwik-city/adaptors/netlify-edge/vite/index.ts
-import { join as join2 } from "path";
-
 // packages/qwik-city/adaptors/shared/vite/index.ts
 import fs from "fs";
 import { basename, dirname, join, resolve } from "path";
@@ -137,6 +134,7 @@ function getParentDir(startDir, dirName) {
 
 // packages/qwik-city/adaptors/netlify-edge/vite/index.ts
 import fs2 from "fs";
+import { join as join2 } from "path";
 function netifyEdgeAdaptor(opts = {}) {
   var _a;
   return viteAdaptor({
@@ -165,27 +163,29 @@ function netifyEdgeAdaptor(opts = {}) {
       };
     },
     async generateRoutes({ serverOutDir, routes, staticPaths }) {
-      const ssrRoutes = routes.filter((r) => !staticPaths.includes(r.pathname));
-      const netlifyEdgeManifest = {
-        functions: ssrRoutes.map((r) => {
-          if (r.paramNames.length > 0) {
+      if (opts.functionRoutes !== false) {
+        const ssrRoutes = routes.filter((r) => !staticPaths.includes(r.pathname));
+        const netlifyEdgeManifest = {
+          functions: ssrRoutes.map((r) => {
+            if (r.paramNames.length > 0) {
+              return {
+                pattern: r.pattern.toString(),
+                function: "entry.netlify-edge"
+              };
+            }
             return {
-              pattern: r.pattern.toString(),
+              path: r.pathname,
               function: "entry.netlify-edge"
             };
-          }
-          return {
-            path: r.pathname,
-            function: "entry.netlify-edge"
-          };
-        }),
-        version: 1
-      };
-      const netlifyEdgeFnsDir = getParentDir(serverOutDir, "edge-functions");
-      await fs2.promises.writeFile(
-        join2(netlifyEdgeFnsDir, "manifest.json"),
-        JSON.stringify(netlifyEdgeManifest, null, 2)
-      );
+          }),
+          version: 1
+        };
+        const netlifyEdgeFnsDir = getParentDir(serverOutDir, "edge-functions");
+        await fs2.promises.writeFile(
+          join2(netlifyEdgeFnsDir, "manifest.json"),
+          JSON.stringify(netlifyEdgeManifest, null, 2)
+        );
+      }
     }
   });
 }

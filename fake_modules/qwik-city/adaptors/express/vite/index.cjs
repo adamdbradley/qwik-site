@@ -29,91 +29,135 @@ __export(vite_exports, {
   expressAdaptor: () => expressAdaptor
 });
 module.exports = __toCommonJS(vite_exports);
-var import_node_path = require("path");
+
+// packages/qwik-city/adaptors/shared/vite/index.ts
 var import_node_fs = __toESM(require("fs"), 1);
-function expressAdaptor(opts = {}) {
+var import_node_path = require("path");
+function viteAdaptor(opts) {
   let qwikCityPlugin = null;
   let qwikVitePlugin = null;
   let serverOutDir = null;
   let renderModulePath = null;
   let qwikCityPlanModulePath = null;
-  async function generateBundles() {
-    var _a;
-    const qwikVitePluginApi = qwikVitePlugin.api;
-    const clientOutDir = qwikVitePluginApi.getClientOutDir();
-    const serverPackageJsonPath = (0, import_node_path.join)(serverOutDir, "package.json");
-    const serverPackageJsonCode = `{"type":"module"}`;
-    await import_node_fs.default.promises.mkdir(serverOutDir, { recursive: true });
-    await import_node_fs.default.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
-    if (opts.staticGenerate) {
-      const staticGenerate = await import("../../../static/index.cjs");
-      let generateOpts = {
-        outDir: clientOutDir,
-        origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.URL) || "https://yoursitename.example.com",
-        renderModulePath,
-        qwikCityPlanModulePath,
-        basePathname: qwikCityPlugin.api.getBasePathname()
-      };
-      if (typeof opts.staticGenerate === "object") {
-        generateOpts = {
-          ...generateOpts,
-          ...opts.staticGenerate
-        };
-      }
-      await staticGenerate.generate(generateOpts);
-    }
-  }
+  let isSsrBuild = false;
   const plugin = {
-    name: "vite-plugin-qwik-city-express",
+    name: `vite-plugin-qwik-city-${opts.name}`,
     enforce: "post",
     apply: "build",
+    config(config) {
+      if (typeof opts.config === "function") {
+        return opts.config(config);
+      }
+    },
     configResolved({ build, plugins }) {
       var _a;
-      qwikCityPlugin = plugins.find((p) => p.name === "vite-plugin-qwik-city");
-      if (!qwikCityPlugin) {
-        throw new Error("Missing vite-plugin-qwik-city");
-      }
-      qwikVitePlugin = plugins.find((p) => p.name === "vite-plugin-qwik");
-      if (!qwikVitePlugin) {
-        throw new Error("Missing vite-plugin-qwik");
-      }
-      serverOutDir = build.outDir;
-      if ((build == null ? void 0 : build.ssr) !== true) {
-        throw new Error('"build.ssr" must be set to `true` in order to use the Express adaptor.');
-      }
-      if (!((_a = build == null ? void 0 : build.rollupOptions) == null ? void 0 : _a.input)) {
-        throw new Error(
-          '"build.rollupOptions.input" must be set in order to use the Express adaptor.'
-        );
+      isSsrBuild = !!build.ssr;
+      if (isSsrBuild) {
+        qwikCityPlugin = plugins.find((p) => p.name === "vite-plugin-qwik-city");
+        if (!qwikCityPlugin) {
+          throw new Error("Missing vite-plugin-qwik-city");
+        }
+        qwikVitePlugin = plugins.find((p) => p.name === "vite-plugin-qwik");
+        if (!qwikVitePlugin) {
+          throw new Error("Missing vite-plugin-qwik");
+        }
+        serverOutDir = build.outDir;
+        if ((build == null ? void 0 : build.ssr) !== true) {
+          throw new Error(
+            `"build.ssr" must be set to "true" in order to use the "${opts.name}" adaptor.`
+          );
+        }
+        if (!((_a = build == null ? void 0 : build.rollupOptions) == null ? void 0 : _a.input)) {
+          throw new Error(
+            `"build.rollupOptions.input" must be set in order to use the "${opts.name}" adaptor.`
+          );
+        }
       }
     },
     generateBundle(_, bundles) {
-      for (const fileName in bundles) {
-        const chunk = bundles[fileName];
-        if (chunk.type === "chunk" && chunk.isEntry) {
-          if (chunk.name === "entry.ssr") {
-            renderModulePath = (0, import_node_path.join)(serverOutDir, fileName);
-          } else if (chunk.name === "@qwik-city-plan") {
-            qwikCityPlanModulePath = (0, import_node_path.join)(serverOutDir, fileName);
+      if (isSsrBuild) {
+        for (const fileName in bundles) {
+          const chunk = bundles[fileName];
+          if (chunk.type === "chunk" && chunk.isEntry) {
+            if (chunk.name === "entry.ssr") {
+              renderModulePath = (0, import_node_path.join)(serverOutDir, fileName);
+            } else if (chunk.name === "@qwik-city-plan") {
+              qwikCityPlanModulePath = (0, import_node_path.join)(serverOutDir, fileName);
+            }
           }
         }
-      }
-      if (!renderModulePath) {
-        throw new Error(
-          'Unable to find "entry.ssr" entry point. Did you forget to add it to "build.rollupOptions.input"?'
-        );
-      }
-      if (!qwikCityPlanModulePath) {
-        throw new Error(
-          'Unable to find "@qwik-city-plan" entry point. Did you forget to add it to "build.rollupOptions.input"?'
-        );
+        if (!renderModulePath) {
+          throw new Error(
+            'Unable to find "entry.ssr" entry point. Did you forget to add it to "build.rollupOptions.input"?'
+          );
+        }
+        if (!qwikCityPlanModulePath) {
+          throw new Error(
+            'Unable to find "@qwik-city-plan" entry point. Did you forget to add it to "build.rollupOptions.input"?'
+          );
+        }
       }
     },
     async closeBundle() {
-      await generateBundles();
+      if (isSsrBuild && serverOutDir && (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) && (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api)) {
+        const serverPackageJsonPath = (0, import_node_path.join)(serverOutDir, "package.json");
+        const serverPackageJsonCode = `{"type":"module"}`;
+        await import_node_fs.default.promises.mkdir(serverOutDir, { recursive: true });
+        await import_node_fs.default.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
+        let staticGenerateResult = null;
+        if (opts.staticGenerate && renderModulePath && qwikCityPlanModulePath) {
+          let origin = opts.origin;
+          if (!origin) {
+            origin = `https://yoursite.qwik.builder.io`;
+          }
+          if (origin.length > 0 && !origin.startsWith("https://") && !origin.startsWith("http://")) {
+            origin = `https://${origin}`;
+          }
+          const staticGenerate = await import("../../../static/index.cjs");
+          let generateOpts = {
+            basePathname: qwikCityPlugin.api.getBasePathname(),
+            outDir: qwikVitePlugin.api.getClientOutDir(),
+            origin,
+            renderModulePath,
+            qwikCityPlanModulePath
+          };
+          if (opts.staticGenerate && typeof opts.staticGenerate === "object") {
+            generateOpts = {
+              ...generateOpts,
+              ...opts.staticGenerate
+            };
+          }
+          staticGenerateResult = await staticGenerate.generate(generateOpts);
+          if (staticGenerateResult.errors > 0) {
+            this.error(
+              `Error while runnning SSG from "${opts.name}" adaptor. At least one path failed to render.`
+            );
+          }
+        }
+        if (typeof opts.generateRoutes === "function") {
+          await opts.generateRoutes({
+            serverOutDir,
+            clientOutDir: qwikVitePlugin.api.getClientOutDir(),
+            routes: qwikCityPlugin.api.getRoutes(),
+            staticPaths: (staticGenerateResult == null ? void 0 : staticGenerateResult.staticPaths) ?? [],
+            warn: (message) => this.warn(message),
+            error: (message) => this.error(message)
+          });
+        }
+      }
     }
   };
   return plugin;
+}
+
+// packages/qwik-city/adaptors/express/vite/index.ts
+function expressAdaptor(opts = {}) {
+  var _a;
+  return viteAdaptor({
+    name: "express",
+    origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.URL) || "https://yoursitename.qwik.builder.io",
+    staticGenerate: opts.staticGenerate
+  });
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
