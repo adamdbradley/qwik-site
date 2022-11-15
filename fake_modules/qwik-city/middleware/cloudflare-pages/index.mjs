@@ -1,11 +1,117 @@
+// packages/qwik-city/middleware/request-handler/cookie.ts
+var SAMESITE = {
+  lax: "Lax",
+  none: "None",
+  strict: "Strict"
+};
+var UNIT = {
+  seconds: 1,
+  minutes: 1 * 60,
+  hours: 1 * 60 * 60,
+  days: 1 * 60 * 60 * 24,
+  weeks: 1 * 60 * 60 * 24 * 7
+};
+var createSetCookieValue = (cookieName, cookieValue, options) => {
+  const c = [`${cookieName}=${cookieValue}`];
+  if (typeof options.domain === "string") {
+    c.push(`Domain=${options.domain}`);
+  }
+  if (typeof options.maxAge === "number") {
+    c.push(`Max-Age=${options.maxAge}`);
+  } else if (Array.isArray(options.maxAge)) {
+    c.push(`Max-Age=${options.maxAge[0] * UNIT[options.maxAge[1]]}`);
+  } else if (typeof options.expires === "number" || typeof options.expires == "string") {
+    c.push(`Expires=${options.expires}`);
+  } else if (options.expires instanceof Date) {
+    c.push(`Expires=${options.expires.toUTCString()}`);
+  }
+  if (options.httpOnly) {
+    c.push("HttpOnly");
+  }
+  if (typeof options.path === "string") {
+    c.push(`Path=${options.path}`);
+  }
+  if (options.sameSite && SAMESITE[options.sameSite]) {
+    c.push(`SameSite=${SAMESITE[options.sameSite]}`);
+  }
+  if (options.secure) {
+    c.push("Secure");
+  }
+  return c.join("; ");
+};
+var parseCookieString = (cookieString) => {
+  const cookie = {};
+  if (typeof cookieString === "string" && cookieString !== "") {
+    const cookieSegments = cookieString.split(";");
+    for (const cookieSegment of cookieSegments) {
+      const cookieSplit = cookieSegment.split("=");
+      if (cookieSplit.length > 1) {
+        const cookieName = decodeURIComponent(cookieSplit[0].trim());
+        const cookieValue = decodeURIComponent(cookieSplit[1].trim());
+        cookie[cookieName] = cookieValue;
+      }
+    }
+  }
+  return cookie;
+};
+var REQ_COOKIE = Symbol("request-cookies");
+var RES_COOKIE = Symbol("response-cookies");
+var _a;
+var Cookie = class {
+  constructor(cookieString) {
+    this[_a] = {};
+    this[REQ_COOKIE] = parseCookieString(cookieString);
+  }
+  get(cookieName) {
+    const value = this[REQ_COOKIE][cookieName];
+    if (!value) {
+      return null;
+    }
+    return {
+      value,
+      json() {
+        return JSON.parse(value);
+      },
+      number() {
+        return Number(value);
+      }
+    };
+  }
+  has(cookieName) {
+    return !!this[REQ_COOKIE][cookieName];
+  }
+  set(cookieName, cookieValue, options = {}) {
+    const resolvedValue = typeof cookieValue === "string" ? cookieValue : encodeURIComponent(JSON.stringify(cookieValue));
+    this[RES_COOKIE][cookieName] = createSetCookieValue(cookieName, resolvedValue, options);
+  }
+  delete(name, options) {
+    this.set(name, "deleted", { ...options, expires: new Date(0) });
+  }
+  headers() {
+    return Object.values(this[RES_COOKIE]);
+  }
+};
+REQ_COOKIE, _a = RES_COOKIE;
+var mergeHeadersCookies = (headers, cookies) => {
+  const cookieHeaders = cookies.headers();
+  if (cookieHeaders.length > 0) {
+    const newHeaders = new Headers(headers);
+    for (const cookie of cookieHeaders) {
+      newHeaders.append("Set-Cookie", cookie);
+    }
+    return newHeaders;
+  }
+  return headers;
+};
+
 // packages/qwik-city/middleware/request-handler/headers.ts
 var HEADERS = Symbol("headers");
-var _a;
+var _a2;
 var HeadersPolyfill = class {
   constructor() {
-    this[_a] = {};
+    this[_a2] = {};
   }
-  [(_a = HEADERS, Symbol.iterator)]() {
+  [(_a2 = HEADERS, Symbol.iterator)]() {
     return this.entries();
   }
   *keys() {
@@ -88,6 +194,7 @@ function errorHandler(requestCtx, e) {
   return requestCtx.response(
     status,
     headers,
+    new Cookie(),
     async (stream) => {
       stream.write(html);
     },
@@ -105,6 +212,7 @@ function errorResponse(requestCtx, errorResponse2) {
   return requestCtx.response(
     errorResponse2.status,
     headers,
+    new Cookie(),
     async (stream) => {
       stream.write(html);
     },
@@ -150,14 +258,10 @@ function minimalHtmlResponse(status, message, stack) {
   </style>
 </head>
 <body>
-  <p>
-    <strong>${status}</strong>
-    <span>${message}</span>
-  </p>
-  ${stack ? `<pre><code>${stack}</code></pre>` : ``}
+  <p><strong>${status}</strong> <span>${message}</span></p>${stack ? `
+  <pre><code>${stack}</code></pre>` : ``}
 </body>
-</html>
-`;
+</html>`;
 }
 var COLOR_400 = "#006ce9";
 var COLOR_500 = "#713fc2";
@@ -246,16 +350,16 @@ var getRouteParams = (paramNames, match) => {
 
 // packages/qwik-city/middleware/request-handler/endpoint-handler.ts
 function endpointHandler(requestCtx, userResponse) {
-  const { pendingBody, resolvedBody, status, headers } = userResponse;
+  const { pendingBody, resolvedBody, status, headers, cookie } = userResponse;
   const { response } = requestCtx;
   if (pendingBody === void 0 && resolvedBody === void 0) {
-    return response(status, headers, asyncNoop);
+    return response(status, headers, cookie, asyncNoop);
   }
   if (!headers.has("Content-Type")) {
     headers.set("Content-Type", "application/json; charset=utf-8");
   }
   const isJson = headers.get("Content-Type").includes("json");
-  return response(status, headers, async ({ write }) => {
+  return response(status, headers, cookie, async ({ write }) => {
     const body = pendingBody !== void 0 ? await pendingBody : resolvedBody;
     if (body !== void 0) {
       if (isJson) {
@@ -278,7 +382,7 @@ var asyncNoop = async () => {
 
 // packages/qwik-city/middleware/request-handler/page-handler.ts
 function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNames) {
-  const { status, headers } = userResponse;
+  const { status, headers, cookie } = userResponse;
   const { response } = requestCtx;
   const isPageData = userResponse.type === "pagedata";
   const requestHeaders = {};
@@ -288,7 +392,7 @@ function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNa
   } else if (!headers.has("Content-Type")) {
     headers.set("Content-Type", "text/html; charset=utf-8");
   }
-  return response(isPageData ? 200 : status, headers, async (stream) => {
+  return response(isPageData ? 200 : status, headers, cookie, async (stream) => {
     try {
       const result = await render({
         stream: isPageData ? noopStream : stream,
@@ -314,9 +418,8 @@ function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNa
   });
 }
 async function getClientPageData(userResponse, result, routeBundleNames) {
-  var _a3;
   const prefetchBundleNames = getPrefetchBundleNames(result, routeBundleNames);
-  const isStatic = !((_a3 = result.snapshotResult) == null ? void 0 : _a3.resources.some((r) => r._cache !== Infinity));
+  const isStatic = result.isStatic;
   const clientPage = {
     body: userResponse.pendingBody ? await userResponse.pendingBody : userResponse.resolvedBody,
     status: userResponse.status !== 200 ? userResponse.status : void 0,
@@ -383,117 +486,28 @@ var noopStream = { write: () => {
 
 // packages/qwik-city/middleware/request-handler/redirect-handler.ts
 var RedirectResponse = class {
-  constructor(url, status, headers) {
+  constructor(url, status, headers, cookies) {
     this.url = url;
     this.location = url;
     this.status = isRedirectStatus(status) ? status : 302 /* Found */;
-    this.headers = headers || createHeaders();
+    this.headers = headers ?? createHeaders();
     this.headers.set("Location", this.location);
     this.headers.delete("Cache-Control");
+    this.cookies = cookies ?? new Cookie();
   }
 };
 function redirectResponse(requestCtx, responseRedirect) {
-  return requestCtx.response(responseRedirect.status, responseRedirect.headers, async () => {
-  });
+  return requestCtx.response(
+    responseRedirect.status,
+    responseRedirect.headers,
+    responseRedirect.cookies,
+    async () => {
+    }
+  );
 }
 function isRedirectStatus(status) {
   return typeof status === "number" && status >= 301 /* MovedPermanently */ && status <= 308 /* PermanentRedirect */;
 }
-
-// packages/qwik-city/middleware/request-handler/cookie.ts
-var SAMESITE = {
-  lax: "Lax",
-  none: "None",
-  strict: "Strict"
-};
-var UNIT = {
-  seconds: 1,
-  minutes: 1 * 60,
-  hours: 1 * 60 * 60,
-  days: 1 * 60 * 60 * 24,
-  weeks: 1 * 60 * 60 * 24 * 7
-};
-var createSetCookieValue = (cookieName, cookieValue, options) => {
-  const c = [`${cookieName}=${cookieValue}`];
-  if (typeof options.domain === "string") {
-    c.push(`Domain=${options.domain}`);
-  }
-  if (typeof options.maxAge === "number") {
-    c.push(`Max-Age=${options.maxAge}`);
-  } else if (Array.isArray(options.maxAge)) {
-    c.push(`Max-Age=${options.maxAge[0] * UNIT[options.maxAge[1]]}`);
-  } else if (typeof options.expires === "number" || typeof options.expires == "string") {
-    c.push(`Expires=${options.expires}`);
-  } else if (options.expires instanceof Date) {
-    c.push(`Expires=${options.expires.toUTCString()}`);
-  }
-  if (options.httpOnly) {
-    c.push("HttpOnly");
-  }
-  if (typeof options.path === "string") {
-    c.push(`Path=${options.path}`);
-  }
-  if (options.sameSite && SAMESITE[options.sameSite]) {
-    c.push(`SameSite=${SAMESITE[options.sameSite]}`);
-  }
-  if (options.secure) {
-    c.push("Secure");
-  }
-  return c.join("; ");
-};
-var parseCookieString = (cookieString) => {
-  const cookie = {};
-  if (typeof cookieString === "string" && cookieString !== "") {
-    const cookieSegments = cookieString.split(";");
-    for (const cookieSegment of cookieSegments) {
-      const cookieSplit = cookieSegment.split("=");
-      if (cookieSplit.length > 1) {
-        const cookieName = decodeURIComponent(cookieSplit[0].trim());
-        const cookieValue = decodeURIComponent(cookieSplit[1].trim());
-        cookie[cookieName] = cookieValue;
-      }
-    }
-  }
-  return cookie;
-};
-var REQ_COOKIE = Symbol("request-cookies");
-var RES_COOKIE = Symbol("response-cookies");
-var _a2;
-var Cookie = class {
-  constructor(cookieString) {
-    this[_a2] = {};
-    this[REQ_COOKIE] = parseCookieString(cookieString);
-  }
-  get(cookieName) {
-    const value = this[REQ_COOKIE][cookieName];
-    if (!value) {
-      return null;
-    }
-    return {
-      value,
-      json() {
-        return JSON.parse(value);
-      },
-      number() {
-        return Number(value);
-      }
-    };
-  }
-  has(cookieName) {
-    return !!this[REQ_COOKIE][cookieName];
-  }
-  set(cookieName, cookieValue, options = {}) {
-    const resolvedValue = typeof cookieValue === "string" ? cookieValue : encodeURIComponent(JSON.stringify(cookieValue));
-    this[RES_COOKIE][cookieName] = createSetCookieValue(cookieName, resolvedValue, options);
-  }
-  delete(name, options) {
-    this.set(name, "deleted", { ...options, expires: new Date(0) });
-  }
-  headers() {
-    return Object.values(this[RES_COOKIE]);
-  }
-};
-REQ_COOKIE, _a2 = RES_COOKIE;
 
 // packages/qwik-city/middleware/request-handler/user-response.ts
 async function loadUserResponse(requestCtx, params, routeModules, trailingSlash, basePathname = "/") {
@@ -536,7 +550,7 @@ async function loadUserResponse(requestCtx, params, routeModules, trailingSlash,
     routeModuleIndex = ABORT_INDEX;
   };
   const redirect = (url2, status) => {
-    return new RedirectResponse(url2, status, userResponse.headers);
+    return new RedirectResponse(url2, status, userResponse.headers, userResponse.cookie);
   };
   const error = (status, message) => {
     return new ErrorResponse(status, message);
@@ -627,14 +641,12 @@ async function loadUserResponse(requestCtx, params, routeModules, trailingSlash,
   };
   await next();
   userResponse.aborted = routeModuleIndex >= ABORT_INDEX;
-  for (const setCookieValue of userResponse.cookie.headers()) {
-    userResponse.headers.set("Set-Cookie", setCookieValue);
-  }
   if (!isPageDataRequest && isRedirectStatus(userResponse.status) && userResponse.headers.has("Location")) {
     throw new RedirectResponse(
       userResponse.headers.get("Location"),
       userResponse.status,
-      userResponse.headers
+      userResponse.headers,
+      userResponse.cookie
     );
   }
   if (type === "endpoint" && !hasRequestMethodHandler) {
@@ -740,12 +752,15 @@ function createQwikCity(opts) {
         locale: void 0,
         url,
         request,
-        response: (status, headers, body) => {
+        response: (status, headers, cookies, body) => {
           return new Promise((resolve) => {
             let flushedHeaders = false;
             const { readable, writable } = new TransformStream();
             const writer = writable.getWriter();
-            const response = new Response(readable, { status, headers });
+            const response = new Response(readable, {
+              status,
+              headers: mergeHeadersCookies(headers, cookies)
+            });
             body({
               write: (chunk) => {
                 if (!flushedHeaders) {

@@ -21,9 +21,7 @@ function viteAdaptor(opts) {
       var _a;
       isSsrBuild = !!build.ssr;
       if (isSsrBuild) {
-        qwikCityPlugin = plugins.find(
-          (p) => p.name === "vite-plugin-qwik-city"
-        );
+        qwikCityPlugin = plugins.find((p) => p.name === "vite-plugin-qwik-city");
         if (!qwikCityPlugin) {
           throw new Error("Missing vite-plugin-qwik-city");
         }
@@ -37,11 +35,7 @@ function viteAdaptor(opts) {
             `"build.ssr" must be set to "true" in order to use the "${opts.name}" adaptor.`
           );
         }
-        if (
-          !((_a = build == null ? void 0 : build.rollupOptions) == null
-            ? void 0
-            : _a.input)
-        ) {
+        if (!((_a = build == null ? void 0 : build.rollupOptions) == null ? void 0 : _a.input)) {
           throw new Error(
             `"build.rollupOptions.input" must be set in order to use the "${opts.name}" adaptor.`
           );
@@ -73,30 +67,18 @@ function viteAdaptor(opts) {
       }
     },
     async closeBundle() {
-      if (
-        isSsrBuild &&
-        serverOutDir &&
-        (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) &&
-        (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api)
-      ) {
+      if (isSsrBuild && serverOutDir && (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) && (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api)) {
         const serverPackageJsonPath = join(serverOutDir, "package.json");
         const serverPackageJsonCode = `{"type":"module"}`;
         await fs.promises.mkdir(serverOutDir, { recursive: true });
-        await fs.promises.writeFile(
-          serverPackageJsonPath,
-          serverPackageJsonCode
-        );
+        await fs.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
         let staticGenerateResult = null;
         if (opts.staticGenerate && renderModulePath && qwikCityPlanModulePath) {
           let origin = opts.origin;
           if (!origin) {
             origin = `https://yoursite.qwik.builder.io`;
           }
-          if (
-            origin.length > 0 &&
-            !origin.startsWith("https://") &&
-            !origin.startsWith("http://")
-          ) {
+          if (origin.length > 0 && !origin.startsWith("https://") && !origin.startsWith("http://")) {
             origin = `https://${origin}`;
           }
           const staticGenerate = await import("../../../static/index.mjs");
@@ -105,12 +87,12 @@ function viteAdaptor(opts) {
             outDir: qwikVitePlugin.api.getClientOutDir(),
             origin,
             renderModulePath,
-            qwikCityPlanModulePath,
+            qwikCityPlanModulePath
           };
           if (opts.staticGenerate && typeof opts.staticGenerate === "object") {
             generateOpts = {
               ...generateOpts,
-              ...opts.staticGenerate,
+              ...opts.staticGenerate
             };
           }
           staticGenerateResult = await staticGenerate.generate(generateOpts);
@@ -125,16 +107,13 @@ function viteAdaptor(opts) {
             serverOutDir,
             clientOutDir: qwikVitePlugin.api.getClientOutDir(),
             routes: qwikCityPlugin.api.getRoutes(),
-            staticPaths:
-              (staticGenerateResult == null
-                ? void 0
-                : staticGenerateResult.staticPaths) ?? [],
+            staticPaths: (staticGenerateResult == null ? void 0 : staticGenerateResult.staticPaths) ?? [],
             warn: (message) => this.warn(message),
-            error: (message) => this.error(message),
+            error: (message) => this.error(message)
           });
         }
       }
-    },
+    }
   };
   return plugin;
 }
@@ -144,19 +123,18 @@ function expressAdaptor(opts = {}) {
   var _a;
   return viteAdaptor({
     name: "express",
-    origin:
-      ((_a = process == null ? void 0 : process.env) == null
-        ? void 0
-        : _a.URL) || "https://yoursitename.qwik.builder.io",
+    origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.URL) || "https://yoursitename.qwik.builder.io",
     staticGenerate: opts.staticGenerate,
     config() {
       return {
         build: {
-          ssr: true,
+          ssr: true
         },
-        publicDir: false,
+        publicDir: false
       };
-    },
+    }
   });
 }
-export { expressAdaptor };
+export {
+  expressAdaptor
+};

@@ -1,6 +1,6 @@
 {
   "name": "@builder.io/qwik-city",
-  "version": "0.0.120",
+  "version": "0.0.122",
   "description": "The meta-framework for Qwik.",
   "main": "./index.qwik.mjs",
   "qwik": "./index.qwik.mjs",
@@ -72,6 +72,7 @@
   },
   "dependencies": {
     "@mdx-js/mdx": "2.1.5",
+    "@playwright/test": "1.27.1",
     "@types/mdx": "2.0.3",
     "source-map": "0.7.4",
     "vfile": "5.3.5"

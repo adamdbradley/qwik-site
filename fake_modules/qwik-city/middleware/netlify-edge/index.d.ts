@@ -1,22 +1,13 @@
-/// <reference path="./modules.d.ts" />
-
-import { Component } from '@builder.io/qwik';
-import { JSXNode } from '@builder.io/qwik';
-import { QwikIntrinsicElements } from '@builder.io/qwik';
-import { ResourceReturn } from '@builder.io/qwik';
-
-declare type AnchorAttributes = QwikIntrinsicElements['a'];
-
-/**
- * @deprecated Please use `RouterOutlet` instead.
- * @alpha
- */
-export declare const Content: Component<    {}>;
+import type { Context } from '@netlify/edge-functions';
+import type { Render } from '@builder.io/qwik/server';
+import type { RenderOptions } from '@builder.io/qwik/server';
+import type { RenderOptions as RenderOptions_2 } from '@builder.io/qwik';
+import type { RequestHandler as RequestHandler_2 } from '@builder.io/qwik-city';
 
 /**
  * @alpha
  */
-export declare interface ContentHeading {
+declare interface ContentHeading {
     text: string;
     id: string;
     level: number;
@@ -25,7 +16,7 @@ export declare interface ContentHeading {
 /**
  * @alpha
  */
-export declare interface ContentMenu {
+declare interface ContentMenu {
     text: string;
     href?: string;
     items?: ContentMenu[];
@@ -37,15 +28,10 @@ declare type ContentModuleHead = DocumentHead | ResolvedDocumentHead;
 
 declare type ContentModuleLoader = () => Promise<ContentModule>;
 
-declare interface ContentState {
-    headings: ContentHeading[] | undefined;
-    menu: ContentMenu | undefined;
-}
-
 /**
  * @alpha
  */
-export declare interface Cookie {
+declare interface Cookie {
     /**
      * Gets a `Request` cookie header value by name.
      */
@@ -72,7 +58,7 @@ export declare interface Cookie {
  * https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie
  * @alpha
  */
-export declare interface CookieOptions {
+declare interface CookieOptions {
     /**
      * Defines the host to which the cookie will be sent. If omitted, this attribute defaults
      * to the host of the current document URL, not including subdomains.
@@ -113,7 +99,7 @@ export declare interface CookieOptions {
 /**
  * @alpha
  */
-export declare interface CookieValue {
+declare interface CookieValue {
     value: string;
     json: <T = unknown>() => T;
     number: () => number;
@@ -122,12 +108,17 @@ export declare interface CookieValue {
 /**
  * @alpha
  */
-export declare type DocumentHead<T = unknown> = DocumentHeadValue | ((props: DocumentHeadProps<GetEndpointData<T>>) => DocumentHeadValue);
+export declare function createQwikCity(opts: QwikCityNetlifyOptions): (request: Request, context: Context) => Promise<Response>;
 
 /**
  * @alpha
  */
-export declare interface DocumentHeadProps<T = unknown> extends RouteLocation {
+declare type DocumentHead<T = unknown> = DocumentHeadValue | ((props: DocumentHeadProps<GetEndpointData<T>>) => DocumentHeadValue);
+
+/**
+ * @alpha
+ */
+declare interface DocumentHeadProps<T = unknown> extends RouteLocation {
     data: T;
     head: ResolvedDocumentHead;
     withLocale: <T>(fn: () => T) => T;
@@ -136,7 +127,7 @@ export declare interface DocumentHeadProps<T = unknown> extends RouteLocation {
 /**
  * @alpha
  */
-export declare interface DocumentHeadValue {
+declare interface DocumentHeadValue {
     /**
      * Sets `document.title`.
      */
@@ -166,7 +157,7 @@ export declare interface DocumentHeadValue {
 /**
  * @alpha
  */
-export declare interface DocumentLink {
+declare interface DocumentLink {
     as?: string;
     crossorigin?: string;
     disabled?: boolean;
@@ -189,7 +180,7 @@ export declare interface DocumentLink {
 /**
  * @alpha
  */
-export declare interface DocumentMeta {
+declare interface DocumentMeta {
     content?: string;
     httpEquiv?: string;
     name?: string;
@@ -201,19 +192,13 @@ export declare interface DocumentMeta {
 /**
  * @alpha
  */
-export declare interface DocumentStyle {
+declare interface DocumentStyle {
     style: string;
     props?: {
         [propName: string]: string;
     };
     key?: string;
 }
-
-/**
- * @alpha
- * @deprecated Please use `RequestHandler` instead.
- */
-export declare type EndpointHandler<BODY = unknown> = RequestHandler<BODY>;
 
 declare type EndpointModuleLoader = () => Promise<RouteModule>;
 
@@ -222,29 +207,17 @@ declare class ErrorResponse extends Error {
     constructor(status: number, message?: string);
 }
 
-declare type GetEndpointData<T> = T extends RequestHandler<infer U> ? U : T;
-
 /**
  * @alpha
- * @deprecated - The "Html" component has been renamed to "QwikCity".
  */
-export declare const Html: Component<QwikCityProps>;
+export declare interface EventPluginContext extends Context {
+}
+
+declare type GetEndpointData<T> = T extends RequestHandler<infer U> ? U : T;
 
 declare interface LayoutModule extends RouteModule {
     readonly default: any;
     readonly head?: ContentModuleHead;
-}
-
-/**
- * @alpha
- */
-export declare const Link: Component<LinkProps>;
-
-/**
- * @alpha
- */
-export declare interface LinkProps extends AnchorAttributes {
-    prefetch?: boolean;
 }
 
 declare type MenuData = [pathname: string, menuLoader: MenuModuleLoader];
@@ -266,37 +239,40 @@ declare interface PageModule extends RouteModule {
 
 /**
  * @alpha
+ * @deprecated Please use `createQwikCity()` instead.
+ *
+ * Example:
+ *
+ * ```ts
+ * import { createQwikCity } from '@builder.io/qwik-city/middleware/netlify-edge';
+ * import qwikCityPlan from '@qwik-city-plan';
+ * import render from './entry.ssr';
+ *
+ * export default createQwikCity({ render, qwikCityPlan });
+ * ```
  */
-export declare const QwikCity: Component<QwikCityProps>;
+export declare function qwikCity(render: Render, opts?: RenderOptions_2): (request: Request, context: Context) => Promise<Response>;
 
-/**
- * @alpha
- */
-export declare interface QwikCityPlan {
-    routes: RouteData[];
-    basePathname?: string;
-    menus?: MenuData[];
-    trailingSlash?: boolean;
-    cacheModules?: boolean;
+declare interface QwikCityHandlerOptions extends RenderOptions {
+    render: Render;
+    qwikCityPlan: QwikCityPlan;
 }
 
 /**
  * @alpha
  */
-declare interface QwikCityProps {
-    /**
-     * The QwikCity component must have only two direct children: `<head>` and `<body>`, like the following example:
-     *
-     * ```tsx
-     * <QwikCity>
-     *   <head>
-     *     <meta charSet="utf-8" />
-     *   </head>
-     *   <body lang="en"></body>
-     * </QwikCity>
-     * ```
-     */
-    children?: [JSXNode, JSXNode];
+export declare interface QwikCityNetlifyOptions extends QwikCityHandlerOptions {
+}
+
+/**
+ * @alpha
+ */
+declare interface QwikCityPlan {
+    routes: RouteData[];
+    basePathname?: string;
+    menus?: MenuData[];
+    trailingSlash?: boolean;
+    cacheModules?: boolean;
 }
 
 declare class RedirectResponse {
@@ -311,7 +287,7 @@ declare class RedirectResponse {
 /**
  * @alpha
  */
-export declare interface RequestContext {
+declare interface RequestContext {
     formData(): Promise<FormData>;
     headers: Headers;
     json(): Promise<any>;
@@ -323,7 +299,7 @@ export declare interface RequestContext {
 /**
  * @alpha
  */
-export declare interface RequestEvent<PLATFORM = unknown> {
+declare interface RequestEvent<PLATFORM = unknown> {
     request: RequestContext;
     response: ResponseContext;
     url: URL;
@@ -339,23 +315,28 @@ export declare interface RequestEvent<PLATFORM = unknown> {
 /**
  * @alpha
  */
-export declare type RequestHandler<BODY = unknown, PLATFORM = unknown> = (ev: RequestEvent<PLATFORM>) => RequestHandlerResult<BODY>;
+declare type RequestHandler<BODY = unknown, PLATFORM = unknown> = (ev: RequestEvent<PLATFORM>) => RequestHandlerResult<BODY>;
 
 declare type RequestHandlerBody<BODY> = BODY | string | number | boolean | undefined | null | void;
 
 declare type RequestHandlerBodyFunction<BODY> = () => RequestHandlerBody<BODY> | Promise<RequestHandlerBody<BODY>>;
+
+/**
+ * @alpha
+ */
+export declare type RequestHandlerNetlify<T = unknown> = RequestHandler_2<T, Omit<Context, 'next' | 'cookies'>>;
 
 declare type RequestHandlerResult<BODY> = (RequestHandlerBody<BODY> | RequestHandlerBodyFunction<BODY>) | Promise<RequestHandlerBody<BODY> | RequestHandlerBodyFunction<BODY>>;
 
 /**
  * @alpha
  */
-export declare type ResolvedDocumentHead = Required<DocumentHeadValue>;
+declare type ResolvedDocumentHead = Required<DocumentHeadValue>;
 
 /**
  * @alpha
  */
-export declare interface ResponseContext {
+declare interface ResponseContext {
     /**
      * HTTP response status code.
      *
@@ -396,7 +377,7 @@ export declare interface ResponseContext {
 /**
  * @alpha
  */
-export declare type RouteData = [pattern: RegExp, loaders: ModuleLoader[]] | [pattern: RegExp, loaders: ModuleLoader[], paramNames: string[]] | [
+declare type RouteData = [pattern: RegExp, loaders: ModuleLoader[]] | [pattern: RegExp, loaders: ModuleLoader[], paramNames: string[]] | [
 pattern: RegExp,
 loaders: ModuleLoader[],
 paramNames: string[],
@@ -407,7 +388,7 @@ routeBundleNames: string[]
 /**
  * @alpha
  */
-export declare interface RouteLocation {
+declare interface RouteLocation {
     readonly params: RouteParams;
     readonly href: string;
     readonly pathname: string;
@@ -425,24 +406,10 @@ declare interface RouteModule<BODY = unknown> {
     onRequest?: RequestHandler<BODY>;
 }
 
-declare interface RouteNavigate {
-    path: string;
-}
-
 /**
  * @alpha
  */
-export declare type RouteParams = Record<string, string>;
-
-/**
- * @alpha
- */
-export declare const RouterOutlet: Component<    {}>;
-
-/**
- * @alpha
- */
-export declare const ServiceWorkerRegister: () => JSXNode<"script">;
+declare type RouteParams = Record<string, string>;
 
 /**
  * @alpha
@@ -454,31 +421,6 @@ declare interface StaticGenerate {
 /**
  * @alpha
  */
-export declare type StaticGenerateHandler = () => Promise<StaticGenerate> | StaticGenerate;
-
-/**
- * @alpha
- */
-export declare const useContent: () => ContentState;
-
-/**
- * @alpha
- */
-export declare const useDocumentHead: () => Required<ResolvedDocumentHead>;
-
-/**
- * @alpha
- */
-export declare const useEndpoint: <T = unknown>() => ResourceReturn<GetEndpointData<T>>;
-
-/**
- * @alpha
- */
-export declare const useLocation: () => RouteLocation;
-
-/**
- * @alpha
- */
-export declare const useNavigate: () => RouteNavigate;
+declare type StaticGenerateHandler = () => Promise<StaticGenerate> | StaticGenerate;
 
 export { }

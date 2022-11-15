@@ -317,12 +317,19 @@ async function createSystem(opts) {
     return pathname;
   };
   const getPageFilePath = (pathname) => {
-    pathname = getFsDir(pathname) + "index.html";
+    if (pathname.endsWith(".html")) {
+      pathname = pathname.slice(basenameLen);
+    } else {
+      pathname = getFsDir(pathname) + "index.html";
+    }
     return (0, import_node_path3.join)(outDir, pathname);
   };
   const getDataFilePath = (pathname) => {
-    pathname = getFsDir(pathname) + "q-data.json";
-    return (0, import_node_path3.join)(outDir, pathname);
+    if (!pathname.endsWith(".html")) {
+      pathname = getFsDir(pathname) + "q-data.json";
+      return (0, import_node_path3.join)(outDir, pathname);
+    }
+    return null;
   };
   const sys = {
     createMainProcess: () => createNodeMainProcess(opts),
@@ -332,6 +339,7 @@ async function createSystem(opts) {
     ensureDir,
     createWriteStream,
     createTimer,
+    access,
     getPageFilePath,
     getDataFilePath,
     platform: {
@@ -342,9 +350,14 @@ async function createSystem(opts) {
   return sys;
 }
 var ensureDir = async (filePath) => {
+  await import_node_fs2.default.promises.mkdir((0, import_node_path3.dirname)(filePath), { recursive: true });
+};
+var access = async (path) => {
   try {
-    await import_node_fs2.default.promises.mkdir((0, import_node_path3.dirname)(filePath), { recursive: true });
+    await import_node_fs2.default.promises.access(path);
+    return true;
   } catch (e) {
+    return false;
   }
 };
 
@@ -353,187 +366,110 @@ var import_node_worker_threads3 = require("worker_threads");
 
 // packages/qwik-city/static/main-thread.ts
 var import_node_url = require("url");
-async function mainThread(sys) {
-  const opts = sys.getOptions();
-  validateOptions(opts);
-  const main = await sys.createMainProcess();
-  const log = await sys.createLogger();
-  const qwikCityPlan = (await import((0, import_node_url.pathToFileURL)(opts.qwikCityPlanModulePath).href)).default;
-  const queue = [];
-  const active = /* @__PURE__ */ new Set();
-  const routes = qwikCityPlan.routes || [];
-  const trailingSlash = !!qwikCityPlan.trailingSlash;
-  return new Promise((resolve2, reject) => {
-    try {
-      const timer = sys.createTimer();
-      const generatorResult = {
-        duration: 0,
-        rendered: 0,
-        errors: 0,
-        staticPaths: []
-      };
-      let isCompleted = false;
-      let isRoutesLoaded = false;
-      const next = () => {
-        while (!isCompleted && main.hasAvailableWorker() && queue.length > 0) {
-          const staticRoute = queue.shift();
-          if (staticRoute) {
-            render(staticRoute);
-          }
-        }
-        if (!isCompleted && isRoutesLoaded && queue.length === 0 && active.size === 0) {
-          isCompleted = true;
-          generatorResult.duration = timer();
-          log.info("\nSSG results");
-          if (generatorResult.rendered > 0) {
-            log.info(
-              `- Generated: ${generatorResult.rendered} page${generatorResult.rendered === 1 ? "" : "s"}`
-            );
-          }
-          if (generatorResult.errors > 0) {
-            log.info(`- Errors: ${generatorResult.errors}`);
-          }
-          log.info(`- Duration: ${msToString(generatorResult.duration)}`);
-          const total = generatorResult.rendered + generatorResult.errors;
-          if (total > 0) {
-            log.info(`- Average: ${msToString(generatorResult.duration / total)} per page`);
-          }
-          log.info(``);
-          main.close().then(() => {
-            setTimeout(() => resolve2(generatorResult));
-          }).catch(reject);
-        }
-      };
-      let isPendingDrain = false;
-      const flushQueue = () => {
-        if (!isPendingDrain) {
-          isPendingDrain = true;
-          setTimeout(() => {
-            isPendingDrain = false;
-            next();
-          });
-        }
-      };
-      const render = async (staticRoute) => {
-        try {
-          active.add(staticRoute.pathname);
-          const result = await main.render({ type: "render", ...staticRoute });
-          active.delete(staticRoute.pathname);
-          if (result.error) {
-            log.error(
-              `ERROR: SSG failed for path: ${staticRoute.pathname}
-`,
-              result.error,
-              "\n\n"
-            );
-            generatorResult.errors++;
-          } else if (result.ok) {
-            generatorResult.rendered++;
-            if (result.isStatic) {
-              generatorResult.staticPaths.push(result.pathname);
-            }
-          }
-          flushQueue();
-        } catch (e) {
-          isCompleted = true;
-          reject(e);
-        }
-      };
-      const addToQueue = (pathname, params) => {
-        if (pathname) {
-          pathname = new URL(pathname, `https://qwik.builder.io`).pathname;
-          if (pathname !== opts.basePathname) {
-            if (trailingSlash) {
-              if (!pathname.endsWith("/")) {
-                const segments = pathname.split("/");
-                const lastSegment = segments[segments.length - 1];
-                if (!lastSegment.includes(".")) {
-                  pathname += "/";
-                }
-              }
-            } else {
-              if (pathname.endsWith("/")) {
-                pathname = pathname.slice(0, pathname.length - 1);
-              }
-            }
-          }
-          if (!queue.some((s) => s.pathname === pathname)) {
-            queue.push({
-              pathname,
-              params
-            });
-            flushQueue();
-          }
-        }
-      };
-      const loadStaticRoutes = async () => {
-        await Promise.all(
-          routes.map(async (route) => {
-            const [_, loaders, paramNames, originalPathname] = route;
-            const modules = await Promise.all(loaders.map((loader) => loader()));
-            const pageModule = modules[modules.length - 1];
-            if (pageModule.default) {
-              if (Array.isArray(paramNames) && paramNames.length > 0) {
-                if (typeof pageModule.onStaticGenerate === "function" && paramNames.length > 0) {
-                  const staticGenerate = await pageModule.onStaticGenerate();
-                  if (Array.isArray(staticGenerate.params)) {
-                    for (const params of staticGenerate.params) {
-                      const pathname = getPathnameForDynamicRoute(
-                        originalPathname,
-                        paramNames,
-                        params
-                      );
-                      addToQueue(pathname, params);
-                    }
-                  }
-                }
-              } else {
-                addToQueue(originalPathname, void 0);
-              }
-            }
-          })
-        );
-        isRoutesLoaded = true;
-        flushQueue();
-      };
-      loadStaticRoutes();
-    } catch (e) {
-      reject(e);
+
+// packages/qwik-city/middleware/request-handler/cookie.ts
+var SAMESITE = {
+  lax: "Lax",
+  none: "None",
+  strict: "Strict"
+};
+var UNIT = {
+  seconds: 1,
+  minutes: 1 * 60,
+  hours: 1 * 60 * 60,
+  days: 1 * 60 * 60 * 24,
+  weeks: 1 * 60 * 60 * 24 * 7
+};
+var createSetCookieValue = (cookieName, cookieValue, options) => {
+  const c = [`${cookieName}=${cookieValue}`];
+  if (typeof options.domain === "string") {
+    c.push(`Domain=${options.domain}`);
+  }
+  if (typeof options.maxAge === "number") {
+    c.push(`Max-Age=${options.maxAge}`);
+  } else if (Array.isArray(options.maxAge)) {
+    c.push(`Max-Age=${options.maxAge[0] * UNIT[options.maxAge[1]]}`);
+  } else if (typeof options.expires === "number" || typeof options.expires == "string") {
+    c.push(`Expires=${options.expires}`);
+  } else if (options.expires instanceof Date) {
+    c.push(`Expires=${options.expires.toUTCString()}`);
+  }
+  if (options.httpOnly) {
+    c.push("HttpOnly");
+  }
+  if (typeof options.path === "string") {
+    c.push(`Path=${options.path}`);
+  }
+  if (options.sameSite && SAMESITE[options.sameSite]) {
+    c.push(`SameSite=${SAMESITE[options.sameSite]}`);
+  }
+  if (options.secure) {
+    c.push("Secure");
+  }
+  return c.join("; ");
+};
+var parseCookieString = (cookieString) => {
+  const cookie = {};
+  if (typeof cookieString === "string" && cookieString !== "") {
+    const cookieSegments = cookieString.split(";");
+    for (const cookieSegment of cookieSegments) {
+      const cookieSplit = cookieSegment.split("=");
+      if (cookieSplit.length > 1) {
+        const cookieName = decodeURIComponent(cookieSplit[0].trim());
+        const cookieValue = decodeURIComponent(cookieSplit[1].trim());
+        cookie[cookieName] = cookieValue;
+      }
     }
-  });
-}
-function validateOptions(opts) {
-  if (!opts.qwikCityPlanModulePath) {
-    throw new Error(`Missing "qwikCityPlanModulePath" option`);
   }
-  if (!opts.renderModulePath) {
-    throw new Error(`Missing "renderModulePath" option`);
+  return cookie;
+};
+var REQ_COOKIE = Symbol("request-cookies");
+var RES_COOKIE = Symbol("response-cookies");
+var _a;
+var Cookie = class {
+  constructor(cookieString) {
+    this[_a] = {};
+    this[REQ_COOKIE] = parseCookieString(cookieString);
   }
-  let siteOrigin = opts.origin;
-  if (typeof siteOrigin !== "string" || siteOrigin.trim().length === 0) {
-    throw new Error(`Missing "origin" option`);
+  get(cookieName) {
+    const value = this[REQ_COOKIE][cookieName];
+    if (!value) {
+      return null;
+    }
+    return {
+      value,
+      json() {
+        return JSON.parse(value);
+      },
+      number() {
+        return Number(value);
+      }
+    };
   }
-  siteOrigin = siteOrigin.trim();
-  if (!siteOrigin.startsWith("https://") && !siteOrigin.startsWith("http://")) {
-    throw new Error(
-      `"origin" must start with a valid protocol, such as "https://" or "http://", received "${siteOrigin}"`
-    );
+  has(cookieName) {
+    return !!this[REQ_COOKIE][cookieName];
   }
-  try {
-    new URL(siteOrigin);
-  } catch (e) {
-    throw new Error(`Invalid "origin": ${e}`);
+  set(cookieName, cookieValue, options = {}) {
+    const resolvedValue = typeof cookieValue === "string" ? cookieValue : encodeURIComponent(JSON.stringify(cookieValue));
+    this[RES_COOKIE][cookieName] = createSetCookieValue(cookieName, resolvedValue, options);
   }
-}
+  delete(name, options) {
+    this.set(name, "deleted", { ...options, expires: new Date(0) });
+  }
+  headers() {
+    return Object.values(this[RES_COOKIE]);
+  }
+};
+REQ_COOKIE, _a = RES_COOKIE;
 
 // packages/qwik-city/middleware/request-handler/headers.ts
 var HEADERS = Symbol("headers");
-var _a;
+var _a2;
 var HeadersPolyfill = class {
   constructor() {
-    this[_a] = {};
+    this[_a2] = {};
   }
-  [(_a = HEADERS, Symbol.iterator)]() {
+  [(_a2 = HEADERS, Symbol.iterator)]() {
     return this.entries();
   }
   *keys() {
@@ -613,6 +549,7 @@ function errorHandler(requestCtx, e) {
   return requestCtx.response(
     status,
     headers,
+    new Cookie(),
     async (stream) => {
       stream.write(html);
     },
@@ -630,6 +567,7 @@ function errorResponse(requestCtx, errorResponse2) {
   return requestCtx.response(
     errorResponse2.status,
     headers,
+    new Cookie(),
     async (stream) => {
       stream.write(html);
     },
@@ -675,17 +613,218 @@ function minimalHtmlResponse(status, message, stack) {
   </style>
 </head>
 <body>
-  <p>
-    <strong>${status}</strong>
-    <span>${message}</span>
-  </p>
-  ${stack ? `<pre><code>${stack}</code></pre>` : ``}
+  <p><strong>${status}</strong> <span>${message}</span></p>${stack ? `
+  <pre><code>${stack}</code></pre>` : ``}
 </body>
-</html>
-`;
+</html>`;
 }
 var COLOR_400 = "#006ce9";
 var COLOR_500 = "#713fc2";
+
+// packages/qwik-city/static/404.ts
+async function generate404Pages(sys, opts) {
+  if (opts.emit404Pages !== false) {
+    const basePathname = opts.basePathname || "/";
+    const buildBase = typeof opts.base === "string" ? opts.base : typeof opts.base === "function" ? opts.base(opts) : basePathname + "build/";
+    const path404s = [basePathname, buildBase].map((p) => p + "404.html");
+    await Promise.all(
+      path404s.map((pathname) => {
+        return generate404Page(sys, pathname);
+      })
+    );
+  }
+}
+async function generate404Page(sys, pathname) {
+  const filePath = sys.getPageFilePath(pathname);
+  const fileExists = await sys.access(filePath);
+  if (!fileExists) {
+    const html = getErrorHtml(404, "Resource Not Found");
+    await sys.ensureDir(filePath);
+    return new Promise((resolve2) => {
+      const writer = sys.createWriteStream(filePath);
+      writer.write(html);
+      writer.close(resolve2);
+    });
+  }
+}
+
+// packages/qwik-city/static/main-thread.ts
+async function mainThread(sys) {
+  const opts = sys.getOptions();
+  validateOptions(opts);
+  const main = await sys.createMainProcess();
+  const log = await sys.createLogger();
+  const qwikCityPlan = (await import((0, import_node_url.pathToFileURL)(opts.qwikCityPlanModulePath).href)).default;
+  const queue = [];
+  const active = /* @__PURE__ */ new Set();
+  const routes = qwikCityPlan.routes || [];
+  const trailingSlash = !!qwikCityPlan.trailingSlash;
+  return new Promise((resolve2, reject) => {
+    try {
+      const timer = sys.createTimer();
+      const generatorResult = {
+        duration: 0,
+        rendered: 0,
+        errors: 0,
+        staticPaths: []
+      };
+      let isCompleted = false;
+      let isRoutesLoaded = false;
+      const completed = async () => {
+        const closePromise = main.close();
+        await generate404Pages(sys, opts);
+        generatorResult.duration = timer();
+        log.info("\nSSG results");
+        if (generatorResult.rendered > 0) {
+          log.info(
+            `- Generated: ${generatorResult.rendered} page${generatorResult.rendered === 1 ? "" : "s"}`
+          );
+        }
+        if (generatorResult.errors > 0) {
+          log.info(`- Errors: ${generatorResult.errors}`);
+        }
+        log.info(`- Duration: ${msToString(generatorResult.duration)}`);
+        const total = generatorResult.rendered + generatorResult.errors;
+        if (total > 0) {
+          log.info(`- Average: ${msToString(generatorResult.duration / total)} per page`);
+        }
+        log.info(``);
+        closePromise.then(() => {
+          setTimeout(() => resolve2(generatorResult));
+        }).catch(reject);
+      };
+      const next = () => {
+        while (!isCompleted && main.hasAvailableWorker() && queue.length > 0) {
+          const staticRoute = queue.shift();
+          if (staticRoute) {
+            render(staticRoute);
+          }
+        }
+        if (!isCompleted && isRoutesLoaded && queue.length === 0 && active.size === 0) {
+          isCompleted = true;
+          completed();
+        }
+      };
+      let isPendingDrain = false;
+      const flushQueue = () => {
+        if (!isPendingDrain) {
+          isPendingDrain = true;
+          setTimeout(() => {
+            isPendingDrain = false;
+            next();
+          });
+        }
+      };
+      const render = async (staticRoute) => {
+        try {
+          active.add(staticRoute.pathname);
+          const result = await main.render({ type: "render", ...staticRoute });
+          active.delete(staticRoute.pathname);
+          if (result.error) {
+            log.error(
+              `ERROR: SSG failed for path: ${staticRoute.pathname}
+`,
+              result.error,
+              "\n\n"
+            );
+            generatorResult.errors++;
+          } else if (result.ok) {
+            generatorResult.rendered++;
+            if (result.isStatic) {
+              generatorResult.staticPaths.push(result.pathname);
+            }
+          }
+          flushQueue();
+        } catch (e) {
+          isCompleted = true;
+          reject(e);
+        }
+      };
+      const addToQueue = (pathname, params) => {
+        if (pathname) {
+          pathname = new URL(pathname, `https://qwik.builder.io`).pathname;
+          if (pathname !== opts.basePathname) {
+            if (trailingSlash) {
+              if (!pathname.endsWith("/")) {
+                const segments = pathname.split("/");
+                const lastSegment = segments[segments.length - 1];
+                if (!lastSegment.includes(".")) {
+                  pathname += "/";
+                }
+              }
+            } else {
+              if (pathname.endsWith("/")) {
+                pathname = pathname.slice(0, pathname.length - 1);
+              }
+            }
+          }
+          if (!queue.some((s) => s.pathname === pathname)) {
+            queue.push({
+              pathname,
+              params
+            });
+            flushQueue();
+          }
+        }
+      };
+      const loadStaticRoute = async (route) => {
+        const [_, loaders, paramNames, originalPathname] = route;
+        const modules = await Promise.all(loaders.map((loader) => loader()));
+        const pageModule = modules[modules.length - 1];
+        if (pageModule.default) {
+          if (Array.isArray(paramNames) && paramNames.length > 0) {
+            if (typeof pageModule.onStaticGenerate === "function" && paramNames.length > 0) {
+              const staticGenerate = await pageModule.onStaticGenerate();
+              if (Array.isArray(staticGenerate.params)) {
+                for (const params of staticGenerate.params) {
+                  const pathname = getPathnameForDynamicRoute(
+                    originalPathname,
+                    paramNames,
+                    params
+                  );
+                  addToQueue(pathname, params);
+                }
+              }
+            }
+          } else {
+            addToQueue(originalPathname, void 0);
+          }
+        }
+      };
+      const loadStaticRoutes = async () => {
+        await Promise.all(routes.map(loadStaticRoute));
+        isRoutesLoaded = true;
+        flushQueue();
+      };
+      loadStaticRoutes();
+    } catch (e) {
+      reject(e);
+    }
+  });
+}
+function validateOptions(opts) {
+  if (!opts.qwikCityPlanModulePath) {
+    throw new Error(`Missing "qwikCityPlanModulePath" option`);
+  }
+  if (!opts.renderModulePath) {
+    throw new Error(`Missing "renderModulePath" option`);
+  }
+  let siteOrigin = opts.origin;
+  if (typeof siteOrigin !== "string" || siteOrigin.trim().length === 0) {
+    throw new Error(`Missing "origin" option`);
+  }
+  siteOrigin = siteOrigin.trim();
+  if (!siteOrigin.startsWith("https://") && !siteOrigin.startsWith("http://")) {
+    throw new Error(
+      `"origin" must start with a valid protocol, such as "https://" or "http://", received "${siteOrigin}"`
+    );
+  }
+  try {
+    new URL(siteOrigin);
+  } catch (e) {
+    throw new Error(`Invalid "origin": ${e}`);
+  }
+}
 
 // packages/qwik-city/runtime/src/library/constants.ts
 var MODULE_CACHE = /* @__PURE__ */ new WeakMap();
@@ -771,16 +910,16 @@ var getRouteParams = (paramNames, match) => {
 
 // packages/qwik-city/middleware/request-handler/endpoint-handler.ts
 function endpointHandler(requestCtx, userResponse) {
-  const { pendingBody, resolvedBody, status, headers } = userResponse;
+  const { pendingBody, resolvedBody, status, headers, cookie } = userResponse;
   const { response } = requestCtx;
   if (pendingBody === void 0 && resolvedBody === void 0) {
-    return response(status, headers, asyncNoop);
+    return response(status, headers, cookie, asyncNoop);
   }
   if (!headers.has("Content-Type")) {
     headers.set("Content-Type", "application/json; charset=utf-8");
   }
   const isJson = headers.get("Content-Type").includes("json");
-  return response(status, headers, async ({ write }) => {
+  return response(status, headers, cookie, async ({ write }) => {
     const body = pendingBody !== void 0 ? await pendingBody : resolvedBody;
     if (body !== void 0) {
       if (isJson) {
@@ -803,7 +942,7 @@ var asyncNoop = async () => {
 
 // packages/qwik-city/middleware/request-handler/page-handler.ts
 function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNames) {
-  const { status, headers } = userResponse;
+  const { status, headers, cookie } = userResponse;
   const { response } = requestCtx;
   const isPageData = userResponse.type === "pagedata";
   const requestHeaders = {};
@@ -813,7 +952,7 @@ function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNa
   } else if (!headers.has("Content-Type")) {
     headers.set("Content-Type", "text/html; charset=utf-8");
   }
-  return response(isPageData ? 200 : status, headers, async (stream) => {
+  return response(isPageData ? 200 : status, headers, cookie, async (stream) => {
     try {
       const result = await render({
         stream: isPageData ? noopStream : stream,
@@ -839,9 +978,8 @@ function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNa
   });
 }
 async function getClientPageData(userResponse, result, routeBundleNames) {
-  var _a3;
   const prefetchBundleNames = getPrefetchBundleNames(result, routeBundleNames);
-  const isStatic = !((_a3 = result.snapshotResult) == null ? void 0 : _a3.resources.some((r) => r._cache !== Infinity));
+  const isStatic = result.isStatic;
   const clientPage = {
     body: userResponse.pendingBody ? await userResponse.pendingBody : userResponse.resolvedBody,
     status: userResponse.status !== 200 ? userResponse.status : void 0,
@@ -908,117 +1046,28 @@ var noopStream = { write: () => {
 
 // packages/qwik-city/middleware/request-handler/redirect-handler.ts
 var RedirectResponse = class {
-  constructor(url, status, headers) {
+  constructor(url, status, headers, cookies) {
     this.url = url;
     this.location = url;
     this.status = isRedirectStatus(status) ? status : 302 /* Found */;
-    this.headers = headers || createHeaders();
+    this.headers = headers ?? createHeaders();
     this.headers.set("Location", this.location);
     this.headers.delete("Cache-Control");
+    this.cookies = cookies ?? new Cookie();
   }
 };
 function redirectResponse(requestCtx, responseRedirect) {
-  return requestCtx.response(responseRedirect.status, responseRedirect.headers, async () => {
-  });
+  return requestCtx.response(
+    responseRedirect.status,
+    responseRedirect.headers,
+    responseRedirect.cookies,
+    async () => {
+    }
+  );
 }
 function isRedirectStatus(status) {
   return typeof status === "number" && status >= 301 /* MovedPermanently */ && status <= 308 /* PermanentRedirect */;
 }
-
-// packages/qwik-city/middleware/request-handler/cookie.ts
-var SAMESITE = {
-  lax: "Lax",
-  none: "None",
-  strict: "Strict"
-};
-var UNIT = {
-  seconds: 1,
-  minutes: 1 * 60,
-  hours: 1 * 60 * 60,
-  days: 1 * 60 * 60 * 24,
-  weeks: 1 * 60 * 60 * 24 * 7
-};
-var createSetCookieValue = (cookieName, cookieValue, options) => {
-  const c = [`${cookieName}=${cookieValue}`];
-  if (typeof options.domain === "string") {
-    c.push(`Domain=${options.domain}`);
-  }
-  if (typeof options.maxAge === "number") {
-    c.push(`Max-Age=${options.maxAge}`);
-  } else if (Array.isArray(options.maxAge)) {
-    c.push(`Max-Age=${options.maxAge[0] * UNIT[options.maxAge[1]]}`);
-  } else if (typeof options.expires === "number" || typeof options.expires == "string") {
-    c.push(`Expires=${options.expires}`);
-  } else if (options.expires instanceof Date) {
-    c.push(`Expires=${options.expires.toUTCString()}`);
-  }
-  if (options.httpOnly) {
-    c.push("HttpOnly");
-  }
-  if (typeof options.path === "string") {
-    c.push(`Path=${options.path}`);
-  }
-  if (options.sameSite && SAMESITE[options.sameSite]) {
-    c.push(`SameSite=${SAMESITE[options.sameSite]}`);
-  }
-  if (options.secure) {
-    c.push("Secure");
-  }
-  return c.join("; ");
-};
-var parseCookieString = (cookieString) => {
-  const cookie = {};
-  if (typeof cookieString === "string" && cookieString !== "") {
-    const cookieSegments = cookieString.split(";");
-    for (const cookieSegment of cookieSegments) {
-      const cookieSplit = cookieSegment.split("=");
-      if (cookieSplit.length > 1) {
-        const cookieName = decodeURIComponent(cookieSplit[0].trim());
-        const cookieValue = decodeURIComponent(cookieSplit[1].trim());
-        cookie[cookieName] = cookieValue;
-      }
-    }
-  }
-  return cookie;
-};
-var REQ_COOKIE = Symbol("request-cookies");
-var RES_COOKIE = Symbol("response-cookies");
-var _a2;
-var Cookie = class {
-  constructor(cookieString) {
-    this[_a2] = {};
-    this[REQ_COOKIE] = parseCookieString(cookieString);
-  }
-  get(cookieName) {
-    const value = this[REQ_COOKIE][cookieName];
-    if (!value) {
-      return null;
-    }
-    return {
-      value,
-      json() {
-        return JSON.parse(value);
-      },
-      number() {
-        return Number(value);
-      }
-    };
-  }
-  has(cookieName) {
-    return !!this[REQ_COOKIE][cookieName];
-  }
-  set(cookieName, cookieValue, options = {}) {
-    const resolvedValue = typeof cookieValue === "string" ? cookieValue : encodeURIComponent(JSON.stringify(cookieValue));
-    this[RES_COOKIE][cookieName] = createSetCookieValue(cookieName, resolvedValue, options);
-  }
-  delete(name, options) {
-    this.set(name, "deleted", { ...options, expires: new Date(0) });
-  }
-  headers() {
-    return Object.values(this[RES_COOKIE]);
-  }
-};
-REQ_COOKIE, _a2 = RES_COOKIE;
 
 // packages/qwik-city/middleware/request-handler/user-response.ts
 async function loadUserResponse(requestCtx, params, routeModules, trailingSlash, basePathname = "/") {
@@ -1061,7 +1110,7 @@ async function loadUserResponse(requestCtx, params, routeModules, trailingSlash,
     routeModuleIndex = ABORT_INDEX;
   };
   const redirect = (url2, status) => {
-    return new RedirectResponse(url2, status, userResponse.headers);
+    return new RedirectResponse(url2, status, userResponse.headers, userResponse.cookie);
   };
   const error = (status, message) => {
     return new ErrorResponse(status, message);
@@ -1152,14 +1201,12 @@ async function loadUserResponse(requestCtx, params, routeModules, trailingSlash,
   };
   await next();
   userResponse.aborted = routeModuleIndex >= ABORT_INDEX;
-  for (const setCookieValue of userResponse.cookie.headers()) {
-    userResponse.headers.set("Set-Cookie", setCookieValue);
-  }
   if (!isPageDataRequest && isRedirectStatus(userResponse.status) && userResponse.headers.has("Location")) {
     throw new RedirectResponse(
       userResponse.headers.get("Location"),
       userResponse.status,
-      userResponse.headers
+      userResponse.headers,
+      userResponse.cookie
     );
   }
   if (type === "endpoint" && !hasRequestMethodHandler) {
@@ -1288,7 +1335,7 @@ async function workerRender(sys, opts, staticRoute, pendingPromises, callback) {
       locale: void 0,
       url,
       request,
-      response: async (status, headers, body, err) => {
+      response: async (status, headers, _, body, err) => {
         if (err) {
           if (err.stack) {
             result.error = String(err.stack);
@@ -1301,10 +1348,10 @@ async function workerRender(sys, opts, staticRoute, pendingPromises, callback) {
           result.ok = status >= 200 && status <= 299 && (headers.get("Content-Type") || "").includes("text/html");
         }
         if (result.ok) {
-          const writeHtmlEnabled = opts.emitHtml !== false;
-          const writeDataEnabled = opts.emitData !== false;
           const htmlFilePath = sys.getPageFilePath(staticRoute.pathname);
           const dataFilePath = sys.getDataFilePath(staticRoute.pathname);
+          const writeHtmlEnabled = opts.emitHtml !== false;
+          const writeDataEnabled = opts.emitData !== false && !!dataFilePath;
           if (writeHtmlEnabled || writeDataEnabled) {
             await sys.ensureDir(htmlFilePath);
           }

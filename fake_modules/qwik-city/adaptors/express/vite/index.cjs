@@ -156,7 +156,15 @@ function expressAdaptor(opts = {}) {
   return viteAdaptor({
     name: "express",
     origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.URL) || "https://yoursitename.qwik.builder.io",
-    staticGenerate: opts.staticGenerate
+    staticGenerate: opts.staticGenerate,
+    config() {
+      return {
+        build: {
+          ssr: true
+        },
+        publicDir: false
+      };
+    }
   });
 }
 // Annotate the CommonJS export names for ESM import in node:

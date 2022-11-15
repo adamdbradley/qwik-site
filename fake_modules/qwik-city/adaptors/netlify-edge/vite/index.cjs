@@ -201,7 +201,7 @@ function netifyEdgeAdaptor(opts = {}) {
           functions: ssrRoutes.map((r) => {
             if (r.paramNames.length > 0) {
               return {
-                pattern: r.pattern.toString(),
+                pattern: r.pattern.toString().replace(/^\//, "").replace(/\/$/, ""),
                 function: "entry.netlify-edge"
               };
             }
