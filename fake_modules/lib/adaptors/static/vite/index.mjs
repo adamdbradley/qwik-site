@@ -57,7 +57,7 @@ async function createStaticPathsModule(publicDir, basePathname, staticPaths, rou
   if (format === "cjs") {
     c.push("module.exports = { isStaticPath: isStaticPath };");
   } else {
-    c.push("export { isStaticPath };");
+    c.push("export default { isStaticPath };");
   }
   return c.join("\n");
 }
