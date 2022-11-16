@@ -737,7 +737,7 @@ async function requestHandler(mode, requestCtx, opts) {
 import qwikCityPlan from "@qwik-city-plan";
 import qwikCityServerUtils from "@qwik-city-server-utils";
 function createQwikCity(opts) {
-  const { isStaticPath } = qwikCityServerUtils;
+  const isStaticPath = qwikCityServerUtils.isStaticPath;
   async function onRequest(request, context) {
     try {
       const url = new URL(request.url);
