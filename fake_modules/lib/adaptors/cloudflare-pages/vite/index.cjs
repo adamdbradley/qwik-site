@@ -203,7 +203,7 @@ function viteAdaptor(opts) {
         const serverPackageJsonCode = `{"type":"module"}`;
         await import_node_fs2.default.promises.mkdir(serverOutDir, { recursive: true });
         await import_node_fs2.default.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
-        const staticPaths = opts.additionalStaticPaths || [];
+        const staticPaths = opts.staticPaths || [];
         const routes = qwikCityPlugin.api.getRoutes();
         let staticGenerateResult = null;
         if (opts.staticGenerate && renderModulePath && qwikCityPlanModulePath) {

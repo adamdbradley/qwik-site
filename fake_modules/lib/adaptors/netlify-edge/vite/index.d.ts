@@ -23,8 +23,10 @@ export declare interface NetlifyEdgeAdaptorOptions {
     staticGenerate?: StaticGenerateRenderOptions | true;
     /**
      * Manually add pathnames that should be treated as static paths and not SSR.
+     * For example, when these pathnames are requested, their response should
+     * come from a static file, rather than a server-side rendered response.
      */
-    additionalStaticPaths?: string[];
+    staticPaths?: string[];
 }
 
 export { StaticGenerateRenderOptions }

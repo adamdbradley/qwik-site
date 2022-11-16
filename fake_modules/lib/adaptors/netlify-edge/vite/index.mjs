@@ -171,7 +171,7 @@ function viteAdaptor(opts) {
         const serverPackageJsonCode = `{"type":"module"}`;
         await fs2.promises.mkdir(serverOutDir, { recursive: true });
         await fs2.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
-        const staticPaths = opts.additionalStaticPaths || [];
+        const staticPaths = opts.staticPaths || [];
         const routes = qwikCityPlugin.api.getRoutes();
         let staticGenerateResult = null;
         if (opts.staticGenerate && renderModulePath && qwikCityPlanModulePath) {
@@ -253,7 +253,7 @@ function netifyEdgeAdaptor(opts = {}) {
     name: "netlify-edge",
     origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.URL) || "https://yoursitename.netlify.app",
     staticGenerate: opts.staticGenerate,
-    additionalStaticPaths: opts.additionalStaticPaths,
+    staticPaths: opts.staticPaths,
     config(config) {
       var _a2;
       const outDir = ((_a2 = config.build) == null ? void 0 : _a2.outDir) || ".netlify/edge-functions/entry.netlify-edge";
@@ -275,22 +275,15 @@ function netifyEdgeAdaptor(opts = {}) {
         publicDir: false
       };
     },
-    async generateRoutes({ serverOutDir, routes, staticPaths }) {
+    async generateRoutes({ serverOutDir }) {
       if (opts.functionRoutes !== false) {
-        const ssrRoutes = routes.filter((r) => !staticPaths.includes(r.pathname));
         const netlifyEdgeManifest = {
-          functions: ssrRoutes.map((r) => {
-            if (r.paramNames.length > 0) {
-              return {
-                pattern: r.pattern.toString().replace(/^\//, "").replace(/\/$/, ""),
-                function: "entry.netlify-edge"
-              };
-            }
-            return {
-              path: r.pathname,
+          functions: [
+            {
+              pattern: "/*",
               function: "entry.netlify-edge"
-            };
-          }),
+            }
+          ],
           version: 1
         };
         const netlifyEdgeFnsDir = getParentDir(serverOutDir, "edge-functions");

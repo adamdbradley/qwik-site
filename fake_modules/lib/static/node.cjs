@@ -625,13 +625,8 @@ var COLOR_500 = "#713fc2";
 async function generate404Pages(sys, opts) {
   if (opts.emit404Pages !== false) {
     const basePathname = opts.basePathname || "/";
-    const buildBase = typeof opts.base === "string" ? opts.base : typeof opts.base === "function" ? opts.base(opts) : basePathname + "build/";
-    const path404s = [basePathname, buildBase].map((p) => p + "404.html");
-    await Promise.all(
-      path404s.map((pathname) => {
-        return generate404Page(sys, pathname);
-      })
-    );
+    const root404 = basePathname + "404.html";
+    await generate404Page(sys, root404);
   }
 }
 async function generate404Page(sys, pathname) {
