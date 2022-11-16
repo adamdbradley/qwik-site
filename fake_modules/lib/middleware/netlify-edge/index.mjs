@@ -824,11 +824,10 @@ async function requestHandler(mode, requestCtx, opts) {
 import qwikCityPlan from "@qwik-city-plan";
 import qwikCityServerUtils from "@qwik-city-server-utils";
 function createQwikCity(opts) {
-  console.log(qwikCityServerUtils);
-
   // const isStaticPath = qwikCityServerUtils.isStaticPath;
   async function onRequest(request, context) {
     try {
+      console.log("qwikCityServerUtils", qwikCityServerUtils);
       const url = new URL(request.url);
       // if (isStaticPath(url.pathname) || url.pathname.startsWith("/.netlify")) {
       //   return context.next();
