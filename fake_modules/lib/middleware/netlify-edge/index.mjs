@@ -2,14 +2,14 @@
 var SAMESITE = {
   lax: "Lax",
   none: "None",
-  strict: "Strict"
+  strict: "Strict",
 };
 var UNIT = {
   seconds: 1,
   minutes: 1 * 60,
   hours: 1 * 60 * 60,
   days: 1 * 60 * 60 * 24,
-  weeks: 1 * 60 * 60 * 24 * 7
+  weeks: 1 * 60 * 60 * 24 * 7,
 };
 var createSetCookieValue = (cookieName, cookieValue, options) => {
   const c = [`${cookieName}=${cookieValue}`];
@@ -20,7 +20,10 @@ var createSetCookieValue = (cookieName, cookieValue, options) => {
     c.push(`Max-Age=${options.maxAge}`);
   } else if (Array.isArray(options.maxAge)) {
     c.push(`Max-Age=${options.maxAge[0] * UNIT[options.maxAge[1]]}`);
-  } else if (typeof options.expires === "number" || typeof options.expires == "string") {
+  } else if (
+    typeof options.expires === "number" ||
+    typeof options.expires == "string"
+  ) {
     c.push(`Expires=${options.expires}`);
   } else if (options.expires instanceof Date) {
     c.push(`Expires=${options.expires.toUTCString()}`);
@@ -74,15 +77,22 @@ var Cookie = class {
       },
       number() {
         return Number(value);
-      }
+      },
     };
   }
   has(cookieName) {
     return !!this[REQ_COOKIE][cookieName];
   }
   set(cookieName, cookieValue, options = {}) {
-    const resolvedValue = typeof cookieValue === "string" ? cookieValue : encodeURIComponent(JSON.stringify(cookieValue));
-    this[RES_COOKIE][cookieName] = createSetCookieValue(cookieName, resolvedValue, options);
+    const resolvedValue =
+      typeof cookieValue === "string"
+        ? cookieValue
+        : encodeURIComponent(JSON.stringify(cookieValue));
+    this[RES_COOKIE][cookieName] = createSetCookieValue(
+      cookieName,
+      resolvedValue,
+      options
+    );
   }
   delete(name, options) {
     this.set(name, "deleted", { ...options, expires: new Date(0) });
@@ -91,7 +101,7 @@ var Cookie = class {
     return Object.values(this[RES_COOKIE]);
   }
 };
-REQ_COOKIE, _a = RES_COOKIE;
+REQ_COOKIE, (_a = RES_COOKIE);
 var mergeHeadersCookies = (headers, cookies) => {
   const cookieHeaders = cookies.headers();
   if (cookieHeaders.length > 0) {
@@ -111,7 +121,7 @@ var HeadersPolyfill = class {
   constructor() {
     this[_a2] = {};
   }
-  [(_a2 = HEADERS, Symbol.iterator)]() {
+  [((_a2 = HEADERS), Symbol.iterator)]() {
     return this.entries();
   }
   *keys() {
@@ -134,11 +144,14 @@ var HeadersPolyfill = class {
   }
   set(name, value) {
     const normalizedName = normalizeHeaderName(name);
-    this[HEADERS][normalizedName] = typeof value !== "string" ? String(value) : value;
+    this[HEADERS][normalizedName] =
+      typeof value !== "string" ? String(value) : value;
   }
   append(name, value) {
     const normalizedName = normalizeHeaderName(name);
-    const resolvedValue = this.has(normalizedName) ? `${this.get(normalizedName)}, ${value}` : value;
+    const resolvedValue = this.has(normalizedName)
+      ? `${this.get(normalizedName)}, ${value}`
+      : value;
     this.set(name, resolvedValue);
   }
   delete(name) {
@@ -187,7 +200,7 @@ function notFoundHandler(requestCtx) {
   return errorResponse(requestCtx, new ErrorResponse(404, "Not Found"));
 }
 function errorHandler(requestCtx, e) {
-  const status = 500 /* InternalServerError */;
+  const status = 500; /* InternalServerError */
   const html = getErrorHtml(status, e);
   const headers = createHeaders();
   headers.set("Content-Type", "text/html; charset=utf-8");
@@ -258,8 +271,12 @@ function minimalHtmlResponse(status, message, stack) {
   </style>
 </head>
 <body>
-  <p><strong>${status}</strong> <span>${message}</span></p>${stack ? `
-  <pre><code>${stack}</code></pre>` : ``}
+  <p><strong>${status}</strong> <span>${message}</span></p>${
+    stack
+      ? `
+  <pre><code>${stack}</code></pre>`
+      : ``
+  }
 </body>
 </html>`;
 }
@@ -286,14 +303,15 @@ var loadRoute = async (routes, menus, cacheModules, pathname) => {
           loadModule(
             moduleLoader,
             pendingLoads,
-            (routeModule) => mods[i] = routeModule,
+            (routeModule) => (mods[i] = routeModule),
             cacheModules
           );
         });
         loadModule(
           menuLoader,
           pendingLoads,
-          (menuModule) => menu = menuModule == null ? void 0 : menuModule.default,
+          (menuModule) =>
+            (menu = menuModule == null ? void 0 : menuModule.default),
           cacheModules
         );
         if (pendingLoads.length > 0) {
@@ -330,7 +348,9 @@ var loadModule = (moduleLoader, pendingLoads, moduleSetter, cacheModules) => {
 var getMenuLoader = (menus, pathname) => {
   if (menus) {
     const menu = menus.find(
-      (m) => m[0] === pathname || pathname.startsWith(m[0] + (pathname.endsWith("/") ? "" : "/"))
+      (m) =>
+        m[0] === pathname ||
+        pathname.startsWith(m[0] + (pathname.endsWith("/") ? "" : "/"))
     );
     if (menu) {
       return menu[1];
@@ -377,55 +397,83 @@ function endpointHandler(requestCtx, userResponse) {
     }
   });
 }
-var asyncNoop = async () => {
-};
+var asyncNoop = async () => {};
 
 // packages/qwik-city/middleware/request-handler/page-handler.ts
-function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNames) {
+function pageHandler(
+  mode,
+  requestCtx,
+  userResponse,
+  render,
+  opts,
+  routeBundleNames
+) {
   const { status, headers, cookie } = userResponse;
   const { response } = requestCtx;
   const isPageData = userResponse.type === "pagedata";
   const requestHeaders = {};
-  requestCtx.request.headers.forEach((value, key) => requestHeaders[key] = value);
+  requestCtx.request.headers.forEach(
+    (value, key) => (requestHeaders[key] = value)
+  );
   if (isPageData) {
     headers.set("Content-Type", "application/json; charset=utf-8");
   } else if (!headers.has("Content-Type")) {
     headers.set("Content-Type", "text/html; charset=utf-8");
   }
-  return response(isPageData ? 200 : status, headers, cookie, async (stream) => {
-    try {
-      const result = await render({
-        stream: isPageData ? noopStream : stream,
-        envData: getQwikCityEnvData(requestHeaders, userResponse, requestCtx.locale, mode),
-        ...opts
-      });
-      if (isPageData) {
-        stream.write(
-          JSON.stringify(await getClientPageData(userResponse, result, routeBundleNames))
-        );
-      } else {
-        if ((typeof result).html === "string") {
-          stream.write(result.html);
+  return response(
+    isPageData ? 200 : status,
+    headers,
+    cookie,
+    async (stream) => {
+      try {
+        const result = await render({
+          stream: isPageData ? noopStream : stream,
+          envData: getQwikCityEnvData(
+            requestHeaders,
+            userResponse,
+            requestCtx.locale,
+            mode
+          ),
+          ...opts,
+        });
+        if (isPageData) {
+          stream.write(
+            JSON.stringify(
+              await getClientPageData(userResponse, result, routeBundleNames)
+            )
+          );
+        } else {
+          if ((typeof result).html === "string") {
+            stream.write(result.html);
+          }
         }
+        if (typeof stream.clientData === "function") {
+          stream.clientData(
+            await getClientPageData(userResponse, result, routeBundleNames)
+          );
+        }
+      } catch (e) {
+        const errorHtml = getErrorHtml(500 /* InternalServerError */, e);
+        stream.write(errorHtml);
       }
-      if (typeof stream.clientData === "function") {
-        stream.clientData(await getClientPageData(userResponse, result, routeBundleNames));
-      }
-    } catch (e) {
-      const errorHtml = getErrorHtml(500 /* InternalServerError */, e);
-      stream.write(errorHtml);
     }
-  });
+  );
 }
 async function getClientPageData(userResponse, result, routeBundleNames) {
   const prefetchBundleNames = getPrefetchBundleNames(result, routeBundleNames);
   const isStatic = result.isStatic;
   const clientPage = {
-    body: userResponse.pendingBody ? await userResponse.pendingBody : userResponse.resolvedBody,
+    body: userResponse.pendingBody
+      ? await userResponse.pendingBody
+      : userResponse.resolvedBody,
     status: userResponse.status !== 200 ? userResponse.status : void 0,
-    redirect: userResponse.status >= 301 && userResponse.status <= 308 && userResponse.headers.get("location") || void 0,
+    redirect:
+      (userResponse.status >= 301 &&
+        userResponse.status <= 308 &&
+        userResponse.headers.get("location")) ||
+      void 0,
     isStatic,
-    prefetch: prefetchBundleNames.length > 0 ? prefetchBundleNames : void 0
+    prefetch: prefetchBundleNames.length > 0 ? prefetchBundleNames : void 0,
   };
   return clientPage;
 }
@@ -476,13 +524,12 @@ function getQwikCityEnvData(requestHeaders, userResponse, locale, mode) {
       params: { ...params },
       response: {
         body: pendingBody || resolvedBody,
-        status
-      }
-    }
+        status,
+      },
+    },
   };
 }
-var noopStream = { write: () => {
-} };
+var noopStream = { write: () => {} };
 
 // packages/qwik-city/middleware/request-handler/redirect-handler.ts
 var RedirectResponse = class {
@@ -501,24 +548,38 @@ function redirectResponse(requestCtx, responseRedirect) {
     responseRedirect.status,
     responseRedirect.headers,
     responseRedirect.cookies,
-    async () => {
-    }
+    async () => {}
   );
 }
 function isRedirectStatus(status) {
-  return typeof status === "number" && status >= 301 /* MovedPermanently */ && status <= 308 /* PermanentRedirect */;
+  return (
+    typeof status === "number" &&
+    status >= 301 /* MovedPermanently */ &&
+    status <= 308 /* PermanentRedirect */
+  );
 }
 
 // packages/qwik-city/middleware/request-handler/user-response.ts
-async function loadUserResponse(requestCtx, params, routeModules, trailingSlash, basePathname = "/") {
+async function loadUserResponse(
+  requestCtx,
+  params,
+  routeModules,
+  trailingSlash,
+  basePathname = "/"
+) {
   if (routeModules.length === 0) {
     throw new ErrorResponse(404 /* NotFound */, `Not Found`);
   }
   const { request, url, platform } = requestCtx;
   const { pathname } = url;
   const isPageModule = isLastModulePageRoute(routeModules);
-  const isPageDataRequest = isPageModule && request.headers.get("Accept") === "application/json";
-  const type = isPageDataRequest ? "pagedata" : isPageModule ? "pagehtml" : "endpoint";
+  const isPageDataRequest =
+    isPageModule && request.headers.get("Accept") === "application/json";
+  const type = isPageDataRequest
+    ? "pagedata"
+    : isPageModule
+    ? "pagehtml"
+    : "endpoint";
   const userResponse = {
     type,
     url,
@@ -528,13 +589,16 @@ async function loadUserResponse(requestCtx, params, routeModules, trailingSlash,
     resolvedBody: void 0,
     pendingBody: void 0,
     cookie: new Cookie(request.headers.get("cookie")),
-    aborted: false
+    aborted: false,
   };
   let hasRequestMethodHandler = false;
   if (isPageModule && pathname !== basePathname) {
     if (trailingSlash) {
       if (!pathname.endsWith("/")) {
-        throw new RedirectResponse(pathname + "/" + url.search, 302 /* Found */);
+        throw new RedirectResponse(
+          pathname + "/" + url.search,
+          302 /* Found */
+        );
       }
     } else {
       if (pathname.endsWith("/")) {
@@ -550,7 +614,12 @@ async function loadUserResponse(requestCtx, params, routeModules, trailingSlash,
     routeModuleIndex = ABORT_INDEX;
   };
   const redirect = (url2, status) => {
-    return new RedirectResponse(url2, status, userResponse.headers, userResponse.cookie);
+    return new RedirectResponse(
+      url2,
+      status,
+      userResponse.headers,
+      userResponse.cookie
+    );
   };
   const error = (status, message) => {
     return new ErrorResponse(status, message);
@@ -610,7 +679,7 @@ async function loadUserResponse(requestCtx, params, routeModules, trailingSlash,
             requestCtx.locale = locale;
           },
           redirect,
-          error
+          error,
         };
         const requestEv = {
           request,
@@ -620,12 +689,16 @@ async function loadUserResponse(requestCtx, params, routeModules, trailingSlash,
           platform,
           cookie: userResponse.cookie,
           next,
-          abort
+          abort,
         };
         const syncData = reqHandler(requestEv);
         if (typeof syncData === "function") {
           userResponse.pendingBody = createPendingBody(syncData);
-        } else if (syncData !== null && typeof syncData === "object" && typeof syncData.then === "function") {
+        } else if (
+          syncData !== null &&
+          typeof syncData === "object" &&
+          typeof syncData.then === "function"
+        ) {
           const asyncResolved = await syncData;
           if (typeof asyncResolved === "function") {
             userResponse.pendingBody = createPendingBody(asyncResolved);
@@ -641,7 +714,11 @@ async function loadUserResponse(requestCtx, params, routeModules, trailingSlash,
   };
   await next();
   userResponse.aborted = routeModuleIndex >= ABORT_INDEX;
-  if (!isPageDataRequest && isRedirectStatus(userResponse.status) && userResponse.headers.has("Location")) {
+  if (
+    !isPageDataRequest &&
+    isRedirectStatus(userResponse.status) &&
+    userResponse.headers.has("Location")
+  ) {
     throw new RedirectResponse(
       userResponse.headers.get("Location"),
       userResponse.status,
@@ -658,7 +735,11 @@ function createPendingBody(cb) {
   return new Promise((resolve, reject) => {
     try {
       const rtn = cb();
-      if (rtn !== null && typeof rtn === "object" && typeof rtn.then === "function") {
+      if (
+        rtn !== null &&
+        typeof rtn === "object" &&
+        typeof rtn.then === "function"
+      ) {
         rtn.then(resolve, reject);
       } else {
         resolve(rtn);
@@ -692,9 +773,15 @@ var ABORT_INDEX = 999999999;
 async function requestHandler(mode, requestCtx, opts) {
   try {
     const { render, qwikCityPlan: qwikCityPlan2 } = opts;
-    const { routes, menus, cacheModules, trailingSlash, basePathname } = qwikCityPlan2;
+    const { routes, menus, cacheModules, trailingSlash, basePathname } =
+      qwikCityPlan2;
     updateRequestCtx(requestCtx, trailingSlash);
-    const loadedRoute = await loadRoute(routes, menus, cacheModules, requestCtx.url.pathname);
+    const loadedRoute = await loadRoute(
+      routes,
+      menus,
+      cacheModules,
+      requestCtx.url.pathname
+    );
     if (loadedRoute) {
       const [params, mods, _, routeBundleNames] = loadedRoute;
       const userResponse = await loadUserResponse(
@@ -737,13 +824,13 @@ async function requestHandler(mode, requestCtx, opts) {
 import qwikCityPlan from "@qwik-city-plan";
 import qwikCityServerUtils from "@qwik-city-server-utils";
 function createQwikCity(opts) {
-  const isStaticPath = qwikCityServerUtils.isStaticPath;
+  // const isStaticPath = qwikCityServerUtils.isStaticPath;
   async function onRequest(request, context) {
     try {
       const url = new URL(request.url);
-      if (isStaticPath(url.pathname) || url.pathname.startsWith("/.netlify")) {
-        return context.next();
-      }
+      // if (isStaticPath(url.pathname) || url.pathname.startsWith("/.netlify")) {
+      //   return context.next();
+      // }
       const requestCtx = {
         locale: void 0,
         url,
@@ -755,7 +842,7 @@ function createQwikCity(opts) {
             const writer = writable.getWriter();
             const response = new Response(readable, {
               status,
-              headers: mergeHeadersCookies(headers, cookies)
+              headers: mergeHeadersCookies(headers, cookies),
             });
             body({
               write: (chunk) => {
@@ -769,7 +856,7 @@ function createQwikCity(opts) {
                 } else {
                   writer.write(chunk);
                 }
-              }
+              },
             }).finally(() => {
               if (!flushedHeaders) {
                 flushedHeaders = true;
@@ -779,7 +866,7 @@ function createQwikCity(opts) {
             });
           });
         },
-        platform: context
+        platform: context,
       };
       const handledResponse = await requestHandler("server", requestCtx, opts);
       if (handledResponse) {
@@ -791,7 +878,7 @@ function createQwikCity(opts) {
       console.error(e);
       return new Response(String(e || "Error"), {
         status: 500,
-        headers: { "Content-Type": "text/plain; charset=utf-8" }
+        headers: { "Content-Type": "text/plain; charset=utf-8" },
       });
     }
   }
@@ -800,7 +887,4 @@ function createQwikCity(opts) {
 function qwikCity(render, opts) {
   return createQwikCity({ render, qwikCityPlan, ...opts });
 }
-export {
-  createQwikCity,
-  qwikCity
-};
+export { createQwikCity, qwikCity };
