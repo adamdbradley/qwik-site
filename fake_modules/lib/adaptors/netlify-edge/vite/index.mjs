@@ -1,6 +1,11 @@
 // packages/qwik-city/adaptors/shared/vite/index.ts
 import fs2 from "fs";
-import { basename as basename2, dirname as dirname2, join as join2, resolve } from "path";
+import {
+  basename as basename2,
+  dirname as dirname2,
+  join as join2,
+  resolve,
+} from "path";
 
 // packages/qwik-city/adaptors/shared/vite/server-utils.ts
 import fs from "fs";
@@ -23,7 +28,13 @@ function normalizePath(path) {
 }
 
 // packages/qwik-city/adaptors/shared/vite/server-utils.ts
-async function createStaticPathsModule(publicDir, basePathname, staticPaths, routes, format) {
+async function createStaticPathsModule(
+  publicDir,
+  basePathname,
+  staticPaths,
+  routes,
+  format
+) {
   const staticFilePaths = await getStaticFilePaths(publicDir);
   const staticPathSet = new Set(staticPaths);
   staticFilePaths.forEach((filePath) => {
@@ -41,8 +52,12 @@ async function createStaticPathsModule(publicDir, basePathname, staticPaths, rou
   const assetsPath = basePathname + "assets/";
   const baseBuildPath = basePathname + "build/";
   const c = [];
-  c.push(`const staticPaths = new Set(${JSON.stringify(Array.from(staticPathSet).sort())});`);
-  c.push(`function isStaticPath(p) {`);
+  c.push(
+    `const staticPaths = new Set(${JSON.stringify(
+      Array.from(staticPathSet).sort()
+    )});`
+  );
+  c.push(`export function isStaticPath(p) {`);
   c.push(`  if (p.startsWith(${JSON.stringify(baseBuildPath)})) {`);
   c.push(`    return true;`);
   c.push(`  }`);
@@ -54,11 +69,11 @@ async function createStaticPathsModule(publicDir, basePathname, staticPaths, rou
   c.push(`  }`);
   c.push(`  return false;`);
   c.push(`}`);
-  if (format === "cjs") {
-    c.push("module.exports = { isStaticPath: isStaticPath };");
-  } else {
-    c.push("export { isStaticPath };");
-  }
+  // if (format === "cjs") {
+  //   c.push("module.exports = { isStaticPath: isStaticPath };");
+  // } else {
+  //   c.push("export { isStaticPath };");
+  // }
   return c.join("\n");
 }
 async function getStaticFilePaths(publicDir) {
@@ -122,7 +137,12 @@ function viteAdaptor(opts) {
             `"build.ssr" must be set to "true" in order to use the "${opts.name}" adaptor.`
           );
         }
-        if (!((_c = (_b = config.build) == null ? void 0 : _b.rollupOptions) == null ? void 0 : _c.input)) {
+        if (
+          !((_c = (_b = config.build) == null ? void 0 : _b.rollupOptions) ==
+          null
+            ? void 0
+            : _c.input)
+        ) {
           throw new Error(
             `"build.rollupOptions.input" must be set in order to use the "${opts.name}" adaptor.`
           );
@@ -137,7 +157,7 @@ function viteAdaptor(opts) {
       if (id === SERVER_UTILS_ID) {
         return {
           id: "./" + RESOLVED_SERVER_UTILS_ID,
-          external: true
+          external: true,
         };
       }
     },
@@ -166,11 +186,20 @@ function viteAdaptor(opts) {
       }
     },
     async closeBundle() {
-      if (isSsrBuild && serverOutDir && (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) && (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api) && publicDir) {
+      if (
+        isSsrBuild &&
+        serverOutDir &&
+        (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) &&
+        (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api) &&
+        publicDir
+      ) {
         const serverPackageJsonPath = join2(serverOutDir, "package.json");
         const serverPackageJsonCode = `{"type":"module"}`;
         await fs2.promises.mkdir(serverOutDir, { recursive: true });
-        await fs2.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
+        await fs2.promises.writeFile(
+          serverPackageJsonPath,
+          serverPackageJsonCode
+        );
         const staticPaths = opts.additionalStaticPaths || [];
         const routes = qwikCityPlugin.api.getRoutes();
         let staticGenerateResult = null;
@@ -179,7 +208,11 @@ function viteAdaptor(opts) {
           if (!origin) {
             origin = `https://yoursite.qwik.builder.io`;
           }
-          if (origin.length > 0 && !origin.startsWith("https://") && !origin.startsWith("http://")) {
+          if (
+            origin.length > 0 &&
+            !origin.startsWith("https://") &&
+            !origin.startsWith("http://")
+          ) {
             origin = `https://${origin}`;
           }
           const staticGenerate = await import("../../../static/index.mjs");
@@ -188,12 +221,12 @@ function viteAdaptor(opts) {
             outDir: qwikVitePlugin.api.getClientOutDir(),
             origin,
             renderModulePath,
-            qwikCityPlanModulePath
+            qwikCityPlanModulePath,
           };
           if (opts.staticGenerate && typeof opts.staticGenerate === "object") {
             generateOpts = {
               ...generateOpts,
-              ...opts.staticGenerate
+              ...opts.staticGenerate,
             };
           }
           staticGenerateResult = await staticGenerate.generate(generateOpts);
@@ -211,7 +244,7 @@ function viteAdaptor(opts) {
             routes,
             staticPaths: [],
             warn: (message) => this.warn(message),
-            error: (message) => this.error(message)
+            error: (message) => this.error(message),
           });
         }
         const staticPathModule = await createStaticPathsModule(
@@ -221,9 +254,12 @@ function viteAdaptor(opts) {
           routes,
           format
         );
-        await fs2.promises.writeFile(join2(serverOutDir, RESOLVED_SERVER_UTILS_ID), staticPathModule);
+        await fs2.promises.writeFile(
+          join2(serverOutDir, RESOLVED_SERVER_UTILS_ID),
+          staticPathModule
+        );
       }
-    }
+    },
   };
   return plugin;
 }
@@ -251,16 +287,21 @@ function netifyEdgeAdaptor(opts = {}) {
   var _a;
   return viteAdaptor({
     name: "netlify-edge",
-    origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.URL) || "https://yoursitename.netlify.app",
+    origin:
+      ((_a = process == null ? void 0 : process.env) == null
+        ? void 0
+        : _a.URL) || "https://yoursitename.netlify.app",
     staticGenerate: opts.staticGenerate,
     additionalStaticPaths: opts.additionalStaticPaths,
     config(config) {
       var _a2;
-      const outDir = ((_a2 = config.build) == null ? void 0 : _a2.outDir) || ".netlify/edge-functions/entry.netlify-edge";
+      const outDir =
+        ((_a2 = config.build) == null ? void 0 : _a2.outDir) ||
+        ".netlify/edge-functions/entry.netlify-edge";
       return {
         ssr: {
           target: "webworker",
-          noExternal: true
+          noExternal: true,
         },
         build: {
           ssr: true,
@@ -268,30 +309,35 @@ function netifyEdgeAdaptor(opts = {}) {
           rollupOptions: {
             output: {
               format: "es",
-              hoistTransitiveImports: false
-            }
-          }
+              hoistTransitiveImports: false,
+            },
+          },
         },
-        publicDir: false
+        publicDir: false,
       };
     },
     async generateRoutes({ serverOutDir, routes, staticPaths }) {
       if (opts.functionRoutes !== false) {
-        const ssrRoutes = routes.filter((r) => !staticPaths.includes(r.pathname));
+        const ssrRoutes = routes.filter(
+          (r) => !staticPaths.includes(r.pathname)
+        );
         const netlifyEdgeManifest = {
           functions: ssrRoutes.map((r) => {
             if (r.paramNames.length > 0) {
               return {
-                pattern: r.pattern.toString().replace(/^\//, "").replace(/\/$/, ""),
-                function: "entry.netlify-edge"
+                pattern: r.pattern
+                  .toString()
+                  .replace(/^\//, "")
+                  .replace(/\/$/, ""),
+                function: "entry.netlify-edge",
               };
             }
             return {
               path: r.pathname,
-              function: "entry.netlify-edge"
+              function: "entry.netlify-edge",
             };
           }),
-          version: 1
+          version: 1,
         };
         const netlifyEdgeFnsDir = getParentDir(serverOutDir, "edge-functions");
         await fs3.promises.writeFile(
@@ -299,9 +345,7 @@ function netifyEdgeAdaptor(opts = {}) {
           JSON.stringify(netlifyEdgeManifest, null, 2)
         );
       }
-    }
+    },
   });
 }
-export {
-  netifyEdgeAdaptor
-};
+export { netifyEdgeAdaptor };
