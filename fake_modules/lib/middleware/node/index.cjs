@@ -553,7 +553,7 @@ async function loadUserResponse(requestCtx, params, routeModules, trailingSlash,
     aborted: false
   };
   let hasRequestMethodHandler = false;
-  if (isPageModule && pathname !== basePathname) {
+  if (isPageModule && pathname !== basePathname && !pathname.endsWith(".html")) {
     if (trailingSlash) {
       if (!pathname.endsWith("/")) {
         throw new RedirectResponse(pathname + "/" + url.search, 302 /* Found */);

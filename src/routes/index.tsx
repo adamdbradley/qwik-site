@@ -24,7 +24,7 @@ export default component$(() => {
         }}
       />
 
-      <Link class="mindblow" href="/flower">
+      <Link class="mindblow" href="/flower/">
         Blow my mind 🤯
       </Link>
     </div>
