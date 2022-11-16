@@ -173,6 +173,8 @@ function viteAdaptor(opts) {
         await fs2.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
         const staticPaths = opts.staticPaths || [];
         const routes = qwikCityPlugin.api.getRoutes();
+        const basePathname = qwikCityPlugin.api.getBasePathname();
+        const clientOutDir = qwikVitePlugin.api.getClientOutDir();
         let staticGenerateResult = null;
         if (opts.staticGenerate && renderModulePath && qwikCityPlanModulePath) {
           let origin = opts.origin;
@@ -184,8 +186,8 @@ function viteAdaptor(opts) {
           }
           const staticGenerate = await import("../../../static/index.mjs");
           let generateOpts = {
-            basePathname: qwikCityPlugin.api.getBasePathname(),
-            outDir: qwikVitePlugin.api.getClientOutDir(),
+            basePathname,
+            outDir: clientOutDir,
             origin,
             renderModulePath,
             qwikCityPlanModulePath
@@ -207,9 +209,9 @@ function viteAdaptor(opts) {
         if (typeof opts.generateRoutes === "function") {
           await opts.generateRoutes({
             serverOutDir,
-            clientOutDir: qwikVitePlugin.api.getClientOutDir(),
+            clientOutDir,
+            basePathname,
             routes,
-            staticPaths: [],
             warn: (message) => this.warn(message),
             error: (message) => this.error(message)
           });

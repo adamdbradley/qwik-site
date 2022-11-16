@@ -691,8 +691,8 @@ var ABORT_INDEX = 999999999;
 // packages/qwik-city/middleware/request-handler/request-handler.ts
 async function requestHandler(mode, requestCtx, opts) {
   try {
-    const { render, qwikCityPlan: qwikCityPlan2 } = opts;
-    const { routes, menus, cacheModules, trailingSlash, basePathname } = qwikCityPlan2;
+    const { render, qwikCityPlan } = opts;
+    const { routes, menus, cacheModules, trailingSlash, basePathname } = qwikCityPlan;
     updateRequestCtx(requestCtx, trailingSlash);
     const loadedRoute = await loadRoute(routes, menus, cacheModules, requestCtx.url.pathname);
     if (loadedRoute) {
@@ -734,11 +734,15 @@ async function requestHandler(mode, requestCtx, opts) {
 }
 
 // packages/qwik-city/middleware/cloudflare-pages/index.ts
-import qwikCityPlan from "@qwik-city-plan";
+import qwikCityServerUtils from "@qwik-city-server-utils";
 function createQwikCity(opts) {
-  async function onRequest({ request, env, waitUntil }) {
+  const { isStaticPath } = qwikCityServerUtils;
+  async function onRequest({ request, env, waitUntil, next }) {
     try {
       const url = new URL(request.url);
+      if (isStaticPath(url.pathname)) {
+        return next();
+      }
       const useCache = url.hostname !== "127.0.0.1" && url.hostname !== "localhost" && url.port === "" && request.method === "GET";
       const cacheKey = new Request(url.href, request);
       const cache = useCache ? await caches.open("custom:qwikcity") : null;
@@ -804,10 +808,6 @@ function createQwikCity(opts) {
   }
   return onRequest;
 }
-function qwikCity(render, opts) {
-  return createQwikCity({ render, qwikCityPlan, ...opts });
-}
 export {
-  createQwikCity,
-  qwikCity
+  createQwikCity
 };

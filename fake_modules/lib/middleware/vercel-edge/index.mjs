@@ -734,10 +734,19 @@ async function requestHandler(mode, requestCtx, opts) {
 }
 
 // packages/qwik-city/middleware/vercel-edge/index.ts
+import qwikCityServerUtils from "@qwik-city-server-utils";
 function createQwikCity(opts) {
+  const { isStaticPath } = qwikCityServerUtils;
   async function onRequest(request) {
     try {
       const url = new URL(request.url);
+      if (isStaticPath(url.pathname)) {
+        return new Response(null, {
+          headers: {
+            "x-middleware-next": "1"
+          }
+        });
+      }
       const requestCtx = {
         locale: void 0,
         url,

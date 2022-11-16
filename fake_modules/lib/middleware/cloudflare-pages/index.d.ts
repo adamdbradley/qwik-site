@@ -1,6 +1,5 @@
 import type { Render } from '@builder.io/qwik/server';
 import type { RenderOptions } from '@builder.io/qwik/server';
-import type { RenderOptions as RenderOptions_2 } from '@builder.io/qwik';
 import type { RequestHandler as RequestHandler_2 } from '@builder.io/qwik-city';
 
 /**
@@ -107,7 +106,7 @@ declare interface CookieValue {
 /**
  * @alpha
  */
-export declare function createQwikCity(opts: QwikCityCloudflarePagesOptions): ({ request, env, waitUntil }: EventPluginContext) => Promise<Response>;
+export declare function createQwikCity(opts: QwikCityCloudflarePagesOptions): ({ request, env, waitUntil, next }: EventPluginContext) => Promise<Response>;
 
 /**
  * @alpha
@@ -239,22 +238,6 @@ declare interface PageModule extends RouteModule {
     readonly headings?: ContentHeading[];
     readonly onStaticGenerate?: StaticGenerateHandler;
 }
-
-/**
- * @alpha
- * @deprecated Please use `createQwikCity()` instead.
- *
- * Example:
- *
- * ```ts
- * import { createQwikCity } from '@builder.io/qwik-city/middleware/cloudflare-pages';
- * import qwikCityPlan from '@qwik-city-plan';
- * import render from './entry.ssr';
- *
- * export const onRequest = createQwikCity({ render, qwikCityPlan });
- * ```
- */
-export declare function qwikCity(render: Render, opts?: RenderOptions_2): ({ request, env, waitUntil }: EventPluginContext) => Promise<Response>;
 
 /**
  * @alpha

@@ -23,12 +23,12 @@ function normalizePath(path) {
 }
 
 // packages/qwik-city/adaptors/shared/vite/server-utils.ts
-async function createStaticPathsModule(publicDir, basePathname, staticPaths, routes, format) {
+async function createStaticPathsModule(publicDir, basePathname2, staticPaths, routes, format) {
   const staticFilePaths = await getStaticFilePaths(publicDir);
   const staticPathSet = new Set(staticPaths);
   staticFilePaths.forEach((filePath) => {
     const relFilePath = normalizePath(relative2(publicDir, filePath));
-    const pathname = basePathname + encodeURIComponent(relFilePath);
+    const pathname = basePathname2 + encodeURIComponent(relFilePath);
     staticPathSet.add(pathname);
   });
   for (const route of routes) {
@@ -37,9 +37,9 @@ async function createStaticPathsModule(publicDir, basePathname, staticPaths, rou
       staticPathSet.add(pathname);
     }
   }
-  staticPathSet.add(basePathname + "sitemap.xml");
-  const assetsPath = basePathname + "assets/";
-  const baseBuildPath = basePathname + "build/";
+  staticPathSet.add(basePathname2 + "sitemap.xml");
+  const assetsPath = basePathname2 + "assets/";
+  const baseBuildPath = basePathname2 + "build/";
   const c = [];
   c.push(`const staticPaths = new Set(${JSON.stringify(Array.from(staticPathSet).sort())});`);
   c.push(`function isStaticPath(p) {`);
@@ -173,6 +173,8 @@ function viteAdaptor(opts) {
         await fs2.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
         const staticPaths = opts.staticPaths || [];
         const routes = qwikCityPlugin.api.getRoutes();
+        const basePathname2 = qwikCityPlugin.api.getBasePathname();
+        const clientOutDir = qwikVitePlugin.api.getClientOutDir();
         let staticGenerateResult = null;
         if (opts.staticGenerate && renderModulePath && qwikCityPlanModulePath) {
           let origin = opts.origin;
@@ -184,8 +186,8 @@ function viteAdaptor(opts) {
           }
           const staticGenerate = await import("../../../static/index.mjs");
           let generateOpts = {
-            basePathname: qwikCityPlugin.api.getBasePathname(),
-            outDir: qwikVitePlugin.api.getClientOutDir(),
+            basePathname: basePathname2,
+            outDir: clientOutDir,
             origin,
             renderModulePath,
             qwikCityPlanModulePath
@@ -207,9 +209,9 @@ function viteAdaptor(opts) {
         if (typeof opts.generateRoutes === "function") {
           await opts.generateRoutes({
             serverOutDir,
-            clientOutDir: qwikVitePlugin.api.getClientOutDir(),
+            clientOutDir,
+            basePathname: basePathname2,
             routes,
-            staticPaths: [],
             warn: (message) => this.warn(message),
             error: (message) => this.error(message)
           });
@@ -247,6 +249,11 @@ var RESOLVED_SERVER_UTILS_ID = "qwik-city-server-utils.js";
 // packages/qwik-city/adaptors/netlify-edge/vite/index.ts
 import fs3 from "fs";
 import { join as join3 } from "path";
+
+// packages/qwik-city/runtime/src/library/qwik-city-plan.ts
+var basePathname = "/";
+
+// packages/qwik-city/adaptors/netlify-edge/vite/index.ts
 function netifyEdgeAdaptor(opts = {}) {
   var _a;
   return viteAdaptor({
@@ -280,7 +287,7 @@ function netifyEdgeAdaptor(opts = {}) {
         const netlifyEdgeManifest = {
           functions: [
             {
-              pattern: "/*",
+              path: basePathname + "*",
               function: "entry.netlify-edge"
             }
           ],

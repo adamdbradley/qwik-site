@@ -691,8 +691,8 @@ var ABORT_INDEX = 999999999;
 // packages/qwik-city/middleware/request-handler/request-handler.ts
 async function requestHandler(mode, requestCtx, opts) {
   try {
-    const { render, qwikCityPlan: qwikCityPlan2 } = opts;
-    const { routes, menus, cacheModules, trailingSlash, basePathname } = qwikCityPlan2;
+    const { render, qwikCityPlan } = opts;
+    const { routes, menus, cacheModules, trailingSlash, basePathname } = qwikCityPlan;
     updateRequestCtx(requestCtx, trailingSlash);
     const loadedRoute = await loadRoute(routes, menus, cacheModules, requestCtx.url.pathname);
     if (loadedRoute) {
@@ -734,7 +734,6 @@ async function requestHandler(mode, requestCtx, opts) {
 }
 
 // packages/qwik-city/middleware/netlify-edge/index.ts
-import qwikCityPlan from "@qwik-city-plan";
 import qwikCityServerUtils from "@qwik-city-server-utils";
 function createQwikCity(opts) {
   const { isStaticPath } = qwikCityServerUtils;
@@ -797,10 +796,6 @@ function createQwikCity(opts) {
   }
   return onRequest;
 }
-function qwikCity(render, opts) {
-  return createQwikCity({ render, qwikCityPlan, ...opts });
-}
 export {
-  createQwikCity,
-  qwikCity
+  createQwikCity
 };
