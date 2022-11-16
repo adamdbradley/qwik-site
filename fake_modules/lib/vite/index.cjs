@@ -23975,7 +23975,7 @@ function normalizeOptions(rootDir, userOpts) {
     }
   }
   if (typeof opts.trailingSlash !== "boolean") {
-    opts.trailingSlash = false;
+    opts.trailingSlash = true;
   }
   opts.mdx = opts.mdx || {};
   return opts;

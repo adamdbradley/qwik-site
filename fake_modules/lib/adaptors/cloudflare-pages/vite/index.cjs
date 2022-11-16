@@ -23,10 +23,10 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// packages/qwik-city/adaptors/netlify-edge/vite/index.ts
+// packages/qwik-city/adaptors/cloudflare-pages/vite/index.ts
 var vite_exports = {};
 __export(vite_exports, {
-  netifyEdgeAdaptor: () => netifyEdgeAdaptor
+  cloudflarePagesAdaptor: () => cloudflarePagesAdaptor
 });
 module.exports = __toCommonJS(vite_exports);
 
@@ -34,7 +34,7 @@ module.exports = __toCommonJS(vite_exports);
 var import_node_fs2 = __toESM(require("fs"), 1);
 var import_node_path3 = require("path");
 
-// packages/qwik-city/adaptors/shared/vite/static-paths.ts
+// packages/qwik-city/adaptors/shared/vite/server-utils.ts
 var import_node_fs = __toESM(require("fs"), 1);
 var import_node_path2 = require("path");
 
@@ -54,8 +54,8 @@ function normalizePath(path) {
   return path;
 }
 
-// packages/qwik-city/adaptors/shared/vite/static-paths.ts
-async function createStaticPathsModule(publicDir, basePathname, staticPaths, routes) {
+// packages/qwik-city/adaptors/shared/vite/server-utils.ts
+async function createStaticPathsModule(publicDir, basePathname, staticPaths, routes, format) {
   const staticFilePaths = await getStaticFilePaths(publicDir);
   const staticPathSet = new Set(staticPaths);
   staticFilePaths.forEach((filePath) => {
@@ -74,7 +74,7 @@ async function createStaticPathsModule(publicDir, basePathname, staticPaths, rou
   const baseBuildPath = basePathname + "build/";
   const c = [];
   c.push(`const staticPaths = new Set(${JSON.stringify(Array.from(staticPathSet).sort())});`);
-  c.push(`export default function isStaticPath(p) {`);
+  c.push(`function isStaticPath(p) {`);
   c.push(`  if (p.startsWith(${JSON.stringify(baseBuildPath)})) {`);
   c.push(`    return true;`);
   c.push(`  }`);
@@ -86,6 +86,11 @@ async function createStaticPathsModule(publicDir, basePathname, staticPaths, rou
   c.push(`  }`);
   c.push(`  return false;`);
   c.push(`}`);
+  if (format === "cjs") {
+    c.push("module.exports = { isStaticPath: isStaticPath };");
+  } else {
+    c.push("export { isStaticPath };");
+  }
   return c.join("\n");
 }
 async function getStaticFilePaths(publicDir) {
@@ -117,6 +122,7 @@ function viteAdaptor(opts) {
   let publicDir = null;
   let qwikCityPlanModulePath = null;
   let isSsrBuild = false;
+  let format = "esm";
   const plugin = {
     name: `vite-plugin-qwik-city-${opts.name}`,
     enforce: "post",
@@ -127,7 +133,7 @@ function viteAdaptor(opts) {
       }
     },
     configResolved(config) {
-      var _a, _b, _c;
+      var _a, _b, _c, _d;
       isSsrBuild = !!config.build.ssr;
       if (isSsrBuild) {
         qwikCityPlugin = config.plugins.find(
@@ -154,12 +160,15 @@ function viteAdaptor(opts) {
           );
         }
         publicDir = (0, import_node_path3.resolve)(config.root, config.publicDir || "public");
+        if (((_d = config.ssr) == null ? void 0 : _d.format) === "cjs") {
+          format = "cjs";
+        }
       }
     },
     resolveId(id) {
-      if (id === STATIC_PATHS_ID) {
+      if (id === SERVER_UTILS_ID) {
         return {
-          id: "./" + RESOLVED_STATIC_PATHS_ID,
+          id: "./" + RESOLVED_SERVER_UTILS_ID,
           external: true
         };
       }
@@ -241,44 +250,28 @@ function viteAdaptor(opts) {
           publicDir,
           qwikCityPlugin.api.getBasePathname(),
           staticPaths,
-          routes
+          routes,
+          format
         );
-        await import_node_fs2.default.promises.writeFile((0, import_node_path3.join)(serverOutDir, RESOLVED_STATIC_PATHS_ID), staticPathModule);
+        await import_node_fs2.default.promises.writeFile((0, import_node_path3.join)(serverOutDir, RESOLVED_SERVER_UTILS_ID), staticPathModule);
       }
     }
   };
   return plugin;
 }
-function getParentDir(startDir, dirName) {
-  const root = (0, import_node_path3.resolve)("/");
-  let dir = startDir;
-  for (let i = 0; i < 20; i++) {
-    dir = (0, import_node_path3.dirname)(dir);
-    if ((0, import_node_path3.basename)(dir) === dirName) {
-      return dir;
-    }
-    if (dir === root) {
-      break;
-    }
-  }
-  throw new Error(`Unable to find "${dirName}" directory from "${startDir}"`);
-}
-var STATIC_PATHS_ID = "@qwik-city-static-paths";
-var RESOLVED_STATIC_PATHS_ID = "qwik-city-static-paths.mjs";
+var SERVER_UTILS_ID = "@qwik-city-server-utils";
+var RESOLVED_SERVER_UTILS_ID = "qwik-city-server-utils.js";
 
-// packages/qwik-city/adaptors/netlify-edge/vite/index.ts
+// packages/qwik-city/adaptors/cloudflare-pages/vite/index.ts
 var import_node_fs3 = __toESM(require("fs"), 1);
 var import_node_path4 = require("path");
-function netifyEdgeAdaptor(opts = {}) {
+function cloudflarePagesAdaptor(opts = {}) {
   var _a;
   return viteAdaptor({
-    name: "netlify-edge",
-    origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.URL) || "https://yoursitename.netlify.app",
+    name: "cloudflare-pages",
+    origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.CF_PAGES_URL) || "https://your.cloudflare.pages.dev",
     staticGenerate: opts.staticGenerate,
-    additionalStaticPaths: opts.additionalStaticPaths,
-    config(config) {
-      var _a2;
-      const outDir = ((_a2 = config.build) == null ? void 0 : _a2.outDir) || ".netlify/edge-functions/entry.netlify-edge";
+    config() {
       return {
         ssr: {
           target: "webworker",
@@ -286,7 +279,6 @@ function netifyEdgeAdaptor(opts = {}) {
         },
         build: {
           ssr: true,
-          outDir,
           rollupOptions: {
             output: {
               format: "es",
@@ -297,34 +289,54 @@ function netifyEdgeAdaptor(opts = {}) {
         publicDir: false
       };
     },
-    async generateRoutes({ serverOutDir, routes, staticPaths }) {
-      if (opts.functionRoutes !== false) {
-        const ssrRoutes = routes.filter((r) => !staticPaths.includes(r.pathname));
-        const netlifyEdgeManifest = {
-          functions: ssrRoutes.map((r) => {
-            if (r.paramNames.length > 0) {
-              return {
-                pattern: r.pattern.toString().replace(/^\//, "").replace(/\/$/, ""),
-                function: "entry.netlify-edge"
-              };
-            }
-            return {
-              path: r.pathname,
-              function: "entry.netlify-edge"
-            };
-          }),
-          version: 1
+    async generateRoutes({ clientOutDir, staticPaths, warn }) {
+      const clientFiles = await import_node_fs3.default.promises.readdir(clientOutDir, { withFileTypes: true });
+      const exclude = clientFiles.map((f) => {
+        if (f.name.startsWith(".")) {
+          return null;
+        }
+        if (f.isDirectory()) {
+          return `/${f.name}/*`;
+        } else if (f.isFile()) {
+          return `/${f.name}`;
+        }
+        return null;
+      }).filter(isNotNullable);
+      const include = ["/*"];
+      const hasRoutesJson = exclude.includes("/_routes.json");
+      if (!hasRoutesJson && opts.functionRoutes !== false) {
+        staticPaths.sort();
+        staticPaths.sort((a, b) => a.length - b.length);
+        exclude.push(...staticPaths);
+        const routesJsonPath = (0, import_node_path4.join)(clientOutDir, "_routes.json");
+        const total = include.length + exclude.length;
+        const maxRules = 100;
+        if (total > maxRules) {
+          const toRemove = total - maxRules;
+          const removed = exclude.splice(-toRemove, toRemove);
+          warn(
+            `Cloudflare Pages does not support more than 100 static rules. Qwik SSG generated ${total}, the following rules were excluded: ${JSON.stringify(
+              removed,
+              void 0,
+              2
+            )}`
+          );
+          warn('Please manually create a routes config in the "public/_routes.json" directory.');
+        }
+        const routesJson = {
+          version: 1,
+          include,
+          exclude
         };
-        const netlifyEdgeFnsDir = getParentDir(serverOutDir, "edge-functions");
-        await import_node_fs3.default.promises.writeFile(
-          (0, import_node_path4.join)(netlifyEdgeFnsDir, "manifest.json"),
-          JSON.stringify(netlifyEdgeManifest, null, 2)
-        );
+        await import_node_fs3.default.promises.writeFile(routesJsonPath, JSON.stringify(routesJson, void 0, 2));
       }
     }
   });
 }
+var isNotNullable = (v) => {
+  return v != null;
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  netifyEdgeAdaptor
+  cloudflarePagesAdaptor
 });

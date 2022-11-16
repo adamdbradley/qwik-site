@@ -79,7 +79,8 @@ declare interface PluginOptions {
      */
     basePathname?: string;
     /**
-     * Ensure a trailing slash ends page urls. Defaults to `false`.
+     * Ensure a trailing slash ends page urls. Defaults to `true`.
+     * (Note: Previous versions defaulted to `false`).
      */
     trailingSlash?: boolean;
     /**

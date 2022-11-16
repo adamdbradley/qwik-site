@@ -2,7 +2,7 @@
 import fs2 from "fs";
 import { basename as basename2, dirname as dirname2, join as join2, resolve } from "path";
 
-// packages/qwik-city/adaptors/shared/vite/static-paths.ts
+// packages/qwik-city/adaptors/shared/vite/server-utils.ts
 import fs from "fs";
 import { join, relative as relative2 } from "path";
 
@@ -22,8 +22,8 @@ function normalizePath(path) {
   return path;
 }
 
-// packages/qwik-city/adaptors/shared/vite/static-paths.ts
-async function createStaticPathsModule(publicDir, basePathname, staticPaths, routes) {
+// packages/qwik-city/adaptors/shared/vite/server-utils.ts
+async function createStaticPathsModule(publicDir, basePathname, staticPaths, routes, format) {
   const staticFilePaths = await getStaticFilePaths(publicDir);
   const staticPathSet = new Set(staticPaths);
   staticFilePaths.forEach((filePath) => {
@@ -42,7 +42,7 @@ async function createStaticPathsModule(publicDir, basePathname, staticPaths, rou
   const baseBuildPath = basePathname + "build/";
   const c = [];
   c.push(`const staticPaths = new Set(${JSON.stringify(Array.from(staticPathSet).sort())});`);
-  c.push(`export default function isStaticPath(p) {`);
+  c.push(`function isStaticPath(p) {`);
   c.push(`  if (p.startsWith(${JSON.stringify(baseBuildPath)})) {`);
   c.push(`    return true;`);
   c.push(`  }`);
@@ -54,6 +54,11 @@ async function createStaticPathsModule(publicDir, basePathname, staticPaths, rou
   c.push(`  }`);
   c.push(`  return false;`);
   c.push(`}`);
+  if (format === "cjs") {
+    c.push("module.exports = { isStaticPath: isStaticPath };");
+  } else {
+    c.push("export { isStaticPath };");
+  }
   return c.join("\n");
 }
 async function getStaticFilePaths(publicDir) {
@@ -85,6 +90,7 @@ function viteAdaptor(opts) {
   let publicDir = null;
   let qwikCityPlanModulePath = null;
   let isSsrBuild = false;
+  let format = "esm";
   const plugin = {
     name: `vite-plugin-qwik-city-${opts.name}`,
     enforce: "post",
@@ -95,7 +101,7 @@ function viteAdaptor(opts) {
       }
     },
     configResolved(config) {
-      var _a, _b, _c;
+      var _a, _b, _c, _d;
       isSsrBuild = !!config.build.ssr;
       if (isSsrBuild) {
         qwikCityPlugin = config.plugins.find(
@@ -122,12 +128,15 @@ function viteAdaptor(opts) {
           );
         }
         publicDir = resolve(config.root, config.publicDir || "public");
+        if (((_d = config.ssr) == null ? void 0 : _d.format) === "cjs") {
+          format = "cjs";
+        }
       }
     },
     resolveId(id) {
-      if (id === STATIC_PATHS_ID) {
+      if (id === SERVER_UTILS_ID) {
         return {
-          id: "./" + RESOLVED_STATIC_PATHS_ID,
+          id: "./" + RESOLVED_SERVER_UTILS_ID,
           external: true
         };
       }
@@ -209,91 +218,35 @@ function viteAdaptor(opts) {
           publicDir,
           qwikCityPlugin.api.getBasePathname(),
           staticPaths,
-          routes
+          routes,
+          format
         );
-        await fs2.promises.writeFile(join2(serverOutDir, RESOLVED_STATIC_PATHS_ID), staticPathModule);
+        await fs2.promises.writeFile(join2(serverOutDir, RESOLVED_SERVER_UTILS_ID), staticPathModule);
       }
     }
   };
   return plugin;
 }
-var STATIC_PATHS_ID = "@qwik-city-static-paths";
-var RESOLVED_STATIC_PATHS_ID = "qwik-city-static-paths.mjs";
+var SERVER_UTILS_ID = "@qwik-city-server-utils";
+var RESOLVED_SERVER_UTILS_ID = "qwik-city-server-utils.js";
 
-// packages/qwik-city/adaptors/cloudflare-pages/vite/index.ts
-import fs3 from "fs";
-import { join as join3 } from "path";
-function cloudflarePagesAdaptor(opts = {}) {
+// packages/qwik-city/adaptors/express/vite/index.ts
+function expressAdaptor(opts = {}) {
   var _a;
   return viteAdaptor({
-    name: "cloudflare-pages",
-    origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.CF_PAGES_URL) || "https://your.cloudflare.pages.dev",
+    name: "express",
+    origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.URL) || "https://yoursitename.qwik.builder.io",
     staticGenerate: opts.staticGenerate,
     config() {
       return {
-        ssr: {
-          target: "webworker",
-          noExternal: true
-        },
         build: {
-          ssr: true,
-          rollupOptions: {
-            output: {
-              format: "es",
-              hoistTransitiveImports: false
-            }
-          }
+          ssr: true
         },
         publicDir: false
       };
-    },
-    async generateRoutes({ clientOutDir, staticPaths, warn }) {
-      const clientFiles = await fs3.promises.readdir(clientOutDir, { withFileTypes: true });
-      const exclude = clientFiles.map((f) => {
-        if (f.name.startsWith(".")) {
-          return null;
-        }
-        if (f.isDirectory()) {
-          return `/${f.name}/*`;
-        } else if (f.isFile()) {
-          return `/${f.name}`;
-        }
-        return null;
-      }).filter(isNotNullable);
-      const include = ["/*"];
-      const hasRoutesJson = exclude.includes("/_routes.json");
-      if (!hasRoutesJson && opts.functionRoutes !== false) {
-        staticPaths.sort();
-        staticPaths.sort((a, b) => a.length - b.length);
-        exclude.push(...staticPaths);
-        const routesJsonPath = join3(clientOutDir, "_routes.json");
-        const total = include.length + exclude.length;
-        const maxRules = 100;
-        if (total > maxRules) {
-          const toRemove = total - maxRules;
-          const removed = exclude.splice(-toRemove, toRemove);
-          warn(
-            `Cloudflare Pages does not support more than 100 static rules. Qwik SSG generated ${total}, the following rules were excluded: ${JSON.stringify(
-              removed,
-              void 0,
-              2
-            )}`
-          );
-          warn('Please manually create a routes config in the "public/_routes.json" directory.');
-        }
-        const routesJson = {
-          version: 1,
-          include,
-          exclude
-        };
-        await fs3.promises.writeFile(routesJsonPath, JSON.stringify(routesJson, void 0, 2));
-      }
     }
   });
 }
-var isNotNullable = (v) => {
-  return v != null;
-};
 export {
-  cloudflarePagesAdaptor
+  expressAdaptor
 };
