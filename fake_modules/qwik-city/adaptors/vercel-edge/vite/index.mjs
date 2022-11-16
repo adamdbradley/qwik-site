@@ -1,11 +1,88 @@
 // packages/qwik-city/adaptors/shared/vite/index.ts
+import fs2 from "fs";
+import { basename as basename2, dirname as dirname2, join as join2, resolve } from "path";
+
+// packages/qwik-city/adaptors/shared/vite/static-paths.ts
 import fs from "fs";
-import { basename, dirname, join, resolve } from "path";
+import { join, relative as relative2 } from "path";
+
+// packages/qwik-city/utils/fs.ts
+import { basename, dirname, normalize, relative } from "path";
+function normalizePath(path) {
+  path = normalize(path);
+  const isExtendedLengthPath = /^\\\\\?\\/.test(path);
+  const hasNonAscii = /[^\u0000-\u0080]+/.test(path);
+  if (isExtendedLengthPath || hasNonAscii) {
+    return path;
+  }
+  path = path.replace(/\\/g, "/");
+  if (path.endsWith("/")) {
+    path = path.slice(0, path.length - 1);
+  }
+  return path;
+}
+
+// packages/qwik-city/adaptors/shared/vite/static-paths.ts
+async function createStaticPathsModule(publicDir, basePathname, staticPaths, routes) {
+  const staticFilePaths = await getStaticFilePaths(publicDir);
+  const staticPathSet = new Set(staticPaths);
+  staticFilePaths.forEach((filePath) => {
+    const relFilePath = normalizePath(relative2(publicDir, filePath));
+    const pathname = basePathname + encodeURIComponent(relFilePath);
+    staticPathSet.add(pathname);
+  });
+  for (const route of routes) {
+    const { pathname } = route;
+    if (pathname.endsWith("service-worker.js")) {
+      staticPathSet.add(pathname);
+    }
+  }
+  staticPathSet.add(basePathname + "sitemap.xml");
+  const assetsPath = basePathname + "assets/";
+  const baseBuildPath = basePathname + "build/";
+  const c = [];
+  c.push(`const staticPaths = new Set(${JSON.stringify(Array.from(staticPathSet).sort())});`);
+  c.push(`export default function isStaticPath(p) {`);
+  c.push(`  if (p.startsWith(${JSON.stringify(baseBuildPath)})) {`);
+  c.push(`    return true;`);
+  c.push(`  }`);
+  c.push(`  if (p.startsWith(${JSON.stringify(assetsPath)})) {`);
+  c.push(`    return true;`);
+  c.push(`  }`);
+  c.push(`  if (staticPaths.has(p)) {`);
+  c.push(`    return true;`);
+  c.push(`  }`);
+  c.push(`  return false;`);
+  c.push(`}`);
+  return c.join("\n");
+}
+async function getStaticFilePaths(publicDir) {
+  const staticPaths = [];
+  const loadDir = async (dir) => {
+    const itemNames = await fs.promises.readdir(dir);
+    await Promise.all(
+      itemNames.map(async (itemName) => {
+        const itemPath = join(dir, itemName);
+        const stat = await fs.promises.stat(itemPath);
+        if (stat.isDirectory()) {
+          await loadDir(itemPath);
+        } else if (stat.isFile()) {
+          staticPaths.push(itemPath);
+        }
+      })
+    );
+  };
+  await loadDir(publicDir);
+  return staticPaths;
+}
+
+// packages/qwik-city/adaptors/shared/vite/index.ts
 function viteAdaptor(opts) {
   let qwikCityPlugin = null;
   let qwikVitePlugin = null;
   let serverOutDir = null;
   let renderModulePath = null;
+  let publicDir = null;
   let qwikCityPlanModulePath = null;
   let isSsrBuild = false;
   const plugin = {
@@ -17,29 +94,42 @@ function viteAdaptor(opts) {
         return opts.config(config);
       }
     },
-    configResolved({ build, plugins }) {
-      var _a;
-      isSsrBuild = !!build.ssr;
+    configResolved(config) {
+      var _a, _b, _c;
+      isSsrBuild = !!config.build.ssr;
       if (isSsrBuild) {
-        qwikCityPlugin = plugins.find((p) => p.name === "vite-plugin-qwik-city");
+        qwikCityPlugin = config.plugins.find(
+          (p) => p.name === "vite-plugin-qwik-city"
+        );
         if (!qwikCityPlugin) {
           throw new Error("Missing vite-plugin-qwik-city");
         }
-        qwikVitePlugin = plugins.find((p) => p.name === "vite-plugin-qwik");
+        qwikVitePlugin = config.plugins.find(
+          (p) => p.name === "vite-plugin-qwik"
+        );
         if (!qwikVitePlugin) {
           throw new Error("Missing vite-plugin-qwik");
         }
-        serverOutDir = build.outDir;
-        if ((build == null ? void 0 : build.ssr) !== true) {
+        serverOutDir = config.build.outDir;
+        if (((_a = config.build) == null ? void 0 : _a.ssr) !== true) {
           throw new Error(
             `"build.ssr" must be set to "true" in order to use the "${opts.name}" adaptor.`
           );
         }
-        if (!((_a = build == null ? void 0 : build.rollupOptions) == null ? void 0 : _a.input)) {
+        if (!((_c = (_b = config.build) == null ? void 0 : _b.rollupOptions) == null ? void 0 : _c.input)) {
           throw new Error(
             `"build.rollupOptions.input" must be set in order to use the "${opts.name}" adaptor.`
           );
         }
+        publicDir = resolve(config.root, config.publicDir || "public");
+      }
+    },
+    resolveId(id) {
+      if (id === STATIC_PATHS_ID) {
+        return {
+          id: "./" + RESOLVED_STATIC_PATHS_ID,
+          external: true
+        };
       }
     },
     generateBundle(_, bundles) {
@@ -48,9 +138,9 @@ function viteAdaptor(opts) {
           const chunk = bundles[fileName];
           if (chunk.type === "chunk" && chunk.isEntry) {
             if (chunk.name === "entry.ssr") {
-              renderModulePath = join(serverOutDir, fileName);
+              renderModulePath = join2(serverOutDir, fileName);
             } else if (chunk.name === "@qwik-city-plan") {
-              qwikCityPlanModulePath = join(serverOutDir, fileName);
+              qwikCityPlanModulePath = join2(serverOutDir, fileName);
             }
           }
         }
@@ -67,11 +157,13 @@ function viteAdaptor(opts) {
       }
     },
     async closeBundle() {
-      if (isSsrBuild && serverOutDir && (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) && (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api)) {
-        const serverPackageJsonPath = join(serverOutDir, "package.json");
+      if (isSsrBuild && serverOutDir && (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) && (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api) && publicDir) {
+        const serverPackageJsonPath = join2(serverOutDir, "package.json");
         const serverPackageJsonCode = `{"type":"module"}`;
-        await fs.promises.mkdir(serverOutDir, { recursive: true });
-        await fs.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
+        await fs2.promises.mkdir(serverOutDir, { recursive: true });
+        await fs2.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
+        const staticPaths = opts.additionalStaticPaths || [];
+        const routes = qwikCityPlugin.api.getRoutes();
         let staticGenerateResult = null;
         if (opts.staticGenerate && renderModulePath && qwikCityPlanModulePath) {
           let origin = opts.origin;
@@ -101,17 +193,25 @@ function viteAdaptor(opts) {
               `Error while runnning SSG from "${opts.name}" adaptor. At least one path failed to render.`
             );
           }
+          staticPaths.push(...staticGenerateResult.staticPaths);
         }
         if (typeof opts.generateRoutes === "function") {
           await opts.generateRoutes({
             serverOutDir,
             clientOutDir: qwikVitePlugin.api.getClientOutDir(),
-            routes: qwikCityPlugin.api.getRoutes(),
-            staticPaths: (staticGenerateResult == null ? void 0 : staticGenerateResult.staticPaths) ?? [],
+            routes,
+            staticPaths: [],
             warn: (message) => this.warn(message),
             error: (message) => this.error(message)
           });
         }
+        const staticPathModule = await createStaticPathsModule(
+          publicDir,
+          qwikCityPlugin.api.getBasePathname(),
+          staticPaths,
+          routes
+        );
+        await fs2.promises.writeFile(join2(serverOutDir, RESOLVED_STATIC_PATHS_ID), staticPathModule);
       }
     }
   };
@@ -121,8 +221,8 @@ function getParentDir(startDir, dirName) {
   const root = resolve("/");
   let dir = startDir;
   for (let i = 0; i < 20; i++) {
-    dir = dirname(dir);
-    if (basename(dir) === dirName) {
+    dir = dirname2(dir);
+    if (basename2(dir) === dirName) {
       return dir;
     }
     if (dir === root) {
@@ -131,10 +231,12 @@ function getParentDir(startDir, dirName) {
   }
   throw new Error(`Unable to find "${dirName}" directory from "${startDir}"`);
 }
+var STATIC_PATHS_ID = "@qwik-city-static-paths";
+var RESOLVED_STATIC_PATHS_ID = "qwik-city-static-paths.mjs";
 
 // packages/qwik-city/adaptors/vercel-edge/vite/index.ts
-import fs2 from "fs";
-import { join as join2 } from "path";
+import fs3 from "fs";
+import { join as join3 } from "path";
 function vercelEdgeAdaptor(opts = {}) {
   var _a;
   return viteAdaptor({
@@ -179,23 +281,23 @@ function vercelEdgeAdaptor(opts = {}) {
           }),
           version: 3
         };
-        await fs2.promises.writeFile(
-          join2(vercelOutputDir, "config.json"),
+        await fs3.promises.writeFile(
+          join3(vercelOutputDir, "config.json"),
           JSON.stringify(vercelOutputConfig, null, 2)
         );
       }
-      const vcConfigPath = join2(serverOutDir, ".vc-config.json");
+      const vcConfigPath = join3(serverOutDir, ".vc-config.json");
       const vcConfig = {
         runtime: "edge",
         entrypoint: opts.vcConfigEntryPoint || "entry.vercel-edge.js",
         envVarsInUse: opts.vcConfigEnvVarsInUse
       };
-      await fs2.promises.writeFile(vcConfigPath, JSON.stringify(vcConfig, null, 2));
-      const staticDir = join2(vercelOutputDir, "static");
-      if (fs2.existsSync(staticDir)) {
-        await fs2.promises.rm(staticDir, { recursive: true });
+      await fs3.promises.writeFile(vcConfigPath, JSON.stringify(vcConfig, null, 2));
+      const staticDir = join3(vercelOutputDir, "static");
+      if (fs3.existsSync(staticDir)) {
+        await fs3.promises.rm(staticDir, { recursive: true });
       }
-      await fs2.promises.rename(clientOutDir, staticDir);
+      await fs3.promises.rename(clientOutDir, staticDir);
     }
   });
 }

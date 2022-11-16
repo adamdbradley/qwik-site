@@ -231,7 +231,6 @@ declare interface PageModule extends RouteModule {
 declare interface QwikCityHandlerOptions extends RenderOptions {
     render: Render;
     qwikCityPlan: QwikCityPlan;
-    excludePathnames?: Set<string>;
 }
 
 /**

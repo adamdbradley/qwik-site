@@ -822,33 +822,16 @@ async function requestHandler(mode, requestCtx, opts) {
 
 // packages/qwik-city/middleware/netlify-edge/index.ts
 import qwikCityPlan from "@qwik-city-plan";
+import isStaticPath from "@qwik-city-static-paths";
 function createQwikCity(opts) {
-  let staticPaths = null;
-  const staticPathImporter = () => "./netlify-static-paths.mjs";
-  import(staticPathImporter())
-    .then((module) => {
-      if (module.default instanceof Set) {
-        staticPaths = module.default;
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
   async function onRequest(request, context) {
     try {
       const url = new URL(request.url);
-      console.log("onRequest", url.pathname, staticPaths);
-
-      if (staticPaths && staticPaths.has(url.pathname)) {
-        console.log("static", url.pathname);
+      if (isStaticPath(url.pathname) || url.pathname.startsWith("/.netlify")) {
+        console.log("static path", url.pathname);
         return context.next();
       }
-      if (url.pathname.startsWith("/.netlify")) {
-        return context.next();
-      }
-
-      console.log("ssr", url.pathname);
-
+      console.log("ssr path", url.pathname);
       const requestCtx = {
         locale: void 0,
         url,
