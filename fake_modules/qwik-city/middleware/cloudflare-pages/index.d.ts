@@ -265,6 +265,7 @@ export declare interface QwikCityCloudflarePagesOptions extends QwikCityHandlerO
 declare interface QwikCityHandlerOptions extends RenderOptions {
     render: Render;
     qwikCityPlan: QwikCityPlan;
+    excludePathnames?: Set<string>;
 }
 
 /**

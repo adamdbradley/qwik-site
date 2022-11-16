@@ -736,9 +736,21 @@ async function requestHandler(mode, requestCtx, opts) {
 // packages/qwik-city/middleware/netlify-edge/index.ts
 import qwikCityPlan from "@qwik-city-plan";
 function createQwikCity(opts) {
+  let staticPaths = null;
+  const staticPathImporter = () => "./netlify-static-paths.mjs";
+  import(staticPathImporter()).then((module) => {
+    if (module.default instanceof Set) {
+      staticPaths = module.default;
+    }
+  }).catch((err) => {
+    console.log(err);
+  });
   async function onRequest(request, context) {
     try {
       const url = new URL(request.url);
+      if (staticPaths && staticPaths.has(url.pathname)) {
+        return context.next();
+      }
       if (url.pathname.startsWith("/.netlify")) {
         return context.next();
       }

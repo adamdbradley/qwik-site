@@ -256,6 +256,7 @@ export declare function qwikCity(render: Render, opts?: RenderOptions_2): (reque
 declare interface QwikCityHandlerOptions extends RenderOptions {
     render: Render;
     qwikCityPlan: QwikCityPlan;
+    excludePathnames?: Set<string>;
 }
 
 /**

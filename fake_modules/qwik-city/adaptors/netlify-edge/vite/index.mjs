@@ -186,6 +186,11 @@ function netifyEdgeAdaptor(opts = {}) {
           JSON.stringify(netlifyEdgeManifest, null, 2)
         );
       }
+      const isStaticPathsCode = `export default new Set(${JSON.stringify(staticPaths)});`;
+      await fs2.promises.writeFile(
+        join2(serverOutDir, "netlify-static-paths.mjs"),
+        isStaticPathsCode
+      );
     }
   });
 }
