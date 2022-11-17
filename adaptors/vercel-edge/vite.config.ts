@@ -1,4 +1,4 @@
-import { vercelEdgeAdaptor } from "../../fake_modules/qwik-city/adaptors/vercel-edge/vite/index.mjs";
+import { vercelEdgeAdaptor } from "@builder.io/qwik-city/adaptors/vercel-edge/vite";
 import { extendConfig } from "@builder.io/qwik-city/vite";
 import baseConfig from "../../vite.config";
 
@@ -14,7 +14,7 @@ export default extendConfig(baseConfig, () => {
     plugins: [
       vercelEdgeAdaptor({
         staticGenerate: true,
-      }) as any,
+      }),
     ],
   };
 });
