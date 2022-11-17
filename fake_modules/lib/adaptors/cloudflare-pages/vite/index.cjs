@@ -506,16 +506,6 @@ function viteAdaptor(opts) {
           }
           staticPaths.push(...staticGenerateResult.staticPaths);
         }
-        if (typeof opts.generate === "function") {
-          await opts.generate({
-            serverOutDir,
-            clientOutDir,
-            basePathname,
-            routes,
-            warn: (message) => this.warn(message),
-            error: (message) => this.error(message)
-          });
-        }
         const staticPathsPromise = createStaticPathsModule(
           clientOutDir,
           basePathname,
@@ -538,6 +528,16 @@ function viteAdaptor(opts) {
             await notFoundPathsPromise
           )
         ]);
+        if (typeof opts.generate === "function") {
+          await opts.generate({
+            serverOutDir,
+            clientOutDir,
+            basePathname,
+            routes,
+            warn: (message) => this.warn(message),
+            error: (message) => this.error(message)
+          });
+        }
       }
     }
   };
