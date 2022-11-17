@@ -255,6 +255,7 @@ function vercelEdgeAdaptor(opts = {}) {
     name: "vercel-edge",
     origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.VERCEL_URL) || "https://yoursitename.vercel.app",
     staticGenerate: opts.staticGenerate,
+    staticPaths: opts.staticPaths,
     config(config) {
       var _a2;
       const outDir = ((_a2 = config.build) == null ? void 0 : _a2.outDir) || ".vercel/output/functions/_qwik-city.func";

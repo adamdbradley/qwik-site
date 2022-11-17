@@ -183,9 +183,6 @@ var ErrorResponse = class extends Error {
     this.status = status;
   }
 };
-function notFoundHandler(requestCtx) {
-  return errorResponse(requestCtx, new ErrorResponse(404, "Not Found"));
-}
 function errorHandler(requestCtx, e) {
   const status = 500 /* InternalServerError */;
   const html = getErrorHtml(status, e);
@@ -796,8 +793,7 @@ function createQwikCity(opts) {
       if (handledResponse) {
         return handledResponse;
       }
-      const notFoundResponse = await notFoundHandler(requestCtx);
-      return notFoundResponse;
+      return next();
     } catch (e) {
       console.error(e);
       return new Response(String(e || "Error"), {
