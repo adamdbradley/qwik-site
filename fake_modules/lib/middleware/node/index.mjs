@@ -367,7 +367,7 @@ var asyncNoop = async () => {
 };
 
 // packages/qwik-city/middleware/request-handler/page-handler.ts
-function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNames) {
+function pageHandler(requestCtx, userResponse, render, opts, routeBundleNames) {
   const { status, headers, cookie } = userResponse;
   const { response } = requestCtx;
   const isPageData = userResponse.type === "pagedata";
@@ -382,7 +382,12 @@ function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNa
     try {
       const result = await render({
         stream: isPageData ? noopStream : stream,
-        envData: getQwikCityEnvData(requestHeaders, userResponse, requestCtx.locale, mode),
+        envData: getQwikCityEnvData(
+          requestHeaders,
+          userResponse,
+          requestCtx.locale,
+          requestCtx.mode
+        ),
         ...opts
       });
       if (isPageData) {
@@ -675,7 +680,7 @@ var QDATA_JSON_LEN = QDATA_JSON.length;
 var ABORT_INDEX = 999999999;
 
 // packages/qwik-city/middleware/request-handler/request-handler.ts
-async function requestHandler(mode, requestCtx, opts) {
+async function requestHandler(requestCtx, opts) {
   try {
     const { render, qwikCityPlan: qwikCityPlan2 } = opts;
     const { routes, menus, cacheModules, trailingSlash, basePathname } = qwikCityPlan2;
@@ -698,7 +703,6 @@ async function requestHandler(mode, requestCtx, opts) {
         return endpointResult;
       }
       const pageResult = await pageHandler(
-        mode,
         requestCtx,
         userResponse,
         render,
@@ -724,7 +728,7 @@ function getUrl(req) {
   const protocol = req.socket.encrypted || req.connection.encrypted ? "https" : "http";
   return new URL(req.url || "/", `${protocol}://${req.headers.host}`);
 }
-function fromNodeHttp(url, req, res) {
+function fromNodeHttp(url, req, res, mode) {
   const requestHeaders = createHeaders();
   const nodeRequestHeaders = req.headers;
   for (const key in nodeRequestHeaders) {
@@ -745,6 +749,7 @@ function fromNodeHttp(url, req, res) {
     return Buffer.concat(buffers).toString();
   };
   const requestCtx = {
+    mode,
     request: {
       headers: requestHeaders,
       formData: async () => {
@@ -803,9 +808,9 @@ function createQwikCity(opts) {
   patchGlobalFetch();
   const router = async (req, res, next) => {
     try {
-      const requestCtx = fromNodeHttp(getUrl(req), req, res);
+      const requestCtx = fromNodeHttp(getUrl(req), req, res, "server");
       try {
-        const rsp = await requestHandler("server", requestCtx, opts);
+        const rsp = await requestHandler(requestCtx, opts);
         if (!rsp) {
           next();
         }

@@ -26888,7 +26888,7 @@ var QDATA_JSON_LEN = QDATA_JSON.length;
 var ABORT_INDEX = 999999999;
 
 // packages/qwik-city/middleware/request-handler/page-handler.ts
-function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNames) {
+function pageHandler(requestCtx, userResponse, render, opts, routeBundleNames) {
   const { status, headers, cookie } = userResponse;
   const { response } = requestCtx;
   const isPageData = userResponse.type === "pagedata";
@@ -26903,7 +26903,12 @@ function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNa
     try {
       const result = await render({
         stream: isPageData ? noopStream : stream,
-        envData: getQwikCityEnvData(requestHeaders, userResponse, requestCtx.locale, mode),
+        envData: getQwikCityEnvData(
+          requestHeaders,
+          userResponse,
+          requestCtx.locale,
+          requestCtx.mode
+        ),
         ...opts
       });
       if (isPageData) {
@@ -27035,7 +27040,7 @@ var getRouteParams = (paramNames, match) => {
 };
 
 // packages/qwik-city/middleware/node/http.ts
-function fromNodeHttp(url, req, res) {
+function fromNodeHttp(url, req, res, mode) {
   const requestHeaders = createHeaders();
   const nodeRequestHeaders = req.headers;
   for (const key in nodeRequestHeaders) {
@@ -27056,6 +27061,7 @@ function fromNodeHttp(url, req, res) {
     return Buffer.concat(buffers).toString();
   };
   const requestCtx = {
+    mode,
     request: {
       headers: requestHeaders,
       formData: async () => {
@@ -27128,7 +27134,7 @@ function ssrDevMiddleware(ctx, server) {
         next();
         return;
       }
-      const requestCtx = fromNodeHttp(url, req, res);
+      const requestCtx = fromNodeHttp(url, req, res, "dev");
       updateRequestCtx(requestCtx, ctx.opts.trailingSlash);
       await updateBuildContext(ctx);
       for (const d of ctx.diagnostics) {
@@ -27161,7 +27167,7 @@ function ssrDevMiddleware(ctx, server) {
             ctx.opts.basePathname
           );
           if (userResponse.type === "pagedata") {
-            await pageHandler("dev", requestCtx, userResponse, noopDevRender);
+            await pageHandler(requestCtx, userResponse, noopDevRender);
             return;
           }
           if (userResponse.type === "endpoint") {
@@ -27228,7 +27234,7 @@ function dev404Middleware() {
   return async (req, res, next) => {
     try {
       const url = new URL(req.originalUrl, `http://${req.headers.host}`);
-      const requestCtx = fromNodeHttp(url, req, res);
+      const requestCtx = fromNodeHttp(url, req, res, "dev");
       await notFoundHandler(requestCtx);
     } catch (e2) {
       next(e2);

@@ -378,7 +378,7 @@ var asyncNoop = async () => {
 };
 
 // packages/qwik-city/middleware/request-handler/page-handler.ts
-function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNames) {
+function pageHandler(requestCtx, userResponse, render, opts, routeBundleNames) {
   const { status, headers, cookie } = userResponse;
   const { response } = requestCtx;
   const isPageData = userResponse.type === "pagedata";
@@ -393,7 +393,12 @@ function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNa
     try {
       const result = await render({
         stream: isPageData ? noopStream : stream,
-        envData: getQwikCityEnvData(requestHeaders, userResponse, requestCtx.locale, mode),
+        envData: getQwikCityEnvData(
+          requestHeaders,
+          userResponse,
+          requestCtx.locale,
+          requestCtx.mode
+        ),
         ...opts
       });
       if (isPageData) {
@@ -686,7 +691,7 @@ var QDATA_JSON_LEN = QDATA_JSON.length;
 var ABORT_INDEX = 999999999;
 
 // packages/qwik-city/middleware/request-handler/request-handler.ts
-async function requestHandler(mode, requestCtx, opts) {
+async function requestHandler(requestCtx, opts) {
   try {
     const { render, qwikCityPlan } = opts;
     const { routes, menus, cacheModules, trailingSlash, basePathname } = qwikCityPlan;
@@ -709,7 +714,6 @@ async function requestHandler(mode, requestCtx, opts) {
         return endpointResult;
       }
       const pageResult = await pageHandler(
-        mode,
         requestCtx,
         userResponse,
         render,
@@ -732,6 +736,7 @@ async function requestHandler(mode, requestCtx, opts) {
 
 // packages/qwik-city/middleware/vercel-edge/index.ts
 import qwikCityStaticPaths from "@qwik-city-static-paths";
+import qwikCityNotFoundPaths from "@qwik-city-not-found-paths";
 function createQwikCity(opts) {
   const { isStaticPath } = qwikCityStaticPaths;
   async function onRequest(request) {
@@ -745,6 +750,7 @@ function createQwikCity(opts) {
         });
       }
       const requestCtx = {
+        mode: "server",
         locale: void 0,
         url,
         request,
@@ -781,14 +787,14 @@ function createQwikCity(opts) {
         },
         platform: process.env
       };
-      const handledResponse = await requestHandler("server", requestCtx, opts);
+      const handledResponse = await requestHandler(requestCtx, opts);
       if (handledResponse) {
         return handledResponse;
       }
-      return new Response(null, {
-        headers: {
-          "x-middleware-next": "1"
-        }
+      const notFoundHtml = qwikCityNotFoundPaths.getNotFound(url.pathname);
+      return new Response(notFoundHtml, {
+        status: 404,
+        headers: { "Content-Type": "text/html; charset=utf-8" }
       });
     } catch (e) {
       console.error(e);

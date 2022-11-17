@@ -898,7 +898,7 @@ var asyncNoop = async () => {
 };
 
 // packages/qwik-city/middleware/request-handler/page-handler.ts
-function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNames) {
+function pageHandler(requestCtx, userResponse, render, opts, routeBundleNames) {
   const { status, headers, cookie } = userResponse;
   const { response } = requestCtx;
   const isPageData = userResponse.type === "pagedata";
@@ -913,7 +913,12 @@ function pageHandler(mode, requestCtx, userResponse, render, opts, routeBundleNa
     try {
       const result = await render({
         stream: isPageData ? noopStream : stream,
-        envData: getQwikCityEnvData(requestHeaders, userResponse, requestCtx.locale, mode),
+        envData: getQwikCityEnvData(
+          requestHeaders,
+          userResponse,
+          requestCtx.locale,
+          requestCtx.mode
+        ),
         ...opts
       });
       if (isPageData) {
@@ -1206,7 +1211,7 @@ var QDATA_JSON_LEN = QDATA_JSON.length;
 var ABORT_INDEX = 999999999;
 
 // packages/qwik-city/middleware/request-handler/request-handler.ts
-async function requestHandler(mode, requestCtx, opts) {
+async function requestHandler(requestCtx, opts) {
   try {
     const { render, qwikCityPlan } = opts;
     const { routes, menus, cacheModules, trailingSlash, basePathname } = qwikCityPlan;
@@ -1229,7 +1234,6 @@ async function requestHandler(mode, requestCtx, opts) {
         return endpointResult;
       }
       const pageResult = await pageHandler(
-        mode,
         requestCtx,
         userResponse,
         render,
@@ -1289,6 +1293,7 @@ async function workerRender(sys, opts, staticRoute, pendingPromises, callback) {
   try {
     const request = new SsgRequestContext(url);
     const requestCtx = {
+      mode: "static",
       locale: void 0,
       url,
       request,
@@ -1346,7 +1351,7 @@ async function workerRender(sys, opts, staticRoute, pendingPromises, callback) {
       },
       platform: sys.platform
     };
-    const promise = requestHandler("static", requestCtx, opts).then((rsp) => {
+    const promise = requestHandler(requestCtx, opts).then((rsp) => {
       if (rsp == null) {
         callback(result);
       }

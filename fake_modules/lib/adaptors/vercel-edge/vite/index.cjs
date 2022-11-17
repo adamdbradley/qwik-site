@@ -598,6 +598,7 @@ function vercelEdgeAdaptor(opts = {}) {
       if (opts.outputConfig !== false) {
         const vercelOutputConfig = {
           routes: [
+            { handle: "filesystem" },
             {
               src: basePathname + "(.*)",
               middlewarePath: "_qwik-city"
