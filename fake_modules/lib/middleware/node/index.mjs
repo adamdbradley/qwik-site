@@ -172,9 +172,6 @@ var ErrorResponse = class extends Error {
     this.status = status;
   }
 };
-function notFoundHandler(requestCtx) {
-  return errorResponse(requestCtx, new ErrorResponse(404, "Not Found"));
-}
 function errorHandler(requestCtx, e) {
   const status = 500 /* InternalServerError */;
   const html = getErrorHtml(status, e);
@@ -801,6 +798,7 @@ function patchGlobalFetch() {
 
 // packages/qwik-city/middleware/node/index.ts
 import qwikCityPlan from "@qwik-city-plan";
+import qwikCityNotFoundPaths from "@qwik-city-not-found-paths";
 function createQwikCity(opts) {
   patchGlobalFetch();
   const router = async (req, res, next) => {
@@ -821,8 +819,12 @@ function createQwikCity(opts) {
   };
   const notFound = async (req, res, next) => {
     try {
-      const requestCtx = fromNodeHttp(getUrl(req), req, res);
-      await notFoundHandler(requestCtx);
+      const url = getUrl(req);
+      const notFoundHtml = qwikCityNotFoundPaths.getNotFound(url.pathname);
+      res.writeHead(404, {
+        "Content-Type": "text/html; charset=utf-8"
+      });
+      res.end(notFoundHtml);
     } catch (e) {
       console.error(e);
       next(e);

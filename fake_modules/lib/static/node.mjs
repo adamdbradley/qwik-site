@@ -331,9 +331,6 @@ var access = async (path) => {
 // packages/qwik-city/static/node/index.ts
 import { isMainThread, workerData } from "worker_threads";
 
-// packages/qwik-city/static/main-thread.ts
-import { pathToFileURL } from "url";
-
 // packages/qwik-city/middleware/request-handler/cookie.ts
 var SAMESITE = {
   lax: "Lax",
@@ -588,29 +585,27 @@ function minimalHtmlResponse(status, message, stack) {
 var COLOR_400 = "#006ce9";
 var COLOR_500 = "#713fc2";
 
-// packages/qwik-city/static/404.ts
-async function generate404Pages(sys, opts) {
+// packages/qwik-city/static/not-found.ts
+async function generateNotFoundPages(sys, opts, routes) {
   if (opts.emit404Pages !== false) {
     const basePathname = opts.basePathname || "/";
-    const root404 = basePathname + "404.html";
-    await generate404Page(sys, root404);
-  }
-}
-async function generate404Page(sys, pathname) {
-  const filePath = sys.getPageFilePath(pathname);
-  const fileExists = await sys.access(filePath);
-  if (!fileExists) {
-    const html = getErrorHtml(404, "Resource Not Found");
-    await sys.ensureDir(filePath);
-    return new Promise((resolve2) => {
-      const writer = sys.createWriteStream(filePath);
-      writer.write(html);
-      writer.close(resolve2);
-    });
+    const rootNotFoundPathname = basePathname + "404.html";
+    const hasRootNotFound = routes.some((r) => r[3] === rootNotFoundPathname);
+    if (!hasRootNotFound) {
+      const filePath = sys.getPageFilePath(rootNotFoundPathname);
+      const html = getErrorHtml(404, "Resource Not Found");
+      await sys.ensureDir(filePath);
+      return new Promise((resolve2) => {
+        const writer = sys.createWriteStream(filePath);
+        writer.write(html);
+        writer.close(resolve2);
+      });
+    }
   }
 }
 
 // packages/qwik-city/static/main-thread.ts
+import { pathToFileURL } from "url";
 async function mainThread(sys) {
   const opts = sys.getOptions();
   validateOptions(opts);
@@ -634,7 +629,7 @@ async function mainThread(sys) {
       let isRoutesLoaded = false;
       const completed = async () => {
         const closePromise = main.close();
-        await generate404Pages(sys, opts);
+        await generateNotFoundPages(sys, opts, routes);
         generatorResult.duration = timer();
         log.info("\nSSG results");
         if (generatorResult.rendered > 0) {

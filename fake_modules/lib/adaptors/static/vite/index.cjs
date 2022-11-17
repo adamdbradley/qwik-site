@@ -31,10 +31,10 @@ __export(vite_exports, {
 module.exports = __toCommonJS(vite_exports);
 
 // packages/qwik-city/adaptors/shared/vite/index.ts
-var import_node_fs2 = __toESM(require("fs"), 1);
-var import_node_path3 = require("path");
+var import_node_fs3 = __toESM(require("fs"), 1);
+var import_node_path4 = require("path");
 
-// packages/qwik-city/adaptors/shared/vite/server-utils.ts
+// packages/qwik-city/adaptors/shared/vite/static-paths.ts
 var import_node_fs = __toESM(require("fs"), 1);
 var import_node_path2 = require("path");
 
@@ -54,22 +54,15 @@ function normalizePath(path) {
   return path;
 }
 
-// packages/qwik-city/adaptors/shared/vite/server-utils.ts
-async function createStaticPathsModule(publicDir, basePathname, staticPaths, routes, format) {
-  const staticFilePaths = await getStaticFilePaths(publicDir);
+// packages/qwik-city/adaptors/shared/vite/static-paths.ts
+async function createStaticPathsModule(clientOutDir, basePathname, staticPaths, format) {
+  const staticFilePaths = await getStaticFilePaths(clientOutDir);
   const staticPathSet = new Set(staticPaths);
   staticFilePaths.forEach((filePath) => {
-    const relFilePath = normalizePath((0, import_node_path2.relative)(publicDir, filePath));
-    const pathname = basePathname + encodeURIComponent(relFilePath);
+    const relFilePath = normalizePath((0, import_node_path2.relative)(clientOutDir, filePath));
+    const pathname = basePathname + relFilePath;
     staticPathSet.add(pathname);
   });
-  for (const route of routes) {
-    const { pathname } = route;
-    if (pathname.endsWith("service-worker.js")) {
-      staticPathSet.add(pathname);
-    }
-  }
-  staticPathSet.add(basePathname + "sitemap.xml");
   const assetsPath = basePathname + "assets/";
   const baseBuildPath = basePathname + "build/";
   const c = [];
@@ -99,18 +92,289 @@ async function getStaticFilePaths(publicDir) {
     const itemNames = await import_node_fs.default.promises.readdir(dir);
     await Promise.all(
       itemNames.map(async (itemName) => {
-        const itemPath = (0, import_node_path2.join)(dir, itemName);
-        const stat = await import_node_fs.default.promises.stat(itemPath);
-        if (stat.isDirectory()) {
-          await loadDir(itemPath);
-        } else if (stat.isFile()) {
-          staticPaths.push(itemPath);
+        if (!IGNORE_NAMES[itemName]) {
+          const itemPath = (0, import_node_path2.join)(dir, itemName);
+          const stat = await import_node_fs.default.promises.stat(itemPath);
+          if (stat.isDirectory()) {
+            await loadDir(itemPath);
+          } else if (stat.isFile()) {
+            staticPaths.push(itemPath);
+          }
         }
       })
     );
   };
   await loadDir(publicDir);
   return staticPaths;
+}
+var IGNORE_NAMES = {
+  build: true,
+  assets: true,
+  "index.html": true,
+  "q-data.json": true
+};
+
+// packages/qwik-city/adaptors/shared/vite/not-found-paths.ts
+var import_node_fs2 = __toESM(require("fs"), 1);
+var import_node_path3 = require("path");
+
+// packages/qwik-city/middleware/request-handler/cookie.ts
+var SAMESITE = {
+  lax: "Lax",
+  none: "None",
+  strict: "Strict"
+};
+var UNIT = {
+  seconds: 1,
+  minutes: 1 * 60,
+  hours: 1 * 60 * 60,
+  days: 1 * 60 * 60 * 24,
+  weeks: 1 * 60 * 60 * 24 * 7
+};
+var createSetCookieValue = (cookieName, cookieValue, options) => {
+  const c = [`${cookieName}=${cookieValue}`];
+  if (typeof options.domain === "string") {
+    c.push(`Domain=${options.domain}`);
+  }
+  if (typeof options.maxAge === "number") {
+    c.push(`Max-Age=${options.maxAge}`);
+  } else if (Array.isArray(options.maxAge)) {
+    c.push(`Max-Age=${options.maxAge[0] * UNIT[options.maxAge[1]]}`);
+  } else if (typeof options.expires === "number" || typeof options.expires == "string") {
+    c.push(`Expires=${options.expires}`);
+  } else if (options.expires instanceof Date) {
+    c.push(`Expires=${options.expires.toUTCString()}`);
+  }
+  if (options.httpOnly) {
+    c.push("HttpOnly");
+  }
+  if (typeof options.path === "string") {
+    c.push(`Path=${options.path}`);
+  }
+  if (options.sameSite && SAMESITE[options.sameSite]) {
+    c.push(`SameSite=${SAMESITE[options.sameSite]}`);
+  }
+  if (options.secure) {
+    c.push("Secure");
+  }
+  return c.join("; ");
+};
+var parseCookieString = (cookieString) => {
+  const cookie = {};
+  if (typeof cookieString === "string" && cookieString !== "") {
+    const cookieSegments = cookieString.split(";");
+    for (const cookieSegment of cookieSegments) {
+      const cookieSplit = cookieSegment.split("=");
+      if (cookieSplit.length > 1) {
+        const cookieName = decodeURIComponent(cookieSplit[0].trim());
+        const cookieValue = decodeURIComponent(cookieSplit[1].trim());
+        cookie[cookieName] = cookieValue;
+      }
+    }
+  }
+  return cookie;
+};
+var REQ_COOKIE = Symbol("request-cookies");
+var RES_COOKIE = Symbol("response-cookies");
+var _a;
+var Cookie = class {
+  constructor(cookieString) {
+    this[_a] = {};
+    this[REQ_COOKIE] = parseCookieString(cookieString);
+  }
+  get(cookieName) {
+    const value = this[REQ_COOKIE][cookieName];
+    if (!value) {
+      return null;
+    }
+    return {
+      value,
+      json() {
+        return JSON.parse(value);
+      },
+      number() {
+        return Number(value);
+      }
+    };
+  }
+  has(cookieName) {
+    return !!this[REQ_COOKIE][cookieName];
+  }
+  set(cookieName, cookieValue, options = {}) {
+    const resolvedValue = typeof cookieValue === "string" ? cookieValue : encodeURIComponent(JSON.stringify(cookieValue));
+    this[RES_COOKIE][cookieName] = createSetCookieValue(cookieName, resolvedValue, options);
+  }
+  delete(name, options) {
+    this.set(name, "deleted", { ...options, expires: new Date(0) });
+  }
+  headers() {
+    return Object.values(this[RES_COOKIE]);
+  }
+};
+REQ_COOKIE, _a = RES_COOKIE;
+
+// packages/qwik-city/middleware/request-handler/headers.ts
+var HEADERS = Symbol("headers");
+var _a2;
+var HeadersPolyfill = class {
+  constructor() {
+    this[_a2] = {};
+  }
+  [(_a2 = HEADERS, Symbol.iterator)]() {
+    return this.entries();
+  }
+  *keys() {
+    for (const name of Object.keys(this[HEADERS])) {
+      yield name;
+    }
+  }
+  *values() {
+    for (const value of Object.values(this[HEADERS])) {
+      yield value;
+    }
+  }
+  *entries() {
+    for (const name of Object.keys(this[HEADERS])) {
+      yield [name, this.get(name)];
+    }
+  }
+  get(name) {
+    return this[HEADERS][normalizeHeaderName(name)] || null;
+  }
+  set(name, value) {
+    const normalizedName = normalizeHeaderName(name);
+    this[HEADERS][normalizedName] = typeof value !== "string" ? String(value) : value;
+  }
+  append(name, value) {
+    const normalizedName = normalizeHeaderName(name);
+    const resolvedValue = this.has(normalizedName) ? `${this.get(normalizedName)}, ${value}` : value;
+    this.set(name, resolvedValue);
+  }
+  delete(name) {
+    if (!this.has(name)) {
+      return;
+    }
+    const normalizedName = normalizeHeaderName(name);
+    delete this[HEADERS][normalizedName];
+  }
+  all() {
+    return this[HEADERS];
+  }
+  has(name) {
+    return this[HEADERS].hasOwnProperty(normalizeHeaderName(name));
+  }
+  forEach(callback, thisArg) {
+    for (const name in this[HEADERS]) {
+      if (this[HEADERS].hasOwnProperty(name)) {
+        callback.call(thisArg, this[HEADERS][name], name, this);
+      }
+    }
+  }
+};
+var HEADERS_INVALID_CHARACTERS = /[^a-z0-9\-#$%&'*+.^_`|~]/i;
+function normalizeHeaderName(name) {
+  if (typeof name !== "string") {
+    name = String(name);
+  }
+  if (HEADERS_INVALID_CHARACTERS.test(name) || name.trim() === "") {
+    throw new TypeError("Invalid character in header field name");
+  }
+  return name.toLowerCase();
+}
+
+// packages/qwik-city/middleware/request-handler/error-handler.ts
+function getErrorHtml(status, e) {
+  let message = "Server Error";
+  let stack = void 0;
+  if (e != null) {
+    if (typeof e === "object") {
+      if (typeof e.message === "string") {
+        message = e.message;
+      }
+      if (e.stack != null) {
+        stack = String(e.stack);
+      }
+    } else {
+      message = String(e);
+    }
+  }
+  return minimalHtmlResponse(status, message, stack);
+}
+function minimalHtmlResponse(status, message, stack) {
+  const width = typeof message === "string" ? "600px" : "300px";
+  const color = status >= 500 ? COLOR_500 : COLOR_400;
+  if (status < 500) {
+    stack = "";
+  }
+  return `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Status" content="${status}"/>
+  <title>${status} ${message}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body { color: ${color}; background-color: #fafafa; padding: 30px; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif; }
+    p { max-width: ${width}; margin: 60px auto 30px auto; background: white; border-radius: 4px; box-shadow: 0px 0px 50px -20px ${color}; overflow: hidden; }
+    strong { display: inline-block; padding: 15px; background: ${color}; color: white; }
+    span { display: inline-block; padding: 15px; }
+    pre { max-width: 580px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <p><strong>${status}</strong> <span>${message}</span></p>${stack ? `
+  <pre><code>${stack}</code></pre>` : ``}
+</body>
+</html>`;
+}
+var COLOR_400 = "#006ce9";
+var COLOR_500 = "#713fc2";
+
+// packages/qwik-city/middleware/request-handler/user-response.ts
+var QDATA_JSON = "/q-data.json";
+var QDATA_JSON_LEN = QDATA_JSON.length;
+
+// packages/qwik-city/adaptors/shared/vite/not-found-paths.ts
+async function createNotFoundPathsModule(clientOutDir, basePathname, routes, format) {
+  const notFounds = (await Promise.all(
+    routes.filter((r) => r.pathname.endsWith("404.html")).map(async (r) => {
+      const baselessPath = r.pathname.slice(basePathname.length);
+      const filePath = (0, import_node_path3.join)(clientOutDir, baselessPath);
+      const html = await import_node_fs2.default.promises.readFile(filePath, "utf-8");
+      const pathname = r.pathname.replace("404.html", "");
+      return [pathname, html];
+    }).filter((r) => !!r)
+  )).sort((a, b) => {
+    if (a[0].length > b[0].length)
+      return -1;
+    if (a[0].length < b[0].length)
+      return 1;
+    if (a[0] < b[0])
+      return -1;
+    if (a[0] > b[0])
+      return 1;
+    return 0;
+  });
+  if (!notFounds.some((r) => r[0] === basePathname)) {
+    const html = getErrorHtml(404, "Resource Not Found");
+    notFounds.push([basePathname, html]);
+  }
+  const c = [];
+  c.push(`const notFounds = ${JSON.stringify(notFounds, null, 2)};`);
+  c.push(`function getNotFound(p) {`);
+  c.push(`  for (const r of notFounds) {`);
+  c.push(`    if (p.startsWith(r[0])) {`);
+  c.push(`      return r[1];`);
+  c.push(`    }`);
+  c.push(`  }`);
+  c.push(`  return "Resource Not Found";`);
+  c.push(`}`);
+  if (format === "cjs") {
+    c.push("module.exports = { getNotFound: getNotFound };");
+  } else {
+    c.push("export default { getNotFound };");
+  }
+  return c.join("\n");
 }
 
 // packages/qwik-city/adaptors/shared/vite/index.ts
@@ -119,7 +383,6 @@ function viteAdaptor(opts) {
   let qwikVitePlugin = null;
   let serverOutDir = null;
   let renderModulePath = null;
-  let publicDir = null;
   let qwikCityPlanModulePath = null;
   let isSsrBuild = false;
   let format = "esm";
@@ -133,7 +396,7 @@ function viteAdaptor(opts) {
       }
     },
     configResolved(config) {
-      var _a, _b, _c, _d;
+      var _a3, _b, _c, _d;
       isSsrBuild = !!config.build.ssr;
       if (isSsrBuild) {
         qwikCityPlugin = config.plugins.find(
@@ -149,7 +412,7 @@ function viteAdaptor(opts) {
           throw new Error("Missing vite-plugin-qwik");
         }
         serverOutDir = config.build.outDir;
-        if (((_a = config.build) == null ? void 0 : _a.ssr) !== true) {
+        if (((_a3 = config.build) == null ? void 0 : _a3.ssr) !== true) {
           throw new Error(
             `"build.ssr" must be set to "true" in order to use the "${opts.name}" adaptor.`
           );
@@ -159,16 +422,21 @@ function viteAdaptor(opts) {
             `"build.rollupOptions.input" must be set in order to use the "${opts.name}" adaptor.`
           );
         }
-        publicDir = (0, import_node_path3.resolve)(config.root, config.publicDir || "public");
         if (((_d = config.ssr) == null ? void 0 : _d.format) === "cjs") {
           format = "cjs";
         }
       }
     },
     resolveId(id) {
-      if (id === SERVER_UTILS_ID) {
+      if (id === STATIC_PATHS_ID) {
         return {
-          id: "./" + RESOLVED_SERVER_UTILS_ID,
+          id: "./" + RESOLVED_STATIC_PATHS_ID,
+          external: true
+        };
+      }
+      if (id === NOT_FOUND_PATHS_ID) {
+        return {
+          id: "./" + RESOLVED_NOT_FOUND_PATHS_ID,
           external: true
         };
       }
@@ -179,9 +447,9 @@ function viteAdaptor(opts) {
           const chunk = bundles[fileName];
           if (chunk.type === "chunk" && chunk.isEntry) {
             if (chunk.name === "entry.ssr") {
-              renderModulePath = (0, import_node_path3.join)(serverOutDir, fileName);
+              renderModulePath = (0, import_node_path4.join)(serverOutDir, fileName);
             } else if (chunk.name === "@qwik-city-plan") {
-              qwikCityPlanModulePath = (0, import_node_path3.join)(serverOutDir, fileName);
+              qwikCityPlanModulePath = (0, import_node_path4.join)(serverOutDir, fileName);
             }
           }
         }
@@ -198,11 +466,11 @@ function viteAdaptor(opts) {
       }
     },
     async closeBundle() {
-      if (isSsrBuild && serverOutDir && (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) && (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api) && publicDir) {
-        const serverPackageJsonPath = (0, import_node_path3.join)(serverOutDir, "package.json");
+      if (isSsrBuild && serverOutDir && (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) && (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api)) {
+        const serverPackageJsonPath = (0, import_node_path4.join)(serverOutDir, "package.json");
         const serverPackageJsonCode = `{"type":"module"}`;
-        await import_node_fs2.default.promises.mkdir(serverOutDir, { recursive: true });
-        await import_node_fs2.default.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
+        await import_node_fs3.default.promises.mkdir(serverOutDir, { recursive: true });
+        await import_node_fs3.default.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode);
         const staticPaths = opts.staticPaths || [];
         const routes = qwikCityPlugin.api.getRoutes();
         const basePathname = qwikCityPlugin.api.getBasePathname();
@@ -238,8 +506,8 @@ function viteAdaptor(opts) {
           }
           staticPaths.push(...staticGenerateResult.staticPaths);
         }
-        if (typeof opts.generateRoutes === "function") {
-          await opts.generateRoutes({
+        if (typeof opts.generate === "function") {
+          await opts.generate({
             serverOutDir,
             clientOutDir,
             basePathname,
@@ -248,21 +516,37 @@ function viteAdaptor(opts) {
             error: (message) => this.error(message)
           });
         }
-        const staticPathModule = await createStaticPathsModule(
-          publicDir,
-          qwikCityPlugin.api.getBasePathname(),
+        const staticPathsPromise = createStaticPathsModule(
+          clientOutDir,
+          basePathname,
           staticPaths,
+          format
+        );
+        const notFoundPathsPromise = createNotFoundPathsModule(
+          clientOutDir,
+          basePathname,
           routes,
           format
         );
-        await import_node_fs2.default.promises.writeFile((0, import_node_path3.join)(serverOutDir, RESOLVED_SERVER_UTILS_ID), staticPathModule);
+        await Promise.all([
+          import_node_fs3.default.promises.writeFile(
+            (0, import_node_path4.join)(serverOutDir, RESOLVED_STATIC_PATHS_ID),
+            await staticPathsPromise
+          ),
+          import_node_fs3.default.promises.writeFile(
+            (0, import_node_path4.join)(serverOutDir, RESOLVED_NOT_FOUND_PATHS_ID),
+            await notFoundPathsPromise
+          )
+        ]);
       }
     }
   };
   return plugin;
 }
-var SERVER_UTILS_ID = "@qwik-city-server-utils";
-var RESOLVED_SERVER_UTILS_ID = "qwik-city-server-utils.js";
+var STATIC_PATHS_ID = "@qwik-city-static-paths";
+var RESOLVED_STATIC_PATHS_ID = `${STATIC_PATHS_ID}.js`;
+var NOT_FOUND_PATHS_ID = "@qwik-city-not-found-paths";
+var RESOLVED_NOT_FOUND_PATHS_ID = `${NOT_FOUND_PATHS_ID}.js`;
 
 // packages/qwik-city/adaptors/static/vite/index.ts
 function staticAdaptor(opts) {

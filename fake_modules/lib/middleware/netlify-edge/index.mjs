@@ -731,9 +731,9 @@ async function requestHandler(mode, requestCtx, opts) {
 }
 
 // packages/qwik-city/middleware/netlify-edge/index.ts
-import qwikCityServerUtils from "@qwik-city-server-utils";
+import qwikCityStaticPaths from "@qwik-city-static-paths";
 function createQwikCity(opts) {
-  const { isStaticPath } = qwikCityServerUtils;
+  const { isStaticPath } = qwikCityStaticPaths;
   async function onRequest(request, context) {
     try {
       const url = new URL(request.url);

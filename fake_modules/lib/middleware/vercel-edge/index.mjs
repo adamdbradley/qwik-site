@@ -731,9 +731,9 @@ async function requestHandler(mode, requestCtx, opts) {
 }
 
 // packages/qwik-city/middleware/vercel-edge/index.ts
-import qwikCityServerUtils from "@qwik-city-server-utils";
+import qwikCityStaticPaths from "@qwik-city-static-paths";
 function createQwikCity(opts) {
-  const { isStaticPath } = qwikCityServerUtils;
+  const { isStaticPath } = qwikCityStaticPaths;
   async function onRequest(request) {
     try {
       const url = new URL(request.url);
