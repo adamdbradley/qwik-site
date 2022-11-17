@@ -860,7 +860,8 @@ function createQwikCity(opts) {
       const url = getUrl(req);
       const notFoundHtml = import_qwik_city_not_found_paths.default.getNotFound(url.pathname);
       res.writeHead(404, {
-        "Content-Type": "text/html; charset=utf-8"
+        "Content-Type": "text/html; charset=utf-8",
+        "X-Not-Found": url.pathname
       });
       res.end(notFoundHtml);
     } catch (e) {

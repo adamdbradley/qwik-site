@@ -794,13 +794,13 @@ function createQwikCity(opts) {
       const notFoundHtml = qwikCityNotFoundPaths.getNotFound(url.pathname);
       return new Response(notFoundHtml, {
         status: 404,
-        headers: { "Content-Type": "text/html; charset=utf-8" }
+        headers: { "Content-Type": "text/html; charset=utf-8", "X-Not-Found": url.pathname }
       });
     } catch (e) {
       console.error(e);
       return new Response(String(e || "Error"), {
         status: 500,
-        headers: { "Content-Type": "text/plain; charset=utf-8" }
+        headers: { "Content-Type": "text/plain; charset=utf-8", "X-Error": "vercel-edge" }
       });
     }
   }

@@ -736,6 +736,7 @@ async function requestHandler(requestCtx, opts) {
 
 // packages/qwik-city/middleware/netlify-edge/index.ts
 import qwikCityStaticPaths from "@qwik-city-static-paths";
+import qwikCityNotFoundPaths from "@qwik-city-not-found-paths";
 function createQwikCity(opts) {
   const { isStaticPath } = qwikCityStaticPaths;
   async function onRequest(request, context) {
@@ -786,12 +787,16 @@ function createQwikCity(opts) {
       if (handledResponse) {
         return handledResponse;
       }
-      return context.next();
+      const notFoundHtml = qwikCityNotFoundPaths.getNotFound(url.pathname);
+      return new Response(notFoundHtml, {
+        status: 404,
+        headers: { "Content-Type": "text/html; charset=utf-8", "X-Not-Found": url.pathname }
+      });
     } catch (e) {
       console.error(e);
       return new Response(String(e || "Error"), {
         status: 500,
-        headers: { "Content-Type": "text/plain; charset=utf-8" }
+        headers: { "Content-Type": "text/plain; charset=utf-8", "X-Error": "netlify-edge" }
       });
     }
   }
