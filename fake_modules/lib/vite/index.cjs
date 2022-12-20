@@ -5,39 +5,55 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __esm = (fn, res) => function __init() {
-  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
-};
-var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
+var __esm = (fn, res) =>
+  function __init() {
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])((fn = 0))), res;
+  };
+var __commonJS = (cb, mod) =>
+  function __require() {
+    return (
+      mod ||
+        (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod),
+      mod.exports
+    );
+  };
 var __export = (target, all2) => {
   for (var name in all2)
     __defProp(target, name, { get: all2[name], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
+  if ((from && typeof from === "object") || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+        __defProp(to, key, {
+          get: () => from[key],
+          enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable,
+        });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var __toESM = (mod, isNodeMode, target) => (
+  (target = mod != null ? __create(__getProtoOf(mod)) : {}),
+  __copyProps(
+    isNodeMode || !mod || !mod.__esModule
+      ? __defProp(target, "default", { value: mod, enumerable: true })
+      : target,
+    mod
+  )
+);
+var __toCommonJS = (mod) =>
+  __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // node_modules/.pnpm/hast-util-heading-rank@2.1.0/node_modules/hast-util-heading-rank/index.js
 function headingRank(node) {
-  var name = node && node.type === "element" && node.tagName.toLowerCase() || "";
-  var code2 = name.length === 2 && name.charCodeAt(0) === 104 ? name.charCodeAt(1) : 0;
+  var name =
+    (node && node.type === "element" && node.tagName.toLowerCase()) || "";
+  var code2 =
+    name.length === 2 && name.charCodeAt(0) === 104 ? name.charCodeAt(1) : 0;
   return code2 > 48 && code2 < 55 ? code2 - 48 : null;
 }
 var init_hast_util_heading_rank = __esm({
-  "node_modules/.pnpm/hast-util-heading-rank@2.1.0/node_modules/hast-util-heading-rank/index.js"() {
-  }
+  "node_modules/.pnpm/hast-util-heading-rank@2.1.0/node_modules/hast-util-heading-rank/index.js"() {},
 });
 
 // node_modules/.pnpm/unist-util-is@5.1.1/node_modules/unist-util-is/index.js
@@ -51,8 +67,7 @@ function anyFactory(tests) {
   function any(...parameters) {
     let index2 = -1;
     while (++index2 < checks2.length) {
-      if (checks2[index2].call(this, ...parameters))
-        return true;
+      if (checks2[index2].call(this, ...parameters)) return true;
     }
     return false;
   }
@@ -62,8 +77,7 @@ function propsFactory(check) {
   function all2(node) {
     let key;
     for (key in check) {
-      if (node[key] !== check[key])
-        return false;
+      if (node[key] !== check[key]) return false;
     }
     return true;
   }
@@ -86,7 +100,7 @@ function ok() {
 var convert;
 var init_unist_util_is = __esm({
   "node_modules/.pnpm/unist-util-is@5.1.1/node_modules/unist-util-is/index.js"() {
-    convert = function(test) {
+    convert = function (test) {
       if (test === void 0 || test === null) {
         return ok;
       }
@@ -101,7 +115,7 @@ var init_unist_util_is = __esm({
       }
       throw new Error("Expected function, string, or object as test");
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/unist-util-visit-parents@5.1.1/node_modules/unist-util-visit-parents/color.js
@@ -109,8 +123,7 @@ function color(d) {
   return "\x1B[33m" + d + "\x1B[39m";
 }
 var init_color = __esm({
-  "node_modules/.pnpm/unist-util-visit-parents@5.1.1/node_modules/unist-util-visit-parents/color.js"() {
-  }
+  "node_modules/.pnpm/unist-util-visit-parents@5.1.1/node_modules/unist-util-visit-parents/color.js"() {},
 });
 
 // node_modules/.pnpm/unist-util-visit-parents@5.1.1/node_modules/unist-util-visit-parents/index.js
@@ -131,7 +144,7 @@ var init_unist_util_visit_parents = __esm({
     CONTINUE = true;
     SKIP = "skip";
     EXIT = false;
-    visitParents = function(tree, test, visitor, reverse) {
+    visitParents = function (tree, test, visitor, reverse) {
       if (typeof test === "function" && typeof visitor !== "function") {
         reverse = visitor;
         visitor = test;
@@ -144,9 +157,17 @@ var init_unist_util_visit_parents = __esm({
         const value2 = typeof node === "object" && node !== null ? node : {};
         let name;
         if (typeof value2.type === "string") {
-          name = typeof value2.tagName === "string" ? value2.tagName : typeof value2.name === "string" ? value2.name : void 0;
+          name =
+            typeof value2.tagName === "string"
+              ? value2.tagName
+              : typeof value2.name === "string"
+              ? value2.name
+              : void 0;
           Object.defineProperty(visit2, "name", {
-            value: "node (" + color(value2.type + (name ? "<" + name + ">" : "")) + ")"
+            value:
+              "node (" +
+              color(value2.type + (name ? "<" + name + ">" : "")) +
+              ")",
           });
         }
         return visit2;
@@ -165,18 +186,23 @@ var init_unist_util_visit_parents = __esm({
             offset = (reverse ? node.children.length : -1) + step;
             grandparents = parents.concat(node);
             while (offset > -1 && offset < node.children.length) {
-              subresult = factory(node.children[offset], offset, grandparents)();
+              subresult = factory(
+                node.children[offset],
+                offset,
+                grandparents
+              )();
               if (subresult[0] === EXIT) {
                 return subresult;
               }
-              offset = typeof subresult[1] === "number" ? subresult[1] : offset + step;
+              offset =
+                typeof subresult[1] === "number" ? subresult[1] : offset + step;
             }
           }
           return result;
         }
       }
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/unist-util-visit@4.1.1/node_modules/unist-util-visit/index.js
@@ -185,7 +211,7 @@ var init_unist_util_visit = __esm({
   "node_modules/.pnpm/unist-util-visit@4.1.1/node_modules/unist-util-visit/index.js"() {
     init_unist_util_visit_parents();
     init_unist_util_visit_parents();
-    visit = function(tree, test, visitor, reverse) {
+    visit = function (tree, test, visitor, reverse) {
       if (typeof test === "function" && typeof visitor !== "function") {
         reverse = visitor;
         visitor = test;
@@ -201,12 +227,14 @@ var init_unist_util_visit = __esm({
         );
       }
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Node.js
 var require_Node = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Node.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Node.js"(
+    exports
+  ) {
     "use strict";
     var ALIAS = Symbol.for("yaml.alias");
     var DOC = Symbol.for("yaml.document");
@@ -215,12 +243,18 @@ var require_Node = __commonJS({
     var SCALAR = Symbol.for("yaml.scalar");
     var SEQ = Symbol.for("yaml.seq");
     var NODE_TYPE = Symbol.for("yaml.node.type");
-    var isAlias = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === ALIAS;
-    var isDocument = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === DOC;
-    var isMap = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === MAP;
-    var isPair = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === PAIR;
-    var isScalar = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === SCALAR;
-    var isSeq = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === SEQ;
+    var isAlias = (node) =>
+      !!node && typeof node === "object" && node[NODE_TYPE] === ALIAS;
+    var isDocument = (node) =>
+      !!node && typeof node === "object" && node[NODE_TYPE] === DOC;
+    var isMap = (node) =>
+      !!node && typeof node === "object" && node[NODE_TYPE] === MAP;
+    var isPair = (node) =>
+      !!node && typeof node === "object" && node[NODE_TYPE] === PAIR;
+    var isScalar = (node) =>
+      !!node && typeof node === "object" && node[NODE_TYPE] === SCALAR;
+    var isSeq = (node) =>
+      !!node && typeof node === "object" && node[NODE_TYPE] === SEQ;
     function isCollection(node) {
       if (node && typeof node === "object")
         switch (node[NODE_TYPE]) {
@@ -241,15 +275,18 @@ var require_Node = __commonJS({
         }
       return false;
     }
-    var hasAnchor = (node) => (isScalar(node) || isCollection(node)) && !!node.anchor;
+    var hasAnchor = (node) =>
+      (isScalar(node) || isCollection(node)) && !!node.anchor;
     var NodeBase = class {
       constructor(type) {
         Object.defineProperty(this, NODE_TYPE, { value: type });
       }
       clone() {
-        const copy = Object.create(Object.getPrototypeOf(this), Object.getOwnPropertyDescriptors(this));
-        if (this.range)
-          copy.range = this.range.slice();
+        const copy = Object.create(
+          Object.getPrototypeOf(this),
+          Object.getOwnPropertyDescriptors(this)
+        );
+        if (this.range) copy.range = this.range.slice();
         return copy;
       }
     };
@@ -270,7 +307,7 @@ var require_Node = __commonJS({
     exports.isPair = isPair;
     exports.isScalar = isScalar;
     exports.isSeq = isSeq;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/visit.js
@@ -285,10 +322,8 @@ var require_visit = __commonJS({
       const visitor_ = initVisitor(visitor);
       if (Node.isDocument(node)) {
         const cd = visit_(null, node.contents, visitor_, Object.freeze([node]));
-        if (cd === REMOVE)
-          node.contents = null;
-      } else
-        visit_(null, node, visitor_, Object.freeze([]));
+        if (cd === REMOVE) node.contents = null;
+      } else visit_(null, node, visitor_, Object.freeze([]));
     }
     visit2.BREAK = BREAK;
     visit2.SKIP = SKIP2;
@@ -304,10 +339,8 @@ var require_visit = __commonJS({
           path2 = Object.freeze(path2.concat(node));
           for (let i = 0; i < node.items.length; ++i) {
             const ci = visit_(i, node.items[i], visitor, path2);
-            if (typeof ci === "number")
-              i = ci - 1;
-            else if (ci === BREAK)
-              return BREAK;
+            if (typeof ci === "number") i = ci - 1;
+            else if (ci === BREAK) return BREAK;
             else if (ci === REMOVE) {
               node.items.splice(i, 1);
               i -= 1;
@@ -316,15 +349,11 @@ var require_visit = __commonJS({
         } else if (Node.isPair(node)) {
           path2 = Object.freeze(path2.concat(node));
           const ck = visit_("key", node.key, visitor, path2);
-          if (ck === BREAK)
-            return BREAK;
-          else if (ck === REMOVE)
-            node.key = null;
+          if (ck === BREAK) return BREAK;
+          else if (ck === REMOVE) node.key = null;
           const cv = visit_("value", node.value, visitor, path2);
-          if (cv === BREAK)
-            return BREAK;
-          else if (cv === REMOVE)
-            node.value = null;
+          if (cv === BREAK) return BREAK;
+          else if (cv === REMOVE) node.value = null;
         }
       }
       return ctrl;
@@ -332,11 +361,14 @@ var require_visit = __commonJS({
     async function visitAsync(node, visitor) {
       const visitor_ = initVisitor(visitor);
       if (Node.isDocument(node)) {
-        const cd = await visitAsync_(null, node.contents, visitor_, Object.freeze([node]));
-        if (cd === REMOVE)
-          node.contents = null;
-      } else
-        await visitAsync_(null, node, visitor_, Object.freeze([]));
+        const cd = await visitAsync_(
+          null,
+          node.contents,
+          visitor_,
+          Object.freeze([node])
+        );
+        if (cd === REMOVE) node.contents = null;
+      } else await visitAsync_(null, node, visitor_, Object.freeze([]));
     }
     visitAsync.BREAK = BREAK;
     visitAsync.SKIP = SKIP2;
@@ -352,10 +384,8 @@ var require_visit = __commonJS({
           path2 = Object.freeze(path2.concat(node));
           for (let i = 0; i < node.items.length; ++i) {
             const ci = await visitAsync_(i, node.items[i], visitor, path2);
-            if (typeof ci === "number")
-              i = ci - 1;
-            else if (ci === BREAK)
-              return BREAK;
+            if (typeof ci === "number") i = ci - 1;
+            else if (ci === BREAK) return BREAK;
             else if (ci === REMOVE) {
               node.items.splice(i, 1);
               i -= 1;
@@ -364,51 +394,64 @@ var require_visit = __commonJS({
         } else if (Node.isPair(node)) {
           path2 = Object.freeze(path2.concat(node));
           const ck = await visitAsync_("key", node.key, visitor, path2);
-          if (ck === BREAK)
-            return BREAK;
-          else if (ck === REMOVE)
-            node.key = null;
+          if (ck === BREAK) return BREAK;
+          else if (ck === REMOVE) node.key = null;
           const cv = await visitAsync_("value", node.value, visitor, path2);
-          if (cv === BREAK)
-            return BREAK;
-          else if (cv === REMOVE)
-            node.value = null;
+          if (cv === BREAK) return BREAK;
+          else if (cv === REMOVE) node.value = null;
         }
       }
       return ctrl;
     }
     function initVisitor(visitor) {
-      if (typeof visitor === "object" && (visitor.Collection || visitor.Node || visitor.Value)) {
-        return Object.assign({
-          Alias: visitor.Node,
-          Map: visitor.Node,
-          Scalar: visitor.Node,
-          Seq: visitor.Node
-        }, visitor.Value && {
-          Map: visitor.Value,
-          Scalar: visitor.Value,
-          Seq: visitor.Value
-        }, visitor.Collection && {
-          Map: visitor.Collection,
-          Seq: visitor.Collection
-        }, visitor);
+      if (
+        typeof visitor === "object" &&
+        (visitor.Collection || visitor.Node || visitor.Value)
+      ) {
+        return Object.assign(
+          {
+            Alias: visitor.Node,
+            Map: visitor.Node,
+            Scalar: visitor.Node,
+            Seq: visitor.Node,
+          },
+          visitor.Value && {
+            Map: visitor.Value,
+            Scalar: visitor.Value,
+            Seq: visitor.Value,
+          },
+          visitor.Collection && {
+            Map: visitor.Collection,
+            Seq: visitor.Collection,
+          },
+          visitor
+        );
       }
       return visitor;
     }
     function callVisitor(key, node, visitor, path2) {
       var _a3, _b, _c, _d, _e;
-      if (typeof visitor === "function")
-        return visitor(key, node, path2);
+      if (typeof visitor === "function") return visitor(key, node, path2);
       if (Node.isMap(node))
-        return (_a3 = visitor.Map) == null ? void 0 : _a3.call(visitor, key, node, path2);
+        return (_a3 = visitor.Map) == null
+          ? void 0
+          : _a3.call(visitor, key, node, path2);
       if (Node.isSeq(node))
-        return (_b = visitor.Seq) == null ? void 0 : _b.call(visitor, key, node, path2);
+        return (_b = visitor.Seq) == null
+          ? void 0
+          : _b.call(visitor, key, node, path2);
       if (Node.isPair(node))
-        return (_c = visitor.Pair) == null ? void 0 : _c.call(visitor, key, node, path2);
+        return (_c = visitor.Pair) == null
+          ? void 0
+          : _c.call(visitor, key, node, path2);
       if (Node.isScalar(node))
-        return (_d = visitor.Scalar) == null ? void 0 : _d.call(visitor, key, node, path2);
+        return (_d = visitor.Scalar) == null
+          ? void 0
+          : _d.call(visitor, key, node, path2);
       if (Node.isAlias(node))
-        return (_e = visitor.Alias) == null ? void 0 : _e.call(visitor, key, node, path2);
+        return (_e = visitor.Alias) == null
+          ? void 0
+          : _e.call(visitor, key, node, path2);
       return void 0;
     }
     function replaceNode(key, path2, node) {
@@ -416,10 +459,8 @@ var require_visit = __commonJS({
       if (Node.isCollection(parent)) {
         parent.items[key] = node;
       } else if (Node.isPair(parent)) {
-        if (key === "key")
-          parent.key = node;
-        else
-          parent.value = node;
+        if (key === "key") parent.key = node;
+        else parent.value = node;
       } else if (Node.isDocument(parent)) {
         parent.contents = node;
       } else {
@@ -429,12 +470,14 @@ var require_visit = __commonJS({
     }
     exports.visit = visit2;
     exports.visitAsync = visitAsync;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/directives.js
 var require_directives = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/directives.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/directives.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     var visit2 = require_visit();
@@ -444,9 +487,10 @@ var require_directives = __commonJS({
       "[": "%5B",
       "]": "%5D",
       "{": "%7B",
-      "}": "%7D"
+      "}": "%7D",
     };
-    var escapeTagName = (tn) => tn.replace(/[!,[\]{}]/g, (ch) => escapeChars[ch]);
+    var escapeTagName = (tn) =>
+      tn.replace(/[!,[\]{}]/g, (ch) => escapeChars[ch]);
     var Directives = class {
       constructor(yaml2, tags) {
         this.docStart = null;
@@ -469,7 +513,7 @@ var require_directives = __commonJS({
             this.atNextDocument = false;
             this.yaml = {
               explicit: Directives.defaultYaml.explicit,
-              version: "1.2"
+              version: "1.2",
             };
             this.tags = Object.assign({}, Directives.defaultTags);
             break;
@@ -478,7 +522,10 @@ var require_directives = __commonJS({
       }
       add(line, onError) {
         if (this.atNextDocument) {
-          this.yaml = { explicit: Directives.defaultYaml.explicit, version: "1.1" };
+          this.yaml = {
+            explicit: Directives.defaultYaml.explicit,
+            version: "1.1",
+          };
           this.tags = Object.assign({}, Directives.defaultTags);
           this.atNextDocument = false;
         }
@@ -488,8 +535,7 @@ var require_directives = __commonJS({
           case "%TAG": {
             if (parts.length !== 2) {
               onError(0, "%TAG directive should contain exactly two parts");
-              if (parts.length < 2)
-                return false;
+              if (parts.length < 2) return false;
             }
             const [handle, prefix] = parts;
             this.tags[handle] = prefix;
@@ -517,8 +563,7 @@ var require_directives = __commonJS({
         }
       }
       tagName(source, onError) {
-        if (source === "!")
-          return "!";
+        if (source === "!") return "!";
         if (source[0] !== "!") {
           onError(`Not a valid tag: ${source}`);
           return null;
@@ -534,13 +579,10 @@ var require_directives = __commonJS({
           return verbatim;
         }
         const [, handle, suffix] = source.match(/^(.*!)([^!]*)$/);
-        if (!suffix)
-          onError(`The ${source} tag has no suffix`);
+        if (!suffix) onError(`The ${source} tag has no suffix`);
         const prefix = this.tags[handle];
-        if (prefix)
-          return prefix + decodeURIComponent(suffix);
-        if (handle === "!")
-          return source;
+        if (prefix) return prefix + decodeURIComponent(suffix);
+        if (handle === "!") return source;
         onError(`Could not resolve tag: ${source}`);
         return null;
       }
@@ -552,21 +594,20 @@ var require_directives = __commonJS({
         return tag[0] === "!" ? tag : `!<${tag}>`;
       }
       toString(doc) {
-        const lines = this.yaml.explicit ? [`%YAML ${this.yaml.version || "1.2"}`] : [];
+        const lines = this.yaml.explicit
+          ? [`%YAML ${this.yaml.version || "1.2"}`]
+          : [];
         const tagEntries = Object.entries(this.tags);
         let tagNames;
         if (doc && tagEntries.length > 0 && Node.isNode(doc.contents)) {
           const tags = {};
           visit2.visit(doc.contents, (_key, node) => {
-            if (Node.isNode(node) && node.tag)
-              tags[node.tag] = true;
+            if (Node.isNode(node) && node.tag) tags[node.tag] = true;
           });
           tagNames = Object.keys(tags);
-        } else
-          tagNames = [];
+        } else tagNames = [];
         for (const [handle, prefix] of tagEntries) {
-          if (handle === "!!" && prefix === "tag:yaml.org,2002:")
-            continue;
+          if (handle === "!!" && prefix === "tag:yaml.org,2002:") continue;
           if (!doc || tagNames.some((tn) => tn.startsWith(prefix)))
             lines.push(`%TAG ${handle} ${prefix}`);
         }
@@ -576,12 +617,14 @@ var require_directives = __commonJS({
     Directives.defaultYaml = { explicit: false, version: "1.2" };
     Directives.defaultTags = { "!!": "tag:yaml.org,2002:" };
     exports.Directives = Directives;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/anchors.js
 var require_anchors = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/anchors.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/anchors.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     var visit2 = require_visit();
@@ -597,17 +640,15 @@ var require_anchors = __commonJS({
       const anchors = /* @__PURE__ */ new Set();
       visit2.visit(root, {
         Value(_key, node) {
-          if (node.anchor)
-            anchors.add(node.anchor);
-        }
+          if (node.anchor) anchors.add(node.anchor);
+        },
       });
       return anchors;
     }
     function findNewAnchor(prefix, exclude) {
       for (let i = 1; true; ++i) {
         const name = `${prefix}${i}`;
-        if (!exclude.has(name))
-          return name;
+        if (!exclude.has(name)) return name;
       }
     }
     function createNodeAnchors(doc, prefix) {
@@ -617,8 +658,7 @@ var require_anchors = __commonJS({
       return {
         onAnchor: (source) => {
           aliasObjects.push(source);
-          if (!prevAnchors)
-            prevAnchors = anchorNames(doc);
+          if (!prevAnchors) prevAnchors = anchorNames(doc);
           const anchor = findNewAnchor(prefix, prevAnchors);
           prevAnchors.add(anchor);
           return anchor;
@@ -626,28 +666,36 @@ var require_anchors = __commonJS({
         setAnchors: () => {
           for (const source of aliasObjects) {
             const ref = sourceObjects.get(source);
-            if (typeof ref === "object" && ref.anchor && (Node.isScalar(ref.node) || Node.isCollection(ref.node))) {
+            if (
+              typeof ref === "object" &&
+              ref.anchor &&
+              (Node.isScalar(ref.node) || Node.isCollection(ref.node))
+            ) {
               ref.node.anchor = ref.anchor;
             } else {
-              const error = new Error("Failed to resolve repeated object (this should not happen)");
+              const error = new Error(
+                "Failed to resolve repeated object (this should not happen)"
+              );
               error.source = source;
               throw error;
             }
           }
         },
-        sourceObjects
+        sourceObjects,
       };
     }
     exports.anchorIsValid = anchorIsValid;
     exports.anchorNames = anchorNames;
     exports.createNodeAnchors = createNodeAnchors;
     exports.findNewAnchor = findNewAnchor;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Alias.js
 var require_Alias = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Alias.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Alias.js"(
+    exports
+  ) {
     "use strict";
     var anchors = require_anchors();
     var visit2 = require_visit();
@@ -659,24 +707,21 @@ var require_Alias = __commonJS({
         Object.defineProperty(this, "tag", {
           set() {
             throw new Error("Alias nodes cannot have tags");
-          }
+          },
         });
       }
       resolve(doc) {
         let found = void 0;
         visit2.visit(doc, {
           Node: (_key, node) => {
-            if (node === this)
-              return visit2.visit.BREAK;
-            if (node.anchor === this.source)
-              found = node;
-          }
+            if (node === this) return visit2.visit.BREAK;
+            if (node.anchor === this.source) found = node;
+          },
         });
         return found;
       }
       toJSON(_arg, ctx) {
-        if (!ctx)
-          return { source: this.source };
+        if (!ctx) return { source: this.source };
         const { anchors: anchors2, doc, maxAliasCount } = ctx;
         const source = this.resolve(doc);
         if (!source) {
@@ -693,7 +738,8 @@ var require_Alias = __commonJS({
           if (data.aliasCount === 0)
             data.aliasCount = getAliasCount(doc, source, anchors2);
           if (data.count * data.aliasCount > maxAliasCount) {
-            const msg = "Excessive alias count indicates a resource exhaustion attack";
+            const msg =
+              "Excessive alias count indicates a resource exhaustion attack";
             throw new ReferenceError(msg);
           }
         }
@@ -707,8 +753,7 @@ var require_Alias = __commonJS({
             const msg = `Unresolved alias (the anchor must be set before the alias): ${this.source}`;
             throw new Error(msg);
           }
-          if (ctx.implicitKey)
-            return `${src} `;
+          if (ctx.implicitKey) return `${src} `;
         }
         return src;
       }
@@ -722,8 +767,7 @@ var require_Alias = __commonJS({
         let count = 0;
         for (const item of node.items) {
           const c2 = getAliasCount(doc, item, anchors2);
-          if (c2 > count)
-            count = c2;
+          if (c2 > count) count = c2;
         }
         return count;
       } else if (Node.isPair(node)) {
@@ -734,20 +778,21 @@ var require_Alias = __commonJS({
       return 1;
     }
     exports.Alias = Alias;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/toJS.js
 var require_toJS = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/toJS.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/toJS.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     function toJS(value2, arg, ctx) {
       if (Array.isArray(value2))
         return value2.map((v, i) => toJS(v, String(i), ctx));
       if (value2 && typeof value2.toJSON === "function") {
-        if (!ctx || !Node.hasAnchor(value2))
-          return value2.toJSON(arg, ctx);
+        if (!ctx || !Node.hasAnchor(value2)) return value2.toJSON(arg, ctx);
         const data = { aliasCount: 0, count: 1, res: void 0 };
         ctx.anchors.set(value2, data);
         ctx.onCreate = (res2) => {
@@ -755,8 +800,7 @@ var require_toJS = __commonJS({
           delete ctx.onCreate;
         };
         const res = value2.toJSON(arg, ctx);
-        if (ctx.onCreate)
-          ctx.onCreate(res);
+        if (ctx.onCreate) ctx.onCreate(res);
         return res;
       }
       if (typeof value2 === "bigint" && !(ctx == null ? void 0 : ctx.keep))
@@ -764,23 +808,28 @@ var require_toJS = __commonJS({
       return value2;
     }
     exports.toJS = toJS;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Scalar.js
 var require_Scalar = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Scalar.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Scalar.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     var toJS = require_toJS();
-    var isScalarValue = (value2) => !value2 || typeof value2 !== "function" && typeof value2 !== "object";
+    var isScalarValue = (value2) =>
+      !value2 || (typeof value2 !== "function" && typeof value2 !== "object");
     var Scalar = class extends Node.NodeBase {
       constructor(value2) {
         super(Node.SCALAR);
         this.value = value2;
       }
       toJSON(arg, ctx) {
-        return (ctx == null ? void 0 : ctx.keep) ? this.value : toJS.toJS(this.value, arg, ctx);
+        return (ctx == null ? void 0 : ctx.keep)
+          ? this.value
+          : toJS.toJS(this.value, arg, ctx);
       }
       toString() {
         return String(this.value);
@@ -793,12 +842,14 @@ var require_Scalar = __commonJS({
     Scalar.QUOTE_SINGLE = "QUOTE_SINGLE";
     exports.Scalar = Scalar;
     exports.isScalarValue = isScalarValue;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/createNode.js
 var require_createNode = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/createNode.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/createNode.js"(
+    exports
+  ) {
     "use strict";
     var Alias = require_Alias();
     var Node = require_Node();
@@ -808,36 +859,49 @@ var require_createNode = __commonJS({
       if (tagName) {
         const match = tags.filter((t) => t.tag === tagName);
         const tagObj = match.find((t) => !t.format) ?? match[0];
-        if (!tagObj)
-          throw new Error(`Tag ${tagName} not found`);
+        if (!tagObj) throw new Error(`Tag ${tagName} not found`);
         return tagObj;
       }
       return tags.find((t) => {
         var _a3;
-        return ((_a3 = t.identify) == null ? void 0 : _a3.call(t, value2)) && !t.format;
+        return (
+          ((_a3 = t.identify) == null ? void 0 : _a3.call(t, value2)) &&
+          !t.format
+        );
       });
     }
     function createNode(value2, tagName, ctx) {
       var _a3, _b;
-      if (Node.isDocument(value2))
-        value2 = value2.contents;
-      if (Node.isNode(value2))
-        return value2;
+      if (Node.isDocument(value2)) value2 = value2.contents;
+      if (Node.isNode(value2)) return value2;
       if (Node.isPair(value2)) {
-        const map = (_b = (_a3 = ctx.schema[Node.MAP]).createNode) == null ? void 0 : _b.call(_a3, ctx.schema, null, ctx);
+        const map =
+          (_b = (_a3 = ctx.schema[Node.MAP]).createNode) == null
+            ? void 0
+            : _b.call(_a3, ctx.schema, null, ctx);
         map.items.push(value2);
         return map;
       }
-      if (value2 instanceof String || value2 instanceof Number || value2 instanceof Boolean || typeof BigInt !== "undefined" && value2 instanceof BigInt) {
+      if (
+        value2 instanceof String ||
+        value2 instanceof Number ||
+        value2 instanceof Boolean ||
+        (typeof BigInt !== "undefined" && value2 instanceof BigInt)
+      ) {
         value2 = value2.valueOf();
       }
-      const { aliasDuplicateObjects, onAnchor, onTagObj, schema, sourceObjects } = ctx;
+      const {
+        aliasDuplicateObjects,
+        onAnchor,
+        onTagObj,
+        schema,
+        sourceObjects,
+      } = ctx;
       let ref = void 0;
       if (aliasDuplicateObjects && value2 && typeof value2 === "object") {
         ref = sourceObjects.get(value2);
         if (ref) {
-          if (!ref.anchor)
-            ref.anchor = onAnchor(value2);
+          if (!ref.anchor) ref.anchor = onAnchor(value2);
           return new Alias.Alias(ref.anchor);
         } else {
           ref = { anchor: null, node: null };
@@ -853,30 +917,36 @@ var require_createNode = __commonJS({
         }
         if (!value2 || typeof value2 !== "object") {
           const node2 = new Scalar.Scalar(value2);
-          if (ref)
-            ref.node = node2;
+          if (ref) ref.node = node2;
           return node2;
         }
-        tagObj = value2 instanceof Map ? schema[Node.MAP] : Symbol.iterator in Object(value2) ? schema[Node.SEQ] : schema[Node.MAP];
+        tagObj =
+          value2 instanceof Map
+            ? schema[Node.MAP]
+            : Symbol.iterator in Object(value2)
+            ? schema[Node.SEQ]
+            : schema[Node.MAP];
       }
       if (onTagObj) {
         onTagObj(tagObj);
         delete ctx.onTagObj;
       }
-      const node = (tagObj == null ? void 0 : tagObj.createNode) ? tagObj.createNode(ctx.schema, value2, ctx) : new Scalar.Scalar(value2);
-      if (tagName)
-        node.tag = tagName;
-      if (ref)
-        ref.node = node;
+      const node = (tagObj == null ? void 0 : tagObj.createNode)
+        ? tagObj.createNode(ctx.schema, value2, ctx)
+        : new Scalar.Scalar(value2);
+      if (tagName) node.tag = tagName;
+      if (ref) ref.node = node;
       return node;
     }
     exports.createNode = createNode;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Collection.js
 var require_Collection = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Collection.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Collection.js"(
+    exports
+  ) {
     "use strict";
     var createNode = require_createNode();
     var Node = require_Node();
@@ -899,10 +969,12 @@ var require_Collection = __commonJS({
           throw new Error("This should not happen, please report a bug.");
         },
         schema,
-        sourceObjects: /* @__PURE__ */ new Map()
+        sourceObjects: /* @__PURE__ */ new Map(),
       });
     }
-    var isEmptyPath = (path2) => path2 == null || typeof path2 === "object" && !!path2[Symbol.iterator]().next().done;
+    var isEmptyPath = (path2) =>
+      path2 == null ||
+      (typeof path2 === "object" && !!path2[Symbol.iterator]().next().done);
     var Collection = class extends Node.NodeBase {
       constructor(type, schema) {
         super(type);
@@ -910,41 +982,44 @@ var require_Collection = __commonJS({
           value: schema,
           configurable: true,
           enumerable: false,
-          writable: true
+          writable: true,
         });
       }
       clone(schema) {
-        const copy = Object.create(Object.getPrototypeOf(this), Object.getOwnPropertyDescriptors(this));
-        if (schema)
-          copy.schema = schema;
-        copy.items = copy.items.map((it) => Node.isNode(it) || Node.isPair(it) ? it.clone(schema) : it);
-        if (this.range)
-          copy.range = this.range.slice();
+        const copy = Object.create(
+          Object.getPrototypeOf(this),
+          Object.getOwnPropertyDescriptors(this)
+        );
+        if (schema) copy.schema = schema;
+        copy.items = copy.items.map((it) =>
+          Node.isNode(it) || Node.isPair(it) ? it.clone(schema) : it
+        );
+        if (this.range) copy.range = this.range.slice();
         return copy;
       }
       addIn(path2, value2) {
-        if (isEmptyPath(path2))
-          this.add(value2);
+        if (isEmptyPath(path2)) this.add(value2);
         else {
           const [key, ...rest] = path2;
           const node = this.get(key, true);
-          if (Node.isCollection(node))
-            node.addIn(rest, value2);
+          if (Node.isCollection(node)) node.addIn(rest, value2);
           else if (node === void 0 && this.schema)
             this.set(key, collectionFromPath(this.schema, rest, value2));
           else
-            throw new Error(`Expected YAML collection at ${key}. Remaining path: ${rest}`);
+            throw new Error(
+              `Expected YAML collection at ${key}. Remaining path: ${rest}`
+            );
         }
       }
       deleteIn(path2) {
         const [key, ...rest] = path2;
-        if (rest.length === 0)
-          return this.delete(key);
+        if (rest.length === 0) return this.delete(key);
         const node = this.get(key, true);
-        if (Node.isCollection(node))
-          return node.deleteIn(rest);
+        if (Node.isCollection(node)) return node.deleteIn(rest);
         else
-          throw new Error(`Expected YAML collection at ${key}. Remaining path: ${rest}`);
+          throw new Error(
+            `Expected YAML collection at ${key}. Remaining path: ${rest}`
+          );
       }
       getIn(path2, keepScalar) {
         const [key, ...rest] = path2;
@@ -952,20 +1027,28 @@ var require_Collection = __commonJS({
         if (rest.length === 0)
           return !keepScalar && Node.isScalar(node) ? node.value : node;
         else
-          return Node.isCollection(node) ? node.getIn(rest, keepScalar) : void 0;
+          return Node.isCollection(node)
+            ? node.getIn(rest, keepScalar)
+            : void 0;
       }
       hasAllNullValues(allowScalar) {
         return this.items.every((node) => {
-          if (!Node.isPair(node))
-            return false;
+          if (!Node.isPair(node)) return false;
           const n = node.value;
-          return n == null || allowScalar && Node.isScalar(n) && n.value == null && !n.commentBefore && !n.comment && !n.tag;
+          return (
+            n == null ||
+            (allowScalar &&
+              Node.isScalar(n) &&
+              n.value == null &&
+              !n.commentBefore &&
+              !n.comment &&
+              !n.tag)
+          );
         });
       }
       hasIn(path2) {
         const [key, ...rest] = path2;
-        if (rest.length === 0)
-          return this.has(key);
+        if (rest.length === 0) return this.has(key);
         const node = this.get(key, true);
         return Node.isCollection(node) ? node.hasIn(rest) : false;
       }
@@ -975,12 +1058,13 @@ var require_Collection = __commonJS({
           this.set(key, value2);
         } else {
           const node = this.get(key, true);
-          if (Node.isCollection(node))
-            node.setIn(rest, value2);
+          if (Node.isCollection(node)) node.setIn(rest, value2);
           else if (node === void 0 && this.schema)
             this.set(key, collectionFromPath(this.schema, rest, value2));
           else
-            throw new Error(`Expected YAML collection at ${key}. Remaining path: ${rest}`);
+            throw new Error(
+              `Expected YAML collection at ${key}. Remaining path: ${rest}`
+            );
         }
       }
     };
@@ -988,47 +1072,66 @@ var require_Collection = __commonJS({
     exports.Collection = Collection;
     exports.collectionFromPath = collectionFromPath;
     exports.isEmptyPath = isEmptyPath;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyComment.js
 var require_stringifyComment = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyComment.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyComment.js"(
+    exports
+  ) {
     "use strict";
     var stringifyComment = (str) => str.replace(/^(?!$)(?: $)?/gm, "#");
     function indentComment(comment, indent2) {
-      if (/^\n+$/.test(comment))
-        return comment.substring(1);
+      if (/^\n+$/.test(comment)) return comment.substring(1);
       return indent2 ? comment.replace(/^(?! *$)/gm, indent2) : comment;
     }
-    var lineComment = (str, indent2, comment) => str.endsWith("\n") ? indentComment(comment, indent2) : comment.includes("\n") ? "\n" + indentComment(comment, indent2) : (str.endsWith(" ") ? "" : " ") + comment;
+    var lineComment = (str, indent2, comment) =>
+      str.endsWith("\n")
+        ? indentComment(comment, indent2)
+        : comment.includes("\n")
+        ? "\n" + indentComment(comment, indent2)
+        : (str.endsWith(" ") ? "" : " ") + comment;
     exports.indentComment = indentComment;
     exports.lineComment = lineComment;
     exports.stringifyComment = stringifyComment;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/foldFlowLines.js
 var require_foldFlowLines = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/foldFlowLines.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/foldFlowLines.js"(
+    exports
+  ) {
     "use strict";
     var FOLD_FLOW = "flow";
     var FOLD_BLOCK = "block";
     var FOLD_QUOTED = "quoted";
-    function foldFlowLines(text2, indent2, mode = "flow", { indentAtStart, lineWidth = 80, minContentWidth = 20, onFold, onOverflow } = {}) {
-      if (!lineWidth || lineWidth < 0)
-        return text2;
-      const endStep = Math.max(1 + minContentWidth, 1 + lineWidth - indent2.length);
-      if (text2.length <= endStep)
-        return text2;
+    function foldFlowLines(
+      text2,
+      indent2,
+      mode = "flow",
+      {
+        indentAtStart,
+        lineWidth = 80,
+        minContentWidth = 20,
+        onFold,
+        onOverflow,
+      } = {}
+    ) {
+      if (!lineWidth || lineWidth < 0) return text2;
+      const endStep = Math.max(
+        1 + minContentWidth,
+        1 + lineWidth - indent2.length
+      );
+      if (text2.length <= endStep) return text2;
       const folds = [];
       const escapedFolds = {};
       let end = lineWidth - indent2.length;
       if (typeof indentAtStart === "number") {
         if (indentAtStart > lineWidth - Math.max(2, minContentWidth))
           folds.push(0);
-        else
-          end = lineWidth - indentAtStart;
+        else end = lineWidth - indentAtStart;
       }
       let split = void 0;
       let prev = void 0;
@@ -1038,10 +1141,9 @@ var require_foldFlowLines = __commonJS({
       let escEnd = -1;
       if (mode === FOLD_BLOCK) {
         i = consumeMoreIndentedLines(text2, i);
-        if (i !== -1)
-          end = i + endStep;
+        if (i !== -1) end = i + endStep;
       }
-      for (let ch; ch = text2[i += 1]; ) {
+      for (let ch; (ch = text2[(i += 1)]); ) {
         if (mode === FOLD_QUOTED && ch === "\\") {
           escStart = i;
           switch (text2[i + 1]) {
@@ -1060,15 +1162,19 @@ var require_foldFlowLines = __commonJS({
           escEnd = i;
         }
         if (ch === "\n") {
-          if (mode === FOLD_BLOCK)
-            i = consumeMoreIndentedLines(text2, i);
+          if (mode === FOLD_BLOCK) i = consumeMoreIndentedLines(text2, i);
           end = i + endStep;
           split = void 0;
         } else {
-          if (ch === " " && prev && prev !== " " && prev !== "\n" && prev !== "	") {
+          if (
+            ch === " " &&
+            prev &&
+            prev !== " " &&
+            prev !== "\n" &&
+            prev !== "	"
+          ) {
             const next = text2[i + 1];
-            if (next && next !== " " && next !== "\n" && next !== "	")
-              split = i;
+            if (next && next !== " " && next !== "\n" && next !== "	") split = i;
           }
           if (i >= end) {
             if (split) {
@@ -1078,12 +1184,11 @@ var require_foldFlowLines = __commonJS({
             } else if (mode === FOLD_QUOTED) {
               while (prev === " " || prev === "	") {
                 prev = ch;
-                ch = text2[i += 1];
+                ch = text2[(i += 1)];
                 overflow = true;
               }
               const j = i > escEnd + 1 ? i - 2 : escStart - 1;
-              if (escapedFolds[j])
-                return text2;
+              if (escapedFolds[j]) return text2;
               folds.push(j);
               escapedFolds[j] = true;
               end = j + endStep;
@@ -1095,12 +1200,9 @@ var require_foldFlowLines = __commonJS({
         }
         prev = ch;
       }
-      if (overflow && onOverflow)
-        onOverflow();
-      if (folds.length === 0)
-        return text2;
-      if (onFold)
-        onFold();
+      if (overflow && onOverflow) onOverflow();
+      if (folds.length === 0) return text2;
+      if (onFold) onFold();
       let res = text2.slice(0, folds[0]);
       for (let i2 = 0; i2 < folds.length; ++i2) {
         const fold = folds[i2];
@@ -1121,7 +1223,7 @@ ${indent2}${text2.slice(fold + 1, end2)}`;
       let ch = text2[i + 1];
       while (ch === " " || ch === "	") {
         do {
-          ch = text2[i += 1];
+          ch = text2[(i += 1)];
         } while (ch && ch !== "\n");
         ch = text2[i + 1];
       }
@@ -1131,46 +1233,44 @@ ${indent2}${text2.slice(fold + 1, end2)}`;
     exports.FOLD_FLOW = FOLD_FLOW;
     exports.FOLD_QUOTED = FOLD_QUOTED;
     exports.foldFlowLines = foldFlowLines;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyString.js
 var require_stringifyString = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyString.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyString.js"(
+    exports
+  ) {
     "use strict";
     var Scalar = require_Scalar();
     var foldFlowLines = require_foldFlowLines();
     var getFoldOptions = (ctx) => ({
       indentAtStart: ctx.indentAtStart,
       lineWidth: ctx.options.lineWidth,
-      minContentWidth: ctx.options.minContentWidth
+      minContentWidth: ctx.options.minContentWidth,
     });
     var containsDocumentMarker = (str) => /^(%|---|\.\.\.)/m.test(str);
     function lineLengthOverLimit(str, lineWidth, indentLength) {
-      if (!lineWidth || lineWidth < 0)
-        return false;
+      if (!lineWidth || lineWidth < 0) return false;
       const limit = lineWidth - indentLength;
       const strLen = str.length;
-      if (strLen <= limit)
-        return false;
+      if (strLen <= limit) return false;
       for (let i = 0, start = 0; i < strLen; ++i) {
         if (str[i] === "\n") {
-          if (i - start > limit)
-            return true;
+          if (i - start > limit) return true;
           start = i + 1;
-          if (strLen - start <= limit)
-            return false;
+          if (strLen - start <= limit) return false;
         }
       }
       return true;
     }
     function doubleQuotedString(value2, ctx) {
       const json2 = JSON.stringify(value2);
-      if (ctx.options.doubleQuotedAsJSON)
-        return json2;
+      if (ctx.options.doubleQuotedAsJSON) return json2;
       const { implicitKey } = ctx;
       const minMultiLineLength = ctx.options.doubleQuotedMinMultiLineLength;
-      const indent2 = ctx.indent || (containsDocumentMarker(value2) ? "  " : "");
+      const indent2 =
+        ctx.indent || (containsDocumentMarker(value2) ? "  " : "");
       let str = "";
       let start = 0;
       for (let i = 0, ch = json2[i]; ch; ch = json2[++i]) {
@@ -1214,25 +1314,31 @@ var require_stringifyString = __commonJS({
                   default:
                     if (code2.substr(0, 2) === "00")
                       str += "\\x" + code2.substr(2);
-                    else
-                      str += json2.substr(i, 6);
+                    else str += json2.substr(i, 6);
                 }
                 i += 5;
                 start = i + 1;
               }
               break;
             case "n":
-              if (implicitKey || json2[i + 2] === '"' || json2.length < minMultiLineLength) {
+              if (
+                implicitKey ||
+                json2[i + 2] === '"' ||
+                json2.length < minMultiLineLength
+              ) {
                 i += 1;
               } else {
                 str += json2.slice(start, i) + "\n\n";
-                while (json2[i + 2] === "\\" && json2[i + 3] === "n" && json2[i + 4] !== '"') {
+                while (
+                  json2[i + 2] === "\\" &&
+                  json2[i + 3] === "n" &&
+                  json2[i + 4] !== '"'
+                ) {
                   str += "\n";
                   i += 2;
                 }
                 str += indent2;
-                if (json2[i + 2] === " ")
-                  str += "\\";
+                if (json2[i + 2] === " ") str += "\\";
                 i += 1;
                 start = i + 1;
               }
@@ -1242,48 +1348,81 @@ var require_stringifyString = __commonJS({
           }
       }
       str = start ? str + json2.slice(start) : json2;
-      return implicitKey ? str : foldFlowLines.foldFlowLines(str, indent2, foldFlowLines.FOLD_QUOTED, getFoldOptions(ctx));
+      return implicitKey
+        ? str
+        : foldFlowLines.foldFlowLines(
+            str,
+            indent2,
+            foldFlowLines.FOLD_QUOTED,
+            getFoldOptions(ctx)
+          );
     }
     function singleQuotedString(value2, ctx) {
-      if (ctx.options.singleQuote === false || ctx.implicitKey && value2.includes("\n") || /[ \t]\n|\n[ \t]/.test(value2))
+      if (
+        ctx.options.singleQuote === false ||
+        (ctx.implicitKey && value2.includes("\n")) ||
+        /[ \t]\n|\n[ \t]/.test(value2)
+      )
         return doubleQuotedString(value2, ctx);
-      const indent2 = ctx.indent || (containsDocumentMarker(value2) ? "  " : "");
-      const res = "'" + value2.replace(/'/g, "''").replace(/\n+/g, `$&
-${indent2}`) + "'";
-      return ctx.implicitKey ? res : foldFlowLines.foldFlowLines(res, indent2, foldFlowLines.FOLD_FLOW, getFoldOptions(ctx));
+      const indent2 =
+        ctx.indent || (containsDocumentMarker(value2) ? "  " : "");
+      const res =
+        "'" +
+        value2.replace(/'/g, "''").replace(
+          /\n+/g,
+          `$&
+${indent2}`
+        ) +
+        "'";
+      return ctx.implicitKey
+        ? res
+        : foldFlowLines.foldFlowLines(
+            res,
+            indent2,
+            foldFlowLines.FOLD_FLOW,
+            getFoldOptions(ctx)
+          );
     }
     function quotedString(value2, ctx) {
       const { singleQuote } = ctx.options;
       let qs;
-      if (singleQuote === false)
-        qs = doubleQuotedString;
+      if (singleQuote === false) qs = doubleQuotedString;
       else {
         const hasDouble = value2.includes('"');
         const hasSingle = value2.includes("'");
-        if (hasDouble && !hasSingle)
-          qs = singleQuotedString;
-        else if (hasSingle && !hasDouble)
-          qs = doubleQuotedString;
-        else
-          qs = singleQuote ? singleQuotedString : doubleQuotedString;
+        if (hasDouble && !hasSingle) qs = singleQuotedString;
+        else if (hasSingle && !hasDouble) qs = doubleQuotedString;
+        else qs = singleQuote ? singleQuotedString : doubleQuotedString;
       }
       return qs(value2, ctx);
     }
-    function blockString({ comment, type, value: value2 }, ctx, onComment, onChompKeep) {
+    function blockString(
+      { comment, type, value: value2 },
+      ctx,
+      onComment,
+      onChompKeep
+    ) {
       const { blockQuote, commentString, lineWidth } = ctx.options;
       if (!blockQuote || /\n[\t ]+$/.test(value2) || /^\s*$/.test(value2)) {
         return quotedString(value2, ctx);
       }
-      const indent2 = ctx.indent || (ctx.forceBlockIndent || containsDocumentMarker(value2) ? "  " : "");
-      const literal = blockQuote === "literal" ? true : blockQuote === "folded" || type === Scalar.Scalar.BLOCK_FOLDED ? false : type === Scalar.Scalar.BLOCK_LITERAL ? true : !lineLengthOverLimit(value2, lineWidth, indent2.length);
-      if (!value2)
-        return literal ? "|\n" : ">\n";
+      const indent2 =
+        ctx.indent ||
+        (ctx.forceBlockIndent || containsDocumentMarker(value2) ? "  " : "");
+      const literal =
+        blockQuote === "literal"
+          ? true
+          : blockQuote === "folded" || type === Scalar.Scalar.BLOCK_FOLDED
+          ? false
+          : type === Scalar.Scalar.BLOCK_LITERAL
+          ? true
+          : !lineLengthOverLimit(value2, lineWidth, indent2.length);
+      if (!value2) return literal ? "|\n" : ">\n";
       let chomp;
       let endStart;
       for (endStart = value2.length; endStart > 0; --endStart) {
         const ch = value2[endStart - 1];
-        if (ch !== "\n" && ch !== "	" && ch !== " ")
-          break;
+        if (ch !== "\n" && ch !== "	" && ch !== " ") break;
       }
       let end = value2.substring(endStart);
       const endNlPos = end.indexOf("\n");
@@ -1291,15 +1430,13 @@ ${indent2}`) + "'";
         chomp = "-";
       } else if (value2 === end || endNlPos !== end.length - 1) {
         chomp = "+";
-        if (onChompKeep)
-          onChompKeep();
+        if (onChompKeep) onChompKeep();
       } else {
         chomp = "";
       }
       if (end) {
         value2 = value2.slice(0, -end.length);
-        if (end[end.length - 1] === "\n")
-          end = end.slice(0, -1);
+        if (end[end.length - 1] === "\n") end = end.slice(0, -1);
         end = end.replace(/\n+(?!\n|$)/g, `$&${indent2}`);
       }
       let startWithSpace = false;
@@ -1307,67 +1444,107 @@ ${indent2}`) + "'";
       let startNlPos = -1;
       for (startEnd = 0; startEnd < value2.length; ++startEnd) {
         const ch = value2[startEnd];
-        if (ch === " ")
-          startWithSpace = true;
-        else if (ch === "\n")
-          startNlPos = startEnd;
-        else
-          break;
+        if (ch === " ") startWithSpace = true;
+        else if (ch === "\n") startNlPos = startEnd;
+        else break;
       }
-      let start = value2.substring(0, startNlPos < startEnd ? startNlPos + 1 : startEnd);
+      let start = value2.substring(
+        0,
+        startNlPos < startEnd ? startNlPos + 1 : startEnd
+      );
       if (start) {
         value2 = value2.substring(start.length);
         start = start.replace(/\n+/g, `$&${indent2}`);
       }
       const indentSize = indent2 ? "2" : "1";
-      let header = (literal ? "|" : ">") + (startWithSpace ? indentSize : "") + chomp;
+      let header =
+        (literal ? "|" : ">") + (startWithSpace ? indentSize : "") + chomp;
       if (comment) {
         header += " " + commentString(comment.replace(/ ?[\r\n]+/g, " "));
-        if (onComment)
-          onComment();
+        if (onComment) onComment();
       }
       if (literal) {
         value2 = value2.replace(/\n+/g, `$&${indent2}`);
         return `${header}
 ${indent2}${start}${value2}${end}`;
       }
-      value2 = value2.replace(/\n+/g, "\n$&").replace(/(?:^|\n)([\t ].*)(?:([\n\t ]*)\n(?![\n\t ]))?/g, "$1$2").replace(/\n+/g, `$&${indent2}`);
-      const body = foldFlowLines.foldFlowLines(`${start}${value2}${end}`, indent2, foldFlowLines.FOLD_BLOCK, getFoldOptions(ctx));
+      value2 = value2
+        .replace(/\n+/g, "\n$&")
+        .replace(/(?:^|\n)([\t ].*)(?:([\n\t ]*)\n(?![\n\t ]))?/g, "$1$2")
+        .replace(/\n+/g, `$&${indent2}`);
+      const body = foldFlowLines.foldFlowLines(
+        `${start}${value2}${end}`,
+        indent2,
+        foldFlowLines.FOLD_BLOCK,
+        getFoldOptions(ctx)
+      );
       return `${header}
 ${indent2}${body}`;
     }
     function plainString(item, ctx, onComment, onChompKeep) {
       const { type, value: value2 } = item;
       const { actualString, implicitKey, indent: indent2, inFlow } = ctx;
-      if (implicitKey && /[\n[\]{},]/.test(value2) || inFlow && /[[\]{},]/.test(value2)) {
+      if (
+        (implicitKey && /[\n[\]{},]/.test(value2)) ||
+        (inFlow && /[[\]{},]/.test(value2))
+      ) {
         return quotedString(value2, ctx);
       }
-      if (!value2 || /^[\n\t ,[\]{}#&*!|>'"%@`]|^[?-]$|^[?-][ \t]|[\n:][ \t]|[ \t]\n|[\n\t ]#|[\n\t :]$/.test(value2)) {
-        return implicitKey || inFlow || !value2.includes("\n") ? quotedString(value2, ctx) : blockString(item, ctx, onComment, onChompKeep);
+      if (
+        !value2 ||
+        /^[\n\t ,[\]{}#&*!|>'"%@`]|^[?-]$|^[?-][ \t]|[\n:][ \t]|[ \t]\n|[\n\t ]#|[\n\t :]$/.test(
+          value2
+        )
+      ) {
+        return implicitKey || inFlow || !value2.includes("\n")
+          ? quotedString(value2, ctx)
+          : blockString(item, ctx, onComment, onChompKeep);
       }
-      if (!implicitKey && !inFlow && type !== Scalar.Scalar.PLAIN && value2.includes("\n")) {
+      if (
+        !implicitKey &&
+        !inFlow &&
+        type !== Scalar.Scalar.PLAIN &&
+        value2.includes("\n")
+      ) {
         return blockString(item, ctx, onComment, onChompKeep);
       }
       if (indent2 === "" && containsDocumentMarker(value2)) {
         ctx.forceBlockIndent = true;
         return blockString(item, ctx, onComment, onChompKeep);
       }
-      const str = value2.replace(/\n+/g, `$&
-${indent2}`);
+      const str = value2.replace(
+        /\n+/g,
+        `$&
+${indent2}`
+      );
       if (actualString) {
         const test = (tag) => {
           var _a3;
-          return tag.default && tag.tag !== "tag:yaml.org,2002:str" && ((_a3 = tag.test) == null ? void 0 : _a3.test(str));
+          return (
+            tag.default &&
+            tag.tag !== "tag:yaml.org,2002:str" &&
+            ((_a3 = tag.test) == null ? void 0 : _a3.test(str))
+          );
         };
         const { compat, tags } = ctx.doc.schema;
         if (tags.some(test) || (compat == null ? void 0 : compat.some(test)))
           return quotedString(value2, ctx);
       }
-      return implicitKey ? str : foldFlowLines.foldFlowLines(str, indent2, foldFlowLines.FOLD_FLOW, getFoldOptions(ctx));
+      return implicitKey
+        ? str
+        : foldFlowLines.foldFlowLines(
+            str,
+            indent2,
+            foldFlowLines.FOLD_FLOW,
+            getFoldOptions(ctx)
+          );
     }
     function stringifyString(item, ctx, onComment, onChompKeep) {
       const { implicitKey, inFlow } = ctx;
-      const ss = typeof item.value === "string" ? item : Object.assign({}, item, { value: String(item.value) });
+      const ss =
+        typeof item.value === "string"
+          ? item
+          : Object.assign({}, item, { value: String(item.value) });
       let { type } = item;
       if (type !== Scalar.Scalar.QUOTE_DOUBLE) {
         if (/[\x00-\x08\x0b-\x1f\x7f-\x9f\u{D800}-\u{DFFF}]/u.test(ss.value))
@@ -1377,7 +1554,9 @@ ${indent2}`);
         switch (_type) {
           case Scalar.Scalar.BLOCK_FOLDED:
           case Scalar.Scalar.BLOCK_LITERAL:
-            return implicitKey || inFlow ? quotedString(ss.value, ctx) : blockString(ss, ctx, onComment, onChompKeep);
+            return implicitKey || inFlow
+              ? quotedString(ss.value, ctx)
+              : blockString(ss, ctx, onComment, onChompKeep);
           case Scalar.Scalar.QUOTE_DOUBLE:
             return doubleQuotedString(ss.value, ctx);
           case Scalar.Scalar.QUOTE_SINGLE:
@@ -1391,7 +1570,7 @@ ${indent2}`);
       let res = _stringify(type);
       if (res === null) {
         const { defaultKeyType, defaultStringType } = ctx.options;
-        const t = implicitKey && defaultKeyType || defaultStringType;
+        const t = (implicitKey && defaultKeyType) || defaultStringType;
         res = _stringify(t);
         if (res === null)
           throw new Error(`Unsupported default string type ${t}`);
@@ -1399,36 +1578,42 @@ ${indent2}`);
       return res;
     }
     exports.stringifyString = stringifyString;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringify.js
 var require_stringify = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringify.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringify.js"(
+    exports
+  ) {
     "use strict";
     var anchors = require_anchors();
     var Node = require_Node();
     var stringifyComment = require_stringifyComment();
     var stringifyString = require_stringifyString();
     function createStringifyContext(doc, options2) {
-      const opt = Object.assign({
-        blockQuote: true,
-        commentString: stringifyComment.stringifyComment,
-        defaultKeyType: null,
-        defaultStringType: "PLAIN",
-        directives: null,
-        doubleQuotedAsJSON: false,
-        doubleQuotedMinMultiLineLength: 40,
-        falseStr: "false",
-        indentSeq: true,
-        lineWidth: 80,
-        minContentWidth: 20,
-        nullStr: "null",
-        simpleKeys: false,
-        singleQuote: null,
-        trueStr: "true",
-        verifyAliasOrder: true
-      }, doc.schema.toStringOptions, options2);
+      const opt = Object.assign(
+        {
+          blockQuote: true,
+          commentString: stringifyComment.stringifyComment,
+          defaultKeyType: null,
+          defaultStringType: "PLAIN",
+          directives: null,
+          doubleQuotedAsJSON: false,
+          doubleQuotedMinMultiLineLength: 40,
+          falseStr: "false",
+          indentSeq: true,
+          lineWidth: 80,
+          minContentWidth: 20,
+          nullStr: "null",
+          simpleKeys: false,
+          singleQuote: null,
+          trueStr: "true",
+          verifyAliasOrder: true,
+        },
+        doc.schema.toStringOptions,
+        options2
+      );
       let inFlow;
       switch (opt.collectionStyle) {
         case "block":
@@ -1444,9 +1629,10 @@ var require_stringify = __commonJS({
         anchors: /* @__PURE__ */ new Set(),
         doc,
         indent: "",
-        indentStep: typeof opt.indent === "number" ? " ".repeat(opt.indent) : "  ",
+        indentStep:
+          typeof opt.indent === "number" ? " ".repeat(opt.indent) : "  ",
         inFlow,
-        options: opt
+        options: opt,
       };
     }
     function getTagObject(tags, item) {
@@ -1464,131 +1650,180 @@ var require_stringify = __commonJS({
           var _a4;
           return (_a4 = t.identify) == null ? void 0 : _a4.call(t, obj);
         });
-        tagObj = match.find((t) => t.format === item.format) ?? match.find((t) => !t.format);
+        tagObj =
+          match.find((t) => t.format === item.format) ??
+          match.find((t) => !t.format);
       } else {
         obj = item;
         tagObj = tags.find((t) => t.nodeClass && obj instanceof t.nodeClass);
       }
       if (!tagObj) {
-        const name = ((_a3 = obj == null ? void 0 : obj.constructor) == null ? void 0 : _a3.name) ?? typeof obj;
+        const name =
+          ((_a3 = obj == null ? void 0 : obj.constructor) == null
+            ? void 0
+            : _a3.name) ?? typeof obj;
         throw new Error(`Tag not resolved for ${name} value`);
       }
       return tagObj;
     }
     function stringifyProps(node, tagObj, { anchors: anchors$1, doc }) {
-      if (!doc.directives)
-        return "";
+      if (!doc.directives) return "";
       const props = [];
-      const anchor = (Node.isScalar(node) || Node.isCollection(node)) && node.anchor;
+      const anchor =
+        (Node.isScalar(node) || Node.isCollection(node)) && node.anchor;
       if (anchor && anchors.anchorIsValid(anchor)) {
         anchors$1.add(anchor);
         props.push(`&${anchor}`);
       }
       const tag = node.tag ? node.tag : tagObj.default ? null : tagObj.tag;
-      if (tag)
-        props.push(doc.directives.tagString(tag));
+      if (tag) props.push(doc.directives.tagString(tag));
       return props.join(" ");
     }
     function stringify2(item, ctx, onComment, onChompKeep) {
       var _a3;
-      if (Node.isPair(item))
-        return item.toString(ctx, onComment, onChompKeep);
+      if (Node.isPair(item)) return item.toString(ctx, onComment, onChompKeep);
       if (Node.isAlias(item)) {
-        if (ctx.doc.directives)
-          return item.toString(ctx);
+        if (ctx.doc.directives) return item.toString(ctx);
         if ((_a3 = ctx.resolvedAliases) == null ? void 0 : _a3.has(item)) {
-          throw new TypeError(`Cannot stringify circular structure without alias nodes`);
+          throw new TypeError(
+            `Cannot stringify circular structure without alias nodes`
+          );
         } else {
-          if (ctx.resolvedAliases)
-            ctx.resolvedAliases.add(item);
-          else
-            ctx.resolvedAliases = /* @__PURE__ */ new Set([item]);
+          if (ctx.resolvedAliases) ctx.resolvedAliases.add(item);
+          else ctx.resolvedAliases = /* @__PURE__ */ new Set([item]);
           item = item.resolve(ctx.doc);
         }
       }
       let tagObj = void 0;
-      const node = Node.isNode(item) ? item : ctx.doc.createNode(item, { onTagObj: (o) => tagObj = o });
-      if (!tagObj)
-        tagObj = getTagObject(ctx.doc.schema.tags, node);
+      const node = Node.isNode(item)
+        ? item
+        : ctx.doc.createNode(item, { onTagObj: (o) => (tagObj = o) });
+      if (!tagObj) tagObj = getTagObject(ctx.doc.schema.tags, node);
       const props = stringifyProps(node, tagObj, ctx);
       if (props.length > 0)
         ctx.indentAtStart = (ctx.indentAtStart ?? 0) + props.length + 1;
-      const str = typeof tagObj.stringify === "function" ? tagObj.stringify(node, ctx, onComment, onChompKeep) : Node.isScalar(node) ? stringifyString.stringifyString(node, ctx, onComment, onChompKeep) : node.toString(ctx, onComment, onChompKeep);
-      if (!props)
-        return str;
-      return Node.isScalar(node) || str[0] === "{" || str[0] === "[" ? `${props} ${str}` : `${props}
+      const str =
+        typeof tagObj.stringify === "function"
+          ? tagObj.stringify(node, ctx, onComment, onChompKeep)
+          : Node.isScalar(node)
+          ? stringifyString.stringifyString(node, ctx, onComment, onChompKeep)
+          : node.toString(ctx, onComment, onChompKeep);
+      if (!props) return str;
+      return Node.isScalar(node) || str[0] === "{" || str[0] === "["
+        ? `${props} ${str}`
+        : `${props}
 ${ctx.indent}${str}`;
     }
     exports.createStringifyContext = createStringifyContext;
     exports.stringify = stringify2;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyPair.js
 var require_stringifyPair = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyPair.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyPair.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     var Scalar = require_Scalar();
     var stringify2 = require_stringify();
     var stringifyComment = require_stringifyComment();
-    function stringifyPair({ key, value: value2 }, ctx, onComment, onChompKeep) {
-      const { allNullValues, doc, indent: indent2, indentStep, options: { commentString, indentSeq, simpleKeys } } = ctx;
-      let keyComment = Node.isNode(key) && key.comment || null;
+    function stringifyPair(
+      { key, value: value2 },
+      ctx,
+      onComment,
+      onChompKeep
+    ) {
+      const {
+        allNullValues,
+        doc,
+        indent: indent2,
+        indentStep,
+        options: { commentString, indentSeq, simpleKeys },
+      } = ctx;
+      let keyComment = (Node.isNode(key) && key.comment) || null;
       if (simpleKeys) {
         if (keyComment) {
           throw new Error("With simple keys, key nodes cannot have comments");
         }
         if (Node.isCollection(key)) {
-          const msg = "With simple keys, collection cannot be used as a key value";
+          const msg =
+            "With simple keys, collection cannot be used as a key value";
           throw new Error(msg);
         }
       }
-      let explicitKey = !simpleKeys && (!key || keyComment && value2 == null && !ctx.inFlow || Node.isCollection(key) || (Node.isScalar(key) ? key.type === Scalar.Scalar.BLOCK_FOLDED || key.type === Scalar.Scalar.BLOCK_LITERAL : typeof key === "object"));
+      let explicitKey =
+        !simpleKeys &&
+        (!key ||
+          (keyComment && value2 == null && !ctx.inFlow) ||
+          Node.isCollection(key) ||
+          (Node.isScalar(key)
+            ? key.type === Scalar.Scalar.BLOCK_FOLDED ||
+              key.type === Scalar.Scalar.BLOCK_LITERAL
+            : typeof key === "object"));
       ctx = Object.assign({}, ctx, {
         allNullValues: false,
         implicitKey: !explicitKey && (simpleKeys || !allNullValues),
-        indent: indent2 + indentStep
+        indent: indent2 + indentStep,
       });
       let keyCommentDone = false;
       let chompKeep = false;
-      let str = stringify2.stringify(key, ctx, () => keyCommentDone = true, () => chompKeep = true);
+      let str = stringify2.stringify(
+        key,
+        ctx,
+        () => (keyCommentDone = true),
+        () => (chompKeep = true)
+      );
       if (!explicitKey && !ctx.inFlow && str.length > 1024) {
         if (simpleKeys)
-          throw new Error("With simple keys, single line scalar must not span more than 1024 characters");
+          throw new Error(
+            "With simple keys, single line scalar must not span more than 1024 characters"
+          );
         explicitKey = true;
       }
       if (ctx.inFlow) {
         if (allNullValues || value2 == null) {
-          if (keyCommentDone && onComment)
-            onComment();
+          if (keyCommentDone && onComment) onComment();
           return str === "" ? "?" : explicitKey ? `? ${str}` : str;
         }
-      } else if (allNullValues && !simpleKeys || value2 == null && explicitKey) {
+      } else if (
+        (allNullValues && !simpleKeys) ||
+        (value2 == null && explicitKey)
+      ) {
         str = `? ${str}`;
         if (keyComment && !keyCommentDone) {
-          str += stringifyComment.lineComment(str, ctx.indent, commentString(keyComment));
-        } else if (chompKeep && onChompKeep)
-          onChompKeep();
+          str += stringifyComment.lineComment(
+            str,
+            ctx.indent,
+            commentString(keyComment)
+          );
+        } else if (chompKeep && onChompKeep) onChompKeep();
         return str;
       }
-      if (keyCommentDone)
-        keyComment = null;
+      if (keyCommentDone) keyComment = null;
       if (explicitKey) {
         if (keyComment)
-          str += stringifyComment.lineComment(str, ctx.indent, commentString(keyComment));
+          str += stringifyComment.lineComment(
+            str,
+            ctx.indent,
+            commentString(keyComment)
+          );
         str = `? ${str}
 ${indent2}:`;
       } else {
         str = `${str}:`;
         if (keyComment)
-          str += stringifyComment.lineComment(str, ctx.indent, commentString(keyComment));
+          str += stringifyComment.lineComment(
+            str,
+            ctx.indent,
+            commentString(keyComment)
+          );
       }
       let vcb = "";
       let valueComment = null;
       if (Node.isNode(value2)) {
-        if (value2.spaceBefore)
-          vcb = "\n";
+        if (value2.spaceBefore) vcb = "\n";
         if (value2.commentBefore) {
           const cs = commentString(value2.commentBefore);
           vcb += `
@@ -1602,15 +1837,28 @@ ${stringifyComment.indentComment(cs, ctx.indent)}`;
       if (!explicitKey && !keyComment && Node.isScalar(value2))
         ctx.indentAtStart = str.length + 1;
       chompKeep = false;
-      if (!indentSeq && indentStep.length >= 2 && !ctx.inFlow && !explicitKey && Node.isSeq(value2) && !value2.flow && !value2.tag && !value2.anchor) {
+      if (
+        !indentSeq &&
+        indentStep.length >= 2 &&
+        !ctx.inFlow &&
+        !explicitKey &&
+        Node.isSeq(value2) &&
+        !value2.flow &&
+        !value2.tag &&
+        !value2.anchor
+      ) {
         ctx.indent = ctx.indent.substr(2);
       }
       let valueCommentDone = false;
-      const valueStr = stringify2.stringify(value2, ctx, () => valueCommentDone = true, () => chompKeep = true);
+      const valueStr = stringify2.stringify(
+        value2,
+        ctx,
+        () => (valueCommentDone = true),
+        () => (chompKeep = true)
+      );
       let ws = " ";
       if (vcb || keyComment) {
-        if (valueStr === "" && !ctx.inFlow)
-          ws = vcb === "\n" ? "\n\n" : vcb;
+        if (valueStr === "" && !ctx.inFlow) ws = vcb === "\n" ? "\n\n" : vcb;
         else
           ws = `${vcb}
 ${ctx.indent}`;
@@ -1619,21 +1867,23 @@ ${ctx.indent}`;
         if (!flow || valueStr.includes("\n"))
           ws = `
 ${ctx.indent}`;
-      } else if (valueStr === "" || valueStr[0] === "\n")
-        ws = "";
+      } else if (valueStr === "" || valueStr[0] === "\n") ws = "";
       str += ws + valueStr;
       if (ctx.inFlow) {
-        if (valueCommentDone && onComment)
-          onComment();
+        if (valueCommentDone && onComment) onComment();
       } else if (valueComment && !valueCommentDone) {
-        str += stringifyComment.lineComment(str, ctx.indent, commentString(valueComment));
+        str += stringifyComment.lineComment(
+          str,
+          ctx.indent,
+          commentString(valueComment)
+        );
       } else if (chompKeep && onChompKeep) {
         onChompKeep();
       }
       return str;
     }
     exports.stringifyPair = stringifyPair;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/log.js
@@ -1641,25 +1891,25 @@ var require_log = __commonJS({
   "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/log.js"(exports) {
     "use strict";
     function debug(logLevel, ...messages2) {
-      if (logLevel === "debug")
-        console.log(...messages2);
+      if (logLevel === "debug") console.log(...messages2);
     }
     function warn(logLevel, warning) {
       if (logLevel === "debug" || logLevel === "warn") {
         if (typeof process !== "undefined" && process.emitWarning)
           process.emitWarning(warning);
-        else
-          console.warn(warning);
+        else console.warn(warning);
       }
     }
     exports.debug = debug;
     exports.warn = warn;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/addPairToJSMap.js
 var require_addPairToJSMap = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/addPairToJSMap.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/addPairToJSMap.js"(
+    exports
+  ) {
     "use strict";
     var log = require_log();
     var stringify2 = require_stringify();
@@ -1671,13 +1921,10 @@ var require_addPairToJSMap = __commonJS({
       if ((ctx == null ? void 0 : ctx.doc.schema.merge) && isMergeKey(key)) {
         value2 = Node.isAlias(value2) ? value2.resolve(ctx.doc) : value2;
         if (Node.isSeq(value2))
-          for (const it of value2.items)
-            mergeToJSMap(ctx, map, it);
+          for (const it of value2.items) mergeToJSMap(ctx, map, it);
         else if (Array.isArray(value2))
-          for (const it of value2)
-            mergeToJSMap(ctx, map, it);
-        else
-          mergeToJSMap(ctx, map, value2);
+          for (const it of value2) mergeToJSMap(ctx, map, it);
+        else mergeToJSMap(ctx, map, value2);
       } else {
         const jsKey = toJS.toJS(key, "", ctx);
         if (map instanceof Map) {
@@ -1692,24 +1939,27 @@ var require_addPairToJSMap = __commonJS({
               value: jsValue,
               writable: true,
               enumerable: true,
-              configurable: true
+              configurable: true,
             });
-          else
-            map[stringKey] = jsValue;
+          else map[stringKey] = jsValue;
         }
       }
       return map;
     }
-    var isMergeKey = (key) => key === MERGE_KEY || Node.isScalar(key) && key.value === MERGE_KEY && (!key.type || key.type === Scalar.Scalar.PLAIN);
+    var isMergeKey = (key) =>
+      key === MERGE_KEY ||
+      (Node.isScalar(key) &&
+        key.value === MERGE_KEY &&
+        (!key.type || key.type === Scalar.Scalar.PLAIN));
     function mergeToJSMap(ctx, map, value2) {
-      const source = ctx && Node.isAlias(value2) ? value2.resolve(ctx.doc) : value2;
+      const source =
+        ctx && Node.isAlias(value2) ? value2.resolve(ctx.doc) : value2;
       if (!Node.isMap(source))
         throw new Error("Merge sources must be maps or map aliases");
       const srcMap = source.toJSON(null, ctx, Map);
       for (const [key, value3] of srcMap) {
         if (map instanceof Map) {
-          if (!map.has(key))
-            map.set(key, value3);
+          if (!map.has(key)) map.set(key, value3);
         } else if (map instanceof Set) {
           map.add(key);
         } else if (!Object.prototype.hasOwnProperty.call(map, key)) {
@@ -1717,30 +1967,29 @@ var require_addPairToJSMap = __commonJS({
             value: value3,
             writable: true,
             enumerable: true,
-            configurable: true
+            configurable: true,
           });
         }
       }
       return map;
     }
     function stringifyKey(key, jsKey, ctx) {
-      if (jsKey === null)
-        return "";
-      if (typeof jsKey !== "object")
-        return String(jsKey);
+      if (jsKey === null) return "";
+      if (typeof jsKey !== "object") return String(jsKey);
       if (Node.isNode(key) && ctx && ctx.doc) {
         const strCtx = stringify2.createStringifyContext(ctx.doc, {});
         strCtx.anchors = /* @__PURE__ */ new Set();
-        for (const node of ctx.anchors.keys())
-          strCtx.anchors.add(node.anchor);
+        for (const node of ctx.anchors.keys()) strCtx.anchors.add(node.anchor);
         strCtx.inFlow = true;
         strCtx.inStringifyKey = true;
         const strKey = key.toString(strCtx);
         if (!ctx.mapKeyWarned) {
           let jsonStr = JSON.stringify(strKey);
-          if (jsonStr.length > 40)
-            jsonStr = jsonStr.substring(0, 36) + '..."';
-          log.warn(ctx.doc.options.logLevel, `Keys with collection values will be stringified due to JS Object restrictions: ${jsonStr}. Set mapAsMap: true to use object keys.`);
+          if (jsonStr.length > 40) jsonStr = jsonStr.substring(0, 36) + '..."';
+          log.warn(
+            ctx.doc.options.logLevel,
+            `Keys with collection values will be stringified due to JS Object restrictions: ${jsonStr}. Set mapAsMap: true to use object keys.`
+          );
           ctx.mapKeyWarned = true;
         }
         return strKey;
@@ -1748,12 +1997,14 @@ var require_addPairToJSMap = __commonJS({
       return JSON.stringify(jsKey);
     }
     exports.addPairToJSMap = addPairToJSMap;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Pair.js
 var require_Pair = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Pair.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/Pair.js"(
+    exports
+  ) {
     "use strict";
     var createNode = require_createNode();
     var stringifyPair = require_stringifyPair();
@@ -1772,28 +2023,32 @@ var require_Pair = __commonJS({
       }
       clone(schema) {
         let { key, value: value2 } = this;
-        if (Node.isNode(key))
-          key = key.clone(schema);
-        if (Node.isNode(value2))
-          value2 = value2.clone(schema);
+        if (Node.isNode(key)) key = key.clone(schema);
+        if (Node.isNode(value2)) value2 = value2.clone(schema);
         return new Pair(key, value2);
       }
       toJSON(_2, ctx) {
-        const pair = (ctx == null ? void 0 : ctx.mapAsMap) ? /* @__PURE__ */ new Map() : {};
+        const pair = (ctx == null ? void 0 : ctx.mapAsMap)
+          ? /* @__PURE__ */ new Map()
+          : {};
         return addPairToJSMap.addPairToJSMap(ctx, pair, this);
       }
       toString(ctx, onComment, onChompKeep) {
-        return (ctx == null ? void 0 : ctx.doc) ? stringifyPair.stringifyPair(this, ctx, onComment, onChompKeep) : JSON.stringify(this);
+        return (ctx == null ? void 0 : ctx.doc)
+          ? stringifyPair.stringifyPair(this, ctx, onComment, onChompKeep)
+          : JSON.stringify(this);
       }
     };
     exports.Pair = Pair;
     exports.createPair = createPair;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyCollection.js
 var require_stringifyCollection = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyCollection.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyCollection.js"(
+    exports
+  ) {
     "use strict";
     var Collection = require_Collection();
     var Node = require_Node();
@@ -1801,37 +2056,54 @@ var require_stringifyCollection = __commonJS({
     var stringifyComment = require_stringifyComment();
     function stringifyCollection(collection, ctx, options2) {
       const flow = ctx.inFlow ?? collection.flow;
-      const stringify3 = flow ? stringifyFlowCollection : stringifyBlockCollection;
+      const stringify3 = flow
+        ? stringifyFlowCollection
+        : stringifyBlockCollection;
       return stringify3(collection, ctx, options2);
     }
-    function stringifyBlockCollection({ comment, items }, ctx, { blockItemPrefix, flowChars, itemIndent, onChompKeep, onComment }) {
-      const { indent: indent2, options: { commentString } } = ctx;
-      const itemCtx = Object.assign({}, ctx, { indent: itemIndent, type: null });
+    function stringifyBlockCollection(
+      { comment, items },
+      ctx,
+      { blockItemPrefix, flowChars, itemIndent, onChompKeep, onComment }
+    ) {
+      const {
+        indent: indent2,
+        options: { commentString },
+      } = ctx;
+      const itemCtx = Object.assign({}, ctx, {
+        indent: itemIndent,
+        type: null,
+      });
       let chompKeep = false;
       const lines = [];
       for (let i = 0; i < items.length; ++i) {
         const item = items[i];
         let comment2 = null;
         if (Node.isNode(item)) {
-          if (!chompKeep && item.spaceBefore)
-            lines.push("");
+          if (!chompKeep && item.spaceBefore) lines.push("");
           addCommentBefore(ctx, lines, item.commentBefore, chompKeep);
-          if (item.comment)
-            comment2 = item.comment;
+          if (item.comment) comment2 = item.comment;
         } else if (Node.isPair(item)) {
           const ik = Node.isNode(item.key) ? item.key : null;
           if (ik) {
-            if (!chompKeep && ik.spaceBefore)
-              lines.push("");
+            if (!chompKeep && ik.spaceBefore) lines.push("");
             addCommentBefore(ctx, lines, ik.commentBefore, chompKeep);
           }
         }
         chompKeep = false;
-        let str2 = stringify2.stringify(item, itemCtx, () => comment2 = null, () => chompKeep = true);
+        let str2 = stringify2.stringify(
+          item,
+          itemCtx,
+          () => (comment2 = null),
+          () => (chompKeep = true)
+        );
         if (comment2)
-          str2 += stringifyComment.lineComment(str2, itemIndent, commentString(comment2));
-        if (chompKeep && comment2)
-          chompKeep = false;
+          str2 += stringifyComment.lineComment(
+            str2,
+            itemIndent,
+            commentString(comment2)
+          );
+        if (chompKeep && comment2) chompKeep = false;
         lines.push(blockItemPrefix + str2);
       }
       let str;
@@ -1841,25 +2113,35 @@ var require_stringifyCollection = __commonJS({
         str = lines[0];
         for (let i = 1; i < lines.length; ++i) {
           const line = lines[i];
-          str += line ? `
-${indent2}${line}` : "\n";
+          str += line
+            ? `
+${indent2}${line}`
+            : "\n";
         }
       }
       if (comment) {
-        str += "\n" + stringifyComment.indentComment(commentString(comment), indent2);
-        if (onComment)
-          onComment();
-      } else if (chompKeep && onChompKeep)
-        onChompKeep();
+        str +=
+          "\n" +
+          stringifyComment.indentComment(commentString(comment), indent2);
+        if (onComment) onComment();
+      } else if (chompKeep && onChompKeep) onChompKeep();
       return str;
     }
-    function stringifyFlowCollection({ comment, items }, ctx, { flowChars, itemIndent, onComment }) {
-      const { indent: indent2, indentStep, options: { commentString } } = ctx;
+    function stringifyFlowCollection(
+      { comment, items },
+      ctx,
+      { flowChars, itemIndent, onComment }
+    ) {
+      const {
+        indent: indent2,
+        indentStep,
+        options: { commentString },
+      } = ctx;
       itemIndent += indentStep;
       const itemCtx = Object.assign({}, ctx, {
         indent: itemIndent,
         inFlow: true,
-        type: null
+        type: null,
       });
       let reqNewline = false;
       let linesAtValue = 0;
@@ -1868,37 +2150,33 @@ ${indent2}${line}` : "\n";
         const item = items[i];
         let comment2 = null;
         if (Node.isNode(item)) {
-          if (item.spaceBefore)
-            lines.push("");
+          if (item.spaceBefore) lines.push("");
           addCommentBefore(ctx, lines, item.commentBefore, false);
-          if (item.comment)
-            comment2 = item.comment;
+          if (item.comment) comment2 = item.comment;
         } else if (Node.isPair(item)) {
           const ik = Node.isNode(item.key) ? item.key : null;
           if (ik) {
-            if (ik.spaceBefore)
-              lines.push("");
+            if (ik.spaceBefore) lines.push("");
             addCommentBefore(ctx, lines, ik.commentBefore, false);
-            if (ik.comment)
-              reqNewline = true;
+            if (ik.comment) reqNewline = true;
           }
           const iv = Node.isNode(item.value) ? item.value : null;
           if (iv) {
-            if (iv.comment)
-              comment2 = iv.comment;
-            if (iv.commentBefore)
-              reqNewline = true;
+            if (iv.comment) comment2 = iv.comment;
+            if (iv.commentBefore) reqNewline = true;
           } else if (item.value == null && ik && ik.comment) {
             comment2 = ik.comment;
           }
         }
+        if (comment2) reqNewline = true;
+        let str2 = stringify2.stringify(item, itemCtx, () => (comment2 = null));
+        if (i < items.length - 1) str2 += ",";
         if (comment2)
-          reqNewline = true;
-        let str2 = stringify2.stringify(item, itemCtx, () => comment2 = null);
-        if (i < items.length - 1)
-          str2 += ",";
-        if (comment2)
-          str2 += stringifyComment.lineComment(str2, itemIndent, commentString(comment2));
+          str2 += stringifyComment.lineComment(
+            str2,
+            itemIndent,
+            commentString(comment2)
+          );
         if (!reqNewline && (lines.length > linesAtValue || str2.includes("\n")))
           reqNewline = true;
         lines.push(str2);
@@ -1911,13 +2189,16 @@ ${indent2}${line}` : "\n";
       } else {
         if (!reqNewline) {
           const len = lines.reduce((sum, line) => sum + line.length + 2, 2);
-          reqNewline = len > Collection.Collection.maxFlowStringSingleLineLength;
+          reqNewline =
+            len > Collection.Collection.maxFlowStringSingleLineLength;
         }
         if (reqNewline) {
           str = start;
           for (const line of lines)
-            str += line ? `
-${indentStep}${indent2}${line}` : "\n";
+            str += line
+              ? `
+${indentStep}${indent2}${line}`
+              : "\n";
           str += `
 ${indent2}${end}`;
         } else {
@@ -1925,27 +2206,39 @@ ${indent2}${end}`;
         }
       }
       if (comment) {
-        str += stringifyComment.lineComment(str, commentString(comment), indent2);
-        if (onComment)
-          onComment();
+        str += stringifyComment.lineComment(
+          str,
+          commentString(comment),
+          indent2
+        );
+        if (onComment) onComment();
       }
       return str;
     }
-    function addCommentBefore({ indent: indent2, options: { commentString } }, lines, comment, chompKeep) {
-      if (comment && chompKeep)
-        comment = comment.replace(/^\n+/, "");
+    function addCommentBefore(
+      { indent: indent2, options: { commentString } },
+      lines,
+      comment,
+      chompKeep
+    ) {
+      if (comment && chompKeep) comment = comment.replace(/^\n+/, "");
       if (comment) {
-        const ic = stringifyComment.indentComment(commentString(comment), indent2);
+        const ic = stringifyComment.indentComment(
+          commentString(comment),
+          indent2
+        );
         lines.push(ic.trimStart());
       }
     }
     exports.stringifyCollection = stringifyCollection;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/YAMLMap.js
 var require_YAMLMap = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/YAMLMap.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/YAMLMap.js"(
+    exports
+  ) {
     "use strict";
     var stringifyCollection = require_stringifyCollection();
     var addPairToJSMap = require_addPairToJSMap();
@@ -1957,10 +2250,8 @@ var require_YAMLMap = __commonJS({
       const k = Node.isScalar(key) ? key.value : key;
       for (const it of items) {
         if (Node.isPair(it)) {
-          if (it.key === key || it.key === k)
-            return it;
-          if (Node.isScalar(it.key) && it.key.value === k)
-            return it;
+          if (it.key === key || it.key === k) return it;
+          if (Node.isScalar(it.key) && it.key.value === k) return it;
         }
       }
       return void 0;
@@ -1976,42 +2267,40 @@ var require_YAMLMap = __commonJS({
       add(pair, overwrite) {
         var _a3;
         let _pair;
-        if (Node.isPair(pair))
-          _pair = pair;
+        if (Node.isPair(pair)) _pair = pair;
         else if (!pair || typeof pair !== "object" || !("key" in pair)) {
           _pair = new Pair.Pair(pair, pair == null ? void 0 : pair.value);
-        } else
-          _pair = new Pair.Pair(pair.key, pair.value);
+        } else _pair = new Pair.Pair(pair.key, pair.value);
         const prev = findPair(this.items, _pair.key);
-        const sortEntries = (_a3 = this.schema) == null ? void 0 : _a3.sortMapEntries;
+        const sortEntries =
+          (_a3 = this.schema) == null ? void 0 : _a3.sortMapEntries;
         if (prev) {
-          if (!overwrite)
-            throw new Error(`Key ${_pair.key} already set`);
+          if (!overwrite) throw new Error(`Key ${_pair.key} already set`);
           if (Node.isScalar(prev.value) && Scalar.isScalarValue(_pair.value))
             prev.value.value = _pair.value;
-          else
-            prev.value = _pair.value;
+          else prev.value = _pair.value;
         } else if (sortEntries) {
-          const i = this.items.findIndex((item) => sortEntries(_pair, item) < 0);
-          if (i === -1)
-            this.items.push(_pair);
-          else
-            this.items.splice(i, 0, _pair);
+          const i = this.items.findIndex(
+            (item) => sortEntries(_pair, item) < 0
+          );
+          if (i === -1) this.items.push(_pair);
+          else this.items.splice(i, 0, _pair);
         } else {
           this.items.push(_pair);
         }
       }
       delete(key) {
         const it = findPair(this.items, key);
-        if (!it)
-          return false;
+        if (!it) return false;
         const del = this.items.splice(this.items.indexOf(it), 1);
         return del.length > 0;
       }
       get(key, keepScalar) {
         const it = findPair(this.items, key);
         const node = it == null ? void 0 : it.value;
-        return (!keepScalar && Node.isScalar(node) ? node.value : node) ?? void 0;
+        return (
+          (!keepScalar && Node.isScalar(node) ? node.value : node) ?? void 0
+        );
       }
       has(key) {
         return !!findPair(this.items, key);
@@ -2020,19 +2309,25 @@ var require_YAMLMap = __commonJS({
         this.add(new Pair.Pair(key, value2), true);
       }
       toJSON(_2, ctx, Type) {
-        const map = Type ? new Type() : (ctx == null ? void 0 : ctx.mapAsMap) ? /* @__PURE__ */ new Map() : {};
-        if (ctx == null ? void 0 : ctx.onCreate)
-          ctx.onCreate(map);
+        const map = Type
+          ? new Type()
+          : (ctx == null ? void 0 : ctx.mapAsMap)
+          ? /* @__PURE__ */ new Map()
+          : {};
+        if (ctx == null ? void 0 : ctx.onCreate) ctx.onCreate(map);
         for (const item of this.items)
           addPairToJSMap.addPairToJSMap(ctx, map, item);
         return map;
       }
       toString(ctx, onComment, onChompKeep) {
-        if (!ctx)
-          return JSON.stringify(this);
+        if (!ctx) return JSON.stringify(this);
         for (const item of this.items) {
           if (!Node.isPair(item))
-            throw new Error(`Map items must all be pairs; found ${JSON.stringify(item)} instead`);
+            throw new Error(
+              `Map items must all be pairs; found ${JSON.stringify(
+                item
+              )} instead`
+            );
         }
         if (!ctx.allNullValues && this.hasAllNullValues(false))
           ctx = Object.assign({}, ctx, { allNullValues: true });
@@ -2041,18 +2336,20 @@ var require_YAMLMap = __commonJS({
           flowChars: { start: "{", end: "}" },
           itemIndent: ctx.indent || "",
           onChompKeep,
-          onComment
+          onComment,
         });
       }
     };
     exports.YAMLMap = YAMLMap;
     exports.findPair = findPair;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/common/map.js
 var require_map = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/common/map.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/common/map.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     var Pair = require_Pair();
@@ -2063,17 +2360,14 @@ var require_map = __commonJS({
       const add = (key, value2) => {
         if (typeof replacer === "function")
           value2 = replacer.call(obj, key, value2);
-        else if (Array.isArray(replacer) && !replacer.includes(key))
-          return;
+        else if (Array.isArray(replacer) && !replacer.includes(key)) return;
         if (value2 !== void 0 || keepUndefined)
           map2.items.push(Pair.createPair(key, value2, ctx));
       };
       if (obj instanceof Map) {
-        for (const [key, value2] of obj)
-          add(key, value2);
+        for (const [key, value2] of obj) add(key, value2);
       } else if (obj && typeof obj === "object") {
-        for (const key of Object.keys(obj))
-          add(key, obj[key]);
+        for (const key of Object.keys(obj)) add(key, obj[key]);
       }
       if (typeof schema.sortMapEntries === "function") {
         map2.items.sort(schema.sortMapEntries);
@@ -2087,18 +2381,19 @@ var require_map = __commonJS({
       nodeClass: YAMLMap.YAMLMap,
       tag: "tag:yaml.org,2002:map",
       resolve(map2, onError) {
-        if (!Node.isMap(map2))
-          onError("Expected a mapping for this tag");
+        if (!Node.isMap(map2)) onError("Expected a mapping for this tag");
         return map2;
-      }
+      },
     };
     exports.map = map;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/YAMLSeq.js
 var require_YAMLSeq = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/YAMLSeq.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/nodes/YAMLSeq.js"(
+    exports
+  ) {
     "use strict";
     var stringifyCollection = require_stringifyCollection();
     var Collection = require_Collection();
@@ -2118,15 +2413,13 @@ var require_YAMLSeq = __commonJS({
       }
       delete(key) {
         const idx = asItemIndex(key);
-        if (typeof idx !== "number")
-          return false;
+        if (typeof idx !== "number") return false;
         const del = this.items.splice(idx, 1);
         return del.length > 0;
       }
       get(key, keepScalar) {
         const idx = asItemIndex(key);
-        if (typeof idx !== "number")
-          return void 0;
+        if (typeof idx !== "number") return void 0;
         const it = this.items[idx];
         return !keepScalar && Node.isScalar(it) ? it.value : it;
       }
@@ -2141,43 +2434,43 @@ var require_YAMLSeq = __commonJS({
         const prev = this.items[idx];
         if (Node.isScalar(prev) && Scalar.isScalarValue(value2))
           prev.value = value2;
-        else
-          this.items[idx] = value2;
+        else this.items[idx] = value2;
       }
       toJSON(_2, ctx) {
         const seq = [];
-        if (ctx == null ? void 0 : ctx.onCreate)
-          ctx.onCreate(seq);
+        if (ctx == null ? void 0 : ctx.onCreate) ctx.onCreate(seq);
         let i = 0;
         for (const item of this.items)
           seq.push(toJS.toJS(item, String(i++), ctx));
         return seq;
       }
       toString(ctx, onComment, onChompKeep) {
-        if (!ctx)
-          return JSON.stringify(this);
+        if (!ctx) return JSON.stringify(this);
         return stringifyCollection.stringifyCollection(this, ctx, {
           blockItemPrefix: "- ",
           flowChars: { start: "[", end: "]" },
           itemIndent: (ctx.indent || "") + "  ",
           onChompKeep,
-          onComment
+          onComment,
         });
       }
     };
     function asItemIndex(key) {
       let idx = Node.isScalar(key) ? key.value : key;
-      if (idx && typeof idx === "string")
-        idx = Number(idx);
-      return typeof idx === "number" && Number.isInteger(idx) && idx >= 0 ? idx : null;
+      if (idx && typeof idx === "string") idx = Number(idx);
+      return typeof idx === "number" && Number.isInteger(idx) && idx >= 0
+        ? idx
+        : null;
     }
     exports.YAMLSeq = YAMLSeq;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/common/seq.js
 var require_seq = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/common/seq.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/common/seq.js"(
+    exports
+  ) {
     "use strict";
     var createNode = require_createNode();
     var Node = require_Node();
@@ -2204,18 +2497,19 @@ var require_seq = __commonJS({
       nodeClass: YAMLSeq.YAMLSeq,
       tag: "tag:yaml.org,2002:seq",
       resolve(seq2, onError) {
-        if (!Node.isSeq(seq2))
-          onError("Expected a sequence for this tag");
+        if (!Node.isSeq(seq2)) onError("Expected a sequence for this tag");
         return seq2;
-      }
+      },
     };
     exports.seq = seq;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/common/string.js
 var require_string = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/common/string.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/common/string.js"(
+    exports
+  ) {
     "use strict";
     var stringifyString = require_stringifyString();
     var string = {
@@ -2225,16 +2519,23 @@ var require_string = __commonJS({
       resolve: (str) => str,
       stringify(item, ctx, onComment, onChompKeep) {
         ctx = Object.assign({ actualString: true }, ctx);
-        return stringifyString.stringifyString(item, ctx, onComment, onChompKeep);
-      }
+        return stringifyString.stringifyString(
+          item,
+          ctx,
+          onComment,
+          onChompKeep
+        );
+      },
     };
     exports.string = string;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/common/null.js
 var require_null = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/common/null.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/common/null.js"(
+    exports
+  ) {
     "use strict";
     var Scalar = require_Scalar();
     var nullTag = {
@@ -2244,15 +2545,20 @@ var require_null = __commonJS({
       tag: "tag:yaml.org,2002:null",
       test: /^(?:~|[Nn]ull|NULL)?$/,
       resolve: () => new Scalar.Scalar(null),
-      stringify: ({ source }, ctx) => typeof source === "string" && nullTag.test.test(source) ? source : ctx.options.nullStr
+      stringify: ({ source }, ctx) =>
+        typeof source === "string" && nullTag.test.test(source)
+          ? source
+          : ctx.options.nullStr,
     };
     exports.nullTag = nullTag;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/core/bool.js
 var require_bool = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/core/bool.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/core/bool.js"(
+    exports
+  ) {
     "use strict";
     var Scalar = require_Scalar();
     var boolTag = {
@@ -2264,46 +2570,57 @@ var require_bool = __commonJS({
       stringify({ source, value: value2 }, ctx) {
         if (source && boolTag.test.test(source)) {
           const sv = source[0] === "t" || source[0] === "T";
-          if (value2 === sv)
-            return source;
+          if (value2 === sv) return source;
         }
         return value2 ? ctx.options.trueStr : ctx.options.falseStr;
-      }
+      },
     };
     exports.boolTag = boolTag;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyNumber.js
 var require_stringifyNumber = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyNumber.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyNumber.js"(
+    exports
+  ) {
     "use strict";
-    function stringifyNumber({ format, minFractionDigits, tag, value: value2 }) {
-      if (typeof value2 === "bigint")
-        return String(value2);
+    function stringifyNumber({
+      format,
+      minFractionDigits,
+      tag,
+      value: value2,
+    }) {
+      if (typeof value2 === "bigint") return String(value2);
       const num = typeof value2 === "number" ? value2 : Number(value2);
       if (!isFinite(num))
         return isNaN(num) ? ".nan" : num < 0 ? "-.inf" : ".inf";
       let n = JSON.stringify(value2);
-      if (!format && minFractionDigits && (!tag || tag === "tag:yaml.org,2002:float") && /^\d/.test(n)) {
+      if (
+        !format &&
+        minFractionDigits &&
+        (!tag || tag === "tag:yaml.org,2002:float") &&
+        /^\d/.test(n)
+      ) {
         let i = n.indexOf(".");
         if (i < 0) {
           i = n.length;
           n += ".";
         }
         let d = minFractionDigits - (n.length - i - 1);
-        while (d-- > 0)
-          n += "0";
+        while (d-- > 0) n += "0";
       }
       return n;
     }
     exports.stringifyNumber = stringifyNumber;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/core/float.js
 var require_float = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/core/float.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/core/float.js"(
+    exports
+  ) {
     "use strict";
     var Scalar = require_Scalar();
     var stringifyNumber = require_stringifyNumber();
@@ -2312,8 +2629,13 @@ var require_float = __commonJS({
       default: true,
       tag: "tag:yaml.org,2002:float",
       test: /^(?:[-+]?\.(?:inf|Inf|INF|nan|NaN|NAN))$/,
-      resolve: (str) => str.slice(-3).toLowerCase() === "nan" ? NaN : str[0] === "-" ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY,
-      stringify: stringifyNumber.stringifyNumber
+      resolve: (str) =>
+        str.slice(-3).toLowerCase() === "nan"
+          ? NaN
+          : str[0] === "-"
+          ? Number.NEGATIVE_INFINITY
+          : Number.POSITIVE_INFINITY,
+      stringify: stringifyNumber.stringifyNumber,
     };
     var floatExp = {
       identify: (value2) => typeof value2 === "number",
@@ -2324,8 +2646,10 @@ var require_float = __commonJS({
       resolve: (str) => parseFloat(str),
       stringify(node) {
         const num = Number(node.value);
-        return isFinite(num) ? num.toExponential() : stringifyNumber.stringifyNumber(node);
-      }
+        return isFinite(num)
+          ? num.toExponential()
+          : stringifyNumber.stringifyNumber(node);
+      },
     };
     var float = {
       identify: (value2) => typeof value2 === "number",
@@ -2339,21 +2663,25 @@ var require_float = __commonJS({
           node.minFractionDigits = str.length - dot - 1;
         return node;
       },
-      stringify: stringifyNumber.stringifyNumber
+      stringify: stringifyNumber.stringifyNumber,
     };
     exports.float = float;
     exports.floatExp = floatExp;
     exports.floatNaN = floatNaN;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/core/int.js
 var require_int = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/core/int.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/core/int.js"(
+    exports
+  ) {
     "use strict";
     var stringifyNumber = require_stringifyNumber();
-    var intIdentify = (value2) => typeof value2 === "bigint" || Number.isInteger(value2);
-    var intResolve = (str, offset, radix, { intAsBigInt }) => intAsBigInt ? BigInt(str) : parseInt(str.substring(offset), radix);
+    var intIdentify = (value2) =>
+      typeof value2 === "bigint" || Number.isInteger(value2);
+    var intResolve = (str, offset, radix, { intAsBigInt }) =>
+      intAsBigInt ? BigInt(str) : parseInt(str.substring(offset), radix);
     function intStringify(node, radix, prefix) {
       const { value: value2 } = node;
       if (intIdentify(value2) && value2 >= 0)
@@ -2367,7 +2695,7 @@ var require_int = __commonJS({
       format: "OCT",
       test: /^0o[0-7]+$/,
       resolve: (str, _onError, opt) => intResolve(str, 2, 8, opt),
-      stringify: (node) => intStringify(node, 8, "0o")
+      stringify: (node) => intStringify(node, 8, "0o"),
     };
     var int = {
       identify: intIdentify,
@@ -2375,7 +2703,7 @@ var require_int = __commonJS({
       tag: "tag:yaml.org,2002:int",
       test: /^[-+]?[0-9]+$/,
       resolve: (str, _onError, opt) => intResolve(str, 0, 10, opt),
-      stringify: stringifyNumber.stringifyNumber
+      stringify: stringifyNumber.stringifyNumber,
     };
     var intHex = {
       identify: (value2) => intIdentify(value2) && value2 >= 0,
@@ -2384,17 +2712,19 @@ var require_int = __commonJS({
       format: "HEX",
       test: /^0x[0-9a-fA-F]+$/,
       resolve: (str, _onError, opt) => intResolve(str, 2, 16, opt),
-      stringify: (node) => intStringify(node, 16, "0x")
+      stringify: (node) => intStringify(node, 16, "0x"),
     };
     exports.int = int;
     exports.intHex = intHex;
     exports.intOct = intOct;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/core/schema.js
 var require_schema = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/core/schema.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/core/schema.js"(
+    exports
+  ) {
     "use strict";
     var map = require_map();
     var _null = require_null();
@@ -2414,15 +2744,17 @@ var require_schema = __commonJS({
       int.intHex,
       float.floatNaN,
       float.floatExp,
-      float.float
+      float.float,
     ];
     exports.schema = schema;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/json/schema.js
 var require_schema2 = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/json/schema.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/json/schema.js"(
+    exports
+  ) {
     "use strict";
     var Scalar = require_Scalar();
     var map = require_map();
@@ -2437,7 +2769,7 @@ var require_schema2 = __commonJS({
         default: true,
         tag: "tag:yaml.org,2002:str",
         resolve: (str) => str,
-        stringify: stringifyJSON
+        stringify: stringifyJSON,
       },
       {
         identify: (value2) => value2 == null,
@@ -2446,7 +2778,7 @@ var require_schema2 = __commonJS({
         tag: "tag:yaml.org,2002:null",
         test: /^null$/,
         resolve: () => null,
-        stringify: stringifyJSON
+        stringify: stringifyJSON,
       },
       {
         identify: (value2) => typeof value2 === "boolean",
@@ -2454,15 +2786,17 @@ var require_schema2 = __commonJS({
         tag: "tag:yaml.org,2002:bool",
         test: /^true|false$/,
         resolve: (str) => str === "true",
-        stringify: stringifyJSON
+        stringify: stringifyJSON,
       },
       {
         identify: intIdentify,
         default: true,
         tag: "tag:yaml.org,2002:int",
         test: /^-?(?:0|[1-9][0-9]*)$/,
-        resolve: (str, _onError, { intAsBigInt }) => intAsBigInt ? BigInt(str) : parseInt(str, 10),
-        stringify: ({ value: value2 }) => intIdentify(value2) ? value2.toString() : JSON.stringify(value2)
+        resolve: (str, _onError, { intAsBigInt }) =>
+          intAsBigInt ? BigInt(str) : parseInt(str, 10),
+        stringify: ({ value: value2 }) =>
+          intIdentify(value2) ? value2.toString() : JSON.stringify(value2),
       },
       {
         identify: (value2) => typeof value2 === "number",
@@ -2470,8 +2804,8 @@ var require_schema2 = __commonJS({
         tag: "tag:yaml.org,2002:float",
         test: /^-?(?:0|[1-9][0-9]*)(?:\.[0-9]*)?(?:[eE][-+]?[0-9]+)?$/,
         resolve: (str) => parseFloat(str),
-        stringify: stringifyJSON
-      }
+        stringify: stringifyJSON,
+      },
     ];
     var jsonError = {
       default: true,
@@ -2480,16 +2814,18 @@ var require_schema2 = __commonJS({
       resolve(str, onError) {
         onError(`Unresolved plain scalar ${JSON.stringify(str)}`);
         return str;
-      }
+      },
     };
     var schema = [map.map, seq.seq].concat(jsonScalars, jsonError);
     exports.schema = schema;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/binary.js
 var require_binary = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/binary.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/binary.js"(
+    exports
+  ) {
     "use strict";
     var Scalar = require_Scalar();
     var stringifyString = require_stringifyString();
@@ -2503,11 +2839,12 @@ var require_binary = __commonJS({
         } else if (typeof atob === "function") {
           const str = atob(src.replace(/[\n\r]/g, ""));
           const buffer = new Uint8Array(str.length);
-          for (let i = 0; i < str.length; ++i)
-            buffer[i] = str.charCodeAt(i);
+          for (let i = 0; i < str.length; ++i) buffer[i] = str.charCodeAt(i);
           return buffer;
         } else {
-          onError("This environment does not support reading binary tags; either Buffer or atob is required");
+          onError(
+            "This environment does not support reading binary tags; either Buffer or atob is required"
+          );
           return src;
         }
       },
@@ -2515,19 +2852,26 @@ var require_binary = __commonJS({
         const buf = value2;
         let str;
         if (typeof Buffer === "function") {
-          str = buf instanceof Buffer ? buf.toString("base64") : Buffer.from(buf.buffer).toString("base64");
+          str =
+            buf instanceof Buffer
+              ? buf.toString("base64")
+              : Buffer.from(buf.buffer).toString("base64");
         } else if (typeof btoa === "function") {
           let s2 = "";
           for (let i = 0; i < buf.length; ++i)
             s2 += String.fromCharCode(buf[i]);
           str = btoa(s2);
         } else {
-          throw new Error("This environment does not support writing binary tags; either Buffer or btoa is required");
+          throw new Error(
+            "This environment does not support writing binary tags; either Buffer or btoa is required"
+          );
         }
-        if (!type)
-          type = Scalar.Scalar.BLOCK_LITERAL;
+        if (!type) type = Scalar.Scalar.BLOCK_LITERAL;
         if (type !== Scalar.Scalar.QUOTE_DOUBLE) {
-          const lineWidth = Math.max(ctx.options.lineWidth - ctx.indent.length, ctx.options.minContentWidth);
+          const lineWidth = Math.max(
+            ctx.options.lineWidth - ctx.indent.length,
+            ctx.options.minContentWidth
+          );
           const n = Math.ceil(str.length / lineWidth);
           const lines = new Array(n);
           for (let i = 0, o = 0; i < n; ++i, o += lineWidth) {
@@ -2535,16 +2879,23 @@ var require_binary = __commonJS({
           }
           str = lines.join(type === Scalar.Scalar.BLOCK_LITERAL ? "\n" : " ");
         }
-        return stringifyString.stringifyString({ comment, type, value: str }, ctx, onComment, onChompKeep);
-      }
+        return stringifyString.stringifyString(
+          { comment, type, value: str },
+          ctx,
+          onComment,
+          onChompKeep
+        );
+      },
     };
     exports.binary = binary;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/pairs.js
 var require_pairs = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/pairs.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/pairs.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     var Pair = require_Pair();
@@ -2554,26 +2905,29 @@ var require_pairs = __commonJS({
       if (Node.isSeq(seq)) {
         for (let i = 0; i < seq.items.length; ++i) {
           let item = seq.items[i];
-          if (Node.isPair(item))
-            continue;
+          if (Node.isPair(item)) continue;
           else if (Node.isMap(item)) {
             if (item.items.length > 1)
               onError("Each pair must have its own sequence indicator");
-            const pair = item.items[0] || new Pair.Pair(new Scalar.Scalar(null));
+            const pair =
+              item.items[0] || new Pair.Pair(new Scalar.Scalar(null));
             if (item.commentBefore)
-              pair.key.commentBefore = pair.key.commentBefore ? `${item.commentBefore}
-${pair.key.commentBefore}` : item.commentBefore;
+              pair.key.commentBefore = pair.key.commentBefore
+                ? `${item.commentBefore}
+${pair.key.commentBefore}`
+                : item.commentBefore;
             if (item.comment) {
               const cn = pair.value ?? pair.key;
-              cn.comment = cn.comment ? `${item.comment}
-${cn.comment}` : item.comment;
+              cn.comment = cn.comment
+                ? `${item.comment}
+${cn.comment}`
+                : item.comment;
             }
             item = pair;
           }
           seq.items[i] = Node.isPair(item) ? item : new Pair.Pair(item);
         }
-      } else
-        onError("Expected a sequence for this tag");
+      } else onError("Expected a sequence for this tag");
       return seq;
     }
     function createPairs(schema, iterable, ctx) {
@@ -2590,15 +2944,13 @@ ${cn.comment}` : item.comment;
             if (it.length === 2) {
               key = it[0];
               value2 = it[1];
-            } else
-              throw new TypeError(`Expected [key, value] tuple: ${it}`);
+            } else throw new TypeError(`Expected [key, value] tuple: ${it}`);
           } else if (it && it instanceof Object) {
             const keys = Object.keys(it);
             if (keys.length === 1) {
               key = keys[0];
               value2 = it[key];
-            } else
-              throw new TypeError(`Expected { key: value } tuple: ${it}`);
+            } else throw new TypeError(`Expected { key: value } tuple: ${it}`);
           } else {
             key = it;
           }
@@ -2611,17 +2963,19 @@ ${cn.comment}` : item.comment;
       default: false,
       tag: "tag:yaml.org,2002:pairs",
       resolve: resolvePairs,
-      createNode: createPairs
+      createNode: createPairs,
     };
     exports.createPairs = createPairs;
     exports.pairs = pairs;
     exports.resolvePairs = resolvePairs;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/omap.js
 var require_omap = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/omap.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/omap.js"(
+    exports
+  ) {
     "use strict";
     var YAMLSeq = require_YAMLSeq();
     var toJS = require_toJS();
@@ -2639,11 +2993,9 @@ var require_omap = __commonJS({
         this.tag = YAMLOMap.tag;
       }
       toJSON(_2, ctx) {
-        if (!ctx)
-          return super.toJSON(_2);
+        if (!ctx) return super.toJSON(_2);
         const map = /* @__PURE__ */ new Map();
-        if (ctx == null ? void 0 : ctx.onCreate)
-          ctx.onCreate(map);
+        if (ctx == null ? void 0 : ctx.onCreate) ctx.onCreate(map);
         for (const pair of this.items) {
           let key, value2;
           if (Node.isPair(pair)) {
@@ -2672,7 +3024,9 @@ var require_omap = __commonJS({
         for (const { key } of pairs$1.items) {
           if (Node.isScalar(key)) {
             if (seenKeys.includes(key.value)) {
-              onError(`Ordered maps must not include duplicate keys: ${key.value}`);
+              onError(
+                `Ordered maps must not include duplicate keys: ${key.value}`
+              );
             } else {
               seenKeys.push(key.value);
             }
@@ -2685,22 +3039,23 @@ var require_omap = __commonJS({
         const omap2 = new YAMLOMap();
         omap2.items = pairs$1.items;
         return omap2;
-      }
+      },
     };
     exports.YAMLOMap = YAMLOMap;
     exports.omap = omap;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/bool.js
 var require_bool2 = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/bool.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/bool.js"(
+    exports
+  ) {
     "use strict";
     var Scalar = require_Scalar();
     function boolStringify({ value: value2, source }, ctx) {
       const boolObj = value2 ? trueTag : falseTag;
-      if (source && boolObj.test.test(source))
-        return source;
+      if (source && boolObj.test.test(source)) return source;
       return value2 ? ctx.options.trueStr : ctx.options.falseStr;
     }
     var trueTag = {
@@ -2709,7 +3064,7 @@ var require_bool2 = __commonJS({
       tag: "tag:yaml.org,2002:bool",
       test: /^(?:Y|y|[Yy]es|YES|[Tt]rue|TRUE|[Oo]n|ON)$/,
       resolve: () => new Scalar.Scalar(true),
-      stringify: boolStringify
+      stringify: boolStringify,
     };
     var falseTag = {
       identify: (value2) => value2 === false,
@@ -2717,16 +3072,18 @@ var require_bool2 = __commonJS({
       tag: "tag:yaml.org,2002:bool",
       test: /^(?:N|n|[Nn]o|NO|[Ff]alse|FALSE|[Oo]ff|OFF)$/i,
       resolve: () => new Scalar.Scalar(false),
-      stringify: boolStringify
+      stringify: boolStringify,
     };
     exports.falseTag = falseTag;
     exports.trueTag = trueTag;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/float.js
 var require_float2 = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/float.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/float.js"(
+    exports
+  ) {
     "use strict";
     var Scalar = require_Scalar();
     var stringifyNumber = require_stringifyNumber();
@@ -2735,8 +3092,13 @@ var require_float2 = __commonJS({
       default: true,
       tag: "tag:yaml.org,2002:float",
       test: /^[-+]?\.(?:inf|Inf|INF|nan|NaN|NAN)$/,
-      resolve: (str) => str.slice(-3).toLowerCase() === "nan" ? NaN : str[0] === "-" ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY,
-      stringify: stringifyNumber.stringifyNumber
+      resolve: (str) =>
+        str.slice(-3).toLowerCase() === "nan"
+          ? NaN
+          : str[0] === "-"
+          ? Number.NEGATIVE_INFINITY
+          : Number.POSITIVE_INFINITY,
+      stringify: stringifyNumber.stringifyNumber,
     };
     var floatExp = {
       identify: (value2) => typeof value2 === "number",
@@ -2747,8 +3109,10 @@ var require_float2 = __commonJS({
       resolve: (str) => parseFloat(str.replace(/_/g, "")),
       stringify(node) {
         const num = Number(node.value);
-        return isFinite(num) ? num.toExponential() : stringifyNumber.stringifyNumber(node);
-      }
+        return isFinite(num)
+          ? num.toExponential()
+          : stringifyNumber.stringifyNumber(node);
+      },
     };
     var float = {
       identify: (value2) => typeof value2 === "number",
@@ -2760,29 +3124,30 @@ var require_float2 = __commonJS({
         const dot = str.indexOf(".");
         if (dot !== -1) {
           const f = str.substring(dot + 1).replace(/_/g, "");
-          if (f[f.length - 1] === "0")
-            node.minFractionDigits = f.length;
+          if (f[f.length - 1] === "0") node.minFractionDigits = f.length;
         }
         return node;
       },
-      stringify: stringifyNumber.stringifyNumber
+      stringify: stringifyNumber.stringifyNumber,
     };
     exports.float = float;
     exports.floatExp = floatExp;
     exports.floatNaN = floatNaN;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/int.js
 var require_int2 = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/int.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/int.js"(
+    exports
+  ) {
     "use strict";
     var stringifyNumber = require_stringifyNumber();
-    var intIdentify = (value2) => typeof value2 === "bigint" || Number.isInteger(value2);
+    var intIdentify = (value2) =>
+      typeof value2 === "bigint" || Number.isInteger(value2);
     function intResolve(str, offset, radix, { intAsBigInt }) {
       const sign = str[0];
-      if (sign === "-" || sign === "+")
-        offset += 1;
+      if (sign === "-" || sign === "+") offset += 1;
       str = str.substring(offset).replace(/_/g, "");
       if (intAsBigInt) {
         switch (radix) {
@@ -2817,7 +3182,7 @@ var require_int2 = __commonJS({
       format: "BIN",
       test: /^[-+]?0b[0-1_]+$/,
       resolve: (str, _onError, opt) => intResolve(str, 2, 2, opt),
-      stringify: (node) => intStringify(node, 2, "0b")
+      stringify: (node) => intStringify(node, 2, "0b"),
     };
     var intOct = {
       identify: intIdentify,
@@ -2826,7 +3191,7 @@ var require_int2 = __commonJS({
       format: "OCT",
       test: /^[-+]?0[0-7_]+$/,
       resolve: (str, _onError, opt) => intResolve(str, 1, 8, opt),
-      stringify: (node) => intStringify(node, 8, "0")
+      stringify: (node) => intStringify(node, 8, "0"),
     };
     var int = {
       identify: intIdentify,
@@ -2834,7 +3199,7 @@ var require_int2 = __commonJS({
       tag: "tag:yaml.org,2002:int",
       test: /^[-+]?[0-9][0-9_]*$/,
       resolve: (str, _onError, opt) => intResolve(str, 0, 10, opt),
-      stringify: stringifyNumber.stringifyNumber
+      stringify: stringifyNumber.stringifyNumber,
     };
     var intHex = {
       identify: intIdentify,
@@ -2843,18 +3208,20 @@ var require_int2 = __commonJS({
       format: "HEX",
       test: /^[-+]?0x[0-9a-fA-F_]+$/,
       resolve: (str, _onError, opt) => intResolve(str, 2, 16, opt),
-      stringify: (node) => intStringify(node, 16, "0x")
+      stringify: (node) => intStringify(node, 16, "0x"),
     };
     exports.int = int;
     exports.intBin = intBin;
     exports.intHex = intHex;
     exports.intOct = intOct;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/set.js
 var require_set = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/set.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/set.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     var Pair = require_Pair();
@@ -2866,23 +3233,32 @@ var require_set = __commonJS({
       }
       add(key) {
         let pair;
-        if (Node.isPair(key))
-          pair = key;
-        else if (key && typeof key === "object" && "key" in key && "value" in key && key.value === null)
+        if (Node.isPair(key)) pair = key;
+        else if (
+          key &&
+          typeof key === "object" &&
+          "key" in key &&
+          "value" in key &&
+          key.value === null
+        )
           pair = new Pair.Pair(key.key, null);
-        else
-          pair = new Pair.Pair(key, null);
+        else pair = new Pair.Pair(key, null);
         const prev = YAMLMap.findPair(this.items, pair.key);
-        if (!prev)
-          this.items.push(pair);
+        if (!prev) this.items.push(pair);
       }
       get(key, keepPair) {
         const pair = YAMLMap.findPair(this.items, key);
-        return !keepPair && Node.isPair(pair) ? Node.isScalar(pair.key) ? pair.key.value : pair.key : pair;
+        return !keepPair && Node.isPair(pair)
+          ? Node.isScalar(pair.key)
+            ? pair.key.value
+            : pair.key
+          : pair;
       }
       set(key, value2) {
         if (typeof value2 !== "boolean")
-          throw new Error(`Expected boolean value for set(key, value) in a YAML set, not ${typeof value2}`);
+          throw new Error(
+            `Expected boolean value for set(key, value) in a YAML set, not ${typeof value2}`
+          );
         const prev = YAMLMap.findPair(this.items, key);
         if (prev && !value2) {
           this.items.splice(this.items.indexOf(prev), 1);
@@ -2894,12 +3270,14 @@ var require_set = __commonJS({
         return super.toJSON(_2, ctx, Set);
       }
       toString(ctx, onComment, onChompKeep) {
-        if (!ctx)
-          return JSON.stringify(this);
+        if (!ctx) return JSON.stringify(this);
         if (this.hasAllNullValues(true))
-          return super.toString(Object.assign({}, ctx, { allNullValues: true }), onComment, onChompKeep);
-        else
-          throw new Error("Set items must all have null values");
+          return super.toString(
+            Object.assign({}, ctx, { allNullValues: true }),
+            onComment,
+            onChompKeep
+          );
+        else throw new Error("Set items must all have null values");
       }
     };
     YAMLSet.tag = "tag:yaml.org,2002:set";
@@ -2913,10 +3291,8 @@ var require_set = __commonJS({
         if (Node.isMap(map)) {
           if (map.hasAllNullValues(true))
             return Object.assign(new YAMLSet(), map);
-          else
-            onError("Set items must all have null values");
-        } else
-          onError("Expected a mapping for this tag");
+          else onError("Set items must all have null values");
+        } else onError("Expected a mapping for this tag");
         return map;
       },
       createNode(schema, iterable, ctx) {
@@ -2929,30 +3305,34 @@ var require_set = __commonJS({
             set2.items.push(Pair.createPair(value2, null, ctx));
           }
         return set2;
-      }
+      },
     };
     exports.YAMLSet = YAMLSet;
     exports.set = set;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/timestamp.js
 var require_timestamp = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/timestamp.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/timestamp.js"(
+    exports
+  ) {
     "use strict";
     var stringifyNumber = require_stringifyNumber();
     function parseSexagesimal(str, asBigInt) {
       const sign = str[0];
       const parts = sign === "-" || sign === "+" ? str.substring(1) : str;
-      const num = (n) => asBigInt ? BigInt(n) : Number(n);
-      const res = parts.replace(/_/g, "").split(":").reduce((res2, p) => res2 * num(60) + num(p), num(0));
+      const num = (n) => (asBigInt ? BigInt(n) : Number(n));
+      const res = parts
+        .replace(/_/g, "")
+        .split(":")
+        .reduce((res2, p) => res2 * num(60) + num(p), num(0));
       return sign === "-" ? num(-1) * res : res;
     }
     function stringifySexagesimal(node) {
       let { value: value2 } = node;
       let num = (n) => n;
-      if (typeof value2 === "bigint")
-        num = (n) => BigInt(n);
+      if (typeof value2 === "bigint") num = (n) => BigInt(n);
       else if (isNaN(value2) || !isFinite(value2))
         return stringifyNumber.stringifyNumber(node);
       let sign = "";
@@ -2972,16 +3352,24 @@ var require_timestamp = __commonJS({
           parts.unshift(value2);
         }
       }
-      return sign + parts.map((n) => n < 10 ? "0" + String(n) : String(n)).join(":").replace(/000000\d*$/, "");
+      return (
+        sign +
+        parts
+          .map((n) => (n < 10 ? "0" + String(n) : String(n)))
+          .join(":")
+          .replace(/000000\d*$/, "")
+      );
     }
     var intTime = {
-      identify: (value2) => typeof value2 === "bigint" || Number.isInteger(value2),
+      identify: (value2) =>
+        typeof value2 === "bigint" || Number.isInteger(value2),
       default: true,
       tag: "tag:yaml.org,2002:int",
       format: "TIME",
       test: /^[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+$/,
-      resolve: (str, _onError, { intAsBigInt }) => parseSexagesimal(str, intAsBigInt),
-      stringify: stringifySexagesimal
+      resolve: (str, _onError, { intAsBigInt }) =>
+        parseSexagesimal(str, intAsBigInt),
+      stringify: stringifySexagesimal,
     };
     var floatTime = {
       identify: (value2) => typeof value2 === "number",
@@ -2990,40 +3378,54 @@ var require_timestamp = __commonJS({
       format: "TIME",
       test: /^[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+\.[0-9_]*$/,
       resolve: (str) => parseSexagesimal(str, false),
-      stringify: stringifySexagesimal
+      stringify: stringifySexagesimal,
     };
     var timestamp = {
       identify: (value2) => value2 instanceof Date,
       default: true,
       tag: "tag:yaml.org,2002:timestamp",
-      test: RegExp("^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})(?:(?:t|T|[ \\t]+)([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}(\\.[0-9]+)?)(?:[ \\t]*(Z|[-+][012]?[0-9](?::[0-9]{2})?))?)?$"),
+      test: RegExp(
+        "^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})(?:(?:t|T|[ \\t]+)([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}(\\.[0-9]+)?)(?:[ \\t]*(Z|[-+][012]?[0-9](?::[0-9]{2})?))?)?$"
+      ),
       resolve(str) {
         const match = str.match(timestamp.test);
         if (!match)
-          throw new Error("!!timestamp expects a date, starting with yyyy-mm-dd");
+          throw new Error(
+            "!!timestamp expects a date, starting with yyyy-mm-dd"
+          );
         const [, year, month, day, hour, minute, second] = match.map(Number);
         const millisec = match[7] ? Number((match[7] + "00").substr(1, 3)) : 0;
-        let date = Date.UTC(year, month - 1, day, hour || 0, minute || 0, second || 0, millisec);
+        let date = Date.UTC(
+          year,
+          month - 1,
+          day,
+          hour || 0,
+          minute || 0,
+          second || 0,
+          millisec
+        );
         const tz = match[8];
         if (tz && tz !== "Z") {
           let d = parseSexagesimal(tz, false);
-          if (Math.abs(d) < 30)
-            d *= 60;
+          if (Math.abs(d) < 30) d *= 60;
           date -= 6e4 * d;
         }
         return new Date(date);
       },
-      stringify: ({ value: value2 }) => value2.toISOString().replace(/((T00:00)?:00)?\.000Z$/, "")
+      stringify: ({ value: value2 }) =>
+        value2.toISOString().replace(/((T00:00)?:00)?\.000Z$/, ""),
     };
     exports.floatTime = floatTime;
     exports.intTime = intTime;
     exports.timestamp = timestamp;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/schema.js
 var require_schema3 = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/schema.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/yaml-1.1/schema.js"(
+    exports
+  ) {
     "use strict";
     var map = require_map();
     var _null = require_null();
@@ -3057,15 +3459,17 @@ var require_schema3 = __commonJS({
       set.set,
       timestamp.intTime,
       timestamp.floatTime,
-      timestamp.timestamp
+      timestamp.timestamp,
     ];
     exports.schema = schema;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/tags.js
 var require_tags = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/tags.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/tags.js"(
+    exports
+  ) {
     "use strict";
     var map = require_map();
     var _null = require_null();
@@ -3087,7 +3491,7 @@ var require_tags = __commonJS({
       ["failsafe", [map.map, seq.seq, string.string]],
       ["json", schema$1.schema],
       ["yaml11", schema$2.schema],
-      ["yaml-1.1", schema$2.schema]
+      ["yaml-1.1", schema$2.schema],
     ]);
     var tagsByName = {
       binary: binary.binary,
@@ -3106,82 +3510,110 @@ var require_tags = __commonJS({
       pairs: pairs.pairs,
       seq: seq.seq,
       set: set.set,
-      timestamp: timestamp.timestamp
+      timestamp: timestamp.timestamp,
     };
     var coreKnownTags = {
       "tag:yaml.org,2002:binary": binary.binary,
       "tag:yaml.org,2002:omap": omap.omap,
       "tag:yaml.org,2002:pairs": pairs.pairs,
       "tag:yaml.org,2002:set": set.set,
-      "tag:yaml.org,2002:timestamp": timestamp.timestamp
+      "tag:yaml.org,2002:timestamp": timestamp.timestamp,
     };
     function getTags(customTags, schemaName) {
       let tags = schemas.get(schemaName);
       if (!tags) {
-        if (Array.isArray(customTags))
-          tags = [];
+        if (Array.isArray(customTags)) tags = [];
         else {
-          const keys = Array.from(schemas.keys()).filter((key) => key !== "yaml11").map((key) => JSON.stringify(key)).join(", ");
-          throw new Error(`Unknown schema "${schemaName}"; use one of ${keys} or define customTags array`);
+          const keys = Array.from(schemas.keys())
+            .filter((key) => key !== "yaml11")
+            .map((key) => JSON.stringify(key))
+            .join(", ");
+          throw new Error(
+            `Unknown schema "${schemaName}"; use one of ${keys} or define customTags array`
+          );
         }
       }
       if (Array.isArray(customTags)) {
-        for (const tag of customTags)
-          tags = tags.concat(tag);
+        for (const tag of customTags) tags = tags.concat(tag);
       } else if (typeof customTags === "function") {
         tags = customTags(tags.slice());
       }
       return tags.map((tag) => {
-        if (typeof tag !== "string")
-          return tag;
+        if (typeof tag !== "string") return tag;
         const tagObj = tagsByName[tag];
-        if (tagObj)
-          return tagObj;
-        const keys = Object.keys(tagsByName).map((key) => JSON.stringify(key)).join(", ");
+        if (tagObj) return tagObj;
+        const keys = Object.keys(tagsByName)
+          .map((key) => JSON.stringify(key))
+          .join(", ");
         throw new Error(`Unknown custom tag "${tag}"; use one of ${keys}`);
       });
     }
     exports.coreKnownTags = coreKnownTags;
     exports.getTags = getTags;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/Schema.js
 var require_Schema = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/Schema.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/schema/Schema.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     var map = require_map();
     var seq = require_seq();
     var string = require_string();
     var tags = require_tags();
-    var sortMapEntriesByKey = (a, b) => a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
+    var sortMapEntriesByKey = (a, b) =>
+      a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
     var Schema2 = class {
-      constructor({ compat, customTags, merge: merge3, resolveKnownTags, schema, sortMapEntries, toStringDefaults }) {
-        this.compat = Array.isArray(compat) ? tags.getTags(compat, "compat") : compat ? tags.getTags(null, compat) : null;
+      constructor({
+        compat,
+        customTags,
+        merge: merge3,
+        resolveKnownTags,
+        schema,
+        sortMapEntries,
+        toStringDefaults,
+      }) {
+        this.compat = Array.isArray(compat)
+          ? tags.getTags(compat, "compat")
+          : compat
+          ? tags.getTags(null, compat)
+          : null;
         this.merge = !!merge3;
-        this.name = typeof schema === "string" && schema || "core";
+        this.name = (typeof schema === "string" && schema) || "core";
         this.knownTags = resolveKnownTags ? tags.coreKnownTags : {};
         this.tags = tags.getTags(customTags, this.name);
         this.toStringOptions = toStringDefaults ?? null;
         Object.defineProperty(this, Node.MAP, { value: map.map });
         Object.defineProperty(this, Node.SCALAR, { value: string.string });
         Object.defineProperty(this, Node.SEQ, { value: seq.seq });
-        this.sortMapEntries = typeof sortMapEntries === "function" ? sortMapEntries : sortMapEntries === true ? sortMapEntriesByKey : null;
+        this.sortMapEntries =
+          typeof sortMapEntries === "function"
+            ? sortMapEntries
+            : sortMapEntries === true
+            ? sortMapEntriesByKey
+            : null;
       }
       clone() {
-        const copy = Object.create(Schema2.prototype, Object.getOwnPropertyDescriptors(this));
+        const copy = Object.create(
+          Schema2.prototype,
+          Object.getOwnPropertyDescriptors(this)
+        );
         copy.tags = this.tags.slice();
         return copy;
       }
     };
     exports.Schema = Schema2;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyDocument.js
 var require_stringifyDocument = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyDocument.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/stringify/stringifyDocument.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     var stringify2 = require_stringify();
@@ -3195,16 +3627,13 @@ var require_stringifyDocument = __commonJS({
         if (dir) {
           lines.push(dir);
           hasDirectives = true;
-        } else if (doc.directives.docStart)
-          hasDirectives = true;
+        } else if (doc.directives.docStart) hasDirectives = true;
       }
-      if (hasDirectives)
-        lines.push("---");
+      if (hasDirectives) lines.push("---");
       const ctx = stringify2.createStringifyContext(doc, options2);
       const { commentString } = ctx.options;
       if (doc.commentBefore) {
-        if (lines.length !== 1)
-          lines.unshift("");
+        if (lines.length !== 1) lines.unshift("");
         const cs = commentString(doc.commentBefore);
         lines.unshift(stringifyComment.indentComment(cs, ""));
       }
@@ -3212,8 +3641,7 @@ var require_stringifyDocument = __commonJS({
       let contentComment = null;
       if (doc.contents) {
         if (Node.isNode(doc.contents)) {
-          if (doc.contents.spaceBefore && hasDirectives)
-            lines.push("");
+          if (doc.contents.spaceBefore && hasDirectives) lines.push("");
           if (doc.contents.commentBefore) {
             const cs = commentString(doc.contents.commentBefore);
             lines.push(stringifyComment.indentComment(cs, ""));
@@ -3221,14 +3649,25 @@ var require_stringifyDocument = __commonJS({
           ctx.forceBlockIndent = !!doc.comment;
           contentComment = doc.contents.comment;
         }
-        const onChompKeep = contentComment ? void 0 : () => chompKeep = true;
-        let body = stringify2.stringify(doc.contents, ctx, () => contentComment = null, onChompKeep);
+        const onChompKeep = contentComment ? void 0 : () => (chompKeep = true);
+        let body = stringify2.stringify(
+          doc.contents,
+          ctx,
+          () => (contentComment = null),
+          onChompKeep
+        );
         if (contentComment)
-          body += stringifyComment.lineComment(body, "", commentString(contentComment));
-        if ((body[0] === "|" || body[0] === ">") && lines[lines.length - 1] === "---") {
+          body += stringifyComment.lineComment(
+            body,
+            "",
+            commentString(contentComment)
+          );
+        if (
+          (body[0] === "|" || body[0] === ">") &&
+          lines[lines.length - 1] === "---"
+        ) {
           lines[lines.length - 1] = `--- ${body}`;
-        } else
-          lines.push(body);
+        } else lines.push(body);
       } else {
         lines.push(stringify2.stringify(doc.contents, ctx));
       }
@@ -3246,8 +3685,7 @@ var require_stringifyDocument = __commonJS({
         }
       } else {
         let dc = doc.comment;
-        if (dc && chompKeep)
-          dc = dc.replace(/^\n+/, "");
+        if (dc && chompKeep) dc = dc.replace(/^\n+/, "");
         if (dc) {
           if ((!chompKeep || contentComment) && lines[lines.length - 1] !== "")
             lines.push("");
@@ -3257,12 +3695,14 @@ var require_stringifyDocument = __commonJS({
       return lines.join("\n") + "\n";
     }
     exports.stringifyDocument = stringifyDocument;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/applyReviver.js
 var require_applyReviver = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/applyReviver.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/applyReviver.js"(
+    exports
+  ) {
     "use strict";
     function applyReviver(reviver, obj, key, val) {
       if (val && typeof val === "object") {
@@ -3270,25 +3710,20 @@ var require_applyReviver = __commonJS({
           for (let i = 0, len = val.length; i < len; ++i) {
             const v0 = val[i];
             const v1 = applyReviver(reviver, val, String(i), v0);
-            if (v1 === void 0)
-              delete val[i];
-            else if (v1 !== v0)
-              val[i] = v1;
+            if (v1 === void 0) delete val[i];
+            else if (v1 !== v0) val[i] = v1;
           }
         } else if (val instanceof Map) {
           for (const k of Array.from(val.keys())) {
             const v0 = val.get(k);
             const v1 = applyReviver(reviver, val, k, v0);
-            if (v1 === void 0)
-              val.delete(k);
-            else if (v1 !== v0)
-              val.set(k, v1);
+            if (v1 === void 0) val.delete(k);
+            else if (v1 !== v0) val.set(k, v1);
           }
         } else if (val instanceof Set) {
           for (const v0 of Array.from(val)) {
             const v1 = applyReviver(reviver, val, v0, v0);
-            if (v1 === void 0)
-              val.delete(v0);
+            if (v1 === void 0) val.delete(v0);
             else if (v1 !== v0) {
               val.delete(v0);
               val.add(v1);
@@ -3297,22 +3732,22 @@ var require_applyReviver = __commonJS({
         } else {
           for (const [k, v0] of Object.entries(val)) {
             const v1 = applyReviver(reviver, val, k, v0);
-            if (v1 === void 0)
-              delete val[k];
-            else if (v1 !== v0)
-              val[k] = v1;
+            if (v1 === void 0) delete val[k];
+            else if (v1 !== v0) val[k] = v1;
           }
         }
       }
       return reviver.call(obj, key, val);
     }
     exports.applyReviver = applyReviver;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/Document.js
 var require_Document = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/Document.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/doc/Document.js"(
+    exports
+  ) {
     "use strict";
     var Alias = require_Alias();
     var Collection = require_Collection();
@@ -3340,59 +3775,61 @@ var require_Document = __commonJS({
           options2 = replacer;
           replacer = void 0;
         }
-        const opt = Object.assign({
-          intAsBigInt: false,
-          keepSourceTokens: false,
-          logLevel: "warn",
-          prettyErrors: true,
-          strict: true,
-          uniqueKeys: true,
-          version: "1.2"
-        }, options2);
+        const opt = Object.assign(
+          {
+            intAsBigInt: false,
+            keepSourceTokens: false,
+            logLevel: "warn",
+            prettyErrors: true,
+            strict: true,
+            uniqueKeys: true,
+            version: "1.2",
+          },
+          options2
+        );
         this.options = opt;
         let { version } = opt;
         if (options2 == null ? void 0 : options2._directives) {
           this.directives = options2._directives.atDocument();
           if (this.directives.yaml.explicit)
             version = this.directives.yaml.version;
-        } else
-          this.directives = new directives.Directives({ version });
+        } else this.directives = new directives.Directives({ version });
         this.setSchema(version, options2);
-        if (value2 === void 0)
-          this.contents = null;
+        if (value2 === void 0) this.contents = null;
         else {
           this.contents = this.createNode(value2, _replacer, options2);
         }
       }
       clone() {
         const copy = Object.create(Document.prototype, {
-          [Node.NODE_TYPE]: { value: Node.DOC }
+          [Node.NODE_TYPE]: { value: Node.DOC },
         });
         copy.commentBefore = this.commentBefore;
         copy.comment = this.comment;
         copy.errors = this.errors.slice();
         copy.warnings = this.warnings.slice();
         copy.options = Object.assign({}, this.options);
-        if (this.directives)
-          copy.directives = this.directives.clone();
+        if (this.directives) copy.directives = this.directives.clone();
         copy.schema = this.schema.clone();
-        copy.contents = Node.isNode(this.contents) ? this.contents.clone(copy.schema) : this.contents;
-        if (this.range)
-          copy.range = this.range.slice();
+        copy.contents = Node.isNode(this.contents)
+          ? this.contents.clone(copy.schema)
+          : this.contents;
+        if (this.range) copy.range = this.range.slice();
         return copy;
       }
       add(value2) {
-        if (assertCollection(this.contents))
-          this.contents.add(value2);
+        if (assertCollection(this.contents)) this.contents.add(value2);
       }
       addIn(path2, value2) {
-        if (assertCollection(this.contents))
-          this.contents.addIn(path2, value2);
+        if (assertCollection(this.contents)) this.contents.addIn(path2, value2);
       }
       createAlias(node, name) {
         if (!node.anchor) {
           const prev = anchors.anchorNames(this);
-          node.anchor = !name || prev.has(name) ? anchors.findNewAnchor(name || "a", prev) : name;
+          node.anchor =
+            !name || prev.has(name)
+              ? anchors.findNewAnchor(name || "a", prev)
+              : name;
         }
         return new Alias.Alias(node.anchor);
       }
@@ -3402,20 +3839,25 @@ var require_Document = __commonJS({
           value2 = replacer.call({ "": value2 }, "", value2);
           _replacer = replacer;
         } else if (Array.isArray(replacer)) {
-          const keyToStr = (v) => typeof v === "number" || v instanceof String || v instanceof Number;
+          const keyToStr = (v) =>
+            typeof v === "number" || v instanceof String || v instanceof Number;
           const asStr = replacer.filter(keyToStr).map(String);
-          if (asStr.length > 0)
-            replacer = replacer.concat(asStr);
+          if (asStr.length > 0) replacer = replacer.concat(asStr);
           _replacer = replacer;
         } else if (options2 === void 0 && replacer) {
           options2 = replacer;
           replacer = void 0;
         }
-        const { aliasDuplicateObjects, anchorPrefix, flow, keepUndefined, onTagObj, tag } = options2 ?? {};
-        const { onAnchor, setAnchors, sourceObjects } = anchors.createNodeAnchors(
-          this,
-          anchorPrefix || "a"
-        );
+        const {
+          aliasDuplicateObjects,
+          anchorPrefix,
+          flow,
+          keepUndefined,
+          onTagObj,
+          tag,
+        } = options2 ?? {};
+        const { onAnchor, setAnchors, sourceObjects } =
+          anchors.createNodeAnchors(this, anchorPrefix || "a");
         const ctx = {
           aliasDuplicateObjects: aliasDuplicateObjects ?? true,
           keepUndefined: keepUndefined ?? false,
@@ -3423,11 +3865,10 @@ var require_Document = __commonJS({
           onTagObj,
           replacer: _replacer,
           schema: this.schema,
-          sourceObjects
+          sourceObjects,
         };
         const node = createNode.createNode(value2, tag, ctx);
-        if (flow && Node.isCollection(node))
-          node.flow = true;
+        if (flow && Node.isCollection(node)) node.flow = true;
         setAnchors();
         return node;
       }
@@ -3437,101 +3878,128 @@ var require_Document = __commonJS({
         return new Pair.Pair(k, v);
       }
       delete(key) {
-        return assertCollection(this.contents) ? this.contents.delete(key) : false;
+        return assertCollection(this.contents)
+          ? this.contents.delete(key)
+          : false;
       }
       deleteIn(path2) {
         if (Collection.isEmptyPath(path2)) {
-          if (this.contents == null)
-            return false;
+          if (this.contents == null) return false;
           this.contents = null;
           return true;
         }
-        return assertCollection(this.contents) ? this.contents.deleteIn(path2) : false;
+        return assertCollection(this.contents)
+          ? this.contents.deleteIn(path2)
+          : false;
       }
       get(key, keepScalar) {
-        return Node.isCollection(this.contents) ? this.contents.get(key, keepScalar) : void 0;
+        return Node.isCollection(this.contents)
+          ? this.contents.get(key, keepScalar)
+          : void 0;
       }
       getIn(path2, keepScalar) {
         if (Collection.isEmptyPath(path2))
-          return !keepScalar && Node.isScalar(this.contents) ? this.contents.value : this.contents;
-        return Node.isCollection(this.contents) ? this.contents.getIn(path2, keepScalar) : void 0;
+          return !keepScalar && Node.isScalar(this.contents)
+            ? this.contents.value
+            : this.contents;
+        return Node.isCollection(this.contents)
+          ? this.contents.getIn(path2, keepScalar)
+          : void 0;
       }
       has(key) {
-        return Node.isCollection(this.contents) ? this.contents.has(key) : false;
+        return Node.isCollection(this.contents)
+          ? this.contents.has(key)
+          : false;
       }
       hasIn(path2) {
-        if (Collection.isEmptyPath(path2))
-          return this.contents !== void 0;
-        return Node.isCollection(this.contents) ? this.contents.hasIn(path2) : false;
+        if (Collection.isEmptyPath(path2)) return this.contents !== void 0;
+        return Node.isCollection(this.contents)
+          ? this.contents.hasIn(path2)
+          : false;
       }
       set(key, value2) {
         if (this.contents == null) {
-          this.contents = Collection.collectionFromPath(this.schema, [key], value2);
+          this.contents = Collection.collectionFromPath(
+            this.schema,
+            [key],
+            value2
+          );
         } else if (assertCollection(this.contents)) {
           this.contents.set(key, value2);
         }
       }
       setIn(path2, value2) {
-        if (Collection.isEmptyPath(path2))
-          this.contents = value2;
+        if (Collection.isEmptyPath(path2)) this.contents = value2;
         else if (this.contents == null) {
-          this.contents = Collection.collectionFromPath(this.schema, Array.from(path2), value2);
+          this.contents = Collection.collectionFromPath(
+            this.schema,
+            Array.from(path2),
+            value2
+          );
         } else if (assertCollection(this.contents)) {
           this.contents.setIn(path2, value2);
         }
       }
       setSchema(version, options2 = {}) {
-        if (typeof version === "number")
-          version = String(version);
+        if (typeof version === "number") version = String(version);
         let opt;
         switch (version) {
           case "1.1":
-            if (this.directives)
-              this.directives.yaml.version = "1.1";
+            if (this.directives) this.directives.yaml.version = "1.1";
             else
               this.directives = new directives.Directives({ version: "1.1" });
             opt = { merge: true, resolveKnownTags: false, schema: "yaml-1.1" };
             break;
           case "1.2":
           case "next":
-            if (this.directives)
-              this.directives.yaml.version = version;
-            else
-              this.directives = new directives.Directives({ version });
+            if (this.directives) this.directives.yaml.version = version;
+            else this.directives = new directives.Directives({ version });
             opt = { merge: false, resolveKnownTags: true, schema: "core" };
             break;
           case null:
-            if (this.directives)
-              delete this.directives;
+            if (this.directives) delete this.directives;
             opt = null;
             break;
           default: {
             const sv = JSON.stringify(version);
-            throw new Error(`Expected '1.1', '1.2' or null as first argument, but found: ${sv}`);
+            throw new Error(
+              `Expected '1.1', '1.2' or null as first argument, but found: ${sv}`
+            );
           }
         }
-        if (options2.schema instanceof Object)
-          this.schema = options2.schema;
+        if (options2.schema instanceof Object) this.schema = options2.schema;
         else if (opt)
           this.schema = new Schema2.Schema(Object.assign(opt, options2));
         else
-          throw new Error(`With a null YAML version, the { schema: Schema } option is required`);
+          throw new Error(
+            `With a null YAML version, the { schema: Schema } option is required`
+          );
       }
-      toJS({ json: json2, jsonArg, mapAsMap, maxAliasCount, onAnchor, reviver } = {}) {
+      toJS({
+        json: json2,
+        jsonArg,
+        mapAsMap,
+        maxAliasCount,
+        onAnchor,
+        reviver,
+      } = {}) {
         const ctx = {
           anchors: /* @__PURE__ */ new Map(),
           doc: this,
           keep: !json2,
           mapAsMap: mapAsMap === true,
           mapKeyWarned: false,
-          maxAliasCount: typeof maxAliasCount === "number" ? maxAliasCount : 100,
-          stringify: stringify2.stringify
+          maxAliasCount:
+            typeof maxAliasCount === "number" ? maxAliasCount : 100,
+          stringify: stringify2.stringify,
         };
         const res = toJS.toJS(this.contents, jsonArg ?? "", ctx);
         if (typeof onAnchor === "function")
           for (const { count, res: res2 } of ctx.anchors.values())
             onAnchor(res2, count);
-        return typeof reviver === "function" ? applyReviver.applyReviver(reviver, { "": res }, "", res) : res;
+        return typeof reviver === "function"
+          ? applyReviver.applyReviver(reviver, { "": res }, "", res)
+          : res;
       }
       toJSON(jsonArg, onAnchor) {
         return this.toJS({ json: true, jsonArg, mapAsMap: false, onAnchor });
@@ -3539,20 +4007,24 @@ var require_Document = __commonJS({
       toString(options2 = {}) {
         if (this.errors.length > 0)
           throw new Error("Document with errors cannot be stringified");
-        if ("indent" in options2 && (!Number.isInteger(options2.indent) || Number(options2.indent) <= 0)) {
+        if (
+          "indent" in options2 &&
+          (!Number.isInteger(options2.indent) || Number(options2.indent) <= 0)
+        ) {
           const s2 = JSON.stringify(options2.indent);
-          throw new Error(`"indent" option must be a positive integer, not ${s2}`);
+          throw new Error(
+            `"indent" option must be a positive integer, not ${s2}`
+          );
         }
         return stringifyDocument.stringifyDocument(this, options2);
       }
     };
     function assertCollection(contents) {
-      if (Node.isCollection(contents))
-        return true;
+      if (Node.isCollection(contents)) return true;
       throw new Error("Expected a YAML collection as document contents");
     }
     exports.Document = Document;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/errors.js
@@ -3579,24 +4051,26 @@ var require_errors = __commonJS({
       }
     };
     var prettifyError = (src, lc) => (error) => {
-      if (error.pos[0] === -1)
-        return;
+      if (error.pos[0] === -1) return;
       error.linePos = error.pos.map((pos) => lc.linePos(pos));
       const { line, col } = error.linePos[0];
       error.message += ` at line ${line}, column ${col}`;
       let ci = col - 1;
-      let lineStr = src.substring(lc.lineStarts[line - 1], lc.lineStarts[line]).replace(/[\n\r]+$/, "");
+      let lineStr = src
+        .substring(lc.lineStarts[line - 1], lc.lineStarts[line])
+        .replace(/[\n\r]+$/, "");
       if (ci >= 60 && lineStr.length > 80) {
         const trimStart = Math.min(ci - 39, lineStr.length - 79);
         lineStr = "\u2026" + lineStr.substring(trimStart);
         ci -= trimStart - 1;
       }
-      if (lineStr.length > 80)
-        lineStr = lineStr.substring(0, 79) + "\u2026";
+      if (lineStr.length > 80) lineStr = lineStr.substring(0, 79) + "\u2026";
       if (line > 1 && /^ *$/.test(lineStr.substring(0, ci))) {
-        let prev = src.substring(lc.lineStarts[line - 2], lc.lineStarts[line - 1]);
-        if (prev.length > 80)
-          prev = prev.substring(0, 79) + "\u2026\n";
+        let prev = src.substring(
+          lc.lineStarts[line - 2],
+          lc.lineStarts[line - 1]
+        );
+        if (prev.length > 80) prev = prev.substring(0, 79) + "\u2026\n";
         lineStr = prev + lineStr;
       }
       if (/[^ ]/.test(lineStr)) {
@@ -3617,14 +4091,19 @@ ${pointer}
     exports.YAMLParseError = YAMLParseError;
     exports.YAMLWarning = YAMLWarning;
     exports.prettifyError = prettifyError;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-props.js
 var require_resolve_props = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-props.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-props.js"(
+    exports
+  ) {
     "use strict";
-    function resolveProps(tokens, { flow, indicator, next, offset, onError, startOnNewline }) {
+    function resolveProps(
+      tokens,
+      { flow, indicator, next, offset, onError, startOnNewline }
+    ) {
       let spaceBefore = false;
       let atNewline = startOnNewline;
       let hasSpace = startOnNewline;
@@ -3640,60 +4119,86 @@ var require_resolve_props = __commonJS({
       let start = null;
       for (const token of tokens) {
         if (reqSpace) {
-          if (token.type !== "space" && token.type !== "newline" && token.type !== "comma")
-            onError(token.offset, "MISSING_CHAR", "Tags and anchors must be separated from the next token by white space");
+          if (
+            token.type !== "space" &&
+            token.type !== "newline" &&
+            token.type !== "comma"
+          )
+            onError(
+              token.offset,
+              "MISSING_CHAR",
+              "Tags and anchors must be separated from the next token by white space"
+            );
           reqSpace = false;
         }
         switch (token.type) {
           case "space":
-            if (!flow && atNewline && indicator !== "doc-start" && token.source[0] === "	")
-              onError(token, "TAB_AS_INDENT", "Tabs are not allowed as indentation");
+            if (
+              !flow &&
+              atNewline &&
+              indicator !== "doc-start" &&
+              token.source[0] === "	"
+            )
+              onError(
+                token,
+                "TAB_AS_INDENT",
+                "Tabs are not allowed as indentation"
+              );
             hasSpace = true;
             break;
           case "comment": {
             if (!hasSpace)
-              onError(token, "MISSING_CHAR", "Comments must be separated from other tokens by white space characters");
+              onError(
+                token,
+                "MISSING_CHAR",
+                "Comments must be separated from other tokens by white space characters"
+              );
             const cb = token.source.substring(1) || " ";
-            if (!comment)
-              comment = cb;
-            else
-              comment += commentSep + cb;
+            if (!comment) comment = cb;
+            else comment += commentSep + cb;
             commentSep = "";
             atNewline = false;
             break;
           }
           case "newline":
             if (atNewline) {
-              if (comment)
-                comment += token.source;
-              else
-                spaceBefore = true;
-            } else
-              commentSep += token.source;
+              if (comment) comment += token.source;
+              else spaceBefore = true;
+            } else commentSep += token.source;
             atNewline = true;
             hasNewline = true;
-            if (anchor || tag)
-              hasNewlineAfterProp = true;
+            if (anchor || tag) hasNewlineAfterProp = true;
             hasSpace = true;
             break;
           case "anchor":
             if (anchor)
-              onError(token, "MULTIPLE_ANCHORS", "A node can have at most one anchor");
+              onError(
+                token,
+                "MULTIPLE_ANCHORS",
+                "A node can have at most one anchor"
+              );
             if (token.source.endsWith(":"))
-              onError(token.offset + token.source.length - 1, "BAD_ALIAS", "Anchor ending in : is ambiguous", true);
+              onError(
+                token.offset + token.source.length - 1,
+                "BAD_ALIAS",
+                "Anchor ending in : is ambiguous",
+                true
+              );
             anchor = token;
-            if (start === null)
-              start = token.offset;
+            if (start === null) start = token.offset;
             atNewline = false;
             hasSpace = false;
             reqSpace = true;
             break;
           case "tag": {
             if (tag)
-              onError(token, "MULTIPLE_TAGS", "A node can have at most one tag");
+              onError(
+                token,
+                "MULTIPLE_TAGS",
+                "A node can have at most one tag"
+              );
             tag = token;
-            if (start === null)
-              start = token.offset;
+            if (start === null) start = token.offset;
             atNewline = false;
             hasSpace = false;
             reqSpace = true;
@@ -3701,9 +4206,17 @@ var require_resolve_props = __commonJS({
           }
           case indicator:
             if (anchor || tag)
-              onError(token, "BAD_PROP_ORDER", `Anchors and tags must be after the ${token.source} indicator`);
+              onError(
+                token,
+                "BAD_PROP_ORDER",
+                `Anchors and tags must be after the ${token.source} indicator`
+              );
             if (found)
-              onError(token, "UNEXPECTED_TOKEN", `Unexpected ${token.source} in ${flow ?? "collection"}`);
+              onError(
+                token,
+                "UNEXPECTED_TOKEN",
+                `Unexpected ${token.source} in ${flow ?? "collection"}`
+              );
             found = token;
             atNewline = false;
             hasSpace = false;
@@ -3718,15 +4231,30 @@ var require_resolve_props = __commonJS({
               break;
             }
           default:
-            onError(token, "UNEXPECTED_TOKEN", `Unexpected ${token.type} token`);
+            onError(
+              token,
+              "UNEXPECTED_TOKEN",
+              `Unexpected ${token.type} token`
+            );
             atNewline = false;
             hasSpace = false;
         }
       }
       const last = tokens[tokens.length - 1];
       const end = last ? last.offset + last.source.length : offset;
-      if (reqSpace && next && next.type !== "space" && next.type !== "newline" && next.type !== "comma" && (next.type !== "scalar" || next.source !== ""))
-        onError(next.offset, "MISSING_CHAR", "Tags and anchors must be separated from the next token by white space");
+      if (
+        reqSpace &&
+        next &&
+        next.type !== "space" &&
+        next.type !== "newline" &&
+        next.type !== "comma" &&
+        (next.type !== "scalar" || next.source !== "")
+      )
+        onError(
+          next.offset,
+          "MISSING_CHAR",
+          "Tags and anchors must be separated from the next token by white space"
+        );
       return {
         comma,
         found,
@@ -3737,42 +4265,36 @@ var require_resolve_props = __commonJS({
         anchor,
         tag,
         end,
-        start: start ?? end
+        start: start ?? end,
       };
     }
     exports.resolveProps = resolveProps;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/util-contains-newline.js
 var require_util_contains_newline = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/util-contains-newline.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/util-contains-newline.js"(
+    exports
+  ) {
     "use strict";
     function containsNewline(key) {
-      if (!key)
-        return null;
+      if (!key) return null;
       switch (key.type) {
         case "alias":
         case "scalar":
         case "double-quoted-scalar":
         case "single-quoted-scalar":
-          if (key.source.includes("\n"))
-            return true;
+          if (key.source.includes("\n")) return true;
           if (key.end) {
-            for (const st of key.end)
-              if (st.type === "newline")
-                return true;
+            for (const st of key.end) if (st.type === "newline") return true;
           }
           return false;
         case "flow-collection":
           for (const it of key.items) {
-            for (const st of it.start)
-              if (st.type === "newline")
-                return true;
+            for (const st of it.start) if (st.type === "newline") return true;
             if (it.sep) {
-              for (const st of it.sep)
-                if (st.type === "newline")
-                  return true;
+              for (const st of it.sep) if (st.type === "newline") return true;
             }
             if (containsNewline(it.key) || containsNewline(it.value))
               return true;
@@ -3783,46 +4305,63 @@ var require_util_contains_newline = __commonJS({
       }
     }
     exports.containsNewline = containsNewline;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/util-flow-indent-check.js
 var require_util_flow_indent_check = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/util-flow-indent-check.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/util-flow-indent-check.js"(
+    exports
+  ) {
     "use strict";
     var utilContainsNewline = require_util_contains_newline();
     function flowIndentCheck(indent2, fc, onError) {
       if ((fc == null ? void 0 : fc.type) === "flow-collection") {
         const end = fc.end[0];
-        if (end.indent === indent2 && (end.source === "]" || end.source === "}") && utilContainsNewline.containsNewline(fc)) {
+        if (
+          end.indent === indent2 &&
+          (end.source === "]" || end.source === "}") &&
+          utilContainsNewline.containsNewline(fc)
+        ) {
           const msg = "Flow end indicator should be more indented than parent";
           onError(end, "BAD_INDENT", msg, true);
         }
       }
     }
     exports.flowIndentCheck = flowIndentCheck;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/util-map-includes.js
 var require_util_map_includes = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/util-map-includes.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/util-map-includes.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     function mapIncludes(ctx, items, search2) {
       const { uniqueKeys } = ctx.options;
-      if (uniqueKeys === false)
-        return false;
-      const isEqual = typeof uniqueKeys === "function" ? uniqueKeys : (a, b) => a === b || Node.isScalar(a) && Node.isScalar(b) && a.value === b.value && !(a.value === "<<" && ctx.schema.merge);
+      if (uniqueKeys === false) return false;
+      const isEqual =
+        typeof uniqueKeys === "function"
+          ? uniqueKeys
+          : (a, b) =>
+              a === b ||
+              (Node.isScalar(a) &&
+                Node.isScalar(b) &&
+                a.value === b.value &&
+                !(a.value === "<<" && ctx.schema.merge));
       return items.some((pair) => isEqual(pair.key, search2));
     }
     exports.mapIncludes = mapIncludes;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-block-map.js
 var require_resolve_block_map = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-block-map.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-block-map.js"(
+    exports
+  ) {
     "use strict";
     var Pair = require_Pair();
     var YAMLMap = require_YAMLMap();
@@ -3831,11 +4370,15 @@ var require_resolve_block_map = __commonJS({
     var utilFlowIndentCheck = require_util_flow_indent_check();
     var utilMapIncludes = require_util_map_includes();
     var startColMsg = "All mapping items must start at the same column";
-    function resolveBlockMap({ composeNode, composeEmptyNode }, ctx, bm, onError) {
+    function resolveBlockMap(
+      { composeNode, composeEmptyNode },
+      ctx,
+      bm,
+      onError
+    ) {
       var _a3;
       const map = new YAMLMap.YAMLMap(ctx.schema);
-      if (ctx.atRoot)
-        ctx.atRoot = false;
+      if (ctx.atRoot) ctx.atRoot = false;
       let offset = bm.offset;
       let commentEnd = null;
       for (const collItem of bm.items) {
@@ -3845,34 +4388,47 @@ var require_resolve_block_map = __commonJS({
           next: key ?? (sep == null ? void 0 : sep[0]),
           offset,
           onError,
-          startOnNewline: true
+          startOnNewline: true,
         });
         const implicitKey = !keyProps.found;
         if (implicitKey) {
           if (key) {
             if (key.type === "block-seq")
-              onError(offset, "BLOCK_AS_IMPLICIT_KEY", "A block sequence may not be used as an implicit map key");
+              onError(
+                offset,
+                "BLOCK_AS_IMPLICIT_KEY",
+                "A block sequence may not be used as an implicit map key"
+              );
             else if ("indent" in key && key.indent !== bm.indent)
               onError(offset, "BAD_INDENT", startColMsg);
           }
           if (!keyProps.anchor && !keyProps.tag && !sep) {
             commentEnd = keyProps.end;
             if (keyProps.comment) {
-              if (map.comment)
-                map.comment += "\n" + keyProps.comment;
-              else
-                map.comment = keyProps.comment;
+              if (map.comment) map.comment += "\n" + keyProps.comment;
+              else map.comment = keyProps.comment;
             }
             continue;
           }
-          if (keyProps.hasNewlineAfterProp || utilContainsNewline.containsNewline(key)) {
-            onError(key ?? start[start.length - 1], "MULTILINE_IMPLICIT_KEY", "Implicit keys need to be on a single line");
+          if (
+            keyProps.hasNewlineAfterProp ||
+            utilContainsNewline.containsNewline(key)
+          ) {
+            onError(
+              key ?? start[start.length - 1],
+              "MULTILINE_IMPLICIT_KEY",
+              "Implicit keys need to be on a single line"
+            );
           }
-        } else if (((_a3 = keyProps.found) == null ? void 0 : _a3.indent) !== bm.indent) {
+        } else if (
+          ((_a3 = keyProps.found) == null ? void 0 : _a3.indent) !== bm.indent
+        ) {
           onError(offset, "BAD_INDENT", startColMsg);
         }
         const keyStart = keyProps.end;
-        const keyNode = key ? composeNode(ctx, key, keyProps, onError) : composeEmptyNode(ctx, keyStart, start, null, keyProps, onError);
+        const keyNode = key
+          ? composeNode(ctx, key, keyProps, onError)
+          : composeEmptyNode(ctx, keyStart, start, null, keyProps, onError);
         if (ctx.schema.compat)
           utilFlowIndentCheck.flowIndentCheck(bm.indent, key, onError);
         if (utilMapIncludes.mapIncludes(ctx, map.items, keyNode))
@@ -3882,36 +4438,52 @@ var require_resolve_block_map = __commonJS({
           next: value2,
           offset: keyNode.range[2],
           onError,
-          startOnNewline: !key || key.type === "block-scalar"
+          startOnNewline: !key || key.type === "block-scalar",
         });
         offset = valueProps.end;
         if (valueProps.found) {
           if (implicitKey) {
-            if ((value2 == null ? void 0 : value2.type) === "block-map" && !valueProps.hasNewline)
-              onError(offset, "BLOCK_AS_IMPLICIT_KEY", "Nested mappings are not allowed in compact mappings");
-            if (ctx.options.strict && keyProps.start < valueProps.found.offset - 1024)
-              onError(keyNode.range, "KEY_OVER_1024_CHARS", "The : indicator must be at most 1024 chars after the start of an implicit block mapping key");
+            if (
+              (value2 == null ? void 0 : value2.type) === "block-map" &&
+              !valueProps.hasNewline
+            )
+              onError(
+                offset,
+                "BLOCK_AS_IMPLICIT_KEY",
+                "Nested mappings are not allowed in compact mappings"
+              );
+            if (
+              ctx.options.strict &&
+              keyProps.start < valueProps.found.offset - 1024
+            )
+              onError(
+                keyNode.range,
+                "KEY_OVER_1024_CHARS",
+                "The : indicator must be at most 1024 chars after the start of an implicit block mapping key"
+              );
           }
-          const valueNode = value2 ? composeNode(ctx, value2, valueProps, onError) : composeEmptyNode(ctx, offset, sep, null, valueProps, onError);
+          const valueNode = value2
+            ? composeNode(ctx, value2, valueProps, onError)
+            : composeEmptyNode(ctx, offset, sep, null, valueProps, onError);
           if (ctx.schema.compat)
             utilFlowIndentCheck.flowIndentCheck(bm.indent, value2, onError);
           offset = valueNode.range[2];
           const pair = new Pair.Pair(keyNode, valueNode);
-          if (ctx.options.keepSourceTokens)
-            pair.srcToken = collItem;
+          if (ctx.options.keepSourceTokens) pair.srcToken = collItem;
           map.items.push(pair);
         } else {
           if (implicitKey)
-            onError(keyNode.range, "MISSING_CHAR", "Implicit map keys need to be followed by map values");
+            onError(
+              keyNode.range,
+              "MISSING_CHAR",
+              "Implicit map keys need to be followed by map values"
+            );
           if (valueProps.comment) {
-            if (keyNode.comment)
-              keyNode.comment += "\n" + valueProps.comment;
-            else
-              keyNode.comment = valueProps.comment;
+            if (keyNode.comment) keyNode.comment += "\n" + valueProps.comment;
+            else keyNode.comment = valueProps.comment;
           }
           const pair = new Pair.Pair(keyNode);
-          if (ctx.options.keepSourceTokens)
-            pair.srcToken = collItem;
+          if (ctx.options.keepSourceTokens) pair.srcToken = collItem;
           map.items.push(pair);
         }
       }
@@ -3921,20 +4493,26 @@ var require_resolve_block_map = __commonJS({
       return map;
     }
     exports.resolveBlockMap = resolveBlockMap;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-block-seq.js
 var require_resolve_block_seq = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-block-seq.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-block-seq.js"(
+    exports
+  ) {
     "use strict";
     var YAMLSeq = require_YAMLSeq();
     var resolveProps = require_resolve_props();
     var utilFlowIndentCheck = require_util_flow_indent_check();
-    function resolveBlockSeq({ composeNode, composeEmptyNode }, ctx, bs, onError) {
+    function resolveBlockSeq(
+      { composeNode, composeEmptyNode },
+      ctx,
+      bs,
+      onError
+    ) {
       const seq = new YAMLSeq.YAMLSeq(ctx.schema);
-      if (ctx.atRoot)
-        ctx.atRoot = false;
+      if (ctx.atRoot) ctx.atRoot = false;
       let offset = bs.offset;
       let commentEnd = null;
       for (const { start, value: value2 } of bs.items) {
@@ -3943,22 +4521,31 @@ var require_resolve_block_seq = __commonJS({
           next: value2,
           offset,
           onError,
-          startOnNewline: true
+          startOnNewline: true,
         });
         if (!props.found) {
           if (props.anchor || props.tag || value2) {
             if (value2 && value2.type === "block-seq")
-              onError(props.end, "BAD_INDENT", "All sequence items must start at the same column");
+              onError(
+                props.end,
+                "BAD_INDENT",
+                "All sequence items must start at the same column"
+              );
             else
-              onError(offset, "MISSING_CHAR", "Sequence item without - indicator");
+              onError(
+                offset,
+                "MISSING_CHAR",
+                "Sequence item without - indicator"
+              );
           } else {
             commentEnd = props.end;
-            if (props.comment)
-              seq.comment = props.comment;
+            if (props.comment) seq.comment = props.comment;
             continue;
           }
         }
-        const node = value2 ? composeNode(ctx, value2, props, onError) : composeEmptyNode(ctx, props.end, start, null, props, onError);
+        const node = value2
+          ? composeNode(ctx, value2, props, onError)
+          : composeEmptyNode(ctx, props.end, start, null, props, onError);
         if (ctx.schema.compat)
           utilFlowIndentCheck.flowIndentCheck(bs.indent, value2, onError);
         offset = node.range[2];
@@ -3968,12 +4555,14 @@ var require_resolve_block_seq = __commonJS({
       return seq;
     }
     exports.resolveBlockSeq = resolveBlockSeq;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-end.js
 var require_resolve_end = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-end.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-end.js"(
+    exports
+  ) {
     "use strict";
     function resolveEnd(end, offset, reqSpace, onError) {
       let comment = "";
@@ -3988,22 +4577,27 @@ var require_resolve_end = __commonJS({
               break;
             case "comment": {
               if (reqSpace && !hasSpace)
-                onError(token, "MISSING_CHAR", "Comments must be separated from other tokens by white space characters");
+                onError(
+                  token,
+                  "MISSING_CHAR",
+                  "Comments must be separated from other tokens by white space characters"
+                );
               const cb = source.substring(1) || " ";
-              if (!comment)
-                comment = cb;
-              else
-                comment += sep + cb;
+              if (!comment) comment = cb;
+              else comment += sep + cb;
               sep = "";
               break;
             }
             case "newline":
-              if (comment)
-                sep += source;
+              if (comment) sep += source;
               hasSpace = true;
               break;
             default:
-              onError(token, "UNEXPECTED_TOKEN", `Unexpected ${type} at node end`);
+              onError(
+                token,
+                "UNEXPECTED_TOKEN",
+                `Unexpected ${type} at node end`
+              );
           }
           offset += source.length;
         }
@@ -4011,12 +4605,14 @@ var require_resolve_end = __commonJS({
       return { comment, offset };
     }
     exports.resolveEnd = resolveEnd;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-flow-collection.js
 var require_resolve_flow_collection = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-flow-collection.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-flow-collection.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     var Pair = require_Pair();
@@ -4027,15 +4623,22 @@ var require_resolve_flow_collection = __commonJS({
     var utilContainsNewline = require_util_contains_newline();
     var utilMapIncludes = require_util_map_includes();
     var blockMsg = "Block collections are not allowed within flow collections";
-    var isBlock = (token) => token && (token.type === "block-map" || token.type === "block-seq");
-    function resolveFlowCollection({ composeNode, composeEmptyNode }, ctx, fc, onError) {
+    var isBlock = (token) =>
+      token && (token.type === "block-map" || token.type === "block-seq");
+    function resolveFlowCollection(
+      { composeNode, composeEmptyNode },
+      ctx,
+      fc,
+      onError
+    ) {
       const isMap = fc.start.source === "{";
       const fcName = isMap ? "flow map" : "flow sequence";
-      const coll = isMap ? new YAMLMap.YAMLMap(ctx.schema) : new YAMLSeq.YAMLSeq(ctx.schema);
+      const coll = isMap
+        ? new YAMLMap.YAMLMap(ctx.schema)
+        : new YAMLSeq.YAMLSeq(ctx.schema);
       coll.flow = true;
       const atRoot = ctx.atRoot;
-      if (atRoot)
-        ctx.atRoot = false;
+      if (atRoot) ctx.atRoot = false;
       let offset = fc.offset + fc.start.source.length;
       for (let i = 0; i < fc.items.length; ++i) {
         const collItem = fc.items[i];
@@ -4046,24 +4649,34 @@ var require_resolve_flow_collection = __commonJS({
           next: key ?? (sep == null ? void 0 : sep[0]),
           offset,
           onError,
-          startOnNewline: false
+          startOnNewline: false,
         });
         if (!props.found) {
           if (!props.anchor && !props.tag && !sep && !value2) {
             if (i === 0 && props.comma)
-              onError(props.comma, "UNEXPECTED_TOKEN", `Unexpected , in ${fcName}`);
+              onError(
+                props.comma,
+                "UNEXPECTED_TOKEN",
+                `Unexpected , in ${fcName}`
+              );
             else if (i < fc.items.length - 1)
-              onError(props.start, "UNEXPECTED_TOKEN", `Unexpected empty item in ${fcName}`);
+              onError(
+                props.start,
+                "UNEXPECTED_TOKEN",
+                `Unexpected empty item in ${fcName}`
+              );
             if (props.comment) {
-              if (coll.comment)
-                coll.comment += "\n" + props.comment;
-              else
-                coll.comment = props.comment;
+              if (coll.comment) coll.comment += "\n" + props.comment;
+              else coll.comment = props.comment;
             }
             offset = props.end;
             continue;
           }
-          if (!isMap && ctx.options.strict && utilContainsNewline.containsNewline(key))
+          if (
+            !isMap &&
+            ctx.options.strict &&
+            utilContainsNewline.containsNewline(key)
+          )
             onError(
               key,
               "MULTILINE_IMPLICIT_KEY",
@@ -4072,89 +4685,121 @@ var require_resolve_flow_collection = __commonJS({
         }
         if (i === 0) {
           if (props.comma)
-            onError(props.comma, "UNEXPECTED_TOKEN", `Unexpected , in ${fcName}`);
+            onError(
+              props.comma,
+              "UNEXPECTED_TOKEN",
+              `Unexpected , in ${fcName}`
+            );
         } else {
           if (!props.comma)
-            onError(props.start, "MISSING_CHAR", `Missing , between ${fcName} items`);
+            onError(
+              props.start,
+              "MISSING_CHAR",
+              `Missing , between ${fcName} items`
+            );
           if (props.comment) {
             let prevItemComment = "";
-            loop:
-              for (const st of start) {
-                switch (st.type) {
-                  case "comma":
-                  case "space":
-                    break;
-                  case "comment":
-                    prevItemComment = st.source.substring(1);
-                    break loop;
-                  default:
-                    break loop;
-                }
+            loop: for (const st of start) {
+              switch (st.type) {
+                case "comma":
+                case "space":
+                  break;
+                case "comment":
+                  prevItemComment = st.source.substring(1);
+                  break loop;
+                default:
+                  break loop;
               }
+            }
             if (prevItemComment) {
               let prev = coll.items[coll.items.length - 1];
-              if (Node.isPair(prev))
-                prev = prev.value ?? prev.key;
-              if (prev.comment)
-                prev.comment += "\n" + prevItemComment;
-              else
-                prev.comment = prevItemComment;
-              props.comment = props.comment.substring(prevItemComment.length + 1);
+              if (Node.isPair(prev)) prev = prev.value ?? prev.key;
+              if (prev.comment) prev.comment += "\n" + prevItemComment;
+              else prev.comment = prevItemComment;
+              props.comment = props.comment.substring(
+                prevItemComment.length + 1
+              );
             }
           }
         }
         if (!isMap && !sep && !props.found) {
-          const valueNode = value2 ? composeNode(ctx, value2, props, onError) : composeEmptyNode(ctx, props.end, sep, null, props, onError);
+          const valueNode = value2
+            ? composeNode(ctx, value2, props, onError)
+            : composeEmptyNode(ctx, props.end, sep, null, props, onError);
           coll.items.push(valueNode);
           offset = valueNode.range[2];
           if (isBlock(value2))
             onError(valueNode.range, "BLOCK_IN_FLOW", blockMsg);
         } else {
           const keyStart = props.end;
-          const keyNode = key ? composeNode(ctx, key, props, onError) : composeEmptyNode(ctx, keyStart, start, null, props, onError);
-          if (isBlock(key))
-            onError(keyNode.range, "BLOCK_IN_FLOW", blockMsg);
+          const keyNode = key
+            ? composeNode(ctx, key, props, onError)
+            : composeEmptyNode(ctx, keyStart, start, null, props, onError);
+          if (isBlock(key)) onError(keyNode.range, "BLOCK_IN_FLOW", blockMsg);
           const valueProps = resolveProps.resolveProps(sep ?? [], {
             flow: fcName,
             indicator: "map-value-ind",
             next: value2,
             offset: keyNode.range[2],
             onError,
-            startOnNewline: false
+            startOnNewline: false,
           });
           if (valueProps.found) {
             if (!isMap && !props.found && ctx.options.strict) {
               if (sep)
                 for (const st of sep) {
-                  if (st === valueProps.found)
-                    break;
+                  if (st === valueProps.found) break;
                   if (st.type === "newline") {
-                    onError(st, "MULTILINE_IMPLICIT_KEY", "Implicit keys of flow sequence pairs need to be on a single line");
+                    onError(
+                      st,
+                      "MULTILINE_IMPLICIT_KEY",
+                      "Implicit keys of flow sequence pairs need to be on a single line"
+                    );
                     break;
                   }
                 }
               if (props.start < valueProps.found.offset - 1024)
-                onError(valueProps.found, "KEY_OVER_1024_CHARS", "The : indicator must be at most 1024 chars after the start of an implicit flow sequence key");
+                onError(
+                  valueProps.found,
+                  "KEY_OVER_1024_CHARS",
+                  "The : indicator must be at most 1024 chars after the start of an implicit flow sequence key"
+                );
             }
           } else if (value2) {
             if ("source" in value2 && value2.source && value2.source[0] === ":")
-              onError(value2, "MISSING_CHAR", `Missing space after : in ${fcName}`);
+              onError(
+                value2,
+                "MISSING_CHAR",
+                `Missing space after : in ${fcName}`
+              );
             else
-              onError(valueProps.start, "MISSING_CHAR", `Missing , or : between ${fcName} items`);
+              onError(
+                valueProps.start,
+                "MISSING_CHAR",
+                `Missing , or : between ${fcName} items`
+              );
           }
-          const valueNode = value2 ? composeNode(ctx, value2, valueProps, onError) : valueProps.found ? composeEmptyNode(ctx, valueProps.end, sep, null, valueProps, onError) : null;
+          const valueNode = value2
+            ? composeNode(ctx, value2, valueProps, onError)
+            : valueProps.found
+            ? composeEmptyNode(
+                ctx,
+                valueProps.end,
+                sep,
+                null,
+                valueProps,
+                onError
+              )
+            : null;
           if (valueNode) {
             if (isBlock(value2))
               onError(valueNode.range, "BLOCK_IN_FLOW", blockMsg);
           } else if (valueProps.comment) {
-            if (keyNode.comment)
-              keyNode.comment += "\n" + valueProps.comment;
-            else
-              keyNode.comment = valueProps.comment;
+            if (keyNode.comment) keyNode.comment += "\n" + valueProps.comment;
+            else keyNode.comment = valueProps.comment;
           }
           const pair = new Pair.Pair(keyNode, valueNode);
-          if (ctx.options.keepSourceTokens)
-            pair.srcToken = collItem;
+          if (ctx.options.keepSourceTokens) pair.srcToken = collItem;
           if (isMap) {
             const map = coll;
             if (utilMapIncludes.mapIncludes(ctx, map.items, keyNode))
@@ -4172,22 +4817,25 @@ var require_resolve_flow_collection = __commonJS({
       const expectedEnd = isMap ? "}" : "]";
       const [ce, ...ee] = fc.end;
       let cePos = offset;
-      if (ce && ce.source === expectedEnd)
-        cePos = ce.offset + ce.source.length;
+      if (ce && ce.source === expectedEnd) cePos = ce.offset + ce.source.length;
       else {
         const name = fcName[0].toUpperCase() + fcName.substring(1);
-        const msg = atRoot ? `${name} must end with a ${expectedEnd}` : `${name} in block collection must be sufficiently indented and end with a ${expectedEnd}`;
+        const msg = atRoot
+          ? `${name} must end with a ${expectedEnd}`
+          : `${name} in block collection must be sufficiently indented and end with a ${expectedEnd}`;
         onError(offset, atRoot ? "MISSING_CHAR" : "BAD_INDENT", msg);
-        if (ce && ce.source.length !== 1)
-          ee.unshift(ce);
+        if (ce && ce.source.length !== 1) ee.unshift(ce);
       }
       if (ee.length > 0) {
-        const end = resolveEnd.resolveEnd(ee, cePos, ctx.options.strict, onError);
+        const end = resolveEnd.resolveEnd(
+          ee,
+          cePos,
+          ctx.options.strict,
+          onError
+        );
         if (end.comment) {
-          if (coll.comment)
-            coll.comment += "\n" + end.comment;
-          else
-            coll.comment = end.comment;
+          if (coll.comment) coll.comment += "\n" + end.comment;
+          else coll.comment = end.comment;
         }
         coll.range = [fc.offset, cePos, end.offset];
       } else {
@@ -4196,12 +4844,14 @@ var require_resolve_flow_collection = __commonJS({
       return coll;
     }
     exports.resolveFlowCollection = resolveFlowCollection;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/compose-collection.js
 var require_compose_collection = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/compose-collection.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/compose-collection.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     var Scalar = require_Scalar();
@@ -4220,71 +4870,101 @@ var require_compose_collection = __commonJS({
           break;
         }
         case "flow-collection": {
-          coll = resolveFlowCollection.resolveFlowCollection(CN, ctx, token, onError);
+          coll = resolveFlowCollection.resolveFlowCollection(
+            CN,
+            ctx,
+            token,
+            onError
+          );
           break;
         }
       }
-      if (!tagToken)
-        return coll;
-      const tagName = ctx.directives.tagName(tagToken.source, (msg) => onError(tagToken, "TAG_RESOLVE_FAILED", msg));
-      if (!tagName)
-        return coll;
+      if (!tagToken) return coll;
+      const tagName = ctx.directives.tagName(tagToken.source, (msg) =>
+        onError(tagToken, "TAG_RESOLVE_FAILED", msg)
+      );
+      if (!tagName) return coll;
       const Coll = coll.constructor;
       if (tagName === "!" || tagName === Coll.tagName) {
         coll.tag = Coll.tagName;
         return coll;
       }
       const expType = Node.isMap(coll) ? "map" : "seq";
-      let tag = ctx.schema.tags.find((t) => t.collection === expType && t.tag === tagName);
+      let tag = ctx.schema.tags.find(
+        (t) => t.collection === expType && t.tag === tagName
+      );
       if (!tag) {
         const kt = ctx.schema.knownTags[tagName];
         if (kt && kt.collection === expType) {
           ctx.schema.tags.push(Object.assign({}, kt, { default: false }));
           tag = kt;
         } else {
-          onError(tagToken, "TAG_RESOLVE_FAILED", `Unresolved tag: ${tagName}`, true);
+          onError(
+            tagToken,
+            "TAG_RESOLVE_FAILED",
+            `Unresolved tag: ${tagName}`,
+            true
+          );
           coll.tag = tagName;
           return coll;
         }
       }
-      const res = tag.resolve(coll, (msg) => onError(tagToken, "TAG_RESOLVE_FAILED", msg), ctx.options);
+      const res = tag.resolve(
+        coll,
+        (msg) => onError(tagToken, "TAG_RESOLVE_FAILED", msg),
+        ctx.options
+      );
       const node = Node.isNode(res) ? res : new Scalar.Scalar(res);
       node.range = coll.range;
       node.tag = tagName;
-      if (tag == null ? void 0 : tag.format)
-        node.format = tag.format;
+      if (tag == null ? void 0 : tag.format) node.format = tag.format;
       return node;
     }
     exports.composeCollection = composeCollection;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-block-scalar.js
 var require_resolve_block_scalar = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-block-scalar.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-block-scalar.js"(
+    exports
+  ) {
     "use strict";
     var Scalar = require_Scalar();
     function resolveBlockScalar(scalar, strict, onError) {
       const start = scalar.offset;
       const header = parseBlockScalarHeader(scalar, strict, onError);
       if (!header)
-        return { value: "", type: null, comment: "", range: [start, start, start] };
-      const type = header.mode === ">" ? Scalar.Scalar.BLOCK_FOLDED : Scalar.Scalar.BLOCK_LITERAL;
+        return {
+          value: "",
+          type: null,
+          comment: "",
+          range: [start, start, start],
+        };
+      const type =
+        header.mode === ">"
+          ? Scalar.Scalar.BLOCK_FOLDED
+          : Scalar.Scalar.BLOCK_LITERAL;
       const lines = scalar.source ? splitLines(scalar.source) : [];
       let chompStart = lines.length;
       for (let i = lines.length - 1; i >= 0; --i) {
         const content = lines[i][1];
-        if (content === "" || content === "\r")
-          chompStart = i;
-        else
-          break;
+        if (content === "" || content === "\r") chompStart = i;
+        else break;
       }
       if (chompStart === 0) {
-        const value3 = header.chomp === "+" && lines.length > 0 ? "\n".repeat(Math.max(1, lines.length - 1)) : "";
+        const value3 =
+          header.chomp === "+" && lines.length > 0
+            ? "\n".repeat(Math.max(1, lines.length - 1))
+            : "";
         let end2 = start + header.length;
-        if (scalar.source)
-          end2 += scalar.source.length;
-        return { value: value3, type, comment: header.comment, range: [start, end2, end2] };
+        if (scalar.source) end2 += scalar.source.length;
+        return {
+          value: value3,
+          type,
+          comment: header.comment,
+          range: [start, end2, end2],
+        };
       }
       let trimIndent = scalar.indent + header.indent;
       let offset = scalar.offset + header.length;
@@ -4296,19 +4976,18 @@ var require_resolve_block_scalar = __commonJS({
             trimIndent = indent2.length;
         } else {
           if (indent2.length < trimIndent) {
-            const message = "Block scalars with more-indented leading empty lines must use an explicit indentation indicator";
+            const message =
+              "Block scalars with more-indented leading empty lines must use an explicit indentation indicator";
             onError(offset + indent2.length, "MISSING_CHAR", message);
           }
-          if (header.indent === 0)
-            trimIndent = indent2.length;
+          if (header.indent === 0) trimIndent = indent2.length;
           contentStart = i;
           break;
         }
         offset += indent2.length + content.length + 1;
       }
       for (let i = lines.length - 1; i >= chompStart; --i) {
-        if (lines[i][0].length > trimIndent)
-          chompStart = i + 1;
+        if (lines[i][0].length > trimIndent) chompStart = i + 1;
       }
       let value2 = "";
       let sep = "";
@@ -4319,30 +4998,31 @@ var require_resolve_block_scalar = __commonJS({
         let [indent2, content] = lines[i];
         offset += indent2.length + content.length + 1;
         const crlf = content[content.length - 1] === "\r";
-        if (crlf)
-          content = content.slice(0, -1);
+        if (crlf) content = content.slice(0, -1);
         if (content && indent2.length < trimIndent) {
-          const src = header.indent ? "explicit indentation indicator" : "first line";
+          const src = header.indent
+            ? "explicit indentation indicator"
+            : "first line";
           const message = `Block scalar lines must not be less indented than their ${src}`;
-          onError(offset - content.length - (crlf ? 2 : 1), "BAD_INDENT", message);
+          onError(
+            offset - content.length - (crlf ? 2 : 1),
+            "BAD_INDENT",
+            message
+          );
           indent2 = "";
         }
         if (type === Scalar.Scalar.BLOCK_LITERAL) {
           value2 += sep + indent2.slice(trimIndent) + content;
           sep = "\n";
         } else if (indent2.length > trimIndent || content[0] === "	") {
-          if (sep === " ")
-            sep = "\n";
-          else if (!prevMoreIndented && sep === "\n")
-            sep = "\n\n";
+          if (sep === " ") sep = "\n";
+          else if (!prevMoreIndented && sep === "\n") sep = "\n\n";
           value2 += sep + indent2.slice(trimIndent) + content;
           sep = "\n";
           prevMoreIndented = true;
         } else if (content === "") {
-          if (sep === "\n")
-            value2 += "\n";
-          else
-            sep = "\n";
+          if (sep === "\n") value2 += "\n";
+          else sep = "\n";
         } else {
           value2 += sep + content;
           sep = " ";
@@ -4355,14 +5035,18 @@ var require_resolve_block_scalar = __commonJS({
         case "+":
           for (let i = chompStart; i < lines.length; ++i)
             value2 += "\n" + lines[i][0].slice(trimIndent);
-          if (value2[value2.length - 1] !== "\n")
-            value2 += "\n";
+          if (value2[value2.length - 1] !== "\n") value2 += "\n";
           break;
         default:
           value2 += "\n";
       }
       const end = start + header.length + scalar.source.length;
-      return { value: value2, type, comment: header.comment, range: [start, end, end] };
+      return {
+        value: value2,
+        type,
+        comment: header.comment,
+        range: [start, end, end],
+      };
     }
     function parseBlockScalarHeader({ offset, props }, strict, onError) {
       if (props[0].type !== "block-scalar-header") {
@@ -4376,18 +5060,19 @@ var require_resolve_block_scalar = __commonJS({
       let error = -1;
       for (let i = 1; i < source.length; ++i) {
         const ch = source[i];
-        if (!chomp && (ch === "-" || ch === "+"))
-          chomp = ch;
+        if (!chomp && (ch === "-" || ch === "+")) chomp = ch;
         else {
           const n = Number(ch);
-          if (!indent2 && n)
-            indent2 = n;
-          else if (error === -1)
-            error = offset + i;
+          if (!indent2 && n) indent2 = n;
+          else if (error === -1) error = offset + i;
         }
       }
       if (error !== -1)
-        onError(error, "UNEXPECTED_TOKEN", `Block scalar header includes extra characters: ${source}`);
+        onError(
+          error,
+          "UNEXPECTED_TOKEN",
+          `Block scalar header includes extra characters: ${source}`
+        );
       let hasSpace = false;
       let comment = "";
       let length = source.length;
@@ -4401,7 +5086,8 @@ var require_resolve_block_scalar = __commonJS({
             break;
           case "comment":
             if (strict && !hasSpace) {
-              const message = "Comments must be separated from other tokens by white space characters";
+              const message =
+                "Comments must be separated from other tokens by white space characters";
               onError(token, "MISSING_CHAR", message);
             }
             length += token.source.length;
@@ -4415,8 +5101,7 @@ var require_resolve_block_scalar = __commonJS({
             const message = `Unexpected token in block scalar header: ${token.type}`;
             onError(token, "UNEXPECTED_TOKEN", message);
             const ts = token.source;
-            if (ts && typeof ts === "string")
-              length += ts.length;
+            if (ts && typeof ts === "string") length += ts.length;
           }
         }
       }
@@ -4426,19 +5111,23 @@ var require_resolve_block_scalar = __commonJS({
       const split = source.split(/\n( *)/);
       const first = split[0];
       const m = first.match(/^( *)/);
-      const line0 = (m == null ? void 0 : m[1]) ? [m[1], first.slice(m[1].length)] : ["", first];
+      const line0 = (m == null ? void 0 : m[1])
+        ? [m[1], first.slice(m[1].length)]
+        : ["", first];
       const lines = [line0];
       for (let i = 1; i < split.length; i += 2)
         lines.push([split[i], split[i + 1]]);
       return lines;
     }
     exports.resolveBlockScalar = resolveBlockScalar;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-flow-scalar.js
 var require_resolve_flow_scalar = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-flow-scalar.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/resolve-flow-scalar.js"(
+    exports
+  ) {
     "use strict";
     var Scalar = require_Scalar();
     var resolveEnd = require_resolve_end();
@@ -4461,12 +5150,16 @@ var require_resolve_flow_scalar = __commonJS({
           value2 = doubleQuotedValue(source, _onError);
           break;
         default:
-          onError(scalar, "UNEXPECTED_TOKEN", `Expected a flow scalar value, but found: ${type}`);
+          onError(
+            scalar,
+            "UNEXPECTED_TOKEN",
+            `Expected a flow scalar value, but found: ${type}`
+          );
           return {
             value: "",
             type: null,
             comment: "",
-            range: [offset, offset + source.length, offset + source.length]
+            range: [offset, offset + source.length, offset + source.length],
           };
       }
       const valueEnd = offset + source.length;
@@ -4475,7 +5168,7 @@ var require_resolve_flow_scalar = __commonJS({
         value: value2,
         type: _type,
         comment: re.comment,
-        range: [offset, valueEnd, re.offset]
+        range: [offset, valueEnd, re.offset],
       };
     }
     function plainValue(source, onError) {
@@ -4502,7 +5195,11 @@ var require_resolve_flow_scalar = __commonJS({
         }
       }
       if (badChar)
-        onError(0, "BAD_SCALAR_START", `Plain value cannot start with ${badChar}`);
+        onError(
+          0,
+          "BAD_SCALAR_START",
+          `Plain value cannot start with ${badChar}`
+        );
       return foldLines(source);
     }
     function singleQuotedValue(source, onError) {
@@ -4520,18 +5217,15 @@ var require_resolve_flow_scalar = __commonJS({
         line = /[ \t]*(.*?)[ \t]*\r?\n/sy;
       }
       let match = first.exec(source);
-      if (!match)
-        return source;
+      if (!match) return source;
       let res = match[1];
       let sep = " ";
       let pos = first.lastIndex;
       line.lastIndex = pos;
-      while (match = line.exec(source)) {
+      while ((match = line.exec(source))) {
         if (match[1] === "") {
-          if (sep === "\n")
-            res += sep;
-          else
-            sep = "\n";
+          if (sep === "\n") res += sep;
+          else sep = "\n";
         } else {
           res += sep + match[1];
           sep = " ";
@@ -4547,8 +5241,7 @@ var require_resolve_flow_scalar = __commonJS({
       let res = "";
       for (let i = 1; i < source.length - 1; ++i) {
         const ch = source[i];
-        if (ch === "\r" && source[i + 1] === "\n")
-          continue;
+        if (ch === "\r" && source[i + 1] === "\n") continue;
         if (ch === "\n") {
           const { fold, offset } = foldNewline(source, i);
           res += fold;
@@ -4556,16 +5249,13 @@ var require_resolve_flow_scalar = __commonJS({
         } else if (ch === "\\") {
           let next = source[++i];
           const cc = escapeCodes[next];
-          if (cc)
-            res += cc;
+          if (cc) res += cc;
           else if (next === "\n") {
             next = source[i + 1];
-            while (next === " " || next === "	")
-              next = source[++i + 1];
+            while (next === " " || next === "	") next = source[++i + 1];
           } else if (next === "\r" && source[i + 1] === "\n") {
             next = source[++i + 1];
-            while (next === " " || next === "	")
-              next = source[++i + 1];
+            while (next === " " || next === "	") next = source[++i + 1];
           } else if (next === "x" || next === "u" || next === "U") {
             const length = { x: 2, u: 4, U: 8 }[next];
             res += parseCharCode(source, i + 1, length, onError);
@@ -4578,8 +5268,7 @@ var require_resolve_flow_scalar = __commonJS({
         } else if (ch === " " || ch === "	") {
           const wsStart = i;
           let next = source[i + 1];
-          while (next === " " || next === "	")
-            next = source[++i + 1];
+          while (next === " " || next === "	") next = source[++i + 1];
           if (next !== "\n" && !(next === "\r" && source[i + 2] === "\n"))
             res += i > wsStart ? source.slice(wsStart, i + 1) : ch;
         } else {
@@ -4594,19 +5283,16 @@ var require_resolve_flow_scalar = __commonJS({
       let fold = "";
       let ch = source[offset + 1];
       while (ch === " " || ch === "	" || ch === "\n" || ch === "\r") {
-        if (ch === "\r" && source[offset + 2] !== "\n")
-          break;
-        if (ch === "\n")
-          fold += "\n";
+        if (ch === "\r" && source[offset + 2] !== "\n") break;
+        if (ch === "\n") fold += "\n";
         offset += 1;
         ch = source[offset + 1];
       }
-      if (!fold)
-        fold = " ";
+      if (!fold) fold = " ";
       return { fold, offset };
     }
     var escapeCodes = {
-      "0": "\0",
+      0: "\0",
       a: "\x07",
       b: "\b",
       e: "\x1B",
@@ -4623,7 +5309,7 @@ var require_resolve_flow_scalar = __commonJS({
       '"': '"',
       "/": "/",
       "\\": "\\",
-      "	": "	"
+      "	": "	",
     };
     function parseCharCode(source, offset, length, onError) {
       const cc = source.substr(offset, length);
@@ -4637,24 +5323,54 @@ var require_resolve_flow_scalar = __commonJS({
       return String.fromCodePoint(code2);
     }
     exports.resolveFlowScalar = resolveFlowScalar;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/compose-scalar.js
 var require_compose_scalar = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/compose-scalar.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/compose-scalar.js"(
+    exports
+  ) {
     "use strict";
     var Node = require_Node();
     var Scalar = require_Scalar();
     var resolveBlockScalar = require_resolve_block_scalar();
     var resolveFlowScalar = require_resolve_flow_scalar();
     function composeScalar(ctx, token, tagToken, onError) {
-      const { value: value2, type, comment, range: range2 } = token.type === "block-scalar" ? resolveBlockScalar.resolveBlockScalar(token, ctx.options.strict, onError) : resolveFlowScalar.resolveFlowScalar(token, ctx.options.strict, onError);
-      const tagName = tagToken ? ctx.directives.tagName(tagToken.source, (msg) => onError(tagToken, "TAG_RESOLVE_FAILED", msg)) : null;
-      const tag = tagToken && tagName ? findScalarTagByName(ctx.schema, value2, tagName, tagToken, onError) : token.type === "scalar" ? findScalarTagByTest(ctx, value2, token, onError) : ctx.schema[Node.SCALAR];
+      const {
+        value: value2,
+        type,
+        comment,
+        range: range2,
+      } = token.type === "block-scalar"
+        ? resolveBlockScalar.resolveBlockScalar(
+            token,
+            ctx.options.strict,
+            onError
+          )
+        : resolveFlowScalar.resolveFlowScalar(
+            token,
+            ctx.options.strict,
+            onError
+          );
+      const tagName = tagToken
+        ? ctx.directives.tagName(tagToken.source, (msg) =>
+            onError(tagToken, "TAG_RESOLVE_FAILED", msg)
+          )
+        : null;
+      const tag =
+        tagToken && tagName
+          ? findScalarTagByName(ctx.schema, value2, tagName, tagToken, onError)
+          : token.type === "scalar"
+          ? findScalarTagByTest(ctx, value2, token, onError)
+          : ctx.schema[Node.SCALAR];
       let scalar;
       try {
-        const res = tag.resolve(value2, (msg) => onError(tagToken ?? token, "TAG_RESOLVE_FAILED", msg), ctx.options);
+        const res = tag.resolve(
+          value2,
+          (msg) => onError(tagToken ?? token, "TAG_RESOLVE_FAILED", msg),
+          ctx.options
+        );
         scalar = Node.isScalar(res) ? res : new Scalar.Scalar(res);
       } catch (error) {
         const msg = error instanceof Error ? error.message : String(error);
@@ -4663,50 +5379,62 @@ var require_compose_scalar = __commonJS({
       }
       scalar.range = range2;
       scalar.source = value2;
-      if (type)
-        scalar.type = type;
-      if (tagName)
-        scalar.tag = tagName;
-      if (tag.format)
-        scalar.format = tag.format;
-      if (comment)
-        scalar.comment = comment;
+      if (type) scalar.type = type;
+      if (tagName) scalar.tag = tagName;
+      if (tag.format) scalar.format = tag.format;
+      if (comment) scalar.comment = comment;
       return scalar;
     }
     function findScalarTagByName(schema, value2, tagName, tagToken, onError) {
       var _a3;
-      if (tagName === "!")
-        return schema[Node.SCALAR];
+      if (tagName === "!") return schema[Node.SCALAR];
       const matchWithTest = [];
       for (const tag of schema.tags) {
         if (!tag.collection && tag.tag === tagName) {
-          if (tag.default && tag.test)
-            matchWithTest.push(tag);
-          else
-            return tag;
+          if (tag.default && tag.test) matchWithTest.push(tag);
+          else return tag;
         }
       }
       for (const tag of matchWithTest)
-        if ((_a3 = tag.test) == null ? void 0 : _a3.test(value2))
-          return tag;
+        if ((_a3 = tag.test) == null ? void 0 : _a3.test(value2)) return tag;
       const kt = schema.knownTags[tagName];
       if (kt && !kt.collection) {
-        schema.tags.push(Object.assign({}, kt, { default: false, test: void 0 }));
+        schema.tags.push(
+          Object.assign({}, kt, { default: false, test: void 0 })
+        );
         return kt;
       }
-      onError(tagToken, "TAG_RESOLVE_FAILED", `Unresolved tag: ${tagName}`, tagName !== "tag:yaml.org,2002:str");
+      onError(
+        tagToken,
+        "TAG_RESOLVE_FAILED",
+        `Unresolved tag: ${tagName}`,
+        tagName !== "tag:yaml.org,2002:str"
+      );
       return schema[Node.SCALAR];
     }
-    function findScalarTagByTest({ directives, schema }, value2, token, onError) {
-      const tag = schema.tags.find((tag2) => {
-        var _a3;
-        return tag2.default && ((_a3 = tag2.test) == null ? void 0 : _a3.test(value2));
-      }) || schema[Node.SCALAR];
-      if (schema.compat) {
-        const compat = schema.compat.find((tag2) => {
+    function findScalarTagByTest(
+      { directives, schema },
+      value2,
+      token,
+      onError
+    ) {
+      const tag =
+        schema.tags.find((tag2) => {
           var _a3;
-          return tag2.default && ((_a3 = tag2.test) == null ? void 0 : _a3.test(value2));
-        }) ?? schema[Node.SCALAR];
+          return (
+            tag2.default &&
+            ((_a3 = tag2.test) == null ? void 0 : _a3.test(value2))
+          );
+        }) || schema[Node.SCALAR];
+      if (schema.compat) {
+        const compat =
+          schema.compat.find((tag2) => {
+            var _a3;
+            return (
+              tag2.default &&
+              ((_a3 = tag2.test) == null ? void 0 : _a3.test(value2))
+            );
+          }) ?? schema[Node.SCALAR];
         if (tag.tag !== compat.tag) {
           const ts = directives.tagString(tag.tag);
           const cs = directives.tagString(compat.tag);
@@ -4717,17 +5445,18 @@ var require_compose_scalar = __commonJS({
       return tag;
     }
     exports.composeScalar = composeScalar;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/util-empty-scalar-position.js
 var require_util_empty_scalar_position = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/util-empty-scalar-position.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/util-empty-scalar-position.js"(
+    exports
+  ) {
     "use strict";
     function emptyScalarPosition(offset, before, pos) {
       if (before) {
-        if (pos === null)
-          pos = before.length;
+        if (pos === null) pos = before.length;
         for (let i = pos - 1; i >= 0; --i) {
           let st = before[i];
           switch (st.type) {
@@ -4748,12 +5477,14 @@ var require_util_empty_scalar_position = __commonJS({
       return offset;
     }
     exports.emptyScalarPosition = emptyScalarPosition;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/compose-node.js
 var require_compose_node = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/compose-node.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/compose-node.js"(
+    exports
+  ) {
     "use strict";
     var Alias = require_Alias();
     var composeCollection = require_compose_collection();
@@ -4769,50 +5500,76 @@ var require_compose_node = __commonJS({
         case "alias":
           node = composeAlias(ctx, token, onError);
           if (anchor || tag)
-            onError(token, "ALIAS_PROPS", "An alias node must not specify any properties");
+            onError(
+              token,
+              "ALIAS_PROPS",
+              "An alias node must not specify any properties"
+            );
           break;
         case "scalar":
         case "single-quoted-scalar":
         case "double-quoted-scalar":
         case "block-scalar":
           node = composeScalar.composeScalar(ctx, token, tag, onError);
-          if (anchor)
-            node.anchor = anchor.source.substring(1);
+          if (anchor) node.anchor = anchor.source.substring(1);
           break;
         case "block-map":
         case "block-seq":
         case "flow-collection":
-          node = composeCollection.composeCollection(CN, ctx, token, tag, onError);
-          if (anchor)
-            node.anchor = anchor.source.substring(1);
+          node = composeCollection.composeCollection(
+            CN,
+            ctx,
+            token,
+            tag,
+            onError
+          );
+          if (anchor) node.anchor = anchor.source.substring(1);
           break;
         default: {
-          const message = token.type === "error" ? token.message : `Unsupported token (type: ${token.type})`;
+          const message =
+            token.type === "error"
+              ? token.message
+              : `Unsupported token (type: ${token.type})`;
           onError(token, "UNEXPECTED_TOKEN", message);
-          node = composeEmptyNode(ctx, token.offset, void 0, null, props, onError);
+          node = composeEmptyNode(
+            ctx,
+            token.offset,
+            void 0,
+            null,
+            props,
+            onError
+          );
           isSrcToken = false;
         }
       }
       if (anchor && node.anchor === "")
         onError(anchor, "BAD_ALIAS", "Anchor cannot be an empty string");
-      if (spaceBefore)
-        node.spaceBefore = true;
+      if (spaceBefore) node.spaceBefore = true;
       if (comment) {
         if (token.type === "scalar" && token.source === "")
           node.comment = comment;
-        else
-          node.commentBefore = comment;
+        else node.commentBefore = comment;
       }
-      if (ctx.options.keepSourceTokens && isSrcToken)
-        node.srcToken = token;
+      if (ctx.options.keepSourceTokens && isSrcToken) node.srcToken = token;
       return node;
     }
-    function composeEmptyNode(ctx, offset, before, pos, { spaceBefore, comment, anchor, tag, end }, onError) {
+    function composeEmptyNode(
+      ctx,
+      offset,
+      before,
+      pos,
+      { spaceBefore, comment, anchor, tag, end },
+      onError
+    ) {
       const token = {
         type: "scalar",
-        offset: utilEmptyScalarPosition.emptyScalarPosition(offset, before, pos),
+        offset: utilEmptyScalarPosition.emptyScalarPosition(
+          offset,
+          before,
+          pos
+        ),
         indent: -1,
-        source: ""
+        source: "",
       };
       const node = composeScalar.composeScalar(ctx, token, tag, onError);
       if (anchor) {
@@ -4820,76 +5577,108 @@ var require_compose_node = __commonJS({
         if (node.anchor === "")
           onError(anchor, "BAD_ALIAS", "Anchor cannot be an empty string");
       }
-      if (spaceBefore)
-        node.spaceBefore = true;
+      if (spaceBefore) node.spaceBefore = true;
       if (comment) {
         node.comment = comment;
         node.range[2] = end;
       }
       return node;
     }
-    function composeAlias({ options: options2 }, { offset, source, end }, onError) {
+    function composeAlias(
+      { options: options2 },
+      { offset, source, end },
+      onError
+    ) {
       const alias2 = new Alias.Alias(source.substring(1));
       if (alias2.source === "")
         onError(offset, "BAD_ALIAS", "Alias cannot be an empty string");
       if (alias2.source.endsWith(":"))
-        onError(offset + source.length - 1, "BAD_ALIAS", "Alias ending in : is ambiguous", true);
+        onError(
+          offset + source.length - 1,
+          "BAD_ALIAS",
+          "Alias ending in : is ambiguous",
+          true
+        );
       const valueEnd = offset + source.length;
       const re = resolveEnd.resolveEnd(end, valueEnd, options2.strict, onError);
       alias2.range = [offset, valueEnd, re.offset];
-      if (re.comment)
-        alias2.comment = re.comment;
+      if (re.comment) alias2.comment = re.comment;
       return alias2;
     }
     exports.composeEmptyNode = composeEmptyNode;
     exports.composeNode = composeNode;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/compose-doc.js
 var require_compose_doc = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/compose-doc.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/compose-doc.js"(
+    exports
+  ) {
     "use strict";
     var Document = require_Document();
     var composeNode = require_compose_node();
     var resolveEnd = require_resolve_end();
     var resolveProps = require_resolve_props();
-    function composeDoc(options2, directives, { offset, start, value: value2, end }, onError) {
+    function composeDoc(
+      options2,
+      directives,
+      { offset, start, value: value2, end },
+      onError
+    ) {
       const opts = Object.assign({ _directives: directives }, options2);
       const doc = new Document.Document(void 0, opts);
       const ctx = {
         atRoot: true,
         directives: doc.directives,
         options: doc.options,
-        schema: doc.schema
+        schema: doc.schema,
       };
       const props = resolveProps.resolveProps(start, {
         indicator: "doc-start",
         next: value2 ?? (end == null ? void 0 : end[0]),
         offset,
         onError,
-        startOnNewline: true
+        startOnNewline: true,
       });
       if (props.found) {
         doc.directives.docStart = true;
-        if (value2 && (value2.type === "block-map" || value2.type === "block-seq") && !props.hasNewline)
-          onError(props.end, "MISSING_CHAR", "Block collection cannot start on same line with directives-end marker");
+        if (
+          value2 &&
+          (value2.type === "block-map" || value2.type === "block-seq") &&
+          !props.hasNewline
+        )
+          onError(
+            props.end,
+            "MISSING_CHAR",
+            "Block collection cannot start on same line with directives-end marker"
+          );
       }
-      doc.contents = value2 ? composeNode.composeNode(ctx, value2, props, onError) : composeNode.composeEmptyNode(ctx, props.end, start, null, props, onError);
+      doc.contents = value2
+        ? composeNode.composeNode(ctx, value2, props, onError)
+        : composeNode.composeEmptyNode(
+            ctx,
+            props.end,
+            start,
+            null,
+            props,
+            onError
+          );
       const contentEnd = doc.contents.range[2];
       const re = resolveEnd.resolveEnd(end, contentEnd, false, onError);
-      if (re.comment)
-        doc.comment = re.comment;
+      if (re.comment) doc.comment = re.comment;
       doc.range = [offset, contentEnd, re.offset];
       return doc;
     }
     exports.composeDoc = composeDoc;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/composer.js
 var require_composer = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/composer.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/compose/composer.js"(
+    exports
+  ) {
     "use strict";
     var directives = require_directives();
     var Document = require_Document();
@@ -4898,12 +5687,13 @@ var require_composer = __commonJS({
     var composeDoc = require_compose_doc();
     var resolveEnd = require_resolve_end();
     function getErrorPos(src) {
-      if (typeof src === "number")
-        return [src, src + 1];
-      if (Array.isArray(src))
-        return src.length === 2 ? src : [src[0], src[1]];
+      if (typeof src === "number") return [src, src + 1];
+      if (Array.isArray(src)) return src.length === 2 ? src : [src[0], src[1]];
       const { offset, source } = src;
-      return [offset, offset + (typeof source === "string" ? source.length : 1)];
+      return [
+        offset,
+        offset + (typeof source === "string" ? source.length : 1),
+      ];
     }
     function parsePrelude(prelude) {
       var _a3;
@@ -4914,7 +5704,9 @@ var require_composer = __commonJS({
         const source = prelude[i];
         switch (source[0]) {
           case "#":
-            comment += (comment === "" ? "" : afterEmptyLine ? "\n\n" : "\n") + (source.substring(1) || " ");
+            comment +=
+              (comment === "" ? "" : afterEmptyLine ? "\n\n" : "\n") +
+              (source.substring(1) || " ");
             atComment = true;
             afterEmptyLine = false;
             break;
@@ -4924,8 +5716,7 @@ var require_composer = __commonJS({
             atComment = false;
             break;
           default:
-            if (!atComment)
-              afterEmptyLine = true;
+            if (!atComment) afterEmptyLine = true;
             atComment = false;
         }
       }
@@ -4942,10 +5733,11 @@ var require_composer = __commonJS({
           const pos = getErrorPos(source);
           if (warning)
             this.warnings.push(new errors.YAMLWarning(pos, code2, message));
-          else
-            this.errors.push(new errors.YAMLParseError(pos, code2, message));
+          else this.errors.push(new errors.YAMLParseError(pos, code2, message));
         };
-        this.directives = new directives.Directives({ version: options2.version || "1.2" });
+        this.directives = new directives.Directives({
+          version: options2.version || "1.2",
+        });
         this.options = options2;
       }
       decorate(doc, afterDoc) {
@@ -4953,21 +5745,26 @@ var require_composer = __commonJS({
         if (comment) {
           const dc = doc.contents;
           if (afterDoc) {
-            doc.comment = doc.comment ? `${doc.comment}
-${comment}` : comment;
+            doc.comment = doc.comment
+              ? `${doc.comment}
+${comment}`
+              : comment;
           } else if (afterEmptyLine || doc.directives.docStart || !dc) {
             doc.commentBefore = comment;
           } else if (Node.isCollection(dc) && !dc.flow && dc.items.length > 0) {
             let it = dc.items[0];
-            if (Node.isPair(it))
-              it = it.key;
+            if (Node.isPair(it)) it = it.key;
             const cb = it.commentBefore;
-            it.commentBefore = cb ? `${comment}
-${cb}` : comment;
+            it.commentBefore = cb
+              ? `${comment}
+${cb}`
+              : comment;
           } else {
             const cb = dc.commentBefore;
-            dc.commentBefore = cb ? `${comment}
-${cb}` : comment;
+            dc.commentBefore = cb
+              ? `${comment}
+${cb}`
+              : comment;
           }
         }
         if (afterDoc) {
@@ -4986,17 +5783,15 @@ ${cb}` : comment;
           comment: parsePrelude(this.prelude).comment,
           directives: this.directives,
           errors: this.errors,
-          warnings: this.warnings
+          warnings: this.warnings,
         };
       }
       *compose(tokens, forceDoc = false, endOffset = -1) {
-        for (const token of tokens)
-          yield* this.next(token);
+        for (const token of tokens) yield* this.next(token);
         yield* this.end(forceDoc, endOffset);
       }
       *next(token) {
-        if (process.env.LOG_STREAM)
-          console.dir(token, { depth: null });
+        if (process.env.LOG_STREAM) console.dir(token, { depth: null });
         switch (token.type) {
           case "directive":
             this.directives.add(token.source, (offset, message, warning) => {
@@ -5008,12 +5803,20 @@ ${cb}` : comment;
             this.atDirectives = true;
             break;
           case "document": {
-            const doc = composeDoc.composeDoc(this.options, this.directives, token, this.onError);
+            const doc = composeDoc.composeDoc(
+              this.options,
+              this.directives,
+              token,
+              this.onError
+            );
             if (this.atDirectives && !doc.directives.docStart)
-              this.onError(token, "MISSING_CHAR", "Missing directives-end/doc-start indicator line");
+              this.onError(
+                token,
+                "MISSING_CHAR",
+                "Missing directives-end/doc-start indicator line"
+              );
             this.decorate(doc, false);
-            if (this.doc)
-              yield this.doc;
+            if (this.doc) yield this.doc;
             this.doc = doc;
             this.atDirectives = false;
             break;
@@ -5026,33 +5829,56 @@ ${cb}` : comment;
             this.prelude.push(token.source);
             break;
           case "error": {
-            const msg = token.source ? `${token.message}: ${JSON.stringify(token.source)}` : token.message;
-            const error = new errors.YAMLParseError(getErrorPos(token), "UNEXPECTED_TOKEN", msg);
-            if (this.atDirectives || !this.doc)
-              this.errors.push(error);
-            else
-              this.doc.errors.push(error);
+            const msg = token.source
+              ? `${token.message}: ${JSON.stringify(token.source)}`
+              : token.message;
+            const error = new errors.YAMLParseError(
+              getErrorPos(token),
+              "UNEXPECTED_TOKEN",
+              msg
+            );
+            if (this.atDirectives || !this.doc) this.errors.push(error);
+            else this.doc.errors.push(error);
             break;
           }
           case "doc-end": {
             if (!this.doc) {
               const msg = "Unexpected doc-end without preceding document";
-              this.errors.push(new errors.YAMLParseError(getErrorPos(token), "UNEXPECTED_TOKEN", msg));
+              this.errors.push(
+                new errors.YAMLParseError(
+                  getErrorPos(token),
+                  "UNEXPECTED_TOKEN",
+                  msg
+                )
+              );
               break;
             }
             this.doc.directives.docEnd = true;
-            const end = resolveEnd.resolveEnd(token.end, token.offset + token.source.length, this.doc.options.strict, this.onError);
+            const end = resolveEnd.resolveEnd(
+              token.end,
+              token.offset + token.source.length,
+              this.doc.options.strict,
+              this.onError
+            );
             this.decorate(this.doc, true);
             if (end.comment) {
               const dc = this.doc.comment;
-              this.doc.comment = dc ? `${dc}
-${end.comment}` : end.comment;
+              this.doc.comment = dc
+                ? `${dc}
+${end.comment}`
+                : end.comment;
             }
             this.doc.range[2] = end.offset;
             break;
           }
           default:
-            this.errors.push(new errors.YAMLParseError(getErrorPos(token), "UNEXPECTED_TOKEN", `Unsupported token ${token.type}`));
+            this.errors.push(
+              new errors.YAMLParseError(
+                getErrorPos(token),
+                "UNEXPECTED_TOKEN",
+                `Unsupported token ${token.type}`
+              )
+            );
         }
       }
       *end(forceDoc = false, endOffset = -1) {
@@ -5061,10 +5887,17 @@ ${end.comment}` : end.comment;
           yield this.doc;
           this.doc = null;
         } else if (forceDoc) {
-          const opts = Object.assign({ _directives: this.directives }, this.options);
+          const opts = Object.assign(
+            { _directives: this.directives },
+            this.options
+          );
           const doc = new Document.Document(void 0, opts);
           if (this.atDirectives)
-            this.onError(endOffset, "MISSING_CHAR", "Missing directives-end indicator line");
+            this.onError(
+              endOffset,
+              "MISSING_CHAR",
+              "Missing directives-end indicator line"
+            );
           doc.range = [0, endOffset, endOffset];
           this.decorate(doc, false);
           yield doc;
@@ -5072,12 +5905,14 @@ ${end.comment}` : end.comment;
       }
     };
     exports.Composer = Composer;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/cst-scalar.js
 var require_cst_scalar = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/cst-scalar.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/cst-scalar.js"(
+    exports
+  ) {
     "use strict";
     var resolveBlockScalar = require_resolve_block_scalar();
     var resolveFlowScalar = require_resolve_flow_scalar();
@@ -5086,11 +5921,19 @@ var require_cst_scalar = __commonJS({
     function resolveAsScalar(token, strict = true, onError) {
       if (token) {
         const _onError = (pos, code2, message) => {
-          const offset = typeof pos === "number" ? pos : Array.isArray(pos) ? pos[0] : pos.offset;
-          if (onError)
-            onError(offset, code2, message);
+          const offset =
+            typeof pos === "number"
+              ? pos
+              : Array.isArray(pos)
+              ? pos[0]
+              : pos.offset;
+          if (onError) onError(offset, code2, message);
           else
-            throw new errors.YAMLParseError([offset, offset + 1], code2, message);
+            throw new errors.YAMLParseError(
+              [offset, offset + 1],
+              code2,
+              message
+            );
         };
         switch (token.type) {
           case "scalar":
@@ -5098,21 +5941,34 @@ var require_cst_scalar = __commonJS({
           case "double-quoted-scalar":
             return resolveFlowScalar.resolveFlowScalar(token, strict, _onError);
           case "block-scalar":
-            return resolveBlockScalar.resolveBlockScalar(token, strict, _onError);
+            return resolveBlockScalar.resolveBlockScalar(
+              token,
+              strict,
+              _onError
+            );
         }
       }
       return null;
     }
     function createScalarToken(value2, context) {
-      const { implicitKey = false, indent: indent2, inFlow = false, offset = -1, type = "PLAIN" } = context;
-      const source = stringifyString.stringifyString({ type, value: value2 }, {
-        implicitKey,
-        indent: indent2 > 0 ? " ".repeat(indent2) : "",
-        inFlow,
-        options: { blockQuote: true, lineWidth: -1 }
-      });
+      const {
+        implicitKey = false,
+        indent: indent2,
+        inFlow = false,
+        offset = -1,
+        type = "PLAIN",
+      } = context;
+      const source = stringifyString.stringifyString(
+        { type, value: value2 },
+        {
+          implicitKey,
+          indent: indent2 > 0 ? " ".repeat(indent2) : "",
+          inFlow,
+          options: { blockQuote: true, lineWidth: -1 },
+        }
+      );
       const end = context.end ?? [
-        { type: "newline", offset: -1, indent: indent2, source: "\n" }
+        { type: "newline", offset: -1, indent: indent2, source: "\n" },
       ];
       switch (source[0]) {
         case "|":
@@ -5121,25 +5977,57 @@ var require_cst_scalar = __commonJS({
           const head = source.substring(0, he);
           const body = source.substring(he + 1) + "\n";
           const props = [
-            { type: "block-scalar-header", offset, indent: indent2, source: head }
+            {
+              type: "block-scalar-header",
+              offset,
+              indent: indent2,
+              source: head,
+            },
           ];
           if (!addEndtoBlockProps(props, end))
-            props.push({ type: "newline", offset: -1, indent: indent2, source: "\n" });
-          return { type: "block-scalar", offset, indent: indent2, props, source: body };
+            props.push({
+              type: "newline",
+              offset: -1,
+              indent: indent2,
+              source: "\n",
+            });
+          return {
+            type: "block-scalar",
+            offset,
+            indent: indent2,
+            props,
+            source: body,
+          };
         }
         case '"':
-          return { type: "double-quoted-scalar", offset, indent: indent2, source, end };
+          return {
+            type: "double-quoted-scalar",
+            offset,
+            indent: indent2,
+            source,
+            end,
+          };
         case "'":
-          return { type: "single-quoted-scalar", offset, indent: indent2, source, end };
+          return {
+            type: "single-quoted-scalar",
+            offset,
+            indent: indent2,
+            source,
+            end,
+          };
         default:
           return { type: "scalar", offset, indent: indent2, source, end };
       }
     }
     function setScalarValue(token, value2, context = {}) {
-      let { afterKey = false, implicitKey = false, inFlow = false, type } = context;
+      let {
+        afterKey = false,
+        implicitKey = false,
+        inFlow = false,
+        type,
+      } = context;
       let indent2 = "indent" in token ? token.indent : null;
-      if (afterKey && typeof indent2 === "number")
-        indent2 += 2;
+      if (afterKey && typeof indent2 === "number") indent2 += 2;
       if (!type)
         switch (token.type) {
           case "single-quoted-scalar":
@@ -5158,12 +6046,15 @@ var require_cst_scalar = __commonJS({
           default:
             type = "PLAIN";
         }
-      const source = stringifyString.stringifyString({ type, value: value2 }, {
-        implicitKey: implicitKey || indent2 === null,
-        indent: indent2 !== null && indent2 > 0 ? " ".repeat(indent2) : "",
-        inFlow,
-        options: { blockQuote: true, lineWidth: -1 }
-      });
+      const source = stringifyString.stringifyString(
+        { type, value: value2 },
+        {
+          implicitKey: implicitKey || indent2 === null,
+          indent: indent2 !== null && indent2 > 0 ? " ".repeat(indent2) : "",
+          inFlow,
+          options: { blockQuote: true, lineWidth: -1 },
+        }
+      );
       switch (source[0]) {
         case "|":
         case ">":
@@ -5193,14 +6084,28 @@ var require_cst_scalar = __commonJS({
         const { offset } = token;
         const indent2 = "indent" in token ? token.indent : -1;
         const props = [
-          { type: "block-scalar-header", offset, indent: indent2, source: head }
+          {
+            type: "block-scalar-header",
+            offset,
+            indent: indent2,
+            source: head,
+          },
         ];
         if (!addEndtoBlockProps(props, "end" in token ? token.end : void 0))
-          props.push({ type: "newline", offset: -1, indent: indent2, source: "\n" });
+          props.push({
+            type: "newline",
+            offset: -1,
+            indent: indent2,
+            source: "\n",
+          });
         for (const key of Object.keys(token))
-          if (key !== "type" && key !== "offset")
-            delete token[key];
-        Object.assign(token, { type: "block-scalar", indent: indent2, props, source: body });
+          if (key !== "type" && key !== "offset") delete token[key];
+        Object.assign(token, {
+          type: "block-scalar",
+          indent: indent2,
+          props,
+          source: body,
+        });
       }
     }
     function addEndtoBlockProps(props, end) {
@@ -5230,8 +6135,7 @@ var require_cst_scalar = __commonJS({
           let oa = source.length;
           if (token.props[0].type === "block-scalar-header")
             oa -= token.props[0].source.length;
-          for (const tok of end)
-            tok.offset += oa;
+          for (const tok of end) tok.offset += oa;
           delete token.props;
           Object.assign(token, { type, source, end });
           break;
@@ -5239,17 +6143,29 @@ var require_cst_scalar = __commonJS({
         case "block-map":
         case "block-seq": {
           const offset = token.offset + source.length;
-          const nl = { type: "newline", offset, indent: token.indent, source: "\n" };
+          const nl = {
+            type: "newline",
+            offset,
+            indent: token.indent,
+            source: "\n",
+          };
           delete token.items;
           Object.assign(token, { type, source, end: [nl] });
           break;
         }
         default: {
           const indent2 = "indent" in token ? token.indent : -1;
-          const end = "end" in token && Array.isArray(token.end) ? token.end.filter((st) => st.type === "space" || st.type === "comment" || st.type === "newline") : [];
+          const end =
+            "end" in token && Array.isArray(token.end)
+              ? token.end.filter(
+                  (st) =>
+                    st.type === "space" ||
+                    st.type === "comment" ||
+                    st.type === "newline"
+                )
+              : [];
           for (const key of Object.keys(token))
-            if (key !== "type" && key !== "offset")
-              delete token[key];
+            if (key !== "type" && key !== "offset") delete token[key];
           Object.assign(token, { type, indent: indent2, source, end });
         }
       }
@@ -5257,73 +6173,66 @@ var require_cst_scalar = __commonJS({
     exports.createScalarToken = createScalarToken;
     exports.resolveAsScalar = resolveAsScalar;
     exports.setScalarValue = setScalarValue;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/cst-stringify.js
 var require_cst_stringify = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/cst-stringify.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/cst-stringify.js"(
+    exports
+  ) {
     "use strict";
-    var stringify2 = (cst) => "type" in cst ? stringifyToken(cst) : stringifyItem(cst);
+    var stringify2 = (cst) =>
+      "type" in cst ? stringifyToken(cst) : stringifyItem(cst);
     function stringifyToken(token) {
       switch (token.type) {
         case "block-scalar": {
           let res = "";
-          for (const tok of token.props)
-            res += stringifyToken(tok);
+          for (const tok of token.props) res += stringifyToken(tok);
           return res + token.source;
         }
         case "block-map":
         case "block-seq": {
           let res = "";
-          for (const item of token.items)
-            res += stringifyItem(item);
+          for (const item of token.items) res += stringifyItem(item);
           return res;
         }
         case "flow-collection": {
           let res = token.start.source;
-          for (const item of token.items)
-            res += stringifyItem(item);
-          for (const st of token.end)
-            res += st.source;
+          for (const item of token.items) res += stringifyItem(item);
+          for (const st of token.end) res += st.source;
           return res;
         }
         case "document": {
           let res = stringifyItem(token);
-          if (token.end)
-            for (const st of token.end)
-              res += st.source;
+          if (token.end) for (const st of token.end) res += st.source;
           return res;
         }
         default: {
           let res = token.source;
           if ("end" in token && token.end)
-            for (const st of token.end)
-              res += st.source;
+            for (const st of token.end) res += st.source;
           return res;
         }
       }
     }
     function stringifyItem({ start, key, sep, value: value2 }) {
       let res = "";
-      for (const st of start)
-        res += st.source;
-      if (key)
-        res += stringifyToken(key);
-      if (sep)
-        for (const st of sep)
-          res += st.source;
-      if (value2)
-        res += stringifyToken(value2);
+      for (const st of start) res += st.source;
+      if (key) res += stringifyToken(key);
+      if (sep) for (const st of sep) res += st.source;
+      if (value2) res += stringifyToken(value2);
       return res;
     }
     exports.stringify = stringify2;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/cst-visit.js
 var require_cst_visit = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/cst-visit.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/cst-visit.js"(
+    exports
+  ) {
     "use strict";
     var BREAK = Symbol("break visit");
     var SKIP2 = Symbol("skip children");
@@ -5342,8 +6251,7 @@ var require_cst_visit = __commonJS({
         const tok = item == null ? void 0 : item[field];
         if (tok && "items" in tok) {
           item = tok.items[index];
-        } else
-          return void 0;
+        } else return void 0;
       }
       return item;
     };
@@ -5351,23 +6259,23 @@ var require_cst_visit = __commonJS({
       const parent = visit2.itemAtPath(cst, path2.slice(0, -1));
       const field = path2[path2.length - 1][0];
       const coll = parent == null ? void 0 : parent[field];
-      if (coll && "items" in coll)
-        return coll;
+      if (coll && "items" in coll) return coll;
       throw new Error("Parent collection not found");
     };
     function _visit(path2, item, visitor) {
       let ctrl = visitor(item, path2);
-      if (typeof ctrl === "symbol")
-        return ctrl;
+      if (typeof ctrl === "symbol") return ctrl;
       for (const field of ["key", "value"]) {
         const token = item[field];
         if (token && "items" in token) {
           for (let i = 0; i < token.items.length; ++i) {
-            const ci = _visit(Object.freeze(path2.concat([[field, i]])), token.items[i], visitor);
-            if (typeof ci === "number")
-              i = ci - 1;
-            else if (ci === BREAK)
-              return BREAK;
+            const ci = _visit(
+              Object.freeze(path2.concat([[field, i]])),
+              token.items[i],
+              visitor
+            );
+            if (typeof ci === "number") i = ci - 1;
+            else if (ci === BREAK) return BREAK;
             else if (ci === REMOVE) {
               token.items.splice(i, 1);
               i -= 1;
@@ -5380,7 +6288,7 @@ var require_cst_visit = __commonJS({
       return typeof ctrl === "function" ? ctrl(item, path2) : ctrl;
     }
     exports.visit = visit2;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/cst.js
@@ -5395,7 +6303,12 @@ var require_cst = __commonJS({
     var FLOW_END = "";
     var SCALAR = "";
     var isCollection = (token) => !!token && "items" in token;
-    var isScalar = (token) => !!token && (token.type === "scalar" || token.type === "single-quoted-scalar" || token.type === "double-quoted-scalar" || token.type === "block-scalar");
+    var isScalar = (token) =>
+      !!token &&
+      (token.type === "scalar" ||
+        token.type === "single-quoted-scalar" ||
+        token.type === "double-quoted-scalar" ||
+        token.type === "block-scalar");
     function prettyToken(token) {
       switch (token) {
         case BOM:
@@ -5482,12 +6395,14 @@ var require_cst = __commonJS({
     exports.isScalar = isScalar;
     exports.prettyToken = prettyToken;
     exports.tokenType = tokenType;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/lexer.js
 var require_lexer = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/lexer.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/lexer.js"(
+    exports
+  ) {
     "use strict";
     var cst = require_cst();
     function isEmpty(ch) {
@@ -5503,7 +6418,10 @@ var require_lexer = __commonJS({
       }
     }
     var hexDigits = "0123456789ABCDEFabcdef".split("");
-    var tagChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-#;/?:@&=+$_.!~*'()".split("");
+    var tagChars =
+      "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-#;/?:@&=+$_.!~*'()".split(
+        ""
+      );
     var invalidFlowScalarChars = ",[]{}".split("");
     var invalidAnchorChars = " ,[]{}\n\r	".split("");
     var isNotAnchorChar = (ch) => !ch || invalidAnchorChars.includes(ch);
@@ -5534,12 +6452,9 @@ var require_lexer = __commonJS({
       atLineEnd() {
         let i = this.pos;
         let ch = this.buffer[i];
-        while (ch === " " || ch === "	")
-          ch = this.buffer[++i];
-        if (!ch || ch === "#" || ch === "\n")
-          return true;
-        if (ch === "\r")
-          return this.buffer[i + 1] === "\n";
+        while (ch === " " || ch === "	") ch = this.buffer[++i];
+        if (!ch || ch === "#" || ch === "\n") return true;
+        if (ch === "\r") return this.buffer[i + 1] === "\n";
         return false;
       }
       charAt(n) {
@@ -5549,32 +6464,37 @@ var require_lexer = __commonJS({
         let ch = this.buffer[offset];
         if (this.indentNext > 0) {
           let indent2 = 0;
-          while (ch === " ")
-            ch = this.buffer[++indent2 + offset];
+          while (ch === " ") ch = this.buffer[++indent2 + offset];
           if (ch === "\r") {
             const next = this.buffer[indent2 + offset + 1];
-            if (next === "\n" || !next && !this.atEnd)
+            if (next === "\n" || (!next && !this.atEnd))
               return offset + indent2 + 1;
           }
-          return ch === "\n" || indent2 >= this.indentNext || !ch && !this.atEnd ? offset + indent2 : -1;
+          return ch === "\n" ||
+            indent2 >= this.indentNext ||
+            (!ch && !this.atEnd)
+            ? offset + indent2
+            : -1;
         }
         if (ch === "-" || ch === ".") {
           const dt = this.buffer.substr(offset, 3);
-          if ((dt === "---" || dt === "...") && isEmpty(this.buffer[offset + 3]))
+          if (
+            (dt === "---" || dt === "...") &&
+            isEmpty(this.buffer[offset + 3])
+          )
             return -1;
         }
         return offset;
       }
       getLine() {
         let end = this.lineEndPos;
-        if (typeof end !== "number" || end !== -1 && end < this.pos) {
+        if (typeof end !== "number" || (end !== -1 && end < this.pos)) {
           end = this.buffer.indexOf("\n", this.pos);
           this.lineEndPos = end;
         }
         if (end === -1)
           return this.atEnd ? this.buffer.substring(this.pos) : null;
-        if (this.buffer[end - 1] === "\r")
-          end -= 1;
+        if (this.buffer[end - 1] === "\r") end -= 1;
         return this.buffer.substring(this.pos, end);
       }
       hasChars(n) {
@@ -5612,8 +6532,7 @@ var require_lexer = __commonJS({
       }
       *parseStream() {
         let line = this.getLine();
-        if (line === null)
-          return this.setNext("stream");
+        if (line === null) return this.setNext("stream");
         if (line[0] === cst.BOM) {
           yield* this.pushCount(1);
           line = line.substring(1);
@@ -5623,17 +6542,15 @@ var require_lexer = __commonJS({
           const cs = line.indexOf("#");
           if (cs !== -1) {
             const ch = line[cs - 1];
-            if (ch === " " || ch === "	")
-              dirEnd = cs - 1;
+            if (ch === " " || ch === "	") dirEnd = cs - 1;
           }
           while (true) {
             const ch = line[dirEnd - 1];
-            if (ch === " " || ch === "	")
-              dirEnd -= 1;
-            else
-              break;
+            if (ch === " " || ch === "	") dirEnd -= 1;
+            else break;
           }
-          const n = (yield* this.pushCount(dirEnd)) + (yield* this.pushSpaces(true));
+          const n =
+            (yield* this.pushCount(dirEnd)) + (yield* this.pushSpaces(true));
           yield* this.pushCount(line.length - n);
           this.pushNewline();
           return "stream";
@@ -5649,8 +6566,7 @@ var require_lexer = __commonJS({
       }
       *parseLineStart() {
         const ch = this.charAt(0);
-        if (!ch && !this.atEnd)
-          return this.setNext("line-start");
+        if (!ch && !this.atEnd) return this.setNext("line-start");
         if (ch === "-" || ch === ".") {
           if (!this.atEnd && !this.hasChars(4))
             return this.setNext("line-start");
@@ -5672,8 +6588,7 @@ var require_lexer = __commonJS({
       }
       *parseBlockStart() {
         const [ch0, ch1] = this.peek(2);
-        if (!ch1 && !this.atEnd)
-          return this.setNext("block-start");
+        if (!ch1 && !this.atEnd) return this.setNext("block-start");
         if ((ch0 === "-" || ch0 === "?" || ch0 === ":") && isEmpty(ch1)) {
           const n = (yield* this.pushCount(1)) + (yield* this.pushSpaces(true));
           this.indentNext = this.indentValue + 1;
@@ -5685,8 +6600,7 @@ var require_lexer = __commonJS({
       *parseDocument() {
         yield* this.pushSpaces(true);
         const line = this.getLine();
-        if (line === null)
-          return this.setNext("doc");
+        if (line === null) return this.setNext("doc");
         let n = yield* this.pushIndicators();
         switch (line[n]) {
           case "#":
@@ -5735,10 +6649,17 @@ var require_lexer = __commonJS({
           sp += yield* this.pushSpaces(true);
         } while (nl + sp > 0);
         const line = this.getLine();
-        if (line === null)
-          return this.setNext("flow");
-        if (indent2 !== -1 && indent2 < this.indentNext && line[0] !== "#" || indent2 === 0 && (line.startsWith("---") || line.startsWith("...")) && isEmpty(line[3])) {
-          const atFlowEndMarker = indent2 === this.indentNext - 1 && this.flowLevel === 1 && (line[0] === "]" || line[0] === "}");
+        if (line === null) return this.setNext("flow");
+        if (
+          (indent2 !== -1 && indent2 < this.indentNext && line[0] !== "#") ||
+          (indent2 === 0 &&
+            (line.startsWith("---") || line.startsWith("...")) &&
+            isEmpty(line[3]))
+        ) {
+          const atFlowEndMarker =
+            indent2 === this.indentNext - 1 &&
+            this.flowLevel === 1 &&
+            (line[0] === "]" || line[0] === "}");
           if (!atFlowEndMarker) {
             this.flowLevel = 0;
             yield cst.FLOW_END;
@@ -5800,10 +6721,8 @@ var require_lexer = __commonJS({
         } else {
           while (end !== -1) {
             let n = 0;
-            while (this.buffer[end - 1 - n] === "\\")
-              n += 1;
-            if (n % 2 === 0)
-              break;
+            while (this.buffer[end - 1 - n] === "\\") n += 1;
+            if (n % 2 === 0) break;
             end = this.buffer.indexOf('"', end + 1);
           }
         }
@@ -5812,8 +6731,7 @@ var require_lexer = __commonJS({
         if (nl !== -1) {
           while (nl !== -1) {
             const cs = this.continueScalar(nl + 1);
-            if (cs === -1)
-              break;
+            if (cs === -1) break;
             nl = qb.indexOf("\n", cs);
           }
           if (nl !== -1) {
@@ -5821,8 +6739,7 @@ var require_lexer = __commonJS({
           }
         }
         if (end === -1) {
-          if (!this.atEnd)
-            return this.setNext("quoted-scalar");
+          if (!this.atEnd) return this.setNext("quoted-scalar");
           end = this.buffer.length;
         }
         yield* this.pushToIndex(end + 1, false);
@@ -5834,12 +6751,10 @@ var require_lexer = __commonJS({
         let i = this.pos;
         while (true) {
           const ch = this.buffer[++i];
-          if (ch === "+")
-            this.blockScalarKeep = true;
+          if (ch === "+") this.blockScalarKeep = true;
           else if (ch > "0" && ch <= "9")
             this.blockScalarIndent = Number(ch) - 1;
-          else if (ch !== "-")
-            break;
+          else if (ch !== "-") break;
         }
         return yield* this.pushUntil((ch) => isEmpty(ch) || ch === "#");
       }
@@ -5847,43 +6762,35 @@ var require_lexer = __commonJS({
         let nl = this.pos - 1;
         let indent2 = 0;
         let ch;
-        loop:
-          for (let i = this.pos; ch = this.buffer[i]; ++i) {
-            switch (ch) {
-              case " ":
-                indent2 += 1;
-                break;
-              case "\n":
-                nl = i;
-                indent2 = 0;
-                break;
-              case "\r": {
-                const next = this.buffer[i + 1];
-                if (!next && !this.atEnd)
-                  return this.setNext("block-scalar");
-                if (next === "\n")
-                  break;
-              }
-              default:
-                break loop;
+        loop: for (let i = this.pos; (ch = this.buffer[i]); ++i) {
+          switch (ch) {
+            case " ":
+              indent2 += 1;
+              break;
+            case "\n":
+              nl = i;
+              indent2 = 0;
+              break;
+            case "\r": {
+              const next = this.buffer[i + 1];
+              if (!next && !this.atEnd) return this.setNext("block-scalar");
+              if (next === "\n") break;
             }
+            default:
+              break loop;
           }
-        if (!ch && !this.atEnd)
-          return this.setNext("block-scalar");
+        }
+        if (!ch && !this.atEnd) return this.setNext("block-scalar");
         if (indent2 >= this.indentNext) {
-          if (this.blockScalarIndent === -1)
-            this.indentNext = indent2;
-          else
-            this.indentNext += this.blockScalarIndent;
+          if (this.blockScalarIndent === -1) this.indentNext = indent2;
+          else this.indentNext += this.blockScalarIndent;
           do {
             const cs = this.continueScalar(nl + 1);
-            if (cs === -1)
-              break;
+            if (cs === -1) break;
             nl = this.buffer.indexOf("\n", cs);
           } while (nl !== -1);
           if (nl === -1) {
-            if (!this.atEnd)
-              return this.setNext("block-scalar");
+            if (!this.atEnd) return this.setNext("block-scalar");
             nl = this.buffer.length;
           }
         }
@@ -5891,15 +6798,12 @@ var require_lexer = __commonJS({
           do {
             let i = nl - 1;
             let ch2 = this.buffer[i];
-            if (ch2 === "\r")
-              ch2 = this.buffer[--i];
+            if (ch2 === "\r") ch2 = this.buffer[--i];
             const lastChar = i;
-            while (ch2 === " " || ch2 === "	")
-              ch2 = this.buffer[--i];
+            while (ch2 === " " || ch2 === "	") ch2 = this.buffer[--i];
             if (ch2 === "\n" && i >= this.pos && i + 1 + indent2 > lastChar)
               nl = i;
-            else
-              break;
+            else break;
           } while (true);
         }
         yield cst.SCALAR;
@@ -5911,11 +6815,10 @@ var require_lexer = __commonJS({
         let end = this.pos - 1;
         let i = this.pos - 1;
         let ch;
-        while (ch = this.buffer[++i]) {
+        while ((ch = this.buffer[++i])) {
           if (ch === ":") {
             const next = this.buffer[i + 1];
-            if (isEmpty(next) || inFlow && next === ",")
-              break;
+            if (isEmpty(next) || (inFlow && next === ",")) break;
             end = i;
           } else if (isEmpty(ch)) {
             let next = this.buffer[i + 1];
@@ -5924,25 +6827,24 @@ var require_lexer = __commonJS({
                 i += 1;
                 ch = "\n";
                 next = this.buffer[i + 1];
-              } else
-                end = i;
+              } else end = i;
             }
-            if (next === "#" || inFlow && invalidFlowScalarChars.includes(next))
+            if (
+              next === "#" ||
+              (inFlow && invalidFlowScalarChars.includes(next))
+            )
               break;
             if (ch === "\n") {
               const cs = this.continueScalar(i + 1);
-              if (cs === -1)
-                break;
+              if (cs === -1) break;
               i = Math.max(i, cs - 2);
             }
           } else {
-            if (inFlow && invalidFlowScalarChars.includes(ch))
-              break;
+            if (inFlow && invalidFlowScalarChars.includes(ch)) break;
             end = i;
           }
         }
-        if (!ch && !this.atEnd)
-          return this.setNext("plain-scalar");
+        if (!ch && !this.atEnd) return this.setNext("plain-scalar");
         yield cst.SCALAR;
         yield* this.pushToIndex(end + 1, true);
         return inFlow ? "flow" : "doc";
@@ -5961,27 +6863,39 @@ var require_lexer = __commonJS({
           yield s2;
           this.pos += s2.length;
           return s2.length;
-        } else if (allowEmpty)
-          yield "";
+        } else if (allowEmpty) yield "";
         return 0;
       }
       *pushIndicators() {
         switch (this.charAt(0)) {
           case "!":
-            return (yield* this.pushTag()) + (yield* this.pushSpaces(true)) + (yield* this.pushIndicators());
+            return (
+              (yield* this.pushTag()) +
+              (yield* this.pushSpaces(true)) +
+              (yield* this.pushIndicators())
+            );
           case "&":
-            return (yield* this.pushUntil(isNotAnchorChar)) + (yield* this.pushSpaces(true)) + (yield* this.pushIndicators());
+            return (
+              (yield* this.pushUntil(isNotAnchorChar)) +
+              (yield* this.pushSpaces(true)) +
+              (yield* this.pushIndicators())
+            );
           case "-":
           case "?":
           case ":": {
             const inFlow = this.flowLevel > 0;
             const ch1 = this.charAt(1);
-            if (isEmpty(ch1) || inFlow && invalidFlowScalarChars.includes(ch1)) {
-              if (!inFlow)
-                this.indentNext = this.indentValue + 1;
-              else if (this.flowKey)
-                this.flowKey = false;
-              return (yield* this.pushCount(1)) + (yield* this.pushSpaces(true)) + (yield* this.pushIndicators());
+            if (
+              isEmpty(ch1) ||
+              (inFlow && invalidFlowScalarChars.includes(ch1))
+            ) {
+              if (!inFlow) this.indentNext = this.indentValue + 1;
+              else if (this.flowKey) this.flowKey = false;
+              return (
+                (yield* this.pushCount(1)) +
+                (yield* this.pushSpaces(true)) +
+                (yield* this.pushIndicators())
+              );
             }
           }
         }
@@ -5991,38 +6905,37 @@ var require_lexer = __commonJS({
         if (this.charAt(1) === "<") {
           let i = this.pos + 2;
           let ch = this.buffer[i];
-          while (!isEmpty(ch) && ch !== ">")
-            ch = this.buffer[++i];
+          while (!isEmpty(ch) && ch !== ">") ch = this.buffer[++i];
           return yield* this.pushToIndex(ch === ">" ? i + 1 : i, false);
         } else {
           let i = this.pos + 1;
           let ch = this.buffer[i];
           while (ch) {
-            if (tagChars.includes(ch))
-              ch = this.buffer[++i];
-            else if (ch === "%" && hexDigits.includes(this.buffer[i + 1]) && hexDigits.includes(this.buffer[i + 2])) {
-              ch = this.buffer[i += 3];
-            } else
-              break;
+            if (tagChars.includes(ch)) ch = this.buffer[++i];
+            else if (
+              ch === "%" &&
+              hexDigits.includes(this.buffer[i + 1]) &&
+              hexDigits.includes(this.buffer[i + 2])
+            ) {
+              ch = this.buffer[(i += 3)];
+            } else break;
           }
           return yield* this.pushToIndex(i, false);
         }
       }
       *pushNewline() {
         const ch = this.buffer[this.pos];
-        if (ch === "\n")
-          return yield* this.pushCount(1);
+        if (ch === "\n") return yield* this.pushCount(1);
         else if (ch === "\r" && this.charAt(1) === "\n")
           return yield* this.pushCount(2);
-        else
-          return 0;
+        else return 0;
       }
       *pushSpaces(allowTabs) {
         let i = this.pos - 1;
         let ch;
         do {
           ch = this.buffer[++i];
-        } while (ch === " " || allowTabs && ch === "	");
+        } while (ch === " " || (allowTabs && ch === "	"));
         const n = i - this.pos;
         if (n > 0) {
           yield this.buffer.substr(this.pos, n);
@@ -6033,18 +6946,19 @@ var require_lexer = __commonJS({
       *pushUntil(test) {
         let i = this.pos;
         let ch = this.buffer[i];
-        while (!test(ch))
-          ch = this.buffer[++i];
+        while (!test(ch)) ch = this.buffer[++i];
         return yield* this.pushToIndex(i, false);
       }
     };
     exports.Lexer = Lexer2;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/line-counter.js
 var require_line_counter = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/line-counter.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/line-counter.js"(
+    exports
+  ) {
     "use strict";
     var LineCounter = class {
       constructor() {
@@ -6054,35 +6968,32 @@ var require_line_counter = __commonJS({
           let low = 0;
           let high = this.lineStarts.length;
           while (low < high) {
-            const mid = low + high >> 1;
-            if (this.lineStarts[mid] < offset)
-              low = mid + 1;
-            else
-              high = mid;
+            const mid = (low + high) >> 1;
+            if (this.lineStarts[mid] < offset) low = mid + 1;
+            else high = mid;
           }
-          if (this.lineStarts[low] === offset)
-            return { line: low + 1, col: 1 };
-          if (low === 0)
-            return { line: 0, col: offset };
+          if (this.lineStarts[low] === offset) return { line: low + 1, col: 1 };
+          if (low === 0) return { line: 0, col: offset };
           const start = this.lineStarts[low - 1];
           return { line: low, col: offset - start + 1 };
         };
       }
     };
     exports.LineCounter = LineCounter;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/parser.js
 var require_parser = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/parser.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/parse/parser.js"(
+    exports
+  ) {
     "use strict";
     var cst = require_cst();
     var lexer2 = require_lexer();
     function includesToken(list, type) {
       for (let i = 0; i < list.length; ++i)
-        if (list[i].type === type)
-          return true;
+        if (list[i].type === type) return true;
       return false;
     }
     function findNonEmptyIndex(list) {
@@ -6126,38 +7037,37 @@ var require_parser = __commonJS({
     }
     function getFirstKeyStartProps(prev) {
       var _a3;
-      if (prev.length === 0)
-        return [];
+      if (prev.length === 0) return [];
       let i = prev.length;
-      loop:
-        while (--i >= 0) {
-          switch (prev[i].type) {
-            case "doc-start":
-            case "explicit-key-ind":
-            case "map-value-ind":
-            case "seq-item-ind":
-            case "newline":
-              break loop;
-          }
+      loop: while (--i >= 0) {
+        switch (prev[i].type) {
+          case "doc-start":
+          case "explicit-key-ind":
+          case "map-value-ind":
+          case "seq-item-ind":
+          case "newline":
+            break loop;
         }
-      while (((_a3 = prev[++i]) == null ? void 0 : _a3.type) === "space") {
       }
+      while (((_a3 = prev[++i]) == null ? void 0 : _a3.type) === "space") {}
       return prev.splice(i, prev.length);
     }
     function fixFlowSeqItems(fc) {
       if (fc.start.type === "flow-seq-start") {
         for (const it of fc.items) {
-          if (it.sep && !it.value && !includesToken(it.start, "explicit-key-ind") && !includesToken(it.sep, "map-value-ind")) {
-            if (it.key)
-              it.value = it.key;
+          if (
+            it.sep &&
+            !it.value &&
+            !includesToken(it.start, "explicit-key-ind") &&
+            !includesToken(it.sep, "map-value-ind")
+          ) {
+            if (it.key) it.value = it.key;
             delete it.key;
             if (isFlowToken(it.value)) {
               if (it.value.end)
                 Array.prototype.push.apply(it.value.end, it.sep);
-              else
-                it.value.end = it.sep;
-            } else
-              Array.prototype.push.apply(it.start, it.sep);
+              else it.value.end = it.sep;
+            } else Array.prototype.push.apply(it.start, it.sep);
             delete it.sep;
           }
         }
@@ -6177,17 +7087,14 @@ var require_parser = __commonJS({
         this.onNewLine = onNewLine;
       }
       *parse(source, incomplete = false) {
-        if (this.onNewLine && this.offset === 0)
-          this.onNewLine(0);
+        if (this.onNewLine && this.offset === 0) this.onNewLine(0);
         for (const lexeme of this.lexer.lex(source, incomplete))
           yield* this.next(lexeme);
-        if (!incomplete)
-          yield* this.end();
+        if (!incomplete) yield* this.end();
       }
       *next(source) {
         this.source = source;
-        if (process.env.LOG_TOKENS)
-          console.log("|", cst.prettyToken(source));
+        if (process.env.LOG_TOKENS) console.log("|", cst.prettyToken(source));
         if (this.atScalar) {
           this.atScalar = false;
           yield* this.step();
@@ -6197,7 +7104,12 @@ var require_parser = __commonJS({
         const type = cst.tokenType(source);
         if (!type) {
           const message = `Not a YAML token: ${source}`;
-          yield* this.pop({ type: "error", offset: this.offset, message, source });
+          yield* this.pop({
+            type: "error",
+            offset: this.offset,
+            message,
+            source,
+          });
           this.offset += source.length;
         } else if (type === "scalar") {
           this.atNewLine = false;
@@ -6210,8 +7122,7 @@ var require_parser = __commonJS({
             case "newline":
               this.atNewLine = true;
               this.indent = 0;
-              if (this.onNewLine)
-                this.onNewLine(this.offset + source.length);
+              if (this.onNewLine) this.onNewLine(this.offset + source.length);
               break;
             case "space":
               if (this.atNewLine && source[0] === " ")
@@ -6220,8 +7131,7 @@ var require_parser = __commonJS({
             case "explicit-key-ind":
             case "map-value-ind":
             case "seq-item-ind":
-              if (this.atNewLine)
-                this.indent += source.length;
+              if (this.atNewLine) this.indent += source.length;
               break;
             case "doc-mode":
             case "flow-error-end":
@@ -6233,32 +7143,29 @@ var require_parser = __commonJS({
         }
       }
       *end() {
-        while (this.stack.length > 0)
-          yield* this.pop();
+        while (this.stack.length > 0) yield* this.pop();
       }
       get sourceToken() {
         const st = {
           type: this.type,
           offset: this.offset,
           indent: this.indent,
-          source: this.source
+          source: this.source,
         };
         return st;
       }
       *step() {
         const top = this.peek(1);
         if (this.type === "doc-end" && (!top || top.type !== "doc-end")) {
-          while (this.stack.length > 0)
-            yield* this.pop();
+          while (this.stack.length > 0) yield* this.pop();
           this.stack.push({
             type: "doc-end",
             offset: this.offset,
-            source: this.source
+            source: this.source,
           });
           return;
         }
-        if (!top)
-          return yield* this.stream();
+        if (!top) return yield* this.stream();
         switch (top.type) {
           case "document":
             return yield* this.document(top);
@@ -6294,11 +7201,13 @@ var require_parser = __commonJS({
           const top = this.peek(1);
           if (token.type === "block-scalar") {
             token.indent = "indent" in top ? top.indent : 0;
-          } else if (token.type === "flow-collection" && top.type === "document") {
+          } else if (
+            token.type === "flow-collection" &&
+            top.type === "document"
+          ) {
             token.indent = 0;
           }
-          if (token.type === "flow-collection")
-            fixFlowSeqItems(token);
+          if (token.type === "flow-collection") fixFlowSeqItems(token);
           switch (top.type) {
             case "document":
               top.value = token;
@@ -6323,33 +7232,42 @@ var require_parser = __commonJS({
             }
             case "block-seq": {
               const it = top.items[top.items.length - 1];
-              if (it.value)
-                top.items.push({ start: [], value: token });
-              else
-                it.value = token;
+              if (it.value) top.items.push({ start: [], value: token });
+              else it.value = token;
               break;
             }
             case "flow-collection": {
               const it = top.items[top.items.length - 1];
               if (!it || it.value)
                 top.items.push({ start: [], key: token, sep: [] });
-              else if (it.sep)
-                it.value = token;
-              else
-                Object.assign(it, { key: token, sep: [] });
+              else if (it.sep) it.value = token;
+              else Object.assign(it, { key: token, sep: [] });
               return;
             }
             default:
               yield* this.pop();
               yield* this.pop(token);
           }
-          if ((top.type === "document" || top.type === "block-map" || top.type === "block-seq") && (token.type === "block-map" || token.type === "block-seq")) {
+          if (
+            (top.type === "document" ||
+              top.type === "block-map" ||
+              top.type === "block-seq") &&
+            (token.type === "block-map" || token.type === "block-seq")
+          ) {
             const last = token.items[token.items.length - 1];
-            if (last && !last.sep && !last.value && last.start.length > 0 && findNonEmptyIndex(last.start) === -1 && (token.indent === 0 || last.start.every((st) => st.type !== "comment" || st.indent < token.indent))) {
-              if (top.type === "document")
-                top.end = last.start;
-              else
-                top.items.push({ start: last.start });
+            if (
+              last &&
+              !last.sep &&
+              !last.value &&
+              last.start.length > 0 &&
+              findNonEmptyIndex(last.start) === -1 &&
+              (token.indent === 0 ||
+                last.start.every(
+                  (st) => st.type !== "comment" || st.indent < token.indent
+                ))
+            ) {
+              if (top.type === "document") top.end = last.start;
+              else top.items.push({ start: last.start });
               token.items.splice(-1, 1);
             }
           }
@@ -6358,7 +7276,11 @@ var require_parser = __commonJS({
       *stream() {
         switch (this.type) {
           case "directive-line":
-            yield { type: "directive", offset: this.offset, source: this.source };
+            yield {
+              type: "directive",
+              offset: this.offset,
+              source: this.source,
+            };
             return;
           case "byte-order-mark":
           case "space":
@@ -6371,10 +7293,9 @@ var require_parser = __commonJS({
             const doc = {
               type: "document",
               offset: this.offset,
-              start: []
+              start: [],
             };
-            if (this.type === "doc-start")
-              doc.start.push(this.sourceToken);
+            if (this.type === "doc-start") doc.start.push(this.sourceToken);
             this.stack.push(doc);
             return;
           }
@@ -6383,19 +7304,17 @@ var require_parser = __commonJS({
           type: "error",
           offset: this.offset,
           message: `Unexpected ${this.type} token in YAML stream`,
-          source: this.source
+          source: this.source,
         };
       }
       *document(doc) {
-        if (doc.value)
-          return yield* this.lineEnd(doc);
+        if (doc.value) return yield* this.lineEnd(doc);
         switch (this.type) {
           case "doc-start": {
             if (findNonEmptyIndex(doc.start) !== -1) {
               yield* this.pop();
               yield* this.step();
-            } else
-              doc.start.push(this.sourceToken);
+            } else doc.start.push(this.sourceToken);
             return;
           }
           case "anchor":
@@ -6407,14 +7326,13 @@ var require_parser = __commonJS({
             return;
         }
         const bv = this.startBlockValue(doc);
-        if (bv)
-          this.stack.push(bv);
+        if (bv) this.stack.push(bv);
         else {
           yield {
             type: "error",
             offset: this.offset,
             message: `Unexpected ${this.type} token in YAML document`,
-            source: this.source
+            source: this.source,
           };
         }
       }
@@ -6427,18 +7345,16 @@ var require_parser = __commonJS({
             sep = scalar.end;
             sep.push(this.sourceToken);
             delete scalar.end;
-          } else
-            sep = [this.sourceToken];
+          } else sep = [this.sourceToken];
           const map = {
             type: "block-map",
             offset: scalar.offset,
             indent: scalar.indent,
-            items: [{ start, key: scalar, sep }]
+            items: [{ start, key: scalar, sep }],
           };
           this.onKeyLine = true;
           this.stack[this.stack.length - 1] = map;
-        } else
-          yield* this.lineEnd(scalar);
+        } else yield* this.lineEnd(scalar);
       }
       *blockScalar(scalar) {
         switch (this.type) {
@@ -6476,8 +7392,7 @@ var require_parser = __commonJS({
               const last = Array.isArray(end) ? end[end.length - 1] : void 0;
               if ((last == null ? void 0 : last.type) === "comment")
                 end == null ? void 0 : end.push(this.sourceToken);
-              else
-                map.items.push({ start: [this.sourceToken] });
+              else map.items.push({ start: [this.sourceToken] });
             } else if (it.sep) {
               it.sep.push(this.sourceToken);
             } else {
@@ -6493,7 +7408,10 @@ var require_parser = __commonJS({
             } else {
               if (this.atIndentedComment(it.start, map.indent)) {
                 const prev = map.items[map.items.length - 2];
-                const end = (_a3 = prev == null ? void 0 : prev.value) == null ? void 0 : _a3.end;
+                const end =
+                  (_a3 = prev == null ? void 0 : prev.value) == null
+                    ? void 0
+                    : _a3.end;
                 if (Array.isArray(end)) {
                   Array.prototype.push.apply(end, it.start);
                   end.push(this.sourceToken);
@@ -6506,7 +7424,8 @@ var require_parser = __commonJS({
             return;
         }
         if (this.indent >= map.indent) {
-          const atNextItem = !this.onKeyLine && this.indent === map.indent && it.sep;
+          const atNextItem =
+            !this.onKeyLine && this.indent === map.indent && it.sep;
           let start = [];
           if (atNextItem && it.sep && !it.value) {
             const nl = [];
@@ -6519,15 +7438,13 @@ var require_parser = __commonJS({
                 case "space":
                   break;
                 case "comment":
-                  if (st.indent > map.indent)
-                    nl.length = 0;
+                  if (st.indent > map.indent) nl.length = 0;
                   break;
                 default:
                   nl.length = 0;
               }
             }
-            if (nl.length >= 2)
-              start = it.sep.splice(nl[1]);
+            if (nl.length >= 2) start = it.sep.splice(nl[1]);
           }
           switch (this.type) {
             case "anchor":
@@ -6553,7 +7470,7 @@ var require_parser = __commonJS({
                   type: "block-map",
                   offset: this.offset,
                   indent: this.indent,
-                  items: [{ start: [this.sourceToken] }]
+                  items: [{ start: [this.sourceToken] }],
                 });
               }
               this.onKeyLine = true;
@@ -6569,19 +7486,28 @@ var require_parser = __commonJS({
                       type: "block-map",
                       offset: this.offset,
                       indent: this.indent,
-                      items: [{ start: start2, key: null, sep: [this.sourceToken] }]
+                      items: [
+                        { start: start2, key: null, sep: [this.sourceToken] },
+                      ],
                     });
                   }
                 } else if (it.value) {
-                  map.items.push({ start: [], key: null, sep: [this.sourceToken] });
+                  map.items.push({
+                    start: [],
+                    key: null,
+                    sep: [this.sourceToken],
+                  });
                 } else if (includesToken(it.sep, "map-value-ind")) {
                   this.stack.push({
                     type: "block-map",
                     offset: this.offset,
                     indent: this.indent,
-                    items: [{ start, key: null, sep: [this.sourceToken] }]
+                    items: [{ start, key: null, sep: [this.sourceToken] }],
                   });
-                } else if (isFlowToken(it.key) && !includesToken(it.sep, "newline")) {
+                } else if (
+                  isFlowToken(it.key) &&
+                  !includesToken(it.sep, "newline")
+                ) {
                   const start2 = getFirstKeyStartProps(it.start);
                   const key = it.key;
                   const sep = it.sep;
@@ -6591,7 +7517,7 @@ var require_parser = __commonJS({
                     type: "block-map",
                     offset: this.offset,
                     indent: this.indent,
-                    items: [{ start: start2, key, sep }]
+                    items: [{ start: start2, key, sep }],
                   });
                 } else if (start.length > 0) {
                   it.sep = it.sep.concat(start, this.sourceToken);
@@ -6608,7 +7534,7 @@ var require_parser = __commonJS({
                     type: "block-map",
                     offset: this.offset,
                     indent: this.indent,
-                    items: [{ start: [], key: null, sep: [this.sourceToken] }]
+                    items: [{ start: [], key: null, sep: [this.sourceToken] }],
                   });
                 } else {
                   it.sep.push(this.sourceToken);
@@ -6635,7 +7561,11 @@ var require_parser = __commonJS({
             default: {
               const bv = this.startBlockValue(map);
               if (bv) {
-                if (atNextItem && bv.type !== "block-seq" && includesToken(it.start, "explicit-key-ind")) {
+                if (
+                  atNextItem &&
+                  bv.type !== "block-seq" &&
+                  includesToken(it.start, "explicit-key-ind")
+                ) {
                   map.items.push({ start });
                 }
                 this.stack.push(bv);
@@ -6657,19 +7587,19 @@ var require_parser = __commonJS({
               const last = Array.isArray(end) ? end[end.length - 1] : void 0;
               if ((last == null ? void 0 : last.type) === "comment")
                 end == null ? void 0 : end.push(this.sourceToken);
-              else
-                seq.items.push({ start: [this.sourceToken] });
-            } else
-              it.start.push(this.sourceToken);
+              else seq.items.push({ start: [this.sourceToken] });
+            } else it.start.push(this.sourceToken);
             return;
           case "space":
           case "comment":
-            if (it.value)
-              seq.items.push({ start: [this.sourceToken] });
+            if (it.value) seq.items.push({ start: [this.sourceToken] });
             else {
               if (this.atIndentedComment(it.start, seq.indent)) {
                 const prev = seq.items[seq.items.length - 2];
-                const end = (_a3 = prev == null ? void 0 : prev.value) == null ? void 0 : _a3.end;
+                const end =
+                  (_a3 = prev == null ? void 0 : prev.value) == null
+                    ? void 0
+                    : _a3.end;
                 if (Array.isArray(end)) {
                   Array.prototype.push.apply(end, it.start);
                   end.push(this.sourceToken);
@@ -6682,17 +7612,14 @@ var require_parser = __commonJS({
             return;
           case "anchor":
           case "tag":
-            if (it.value || this.indent <= seq.indent)
-              break;
+            if (it.value || this.indent <= seq.indent) break;
             it.start.push(this.sourceToken);
             return;
           case "seq-item-ind":
-            if (this.indent !== seq.indent)
-              break;
+            if (this.indent !== seq.indent) break;
             if (it.value || includesToken(it.start, "seq-item-ind"))
               seq.items.push({ start: [this.sourceToken] });
-            else
-              it.start.push(this.sourceToken);
+            else it.start.push(this.sourceToken);
             return;
         }
         if (this.indent > seq.indent) {
@@ -6717,30 +7644,27 @@ var require_parser = __commonJS({
           switch (this.type) {
             case "comma":
             case "explicit-key-ind":
-              if (!it || it.sep)
-                fc.items.push({ start: [this.sourceToken] });
-              else
-                it.start.push(this.sourceToken);
+              if (!it || it.sep) fc.items.push({ start: [this.sourceToken] });
+              else it.start.push(this.sourceToken);
               return;
             case "map-value-ind":
               if (!it || it.value)
-                fc.items.push({ start: [], key: null, sep: [this.sourceToken] });
-              else if (it.sep)
-                it.sep.push(this.sourceToken);
-              else
-                Object.assign(it, { key: null, sep: [this.sourceToken] });
+                fc.items.push({
+                  start: [],
+                  key: null,
+                  sep: [this.sourceToken],
+                });
+              else if (it.sep) it.sep.push(this.sourceToken);
+              else Object.assign(it, { key: null, sep: [this.sourceToken] });
               return;
             case "space":
             case "comment":
             case "newline":
             case "anchor":
             case "tag":
-              if (!it || it.value)
-                fc.items.push({ start: [this.sourceToken] });
-              else if (it.sep)
-                it.sep.push(this.sourceToken);
-              else
-                it.start.push(this.sourceToken);
+              if (!it || it.value) fc.items.push({ start: [this.sourceToken] });
+              else if (it.sep) it.sep.push(this.sourceToken);
+              else it.start.push(this.sourceToken);
               return;
             case "alias":
             case "scalar":
@@ -6749,10 +7673,8 @@ var require_parser = __commonJS({
               const fs6 = this.flowScalar(this.type);
               if (!it || it.value)
                 fc.items.push({ start: [], key: fs6, sep: [] });
-              else if (it.sep)
-                this.stack.push(fs6);
-              else
-                Object.assign(it, { key: fs6, sep: [] });
+              else if (it.sep) this.stack.push(fs6);
+              else Object.assign(it, { key: fs6, sep: [] });
               return;
             }
             case "flow-map-end":
@@ -6761,18 +7683,25 @@ var require_parser = __commonJS({
               return;
           }
           const bv = this.startBlockValue(fc);
-          if (bv)
-            this.stack.push(bv);
+          if (bv) this.stack.push(bv);
           else {
             yield* this.pop();
             yield* this.step();
           }
         } else {
           const parent = this.peek(2);
-          if (parent.type === "block-map" && (this.type === "map-value-ind" && parent.indent === fc.indent || this.type === "newline" && !parent.items[parent.items.length - 1].sep)) {
+          if (
+            parent.type === "block-map" &&
+            ((this.type === "map-value-ind" && parent.indent === fc.indent) ||
+              (this.type === "newline" &&
+                !parent.items[parent.items.length - 1].sep))
+          ) {
             yield* this.pop();
             yield* this.step();
-          } else if (this.type === "map-value-ind" && parent.type !== "flow-collection") {
+          } else if (
+            this.type === "map-value-ind" &&
+            parent.type !== "flow-collection"
+          ) {
             const prev = getPrevProps(parent);
             const start = getFirstKeyStartProps(prev);
             fixFlowSeqItems(fc);
@@ -6782,7 +7711,7 @@ var require_parser = __commonJS({
               type: "block-map",
               offset: fc.offset,
               indent: fc.indent,
-              items: [{ start, key: fc, sep }]
+              items: [{ start, key: fc, sep }],
             };
             this.onKeyLine = true;
             this.stack[this.stack.length - 1] = map;
@@ -6803,7 +7732,7 @@ var require_parser = __commonJS({
           type,
           offset: this.offset,
           indent: this.indent,
-          source: this.source
+          source: this.source,
         };
       }
       startBlockValue(parent) {
@@ -6819,7 +7748,7 @@ var require_parser = __commonJS({
               offset: this.offset,
               indent: this.indent,
               props: [this.sourceToken],
-              source: ""
+              source: "",
             };
           case "flow-map-start":
           case "flow-seq-start":
@@ -6829,14 +7758,14 @@ var require_parser = __commonJS({
               indent: this.indent,
               start: this.sourceToken,
               items: [],
-              end: []
+              end: [],
             };
           case "seq-item-ind":
             return {
               type: "block-seq",
               offset: this.offset,
               indent: this.indent,
-              items: [{ start: [this.sourceToken] }]
+              items: [{ start: [this.sourceToken] }],
             };
           case "explicit-key-ind": {
             this.onKeyLine = true;
@@ -6847,7 +7776,7 @@ var require_parser = __commonJS({
               type: "block-map",
               offset: this.offset,
               indent: this.indent,
-              items: [{ start }]
+              items: [{ start }],
             };
           }
           case "map-value-ind": {
@@ -6858,27 +7787,24 @@ var require_parser = __commonJS({
               type: "block-map",
               offset: this.offset,
               indent: this.indent,
-              items: [{ start, key: null, sep: [this.sourceToken] }]
+              items: [{ start, key: null, sep: [this.sourceToken] }],
             };
           }
         }
         return null;
       }
       atIndentedComment(start, indent2) {
-        if (this.type !== "comment")
-          return false;
-        if (this.indent <= indent2)
-          return false;
-        return start.every((st) => st.type === "newline" || st.type === "space");
+        if (this.type !== "comment") return false;
+        if (this.indent <= indent2) return false;
+        return start.every(
+          (st) => st.type === "newline" || st.type === "space"
+        );
       }
       *documentEnd(docEnd) {
         if (this.type !== "doc-mode") {
-          if (docEnd.end)
-            docEnd.end.push(this.sourceToken);
-          else
-            docEnd.end = [this.sourceToken];
-          if (this.type === "newline")
-            yield* this.pop();
+          if (docEnd.end) docEnd.end.push(this.sourceToken);
+          else docEnd.end = [this.sourceToken];
+          if (this.type === "newline") yield* this.pop();
         }
       }
       *lineEnd(token) {
@@ -6897,22 +7823,21 @@ var require_parser = __commonJS({
           case "space":
           case "comment":
           default:
-            if (token.end)
-              token.end.push(this.sourceToken);
-            else
-              token.end = [this.sourceToken];
-            if (this.type === "newline")
-              yield* this.pop();
+            if (token.end) token.end.push(this.sourceToken);
+            else token.end = [this.sourceToken];
+            if (this.type === "newline") yield* this.pop();
         }
       }
     };
     exports.Parser = Parser2;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/public-api.js
 var require_public_api = __commonJS({
-  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/public-api.js"(exports) {
+  "node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/public-api.js"(
+    exports
+  ) {
     "use strict";
     var composer = require_composer();
     var Document = require_Document();
@@ -6922,12 +7847,18 @@ var require_public_api = __commonJS({
     var parser2 = require_parser();
     function parseOptions(options2) {
       const prettyErrors = options2.prettyErrors !== false;
-      const lineCounter$1 = options2.lineCounter || prettyErrors && new lineCounter.LineCounter() || null;
+      const lineCounter$1 =
+        options2.lineCounter ||
+        (prettyErrors && new lineCounter.LineCounter()) ||
+        null;
       return { lineCounter: lineCounter$1, prettyErrors };
     }
     function parseAllDocuments(source, options2 = {}) {
-      const { lineCounter: lineCounter2, prettyErrors } = parseOptions(options2);
-      const parser$1 = new parser2.Parser(lineCounter2 == null ? void 0 : lineCounter2.addNewLine);
+      const { lineCounter: lineCounter2, prettyErrors } =
+        parseOptions(options2);
+      const parser$1 = new parser2.Parser(
+        lineCounter2 == null ? void 0 : lineCounter2.addNewLine
+      );
       const composer$1 = new composer.Composer(options2);
       const docs = Array.from(composer$1.compose(parser$1.parse(source)));
       if (prettyErrors && lineCounter2)
@@ -6935,20 +7866,31 @@ var require_public_api = __commonJS({
           doc.errors.forEach(errors.prettifyError(source, lineCounter2));
           doc.warnings.forEach(errors.prettifyError(source, lineCounter2));
         }
-      if (docs.length > 0)
-        return docs;
+      if (docs.length > 0) return docs;
       return Object.assign([], { empty: true }, composer$1.streamInfo());
     }
     function parseDocument(source, options2 = {}) {
-      const { lineCounter: lineCounter2, prettyErrors } = parseOptions(options2);
-      const parser$1 = new parser2.Parser(lineCounter2 == null ? void 0 : lineCounter2.addNewLine);
+      const { lineCounter: lineCounter2, prettyErrors } =
+        parseOptions(options2);
+      const parser$1 = new parser2.Parser(
+        lineCounter2 == null ? void 0 : lineCounter2.addNewLine
+      );
       const composer$1 = new composer.Composer(options2);
       let doc = null;
-      for (const _doc of composer$1.compose(parser$1.parse(source), true, source.length)) {
-        if (!doc)
-          doc = _doc;
+      for (const _doc of composer$1.compose(
+        parser$1.parse(source),
+        true,
+        source.length
+      )) {
+        if (!doc) doc = _doc;
         else if (doc.options.logLevel !== "silent") {
-          doc.errors.push(new errors.YAMLParseError(_doc.range.slice(0, 2), "MULTIPLE_DOCS", "Source contains multiple documents; please use YAML.parseAllDocuments()"));
+          doc.errors.push(
+            new errors.YAMLParseError(
+              _doc.range.slice(0, 2),
+              "MULTIPLE_DOCS",
+              "Source contains multiple documents; please use YAML.parseAllDocuments()"
+            )
+          );
           break;
         }
       }
@@ -6962,18 +7904,21 @@ var require_public_api = __commonJS({
       let _reviver = void 0;
       if (typeof reviver === "function") {
         _reviver = reviver;
-      } else if (options2 === void 0 && reviver && typeof reviver === "object") {
+      } else if (
+        options2 === void 0 &&
+        reviver &&
+        typeof reviver === "object"
+      ) {
         options2 = reviver;
       }
       const doc = parseDocument(src, options2);
-      if (!doc)
-        return null;
-      doc.warnings.forEach((warning) => log.warn(doc.options.logLevel, warning));
+      if (!doc) return null;
+      doc.warnings.forEach((warning) =>
+        log.warn(doc.options.logLevel, warning)
+      );
       if (doc.errors.length > 0) {
-        if (doc.options.logLevel !== "silent")
-          throw doc.errors[0];
-        else
-          doc.errors = [];
+        if (doc.options.logLevel !== "silent") throw doc.errors[0];
+        else doc.errors = [];
       }
       return doc.toJS(Object.assign({ reviver: _reviver }, options2));
     }
@@ -6984,24 +7929,29 @@ var require_public_api = __commonJS({
       } else if (options2 === void 0 && replacer) {
         options2 = replacer;
       }
-      if (typeof options2 === "string")
-        options2 = options2.length;
+      if (typeof options2 === "string") options2 = options2.length;
       if (typeof options2 === "number") {
         const indent2 = Math.round(options2);
-        options2 = indent2 < 1 ? void 0 : indent2 > 8 ? { indent: 8 } : { indent: indent2 };
+        options2 =
+          indent2 < 1
+            ? void 0
+            : indent2 > 8
+            ? { indent: 8 }
+            : { indent: indent2 };
       }
       if (value2 === void 0) {
         const { keepUndefined } = options2 ?? replacer ?? {};
-        if (!keepUndefined)
-          return void 0;
+        if (!keepUndefined) return void 0;
       }
-      return new Document.Document(value2, _replacer, options2).toString(options2);
+      return new Document.Document(value2, _replacer, options2).toString(
+        options2
+      );
     }
     exports.parse = parse4;
     exports.parseAllDocuments = parseAllDocuments;
     exports.parseDocument = parseDocument;
     exports.stringify = stringify2;
-  }
+  },
 });
 
 // node_modules/.pnpm/yaml@2.1.3/node_modules/yaml/dist/index.js
@@ -7053,7 +8003,7 @@ var require_dist = __commonJS({
     exports.stringify = publicApi.stringify;
     exports.visit = visit2.visit;
     exports.visitAsync = visit2.visitAsync;
-  }
+  },
 });
 
 // node_modules/.pnpm/character-entities@2.0.2/node_modules/character-entities/index.js
@@ -9185,34 +10135,39 @@ var init_character_entities = __esm({
       zopf: "\u{1D56B}",
       zscr: "\u{1D4CF}",
       zwj: "\u200D",
-      zwnj: "\u200C"
+      zwnj: "\u200C",
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/decode-named-character-reference@1.0.2/node_modules/decode-named-character-reference/index.js
 function decodeNamedCharacterReference(value2) {
-  return own5.call(characterEntities, value2) ? characterEntities[value2] : false;
+  return own5.call(characterEntities, value2)
+    ? characterEntities[value2]
+    : false;
 }
 var own5;
 var init_decode_named_character_reference = __esm({
   "node_modules/.pnpm/decode-named-character-reference@1.0.2/node_modules/decode-named-character-reference/index.js"() {
     init_character_entities();
     own5 = {}.hasOwnProperty;
-  }
+  },
 });
 
 // node_modules/.pnpm/format@0.2.2/node_modules/format/format.js
 var require_format = __commonJS({
-  "node_modules/.pnpm/format@0.2.2/node_modules/format/format.js"(exports, module2) {
-    (function() {
+  "node_modules/.pnpm/format@0.2.2/node_modules/format/format.js"(
+    exports,
+    module2
+  ) {
+    (function () {
       var namespace;
       if (typeof module2 !== "undefined") {
         namespace = module2.exports = format;
       } else {
-        namespace = function() {
+        namespace = (function () {
           return this || (1, eval)("this");
-        }();
+        })();
       }
       namespace.format = format;
       namespace.vsprintf = vsprintf;
@@ -9226,16 +10181,28 @@ var require_format = __commonJS({
         return format.apply(null, [fmt].concat(replacements));
       }
       function format(fmt) {
-        var argIndex = 1, args = [].slice.call(arguments), i = 0, n = fmt.length, result = "", c2, escaped = false, arg, tmp, leadingZero = false, precision, nextArg = function() {
-          return args[argIndex++];
-        }, slurpNumber = function() {
-          var digits = "";
-          while (/\d/.test(fmt[i])) {
-            digits += fmt[i++];
-            c2 = fmt[i];
-          }
-          return digits.length > 0 ? parseInt(digits) : null;
-        };
+        var argIndex = 1,
+          args = [].slice.call(arguments),
+          i = 0,
+          n = fmt.length,
+          result = "",
+          c2,
+          escaped = false,
+          arg,
+          tmp,
+          leadingZero = false,
+          precision,
+          nextArg = function () {
+            return args[argIndex++];
+          },
+          slurpNumber = function () {
+            var digits = "";
+            while (/\d/.test(fmt[i])) {
+              digits += fmt[i++];
+              c2 = fmt[i];
+            }
+            return digits.length > 0 ? parseInt(digits) : null;
+          };
         for (; i < n; ++i) {
           c2 = fmt[i];
           if (escaped) {
@@ -9259,8 +10226,7 @@ var require_format = __commonJS({
                 arg = nextArg();
                 if (typeof arg === "string" || arg instanceof String)
                   result += arg;
-                else
-                  result += String.fromCharCode(parseInt(arg, 10));
+                else result += String.fromCharCode(parseInt(arg, 10));
                 break;
               case "d":
                 result += parseInt(nextArg(), 10);
@@ -9282,7 +10248,8 @@ var require_format = __commonJS({
                 result += "0x" + parseInt(nextArg(), 10).toString(16);
                 break;
               case "X":
-                result += "0x" + parseInt(nextArg(), 10).toString(16).toUpperCase();
+                result +=
+                  "0x" + parseInt(nextArg(), 10).toString(16).toUpperCase();
                 break;
               default:
                 result += c2;
@@ -9297,7 +10264,7 @@ var require_format = __commonJS({
         return result;
       }
     })();
-  }
+  },
 });
 
 // node_modules/.pnpm/fault@2.0.1/node_modules/fault/index.js
@@ -9305,7 +10272,9 @@ function create2(Constructor) {
   FormattedError.displayName = Constructor.displayName || Constructor.name;
   return FormattedError;
   function FormattedError(format, ...values) {
-    const reason = format ? (0, import_format2.default)(format, ...values) : format;
+    const reason = format
+      ? (0, import_format2.default)(format, ...values)
+      : format;
     return new Constructor(reason);
   }
 }
@@ -9319,9 +10288,9 @@ var init_fault = __esm({
       reference: create2(ReferenceError),
       syntax: create2(SyntaxError),
       type: create2(TypeError),
-      uri: create2(URIError)
+      uri: create2(URIError),
     });
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-frontmatter@1.0.0/node_modules/micromark-extension-frontmatter/matters.js
@@ -9344,7 +10313,7 @@ function matter(option) {
     }
     result = {
       type: result,
-      marker: markers[result]
+      marker: markers[result],
     };
   } else if (typeof result !== "object") {
     throw fault("Expected matter to be an object, not `%j`", result);
@@ -9364,17 +10333,18 @@ var init_matters = __esm({
     own7 = {}.hasOwnProperty;
     markers = {
       yaml: "-",
-      toml: "+"
+      toml: "+",
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-util-character@1.1.0/node_modules/micromark-util-character/lib/unicode-punctuation-regex.js
 var unicodePunctuationRegex;
 var init_unicode_punctuation_regex = __esm({
   "node_modules/.pnpm/micromark-util-character@1.1.0/node_modules/micromark-util-character/lib/unicode-punctuation-regex.js"() {
-    unicodePunctuationRegex = /[!-/:-@[-`{-~\u00A1\u00A7\u00AB\u00B6\u00B7\u00BB\u00BF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u09FD\u0A76\u0AF0\u0C77\u0C84\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E4F\u2E52\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]/;
-  }
+    unicodePunctuationRegex =
+      /[!-/:-@[-`{-~\u00A1\u00A7\u00AB\u00B6\u00B7\u00BB\u00BF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u09FD\u0A76\u0AF0\u0C77\u0C84\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E4F\u2E52\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]/;
+  },
 });
 
 // node_modules/.pnpm/micromark-util-character@1.1.0/node_modules/micromark-util-character/index.js
@@ -9396,7 +10366,14 @@ function regexCheck(regex3) {
     return code2 !== null && regex3.test(String.fromCharCode(code2));
   }
 }
-var asciiAlpha, asciiDigit, asciiHexDigit, asciiAlphanumeric, asciiPunctuation, asciiAtext, unicodeWhitespace, unicodePunctuation;
+var asciiAlpha,
+  asciiDigit,
+  asciiHexDigit,
+  asciiAlphanumeric,
+  asciiPunctuation,
+  asciiAtext,
+  unicodeWhitespace,
+  unicodePunctuation;
 var init_micromark_util_character = __esm({
   "node_modules/.pnpm/micromark-util-character@1.1.0/node_modules/micromark-util-character/index.js"() {
     init_unicode_punctuation_regex();
@@ -9408,7 +10385,7 @@ var init_micromark_util_character = __esm({
     asciiAtext = regexCheck(/[#-'*+\--9=?A-Z^-~]/);
     unicodeWhitespace = regexCheck(/\s/);
     unicodePunctuation = regexCheck(unicodePunctuationRegex);
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-frontmatter@1.0.0/node_modules/micromark-extension-frontmatter/lib/syntax.js
@@ -9428,7 +10405,7 @@ function frontmatter(options2) {
     }
   }
   return {
-    flow
+    flow,
   };
 }
 function parse3(matter2) {
@@ -9439,19 +10416,19 @@ function parse3(matter2) {
   const sequenceType = fenceType + "Sequence";
   const fenceConstruct = {
     tokenize: tokenizeFence,
-    partial: true
+    partial: true,
   };
   let buffer;
   return {
     tokenize: tokenizeFrontmatter,
-    concrete: true
+    concrete: true,
   };
   function tokenizeFrontmatter(effects, ok2, nok) {
     const self = this;
     return start;
     function start(code2) {
       const position = self.now();
-      if (position.column !== 1 || !anywhere && position.line !== 1) {
+      if (position.column !== 1 || (!anywhere && position.line !== 1)) {
         return nok(code2);
       }
       effects.enter(name);
@@ -9535,7 +10512,9 @@ function parse3(matter2) {
   }
 }
 function fence(matter2, prop) {
-  return matter2.marker ? pick(matter2.marker, prop).repeat(3) : pick(matter2.fence, prop);
+  return matter2.marker
+    ? pick(matter2.marker, prop).repeat(3)
+    : pick(matter2.fence, prop);
 }
 function pick(schema, prop) {
   return typeof schema === "string" ? schema : schema[prop];
@@ -9544,14 +10523,14 @@ var init_syntax = __esm({
   "node_modules/.pnpm/micromark-extension-frontmatter@1.0.0/node_modules/micromark-extension-frontmatter/lib/syntax.js"() {
     init_micromark_util_character();
     init_matters();
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-frontmatter@1.0.0/node_modules/micromark-extension-frontmatter/index.js
 var init_micromark_extension_frontmatter = __esm({
   "node_modules/.pnpm/micromark-extension-frontmatter@1.0.0/node_modules/micromark-extension-frontmatter/index.js"() {
     init_syntax();
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-frontmatter@1.0.0/node_modules/mdast-util-frontmatter/index.js
@@ -9591,7 +10570,10 @@ function frontmatterToMarkdown(options2) {
   while (++index < settings.length) {
     const matter2 = settings[index];
     handlers[matter2.type] = handler(matter2);
-    unsafe.push({ atBreak: true, character: fence2(matter2, "open").charAt(0) });
+    unsafe.push({
+      atBreak: true,
+      character: fence2(matter2, "open").charAt(0),
+    });
   }
   return { unsafe, handlers };
 }
@@ -9604,7 +10586,9 @@ function handler(matter2) {
   }
 }
 function fence2(matter2, prop) {
-  return matter2.marker ? pick2(matter2.marker, prop).repeat(3) : pick2(matter2.fence, prop);
+  return matter2.marker
+    ? pick2(matter2.marker, prop).repeat(3)
+    : pick2(matter2.fence, prop);
 }
 function pick2(schema, prop) {
   return typeof schema === "string" ? schema : schema[prop];
@@ -9612,13 +10596,13 @@ function pick2(schema, prop) {
 var init_mdast_util_frontmatter = __esm({
   "node_modules/.pnpm/mdast-util-frontmatter@1.0.0/node_modules/mdast-util-frontmatter/index.js"() {
     init_matters();
-  }
+  },
 });
 
 // node_modules/.pnpm/remark-frontmatter@4.0.1/node_modules/remark-frontmatter/index.js
 var remark_frontmatter_exports = {};
 __export(remark_frontmatter_exports, {
-  default: () => remarkFrontmatter
+  default: () => remarkFrontmatter,
 });
 function remarkFrontmatter(options2 = "yaml") {
   const data = this.data();
@@ -9626,7 +10610,7 @@ function remarkFrontmatter(options2 = "yaml") {
   add("fromMarkdownExtensions", frontmatterFromMarkdown(options2));
   add("toMarkdownExtensions", frontmatterToMarkdown(options2));
   function add(field, value2) {
-    const list = data[field] ? data[field] : data[field] = [];
+    const list = data[field] ? data[field] : (data[field] = []);
     list.push(value2);
   }
 }
@@ -9634,7 +10618,7 @@ var init_remark_frontmatter = __esm({
   "node_modules/.pnpm/remark-frontmatter@4.0.1/node_modules/remark-frontmatter/index.js"() {
     init_micromark_extension_frontmatter();
     init_mdast_util_frontmatter();
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-util-chunked@1.0.0/node_modules/micromark-util-chunked/index.js
@@ -9653,8 +10637,7 @@ function splice(list, start, remove, items) {
     parameters.unshift(start, remove);
     [].splice.apply(list, parameters);
   } else {
-    if (remove)
-      [].splice.apply(list, [start, remove]);
+    if (remove) [].splice.apply(list, [start, remove]);
     while (chunkStart < items.length) {
       parameters = items.slice(chunkStart, chunkStart + 1e4);
       parameters.unshift(start, 0);
@@ -9665,8 +10648,7 @@ function splice(list, start, remove, items) {
   }
 }
 var init_micromark_util_chunked = __esm({
-  "node_modules/.pnpm/micromark-util-chunked@1.0.0/node_modules/micromark-util-chunked/index.js"() {
-  }
+  "node_modules/.pnpm/micromark-util-chunked@1.0.0/node_modules/micromark-util-chunked/index.js"() {},
 });
 
 // node_modules/.pnpm/micromark-util-combine-extensions@1.0.0/node_modules/micromark-util-combine-extensions/index.js
@@ -9686,8 +10668,7 @@ function syntaxExtension(all2, extension) {
     const right = extension[hook];
     let code2;
     for (code2 in right) {
-      if (!hasOwnProperty.call(left, code2))
-        left[code2] = [];
+      if (!hasOwnProperty.call(left, code2)) left[code2] = [];
       const value2 = right[code2];
       constructs(
         left[code2],
@@ -9700,7 +10681,6 @@ function constructs(existing, list) {
   let index = -1;
   const before = [];
   while (++index < list.length) {
-    ;
     (list[index].add === "after" ? existing : before).push(list[index]);
   }
   splice(existing, 0, 0, before);
@@ -9710,7 +10690,7 @@ var init_micromark_util_combine_extensions = __esm({
   "node_modules/.pnpm/micromark-util-combine-extensions@1.0.0/node_modules/micromark-util-combine-extensions/index.js"() {
     init_micromark_util_chunked();
     hasOwnProperty = {}.hasOwnProperty;
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-gfm-autolink-literal@1.0.3/node_modules/micromark-extension-gfm-autolink-literal/lib/syntax.js
@@ -9720,7 +10700,11 @@ function tokenizeEmailAutolink(effects, ok2, nok) {
   let hasDigitInLastSegment;
   return start;
   function start(code2) {
-    if (!gfmAtext(code2) || !previousEmail(self.previous) || previousUnbalanced(self.events)) {
+    if (
+      !gfmAtext(code2) ||
+      !previousEmail(self.previous) ||
+      previousUnbalanced(self.events)
+    ) {
       return nok(code2);
     }
     effects.enter("literalAutolink");
@@ -9743,7 +10727,11 @@ function tokenizeEmailAutolink(effects, ok2, nok) {
       return effects.check(punctuation, done, dotContinuation)(code2);
     }
     if (code2 === 45 || code2 === 95) {
-      return effects.check(punctuation, nok, dashOrUnderscoreContinuation)(code2);
+      return effects.check(
+        punctuation,
+        nok,
+        dashOrUnderscoreContinuation
+      )(code2);
     }
     if (asciiAlphanumeric(code2)) {
       if (!hasDigitInLastSegment && asciiDigit(code2)) {
@@ -9783,7 +10771,11 @@ function tokenizeWwwAutolink(effects, ok2, nok) {
   const self = this;
   return start;
   function start(code2) {
-    if (code2 !== 87 && code2 !== 119 || !previousWww(self.previous) || previousUnbalanced(self.events)) {
+    if (
+      (code2 !== 87 && code2 !== 119) ||
+      !previousWww(self.previous) ||
+      previousUnbalanced(self.events)
+    ) {
       return nok(code2);
     }
     effects.enter("literalAutolink");
@@ -9804,7 +10796,11 @@ function tokenizeHttpAutolink(effects, ok2, nok) {
   const self = this;
   return start;
   function start(code2) {
-    if (code2 !== 72 && code2 !== 104 || !previousHttp(self.previous) || previousUnbalanced(self.events)) {
+    if (
+      (code2 !== 72 && code2 !== 104) ||
+      !previousHttp(self.previous) ||
+      previousUnbalanced(self.events)
+    ) {
       return nok(code2);
     }
     effects.enter("literalAutolink");
@@ -9862,7 +10858,12 @@ function tokenizeHttpAutolink(effects, ok2, nok) {
     return nok(code2);
   }
   function after(code2) {
-    return code2 === null || asciiControl(code2) || unicodeWhitespace(code2) || unicodePunctuation(code2) ? nok(code2) : effects.attempt(domain, effects.attempt(path, done), nok)(code2);
+    return code2 === null ||
+      asciiControl(code2) ||
+      unicodeWhitespace(code2) ||
+      unicodePunctuation(code2)
+      ? nok(code2)
+      : effects.attempt(domain, effects.attempt(path, done), nok)(code2);
   }
   function done(code2) {
     effects.exit("literalAutolinkHttp");
@@ -9898,7 +10899,9 @@ function tokenizeWww(effects, ok2, nok) {
     return nok(code2);
   }
   function after(code2) {
-    return code2 === null || markdownLineEnding(code2) ? nok(code2) : ok2(code2);
+    return code2 === null || markdownLineEnding(code2)
+      ? nok(code2)
+      : ok2(code2);
   }
 }
 function tokenizeDomain(effects, ok2, nok) {
@@ -9916,7 +10919,12 @@ function tokenizeDomain(effects, ok2, nok) {
     if (code2 === 46 || code2 === 95) {
       return effects.check(punctuation, done, punctuationContinuation)(code2);
     }
-    if (code2 === null || asciiControl(code2) || unicodeWhitespace(code2) || code2 !== 45 && unicodePunctuation(code2)) {
+    if (
+      code2 === null ||
+      asciiControl(code2) ||
+      unicodeWhitespace(code2) ||
+      (code2 !== 45 && unicodePunctuation(code2))
+    ) {
       return done(code2);
     }
     effects.consume(code2);
@@ -9929,8 +10937,7 @@ function tokenizeDomain(effects, ok2, nok) {
       effects.consume(code2);
       return domain3;
     }
-    if (code2 === 95)
-      hasUnderscoreInLastSegment = true;
+    if (code2 === 95) hasUnderscoreInLastSegment = true;
     effects.consume(code2);
     return domain3;
   }
@@ -10016,16 +11023,43 @@ function tokenizePunctuation(effects, ok2, nok) {
   }
 }
 function trailingPunctuation(code2) {
-  return code2 === 33 || code2 === 34 || code2 === 39 || code2 === 41 || code2 === 42 || code2 === 44 || code2 === 46 || code2 === 58 || code2 === 59 || code2 === 60 || code2 === 63 || code2 === 95 || code2 === 126;
+  return (
+    code2 === 33 ||
+    code2 === 34 ||
+    code2 === 39 ||
+    code2 === 41 ||
+    code2 === 42 ||
+    code2 === 44 ||
+    code2 === 46 ||
+    code2 === 58 ||
+    code2 === 59 ||
+    code2 === 60 ||
+    code2 === 63 ||
+    code2 === 95 ||
+    code2 === 126
+  );
 }
 function pathEnd(code2) {
   return code2 === null || code2 === 60 || markdownLineEndingOrSpace(code2);
 }
 function gfmAtext(code2) {
-  return code2 === 43 || code2 === 45 || code2 === 46 || code2 === 95 || asciiAlphanumeric(code2);
+  return (
+    code2 === 43 ||
+    code2 === 45 ||
+    code2 === 46 ||
+    code2 === 95 ||
+    asciiAlphanumeric(code2)
+  );
 }
 function previousWww(code2) {
-  return code2 === null || code2 === 40 || code2 === 42 || code2 === 95 || code2 === 126 || markdownLineEndingOrSpace(code2);
+  return (
+    code2 === null ||
+    code2 === 40 ||
+    code2 === 42 ||
+    code2 === 95 ||
+    code2 === 126 ||
+    markdownLineEndingOrSpace(code2)
+  );
 }
 function previousHttp(code2) {
   return code2 === null || !asciiAlpha(code2);
@@ -10038,7 +11072,10 @@ function previousUnbalanced(events) {
   let result = false;
   while (index--) {
     const token = events[index][1];
-    if ((token.type === "labelLink" || token.type === "labelImage") && !token._balanced) {
+    if (
+      (token.type === "labelLink" || token.type === "labelImage") &&
+      !token._balanced
+    ) {
       result = true;
       break;
     }
@@ -10052,54 +11089,62 @@ function previousUnbalanced(events) {
   }
   return result;
 }
-var www, domain, path, punctuation, namedCharacterReference, wwwAutolink, httpAutolink, emailAutolink, text, gfmAutolinkLiteral, code;
+var www,
+  domain,
+  path,
+  punctuation,
+  namedCharacterReference,
+  wwwAutolink,
+  httpAutolink,
+  emailAutolink,
+  text,
+  gfmAutolinkLiteral,
+  code;
 var init_syntax2 = __esm({
   "node_modules/.pnpm/micromark-extension-gfm-autolink-literal@1.0.3/node_modules/micromark-extension-gfm-autolink-literal/lib/syntax.js"() {
     init_micromark_util_character();
     www = {
       tokenize: tokenizeWww,
-      partial: true
+      partial: true,
     };
     domain = {
       tokenize: tokenizeDomain,
-      partial: true
+      partial: true,
     };
     path = {
       tokenize: tokenizePath,
-      partial: true
+      partial: true,
     };
     punctuation = {
       tokenize: tokenizePunctuation,
-      partial: true
+      partial: true,
     };
     namedCharacterReference = {
       tokenize: tokenizeNamedCharacterReference,
-      partial: true
+      partial: true,
     };
     wwwAutolink = {
       tokenize: tokenizeWwwAutolink,
-      previous: previousWww
+      previous: previousWww,
     };
     httpAutolink = {
       tokenize: tokenizeHttpAutolink,
-      previous: previousHttp
+      previous: previousHttp,
     };
     emailAutolink = {
       tokenize: tokenizeEmailAutolink,
-      previous: previousEmail
+      previous: previousEmail,
     };
     text = {};
     gfmAutolinkLiteral = {
-      text
+      text,
     };
     code = 48;
     while (code < 123) {
       text[code] = emailAutolink;
       code++;
-      if (code === 58)
-        code = 65;
-      else if (code === 91)
-        code = 97;
+      if (code === 58) code = 65;
+      else if (code === 91) code = 97;
     }
     text[43] = emailAutolink;
     text[45] = emailAutolink;
@@ -10109,19 +11154,23 @@ var init_syntax2 = __esm({
     text[104] = [emailAutolink, httpAutolink];
     text[87] = [emailAutolink, wwwAutolink];
     text[119] = [emailAutolink, wwwAutolink];
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-gfm-autolink-literal@1.0.3/node_modules/micromark-extension-gfm-autolink-literal/index.js
 var init_micromark_extension_gfm_autolink_literal = __esm({
   "node_modules/.pnpm/micromark-extension-gfm-autolink-literal@1.0.3/node_modules/micromark-extension-gfm-autolink-literal/index.js"() {
     init_syntax2();
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-util-classify-character@1.0.0/node_modules/micromark-util-classify-character/index.js
 function classifyCharacter(code2) {
-  if (code2 === null || markdownLineEndingOrSpace(code2) || unicodeWhitespace(code2)) {
+  if (
+    code2 === null ||
+    markdownLineEndingOrSpace(code2) ||
+    unicodeWhitespace(code2)
+  ) {
     return 1;
   }
   if (unicodePunctuation(code2)) {
@@ -10131,7 +11180,7 @@ function classifyCharacter(code2) {
 var init_micromark_util_classify_character = __esm({
   "node_modules/.pnpm/micromark-util-classify-character@1.0.0/node_modules/micromark-util-classify-character/index.js"() {
     init_micromark_util_character();
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-util-resolve-all@1.0.0/node_modules/micromark-util-resolve-all/index.js
@@ -10148,8 +11197,7 @@ function resolveAll(constructs2, events, context) {
   return events;
 }
 var init_micromark_util_resolve_all = __esm({
-  "node_modules/.pnpm/micromark-util-resolve-all@1.0.0/node_modules/micromark-util-resolve-all/index.js"() {
-  }
+  "node_modules/.pnpm/micromark-util-resolve-all@1.0.0/node_modules/micromark-util-resolve-all/index.js"() {},
 });
 
 // node_modules/.pnpm/micromark-factory-space@1.0.0/node_modules/micromark-factory-space/index.js
@@ -10176,14 +11224,16 @@ function factorySpace(effects, ok2, type, max) {
 var init_micromark_factory_space = __esm({
   "node_modules/.pnpm/micromark-factory-space@1.0.0/node_modules/micromark-factory-space/index.js"() {
     init_micromark_util_character();
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-core-commonmark@1.0.6/node_modules/micromark-core-commonmark/lib/blank-line.js
 function tokenizeBlankLine(effects, ok2, nok) {
   return factorySpace(effects, afterWhitespace, "linePrefix");
   function afterWhitespace(code2) {
-    return code2 === null || markdownLineEnding(code2) ? ok2(code2) : nok(code2);
+    return code2 === null || markdownLineEnding(code2)
+      ? ok2(code2)
+      : nok(code2);
   }
 }
 var blankLine;
@@ -10193,25 +11243,28 @@ var init_blank_line = __esm({
     init_micromark_util_character();
     blankLine = {
       tokenize: tokenizeBlankLine,
-      partial: true
+      partial: true,
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-util-normalize-identifier@1.0.0/node_modules/micromark-util-normalize-identifier/index.js
 function normalizeIdentifier(value2) {
-  return value2.replace(/[\t\n\r ]+/g, " ").replace(/^ | $/g, "").toLowerCase().toUpperCase();
+  return value2
+    .replace(/[\t\n\r ]+/g, " ")
+    .replace(/^ | $/g, "")
+    .toLowerCase()
+    .toUpperCase();
 }
 var init_micromark_util_normalize_identifier = __esm({
-  "node_modules/.pnpm/micromark-util-normalize-identifier@1.0.0/node_modules/micromark-util-normalize-identifier/index.js"() {
-  }
+  "node_modules/.pnpm/micromark-util-normalize-identifier@1.0.0/node_modules/micromark-util-normalize-identifier/index.js"() {},
 });
 
 // node_modules/.pnpm/micromark-core-commonmark@1.0.6/node_modules/micromark-core-commonmark/index.js
 var init_micromark_core_commonmark = __esm({
   "node_modules/.pnpm/micromark-core-commonmark@1.0.6/node_modules/micromark-core-commonmark/index.js"() {
     init_blank_line();
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-gfm-footnote@1.0.4/node_modules/micromark-extension-gfm-footnote/lib/syntax.js
@@ -10221,21 +11274,21 @@ function gfmFootnote() {
       [91]: {
         tokenize: tokenizeDefinitionStart,
         continuation: {
-          tokenize: tokenizeDefinitionContinuation
+          tokenize: tokenizeDefinitionContinuation,
         },
-        exit: gfmFootnoteDefinitionEnd
-      }
+        exit: gfmFootnoteDefinitionEnd,
+      },
     },
     text: {
       [91]: {
-        tokenize: tokenizeGfmFootnoteCall
+        tokenize: tokenizeGfmFootnoteCall,
       },
       [93]: {
         add: "after",
         tokenize: tokenizePotentialGfmFootnoteCall,
-        resolveTo: resolveToPotentialGfmFootnoteCall
-      }
-    }
+        resolveTo: resolveToPotentialGfmFootnoteCall,
+      },
+    },
   };
 }
 function tokenizePotentialGfmFootnoteCall(effects, ok2, nok) {
@@ -10249,7 +11302,13 @@ function tokenizePotentialGfmFootnoteCall(effects, ok2, nok) {
       labelStart = token;
       break;
     }
-    if (token.type === "gfmFootnoteCall" || token.type === "labelLink" || token.type === "label" || token.type === "image" || token.type === "link") {
+    if (
+      token.type === "gfmFootnoteCall" ||
+      token.type === "labelLink" ||
+      token.type === "label" ||
+      token.type === "image" ||
+      token.type === "link"
+    ) {
       break;
     }
   }
@@ -10261,7 +11320,7 @@ function tokenizePotentialGfmFootnoteCall(effects, ok2, nok) {
     const id = normalizeIdentifier(
       self.sliceSerialize({
         start: labelStart.end,
-        end: self.now()
+        end: self.now(),
       })
     );
     if (id.charCodeAt(0) !== 94 || !defined.includes(id.slice(1))) {
@@ -10277,7 +11336,10 @@ function resolveToPotentialGfmFootnoteCall(events, context) {
   let index = events.length;
   let labelStart;
   while (index--) {
-    if (events[index][1].type === "labelImage" && events[index][0] === "enter") {
+    if (
+      events[index][1].type === "labelImage" &&
+      events[index][0] === "enter"
+    ) {
       labelStart = events[index][1];
       break;
     }
@@ -10287,12 +11349,12 @@ function resolveToPotentialGfmFootnoteCall(events, context) {
   const call = {
     type: "gfmFootnoteCall",
     start: Object.assign({}, events[index + 3][1].start),
-    end: Object.assign({}, events[events.length - 1][1].end)
+    end: Object.assign({}, events[events.length - 1][1].end),
   };
   const marker = {
     type: "gfmFootnoteCallMarker",
     start: Object.assign({}, events[index + 3][1].end),
-    end: Object.assign({}, events[index + 3][1].end)
+    end: Object.assign({}, events[index + 3][1].end),
   };
   marker.end.column++;
   marker.end.offset++;
@@ -10300,13 +11362,13 @@ function resolveToPotentialGfmFootnoteCall(events, context) {
   const string = {
     type: "gfmFootnoteCallString",
     start: Object.assign({}, marker.end),
-    end: Object.assign({}, events[events.length - 1][1].start)
+    end: Object.assign({}, events[events.length - 1][1].start),
   };
   const chunk = {
     type: "chunkString",
     contentType: "string",
     start: Object.assign({}, string.start),
-    end: Object.assign({}, string.end)
+    end: Object.assign({}, string.end),
   };
   const replacement = [
     events[index + 1],
@@ -10322,7 +11384,7 @@ function resolveToPotentialGfmFootnoteCall(events, context) {
     ["exit", string, context],
     events[events.length - 2],
     events[events.length - 1],
-    ["exit", call, context]
+    ["exit", call, context],
   ];
   events.splice(index, events.length - index + 1, ...replacement);
   return events;
@@ -10341,8 +11403,7 @@ function tokenizeGfmFootnoteCall(effects, ok2, nok) {
     return callStart;
   }
   function callStart(code2) {
-    if (code2 !== 94)
-      return nok(code2);
+    if (code2 !== 94) return nok(code2);
     effects.enter("gfmFootnoteCallMarker");
     effects.consume(code2);
     effects.exit("gfmFootnoteCallMarker");
@@ -10361,7 +11422,9 @@ function tokenizeGfmFootnoteCall(effects, ok2, nok) {
       }
       effects.exit("chunkString");
       token = effects.exit("gfmFootnoteCallString");
-      return defined.includes(normalizeIdentifier(self.sliceSerialize(token))) ? end(code2) : nok(code2);
+      return defined.includes(normalizeIdentifier(self.sliceSerialize(token)))
+        ? end(code2)
+        : nok(code2);
     }
     effects.consume(code2);
     if (!markdownLineEndingOrSpace(code2)) {
@@ -10438,7 +11501,13 @@ function tokenizeDefinitionStart(effects, ok2, nok) {
     return label(code2);
   }
   function label(code2) {
-    if (code2 === null || markdownLineEnding(code2) || code2 === 91 || code2 === 93 || size > 999) {
+    if (
+      code2 === null ||
+      markdownLineEnding(code2) ||
+      code2 === 91 ||
+      code2 === 93 ||
+      size > 999
+    ) {
       effects.exit("chunkString");
       return atBreak(code2);
     }
@@ -10489,7 +11558,11 @@ function tokenizeIndent(effects, ok2, nok) {
   );
   function afterPrefix(code2) {
     const tail = self.events[self.events.length - 1];
-    return tail && tail[1].type === "gfmFootnoteDefinitionIndent" && tail[2].sliceSerialize(tail[1], true).length === 4 ? ok2(code2) : nok(code2);
+    return tail &&
+      tail[1].type === "gfmFootnoteDefinitionIndent" &&
+      tail[2].sliceSerialize(tail[1], true).length === 4
+      ? ok2(code2)
+      : nok(code2);
   }
 }
 var indent;
@@ -10501,16 +11574,16 @@ var init_syntax3 = __esm({
     init_micromark_util_normalize_identifier();
     indent = {
       tokenize: tokenizeIndent,
-      partial: true
+      partial: true,
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-gfm-footnote@1.0.4/node_modules/micromark-extension-gfm-footnote/index.js
 var init_micromark_extension_gfm_footnote = __esm({
   "node_modules/.pnpm/micromark-extension-gfm-footnote@1.0.4/node_modules/micromark-extension-gfm-footnote/index.js"() {
     init_syntax3();
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-gfm-strikethrough@1.0.4/node_modules/micromark-extension-gfm-strikethrough/lib/syntax.js
@@ -10518,46 +11591,56 @@ function gfmStrikethrough(options2 = {}) {
   let single = options2.singleTilde;
   const tokenizer = {
     tokenize: tokenizeStrikethrough,
-    resolveAll: resolveAllStrikethrough
+    resolveAll: resolveAllStrikethrough,
   };
   if (single === null || single === void 0) {
     single = true;
   }
   return {
     text: {
-      [126]: tokenizer
+      [126]: tokenizer,
     },
     insideSpan: {
-      null: [tokenizer]
+      null: [tokenizer],
     },
     attentionMarkers: {
-      null: [126]
-    }
+      null: [126],
+    },
   };
   function resolveAllStrikethrough(events, context) {
     let index = -1;
     while (++index < events.length) {
-      if (events[index][0] === "enter" && events[index][1].type === "strikethroughSequenceTemporary" && events[index][1]._close) {
+      if (
+        events[index][0] === "enter" &&
+        events[index][1].type === "strikethroughSequenceTemporary" &&
+        events[index][1]._close
+      ) {
         let open = index;
         while (open--) {
-          if (events[open][0] === "exit" && events[open][1].type === "strikethroughSequenceTemporary" && events[open][1]._open && events[index][1].end.offset - events[index][1].start.offset === events[open][1].end.offset - events[open][1].start.offset) {
+          if (
+            events[open][0] === "exit" &&
+            events[open][1].type === "strikethroughSequenceTemporary" &&
+            events[open][1]._open &&
+            events[index][1].end.offset - events[index][1].start.offset ===
+              events[open][1].end.offset - events[open][1].start.offset
+          ) {
             events[index][1].type = "strikethroughSequence";
             events[open][1].type = "strikethroughSequence";
             const strikethrough = {
               type: "strikethrough",
               start: Object.assign({}, events[open][1].start),
-              end: Object.assign({}, events[index][1].end)
+              end: Object.assign({}, events[index][1].end),
             };
             const text2 = {
               type: "strikethroughText",
               start: Object.assign({}, events[open][1].end),
-              end: Object.assign({}, events[index][1].start)
+              end: Object.assign({}, events[index][1].start),
             };
             const nextEvents = [
               ["enter", strikethrough, context],
               ["enter", events[open][1], context],
               ["exit", events[open][1], context],
-              ["enter", text2, context]
+              ["enter", text2, context],
             ];
             splice(
               nextEvents,
@@ -10573,7 +11656,7 @@ function gfmStrikethrough(options2 = {}) {
               ["exit", text2, context],
               ["enter", events[index][1], context],
               ["exit", events[index][1], context],
-              ["exit", strikethrough, context]
+              ["exit", strikethrough, context],
             ]);
             splice(events, open - 1, index - open + 3, nextEvents);
             index = open + nextEvents.length - 2;
@@ -10596,7 +11679,10 @@ function gfmStrikethrough(options2 = {}) {
     let size = 0;
     return start;
     function start(code2) {
-      if (previous2 === 126 && events[events.length - 1][1].type !== "characterEscape") {
+      if (
+        previous2 === 126 &&
+        events[events.length - 1][1].type !== "characterEscape"
+      ) {
         return nok(code2);
       }
       effects.enter("strikethroughSequenceTemporary");
@@ -10605,18 +11691,16 @@ function gfmStrikethrough(options2 = {}) {
     function more(code2) {
       const before = classifyCharacter(previous2);
       if (code2 === 126) {
-        if (size > 1)
-          return nok(code2);
+        if (size > 1) return nok(code2);
         effects.consume(code2);
         size++;
         return more;
       }
-      if (size < 2 && !single)
-        return nok(code2);
+      if (size < 2 && !single) return nok(code2);
       const token = effects.exit("strikethroughSequenceTemporary");
       const after = classifyCharacter(code2);
-      token._open = !after || after === 2 && Boolean(before);
-      token._close = !before || before === 2 && Boolean(after);
+      token._open = !after || (after === 2 && Boolean(before));
+      token._close = !before || (before === 2 && Boolean(after));
       return ok2(code2);
     }
   }
@@ -10626,14 +11710,14 @@ var init_syntax4 = __esm({
     init_micromark_util_chunked();
     init_micromark_util_classify_character();
     init_micromark_util_resolve_all();
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-gfm-strikethrough@1.0.4/node_modules/micromark-extension-gfm-strikethrough/index.js
 var init_micromark_extension_gfm_strikethrough = __esm({
   "node_modules/.pnpm/micromark-extension-gfm-strikethrough@1.0.4/node_modules/micromark-extension-gfm-strikethrough/index.js"() {
     init_syntax4();
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-gfm-table@1.0.5/node_modules/micromark-extension-gfm-table/lib/syntax.js
@@ -10653,17 +11737,20 @@ function resolveTable(events, context) {
         contentStart = contentStart || index;
         contentEnd = index;
       }
-      if ((token.type === "tableCellDivider" || token.type === "tableRow") && contentEnd) {
+      if (
+        (token.type === "tableCellDivider" || token.type === "tableRow") &&
+        contentEnd
+      ) {
         const content = {
           type: "tableContent",
           start: events[contentStart][1].start,
-          end: events[contentEnd][1].end
+          end: events[contentEnd][1].end,
         };
         const text2 = {
           type: "chunkText",
           start: content.start,
           end: content.end,
-          contentType: "text"
+          contentType: "text",
         };
         events.splice(
           contentStart,
@@ -10678,16 +11765,28 @@ function resolveTable(events, context) {
         contentEnd = void 0;
       }
     }
-    if (events[index][0] === "exit" && cellStart !== void 0 && cellStart + (seenCellInRow ? 0 : 1) < index && (token.type === "tableCellDivider" || token.type === "tableRow" && (cellStart + 3 < index || events[cellStart][1].type !== "whitespace"))) {
+    if (
+      events[index][0] === "exit" &&
+      cellStart !== void 0 &&
+      cellStart + (seenCellInRow ? 0 : 1) < index &&
+      (token.type === "tableCellDivider" ||
+        (token.type === "tableRow" &&
+          (cellStart + 3 < index ||
+            events[cellStart][1].type !== "whitespace")))
+    ) {
       const cell = {
-        type: inDelimiterRow ? "tableDelimiter" : inHead ? "tableHeader" : "tableData",
+        type: inDelimiterRow
+          ? "tableDelimiter"
+          : inHead
+          ? "tableHeader"
+          : "tableData",
         start: events[cellStart][1].start,
-        end: events[index][1].end
+        end: events[index][1].end,
       };
       events.splice(index + (token.type === "tableCellDivider" ? 1 : 0), 0, [
         "exit",
         cell,
-        context
+        context,
       ]);
       events.splice(cellStart, 0, ["enter", cell, context]);
       index += 2;
@@ -10792,14 +11891,14 @@ function tokenizeTable(effects, ok2, nok) {
     return effects.attempt(
       {
         tokenize: tokenizeRowEnd,
-        partial: true
+        partial: true,
       },
-      function(code3) {
+      function (code3) {
         self.interrupt = originalInterrupt;
         effects.enter("tableDelimiterRow");
         return atDelimiterRowBreak(code3);
       },
-      function(code3) {
+      function (code3) {
         self.interrupt = originalInterrupt;
         return nok(code3);
       }
@@ -10854,7 +11953,8 @@ function tokenizeTable(effects, ok2, nok) {
       effects.enter("tableDelimiterAlignment");
       effects.consume(code2);
       effects.exit("tableDelimiterAlignment");
-      align[align.length - 1] = align[align.length - 1] === "left" ? "center" : "right";
+      align[align.length - 1] =
+        align[align.length - 1] === "left" ? "center" : "right";
       return afterRightAlignment;
     }
     return atDelimiterRowBreak(code2);
@@ -10899,7 +11999,7 @@ function tokenizeTable(effects, ok2, nok) {
       effects.attempt(
         {
           tokenize: tokenizeRowEnd,
-          partial: true
+          partial: true,
         },
         factorySpace(effects, bodyStart, "linePrefix", 4),
         tableClose
@@ -10977,7 +12077,7 @@ function tokenizeTable(effects, ok2, nok) {
       effects.attempt(
         {
           tokenize: tokenizeRowEnd,
-          partial: true
+          partial: true,
         },
         factorySpace(effects, rowStartBody, "linePrefix", 4),
         tableBodyClose
@@ -10997,21 +12097,30 @@ function tokenizeTable(effects, ok2, nok) {
       return factorySpace(effects2, prefixed, "linePrefix");
     }
     function prefixed(code2) {
-      if (self.parser.lazy[self.now().line] || code2 === null || markdownLineEnding(code2)) {
+      if (
+        self.parser.lazy[self.now().line] ||
+        code2 === null ||
+        markdownLineEnding(code2)
+      ) {
         return nok2(code2);
       }
       const tail = self.events[self.events.length - 1];
-      if (!self.parser.constructs.disable.null.includes("codeIndented") && tail && tail[1].type === "linePrefix" && tail[2].sliceSerialize(tail[1], true).length >= 4) {
+      if (
+        !self.parser.constructs.disable.null.includes("codeIndented") &&
+        tail &&
+        tail[1].type === "linePrefix" &&
+        tail[2].sliceSerialize(tail[1], true).length >= 4
+      ) {
         return nok2(code2);
       }
       self._gfmTableDynamicInterruptHack = true;
       return effects2.check(
         self.parser.constructs.flow,
-        function(code3) {
+        function (code3) {
           self._gfmTableDynamicInterruptHack = false;
           return nok2(code3);
         },
-        function(code3) {
+        function (code3) {
           self._gfmTableDynamicInterruptHack = false;
           return ok3(code3);
         }
@@ -11048,22 +12157,22 @@ var init_syntax5 = __esm({
       flow: {
         null: {
           tokenize: tokenizeTable,
-          resolve: resolveTable
-        }
-      }
+          resolve: resolveTable,
+        },
+      },
     };
     nextPrefixedOrBlank = {
       tokenize: tokenizeNextPrefixedOrBlank,
-      partial: true
+      partial: true,
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-gfm-table@1.0.5/node_modules/micromark-extension-gfm-table/index.js
 var init_micromark_extension_gfm_table = __esm({
   "node_modules/.pnpm/micromark-extension-gfm-table@1.0.5/node_modules/micromark-extension-gfm-table/index.js"() {
     init_syntax5();
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-gfm-task-list-item@1.0.3/node_modules/micromark-extension-gfm-task-list-item/lib/syntax.js
@@ -11103,7 +12212,7 @@ function tokenizeTasklistCheck(effects, ok2, nok) {
       effects.exit("taskListCheck");
       return effects.check(
         {
-          tokenize: spaceThenNonSpace
+          tokenize: spaceThenNonSpace,
         },
         ok2,
         nok
@@ -11117,7 +12226,11 @@ function spaceThenNonSpace(effects, ok2, nok) {
   return factorySpace(effects, after, "whitespace");
   function after(code2) {
     const tail = self.events[self.events.length - 1];
-    return (tail && tail[1].type === "whitespace" || markdownLineEnding(code2)) && code2 !== null ? ok2(code2) : nok(code2);
+    return ((tail && tail[1].type === "whitespace") ||
+      markdownLineEnding(code2)) &&
+      code2 !== null
+      ? ok2(code2)
+      : nok(code2);
   }
 }
 var tasklistCheck, gfmTaskListItem;
@@ -11126,21 +12239,21 @@ var init_syntax6 = __esm({
     init_micromark_factory_space();
     init_micromark_util_character();
     tasklistCheck = {
-      tokenize: tokenizeTasklistCheck
+      tokenize: tokenizeTasklistCheck,
     };
     gfmTaskListItem = {
       text: {
-        [91]: tasklistCheck
-      }
+        [91]: tasklistCheck,
+      },
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-gfm-task-list-item@1.0.3/node_modules/micromark-extension-gfm-task-list-item/index.js
 var init_micromark_extension_gfm_task_list_item = __esm({
   "node_modules/.pnpm/micromark-extension-gfm-task-list-item@1.0.3/node_modules/micromark-extension-gfm-task-list-item/index.js"() {
     init_syntax6();
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-extension-gfm@2.0.1/node_modules/micromark-extension-gfm/index.js
@@ -11150,7 +12263,7 @@ function gfm(options2) {
     gfmFootnote(),
     gfmStrikethrough(options2),
     gfmTable,
-    gfmTaskListItem
+    gfmTaskListItem,
   ]);
 }
 var init_micromark_extension_gfm = __esm({
@@ -11161,7 +12274,7 @@ var init_micromark_extension_gfm = __esm({
     init_micromark_extension_gfm_strikethrough();
     init_micromark_extension_gfm_table();
     init_micromark_extension_gfm_task_list_item();
-  }
+  },
 });
 
 // node_modules/.pnpm/ccount@2.0.1/node_modules/ccount/index.js
@@ -11179,8 +12292,7 @@ function ccount(value2, character) {
   return count;
 }
 var init_ccount = __esm({
-  "node_modules/.pnpm/ccount@2.0.1/node_modules/ccount/index.js"() {
-  }
+  "node_modules/.pnpm/ccount@2.0.1/node_modules/ccount/index.js"() {},
 });
 
 // node_modules/.pnpm/escape-string-regexp@5.0.0/node_modules/escape-string-regexp/index.js
@@ -11191,8 +12303,7 @@ function escapeStringRegexp(string) {
   return string.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&").replace(/-/g, "\\x2d");
 }
 var init_escape_string_regexp = __esm({
-  "node_modules/.pnpm/escape-string-regexp@5.0.0/node_modules/escape-string-regexp/index.js"() {
-  }
+  "node_modules/.pnpm/escape-string-regexp@5.0.0/node_modules/escape-string-regexp/index.js"() {},
 });
 
 // node_modules/.pnpm/mdast-util-find-and-replace@2.2.1/node_modules/mdast-util-find-and-replace/lib/index.js
@@ -11206,7 +12317,7 @@ function toPairs(schema) {
     while (++index < schema.length) {
       result.push([
         toExpression(schema[index][0]),
-        toFunction(schema[index][1])
+        toFunction(schema[index][1]),
       ]);
     }
   } else {
@@ -11220,7 +12331,9 @@ function toPairs(schema) {
   return result;
 }
 function toExpression(find2) {
-  return typeof find2 === "string" ? new RegExp(escapeStringRegexp(find2), "g") : find2;
+  return typeof find2 === "string"
+    ? new RegExp(escapeStringRegexp(find2), "g")
+    : find2;
 }
 function toFunction(replace2) {
   return typeof replace2 === "function" ? replace2 : () => replace2;
@@ -11232,7 +12345,7 @@ var init_lib = __esm({
     init_unist_util_visit_parents();
     init_unist_util_is();
     own8 = {}.hasOwnProperty;
-    findAndReplace = function(tree, find2, replace2, options2) {
+    findAndReplace = function (tree, find2, replace2, options2) {
       let settings;
       let schema;
       if (typeof find2 === "string" || find2 instanceof RegExp) {
@@ -11257,11 +12370,13 @@ var init_lib = __esm({
         let grandparent;
         while (++index < parents.length) {
           const parent = parents[index];
-          if (ignored(
-            parent,
-            grandparent ? grandparent.children.indexOf(parent) : void 0,
-            grandparent
-          )) {
+          if (
+            ignored(
+              parent,
+              grandparent ? grandparent.children.indexOf(parent) : void 0,
+              grandparent
+            )
+          ) {
             return;
           }
           grandparent = parent;
@@ -11286,17 +12401,18 @@ var init_lib = __esm({
           const matchObject = {
             index: match.index,
             input: match.input,
-            stack: [...parents, node]
+            stack: [...parents, node],
           };
           let value2 = replace3(...match, matchObject);
           if (typeof value2 === "string") {
-            value2 = value2.length > 0 ? { type: "text", value: value2 } : void 0;
+            value2 =
+              value2.length > 0 ? { type: "text", value: value2 } : void 0;
           }
           if (value2 !== false) {
             if (start !== position) {
               nodes.push({
                 type: "text",
-                value: node.value.slice(start, position)
+                value: node.value.slice(start, position),
               });
             }
             if (Array.isArray(value2)) {
@@ -11323,14 +12439,14 @@ var init_lib = __esm({
         return index + nodes.length;
       }
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-find-and-replace@2.2.1/node_modules/mdast-util-find-and-replace/index.js
 var init_mdast_util_find_and_replace = __esm({
   "node_modules/.pnpm/mdast-util-find-and-replace@2.2.1/node_modules/mdast-util-find-and-replace/index.js"() {
     init_lib();
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-gfm-autolink-literal@1.0.2/node_modules/mdast-util-gfm-autolink-literal/index.js
@@ -11359,7 +12475,7 @@ function transformGfmAutolinkLiterals(tree) {
     tree,
     [
       [/(https?:\/\/|www(?=\.))([-.\w]+)([^ \t\r\n]*)/gi, findUrl],
-      [/([-.\w+]+)@([-\w]+(?:\.[-\w]+)+)/g, findEmail]
+      [/([-.\w+]+)@([-\w]+(?:\.[-\w]+)+)/g, findEmail],
     ],
     { ignore: ["link", "linkReference"] }
   );
@@ -11378,13 +12494,12 @@ function findUrl(_2, protocol2, domain3, path2, match) {
     return false;
   }
   const parts = splitUrl(domain3 + path2);
-  if (!parts[0])
-    return false;
+  if (!parts[0]) return false;
   const result = {
     type: "link",
     title: null,
     url: prefix + protocol2 + parts[0],
-    children: [{ type: "text", value: protocol2 + parts[0] }]
+    children: [{ type: "text", value: protocol2 + parts[0] }],
   };
   if (parts[1]) {
     return [result, { type: "text", value: parts[1] }];
@@ -11399,12 +12514,20 @@ function findEmail(_2, atext, label, match) {
     type: "link",
     title: null,
     url: "mailto:" + atext + "@" + label,
-    children: [{ type: "text", value: atext + "@" + label }]
+    children: [{ type: "text", value: atext + "@" + label }],
   };
 }
 function isCorrectDomain(domain3) {
   const parts = domain3.split(".");
-  if (parts.length < 2 || parts[parts.length - 1] && (/_/.test(parts[parts.length - 1]) || !/[a-zA-Z\d]/.test(parts[parts.length - 1])) || parts[parts.length - 2] && (/_/.test(parts[parts.length - 2]) || !/[a-zA-Z\d]/.test(parts[parts.length - 2]))) {
+  if (
+    parts.length < 2 ||
+    (parts[parts.length - 1] &&
+      (/_/.test(parts[parts.length - 1]) ||
+        !/[a-zA-Z\d]/.test(parts[parts.length - 1]))) ||
+    (parts[parts.length - 2] &&
+      (/_/.test(parts[parts.length - 2]) ||
+        !/[a-zA-Z\d]/.test(parts[parts.length - 2])))
+  ) {
     return false;
   }
   return true;
@@ -11432,9 +12555,17 @@ function splitUrl(url) {
 }
 function previous(match, email) {
   const code2 = match.input.charCodeAt(match.index - 1);
-  return (match.index === 0 || unicodeWhitespace(code2) || unicodePunctuation(code2)) && (!email || code2 !== 47);
+  return (
+    (match.index === 0 ||
+      unicodeWhitespace(code2) ||
+      unicodePunctuation(code2)) &&
+    (!email || code2 !== 47)
+  );
 }
-var inConstruct, notInConstruct, gfmAutolinkLiteralFromMarkdown, gfmAutolinkLiteralToMarkdown;
+var inConstruct,
+  notInConstruct,
+  gfmAutolinkLiteralFromMarkdown,
+  gfmAutolinkLiteralToMarkdown;
 var init_mdast_util_gfm_autolink_literal = __esm({
   "node_modules/.pnpm/mdast-util-gfm-autolink-literal@1.0.2/node_modules/mdast-util-gfm-autolink-literal/index.js"() {
     init_ccount();
@@ -11448,14 +12579,14 @@ var init_mdast_util_gfm_autolink_literal = __esm({
         literalAutolink: enterLiteralAutolink,
         literalAutolinkEmail: enterLiteralAutolinkValue,
         literalAutolinkHttp: enterLiteralAutolinkValue,
-        literalAutolinkWww: enterLiteralAutolinkValue
+        literalAutolinkWww: enterLiteralAutolinkValue,
       },
       exit: {
         literalAutolink: exitLiteralAutolink,
         literalAutolinkEmail: exitLiteralAutolinkEmail,
         literalAutolinkHttp: exitLiteralAutolinkHttp,
-        literalAutolinkWww: exitLiteralAutolinkWww
-      }
+        literalAutolinkWww: exitLiteralAutolinkWww,
+      },
     };
     gfmAutolinkLiteralToMarkdown = {
       unsafe: [
@@ -11464,32 +12595,47 @@ var init_mdast_util_gfm_autolink_literal = __esm({
           before: "[+\\-.\\w]",
           after: "[\\-.\\w]",
           inConstruct,
-          notInConstruct
+          notInConstruct,
         },
         {
           character: ".",
           before: "[Ww]",
           after: "[\\-.\\w]",
           inConstruct,
-          notInConstruct
+          notInConstruct,
         },
-        { character: ":", before: "[ps]", after: "\\/", inConstruct, notInConstruct }
-      ]
+        {
+          character: ":",
+          before: "[ps]",
+          after: "\\/",
+          inConstruct,
+          notInConstruct,
+        },
+      ],
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/micromark-util-decode-numeric-character-reference@1.0.0/node_modules/micromark-util-decode-numeric-character-reference/index.js
 function decodeNumericCharacterReference(value2, base) {
   const code2 = Number.parseInt(value2, base);
-  if (code2 < 9 || code2 === 11 || code2 > 13 && code2 < 32 || code2 > 126 && code2 < 160 || code2 > 55295 && code2 < 57344 || code2 > 64975 && code2 < 65008 || (code2 & 65535) === 65535 || (code2 & 65535) === 65534 || code2 > 1114111) {
+  if (
+    code2 < 9 ||
+    code2 === 11 ||
+    (code2 > 13 && code2 < 32) ||
+    (code2 > 126 && code2 < 160) ||
+    (code2 > 55295 && code2 < 57344) ||
+    (code2 > 64975 && code2 < 65008) ||
+    (code2 & 65535) === 65535 ||
+    (code2 & 65535) === 65534 ||
+    code2 > 1114111
+  ) {
     return "\uFFFD";
   }
   return String.fromCharCode(code2);
 }
 var init_micromark_util_decode_numeric_character_reference = __esm({
-  "node_modules/.pnpm/micromark-util-decode-numeric-character-reference@1.0.0/node_modules/micromark-util-decode-numeric-character-reference/index.js"() {
-  }
+  "node_modules/.pnpm/micromark-util-decode-numeric-character-reference@1.0.0/node_modules/micromark-util-decode-numeric-character-reference/index.js"() {},
 });
 
 // node_modules/.pnpm/micromark-util-decode-string@1.0.2/node_modules/micromark-util-decode-string/index.js
@@ -11504,7 +12650,10 @@ function decode($0, $1, $2) {
   if (head === 35) {
     const head2 = $2.charCodeAt(1);
     const hex = head2 === 120 || head2 === 88;
-    return decodeNumericCharacterReference($2.slice(hex ? 2 : 1), hex ? 16 : 10);
+    return decodeNumericCharacterReference(
+      $2.slice(hex ? 2 : 1),
+      hex ? 16 : 10
+    );
   }
   return decodeNamedCharacterReference($2) || $0;
 }
@@ -11513,8 +12662,9 @@ var init_micromark_util_decode_string = __esm({
   "node_modules/.pnpm/micromark-util-decode-string@1.0.2/node_modules/micromark-util-decode-string/index.js"() {
     init_decode_named_character_reference();
     init_micromark_util_decode_numeric_character_reference();
-    characterEscapeOrReference = /\\([!-/:-@[-`{-~])|&(#(?:\d{1,7}|x[\da-f]{1,6})|[\da-z]{1,31});/gi;
-  }
+    characterEscapeOrReference =
+      /\\([!-/:-@[-`{-~])|&(#(?:\d{1,7}|x[\da-f]{1,6})|[\da-z]{1,31});/gi;
+  },
 });
 
 // node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/association.js
@@ -11527,7 +12677,7 @@ function association(node) {
 var init_association = __esm({
   "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/association.js"() {
     init_micromark_util_decode_string();
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/track.js
@@ -11548,13 +12698,13 @@ function track(options_) {
     const chunks = value2.split(/\r?\n|\r/g);
     const tail = chunks[chunks.length - 1];
     line += chunks.length - 1;
-    column = chunks.length === 1 ? column + tail.length : 1 + tail.length + lineShift;
+    column =
+      chunks.length === 1 ? column + tail.length : 1 + tail.length + lineShift;
     return value2;
   }
 }
 var init_track = __esm({
-  "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/track.js"() {
-  }
+  "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/track.js"() {},
 });
 
 // node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/container-flow.js
@@ -11573,7 +12723,7 @@ function containerFlow(parent, context, safeOptions) {
         context.handle(child, parent, context, {
           before: "\n",
           after: "\n",
-          ...tracker.current()
+          ...tracker.current(),
         })
       )
     );
@@ -11606,7 +12756,7 @@ function containerFlow(parent, context, safeOptions) {
 var init_container_flow = __esm({
   "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/container-flow.js"() {
     init_track();
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/indent-lines.js
@@ -11615,7 +12765,7 @@ function indentLines(value2, map) {
   let start = 0;
   let line = 0;
   let match;
-  while (match = eol.exec(value2)) {
+  while ((match = eol.exec(value2))) {
     one2(value2.slice(start, match.index));
     result.push(match[0]);
     start = match.index + match[0].length;
@@ -11631,28 +12781,35 @@ var eol;
 var init_indent_lines = __esm({
   "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/indent-lines.js"() {
     eol = /\r?\n|\r/g;
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/pattern-compile.js
 function patternCompile(pattern) {
   if (!pattern._compiled) {
-    const before = (pattern.atBreak ? "[\\r\\n][\\t ]*" : "") + (pattern.before ? "(?:" + pattern.before + ")" : "");
+    const before =
+      (pattern.atBreak ? "[\\r\\n][\\t ]*" : "") +
+      (pattern.before ? "(?:" + pattern.before + ")" : "");
     pattern._compiled = new RegExp(
-      (before ? "(" + before + ")" : "") + (/[|\\{}()[\]^$+*?.-]/.test(pattern.character) ? "\\" : "") + pattern.character + (pattern.after ? "(?:" + pattern.after + ")" : ""),
+      (before ? "(" + before + ")" : "") +
+        (/[|\\{}()[\]^$+*?.-]/.test(pattern.character) ? "\\" : "") +
+        pattern.character +
+        (pattern.after ? "(?:" + pattern.after + ")" : ""),
       "g"
     );
   }
   return pattern._compiled;
 }
 var init_pattern_compile = __esm({
-  "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/pattern-compile.js"() {
-  }
+  "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/pattern-compile.js"() {},
 });
 
 // node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/pattern-in-scope.js
 function patternInScope(stack, pattern) {
-  return listInScope(stack, pattern.inConstruct, true) && !listInScope(stack, pattern.notInConstruct, false);
+  return (
+    listInScope(stack, pattern.inConstruct, true) &&
+    !listInScope(stack, pattern.notInConstruct, false)
+  );
 }
 function listInScope(stack, list, none) {
   if (!list) {
@@ -11670,8 +12827,7 @@ function listInScope(stack, list, none) {
   return false;
 }
 var init_pattern_in_scope = __esm({
-  "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/pattern-in-scope.js"() {
-  }
+  "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/pattern-in-scope.js"() {},
 });
 
 // node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/safe.js
@@ -11688,7 +12844,7 @@ function safe(context, input, config) {
     }
     const expression = patternCompile(pattern);
     let match;
-    while (match = expression.exec(value2)) {
+    while ((match = expression.exec(value2))) {
       const before = "before" in pattern || Boolean(pattern.atBreak);
       const after = "after" in pattern;
       const position = match.index + (before ? match[1].length : 0);
@@ -11714,14 +12870,27 @@ function safe(context, input, config) {
     if (position < start || position >= end) {
       continue;
     }
-    if (position + 1 < end && positions[index + 1] === position + 1 && infos[position].after && !infos[position + 1].before && !infos[position + 1].after || positions[index - 1] === position - 1 && infos[position].before && !infos[position - 1].before && !infos[position - 1].after) {
+    if (
+      (position + 1 < end &&
+        positions[index + 1] === position + 1 &&
+        infos[position].after &&
+        !infos[position + 1].before &&
+        !infos[position + 1].after) ||
+      (positions[index - 1] === position - 1 &&
+        infos[position].before &&
+        !infos[position - 1].before &&
+        !infos[position - 1].after)
+    ) {
       continue;
     }
     if (start !== position) {
       result.push(escapeBackslashes(value2.slice(start, position), "\\"));
     }
     start = position;
-    if (/[!-/:-@[-`{-~]/.test(value2.charAt(position)) && (!config.encode || !config.encode.includes(value2.charAt(position)))) {
+    if (
+      /[!-/:-@[-`{-~]/.test(value2.charAt(position)) &&
+      (!config.encode || !config.encode.includes(value2.charAt(position)))
+    ) {
       result.push("\\");
     } else {
       result.push(
@@ -11744,7 +12913,7 @@ function escapeBackslashes(value2, after) {
   let index = -1;
   let start = 0;
   let match;
-  while (match = expression.exec(whole)) {
+  while ((match = expression.exec(whole))) {
     positions.push(match.index);
   }
   while (++index < positions.length) {
@@ -11761,7 +12930,7 @@ var init_safe = __esm({
   "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/safe.js"() {
     init_pattern_compile();
     init_pattern_in_scope();
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-gfm-footnote@1.0.1/node_modules/mdast-util-gfm-footnote/index.js
@@ -11771,14 +12940,14 @@ function gfmFootnoteFromMarkdown() {
       gfmFootnoteDefinition: enterFootnoteDefinition,
       gfmFootnoteDefinitionLabelString: enterFootnoteDefinitionLabelString,
       gfmFootnoteCall: enterFootnoteCall,
-      gfmFootnoteCallString: enterFootnoteCallString
+      gfmFootnoteCallString: enterFootnoteCallString,
     },
     exit: {
       gfmFootnoteDefinition: exitFootnoteDefinition,
       gfmFootnoteDefinitionLabelString: exitFootnoteDefinitionLabelString,
       gfmFootnoteCall: exitFootnoteCall,
-      gfmFootnoteCallString: exitFootnoteCallString
-    }
+      gfmFootnoteCallString: exitFootnoteCallString,
+    },
   };
   function enterFootnoteDefinition(token) {
     this.enter(
@@ -11821,8 +12990,10 @@ function gfmFootnoteFromMarkdown() {
 function gfmFootnoteToMarkdown() {
   footnoteReference.peek = footnoteReferencePeek;
   return {
-    unsafe: [{ character: "[", inConstruct: ["phrasing", "label", "reference"] }],
-    handlers: { footnoteDefinition, footnoteReference }
+    unsafe: [
+      { character: "[", inConstruct: ["phrasing", "label", "reference"] },
+    ],
+    handlers: { footnoteDefinition, footnoteReference },
   };
   function footnoteReference(node, _2, context, safeOptions) {
     const tracker = track(safeOptions);
@@ -11833,7 +13004,7 @@ function gfmFootnoteToMarkdown() {
       safe(context, association(node), {
         ...tracker.current(),
         before: value2,
-        after: "]"
+        after: "]",
       })
     );
     subexit();
@@ -11853,7 +13024,7 @@ function gfmFootnoteToMarkdown() {
       safe(context, association(node), {
         ...tracker.current(),
         before: value2,
-        after: "]"
+        after: "]",
       })
     );
     subexit();
@@ -11882,7 +13053,7 @@ var init_mdast_util_gfm_footnote = __esm({
     init_indent_lines();
     init_safe();
     init_track();
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/container-phrasing.js
@@ -11900,17 +13071,22 @@ function containerPhrasing(parent, context, safeOptions) {
     indexStack[indexStack.length - 1] = index;
     if (index + 1 < children.length) {
       let handle = context.handle.handlers[children[index + 1].type];
-      if (handle && handle.peek)
-        handle = handle.peek;
-      after = handle ? handle(children[index + 1], parent, context, {
-        before: "",
-        after: "",
-        ...tracker.current()
-      }).charAt(0) : "";
+      if (handle && handle.peek) handle = handle.peek;
+      after = handle
+        ? handle(children[index + 1], parent, context, {
+            before: "",
+            after: "",
+            ...tracker.current(),
+          }).charAt(0)
+        : "";
     } else {
       after = safeOptions.after;
     }
-    if (results.length > 0 && (before === "\r" || before === "\n") && child.type === "html") {
+    if (
+      results.length > 0 &&
+      (before === "\r" || before === "\n") &&
+      child.type === "html"
+    ) {
       results[results.length - 1] = results[results.length - 1].replace(
         /(\r?\n|\r)$/,
         " "
@@ -11924,7 +13100,7 @@ function containerPhrasing(parent, context, safeOptions) {
         context.handle(child, parent, context, {
           ...tracker.current(),
           before,
-          after
+          after,
         })
       )
     );
@@ -11936,7 +13112,7 @@ function containerPhrasing(parent, context, safeOptions) {
 var init_container_phrasing = __esm({
   "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/container-phrasing.js"() {
     init_track();
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-gfm-strikethrough@1.0.2/node_modules/mdast-util-gfm-strikethrough/index.js
@@ -11953,7 +13129,7 @@ function handleDelete(node, _2, context, safeOptions) {
   value2 += containerPhrasing(node, context, {
     ...tracker.current(),
     before: value2,
-    after: "~"
+    after: "~",
   });
   value2 += tracker.move("~~");
   exit2();
@@ -11962,7 +13138,9 @@ function handleDelete(node, _2, context, safeOptions) {
 function peekDelete() {
   return "~";
 }
-var gfmStrikethroughFromMarkdown, constructsWithoutStrikethrough, gfmStrikethroughToMarkdown;
+var gfmStrikethroughFromMarkdown,
+  constructsWithoutStrikethrough,
+  gfmStrikethroughToMarkdown;
 var init_mdast_util_gfm_strikethrough = __esm({
   "node_modules/.pnpm/mdast-util-gfm-strikethrough@1.0.2/node_modules/mdast-util-gfm-strikethrough/index.js"() {
     init_container_phrasing();
@@ -11970,7 +13148,7 @@ var init_mdast_util_gfm_strikethrough = __esm({
     gfmStrikethroughFromMarkdown = {
       canContainEols: ["delete"],
       enter: { strikethrough: enterStrikethrough },
-      exit: { strikethrough: exitStrikethrough }
+      exit: { strikethrough: exitStrikethrough },
     };
     constructsWithoutStrikethrough = [
       "autolink",
@@ -11978,20 +13156,20 @@ var init_mdast_util_gfm_strikethrough = __esm({
       "destinationRaw",
       "reference",
       "titleQuote",
-      "titleApostrophe"
+      "titleApostrophe",
     ];
     gfmStrikethroughToMarkdown = {
       unsafe: [
         {
           character: "~",
           inConstruct: "phrasing",
-          notInConstruct: constructsWithoutStrikethrough
-        }
+          notInConstruct: constructsWithoutStrikethrough,
+        },
       ],
-      handlers: { delete: handleDelete }
+      handlers: { delete: handleDelete },
     };
     handleDelete.peek = peekDelete;
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/handle/inline-code.js
@@ -12002,18 +13180,24 @@ function inlineCode(node, _2, context) {
   while (new RegExp("(^|[^`])" + sequence + "([^`]|$)").test(value2)) {
     sequence += "`";
   }
-  if (/[^ \r\n]/.test(value2) && (/^[ \r\n]/.test(value2) && /[ \r\n]$/.test(value2) || /^`|`$/.test(value2))) {
+  if (
+    /[^ \r\n]/.test(value2) &&
+    ((/^[ \r\n]/.test(value2) && /[ \r\n]$/.test(value2)) ||
+      /^`|`$/.test(value2))
+  ) {
     value2 = " " + value2 + " ";
   }
   while (++index < context.unsafe.length) {
     const pattern = context.unsafe[index];
     const expression = patternCompile(pattern);
     let match;
-    if (!pattern.atBreak)
-      continue;
-    while (match = expression.exec(value2)) {
+    if (!pattern.atBreak) continue;
+    while ((match = expression.exec(value2))) {
       let position = match.index;
-      if (value2.charCodeAt(position) === 10 && value2.charCodeAt(position - 1) === 13) {
+      if (
+        value2.charCodeAt(position) === 10 &&
+        value2.charCodeAt(position - 1) === 13
+      ) {
         position--;
       }
       value2 = value2.slice(0, position) + " " + value2.slice(match.index + 1);
@@ -12028,7 +13212,7 @@ var init_inline_code = __esm({
   "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/handle/inline-code.js"() {
     init_pattern_compile();
     inlineCode.peek = inlineCodePeek;
-  }
+  },
 });
 
 // node_modules/.pnpm/markdown-table@3.0.2/node_modules/markdown-table/index.js
@@ -12053,7 +13237,10 @@ function markdownTable(table, options2 = {}) {
       if (options2.alignDelimiters !== false) {
         const size = stringLength(cell);
         sizes2[columnIndex2] = size;
-        if (longestCellByColumn[columnIndex2] === void 0 || size > longestCellByColumn[columnIndex2]) {
+        if (
+          longestCellByColumn[columnIndex2] === void 0 ||
+          size > longestCellByColumn[columnIndex2]
+        ) {
           longestCellByColumn[columnIndex2] = size;
         }
       }
@@ -12088,10 +13275,13 @@ function markdownTable(table, options2 = {}) {
     } else if (code2 === 114) {
       after = ":";
     }
-    let size = options2.alignDelimiters === false ? 1 : Math.max(
-      1,
-      longestCellByColumn[columnIndex] - before.length - after.length
-    );
+    let size =
+      options2.alignDelimiters === false
+        ? 1
+        : Math.max(
+            1,
+            longestCellByColumn[columnIndex] - before.length - after.length
+          );
     const cell = before + "-".repeat(size) + after;
     if (options2.alignDelimiters !== false) {
       size = before.length + size + after.length;
@@ -12116,7 +13306,8 @@ function markdownTable(table, options2 = {}) {
       let before = "";
       let after = "";
       if (options2.alignDelimiters !== false) {
-        const size = longestCellByColumn[columnIndex] - (sizes2[columnIndex] || 0);
+        const size =
+          longestCellByColumn[columnIndex] - (sizes2[columnIndex] || 0);
         const code2 = alignments[columnIndex];
         if (code2 === 114) {
           before = " ".repeat(size);
@@ -12135,7 +13326,11 @@ function markdownTable(table, options2 = {}) {
       if (options2.delimiterStart !== false && !columnIndex) {
         line.push("|");
       }
-      if (options2.padding !== false && !(options2.alignDelimiters === false && cell === "") && (options2.delimiterStart !== false || columnIndex)) {
+      if (
+        options2.padding !== false &&
+        !(options2.alignDelimiters === false && cell === "") &&
+        (options2.delimiterStart !== false || columnIndex)
+      ) {
         line.push(" ");
       }
       if (options2.alignDelimiters !== false) {
@@ -12148,12 +13343,17 @@ function markdownTable(table, options2 = {}) {
       if (options2.padding !== false) {
         line.push(" ");
       }
-      if (options2.delimiterEnd !== false || columnIndex !== mostCellsPerRow - 1) {
+      if (
+        options2.delimiterEnd !== false ||
+        columnIndex !== mostCellsPerRow - 1
+      ) {
         line.push("|");
       }
     }
     lines.push(
-      options2.delimiterEnd === false ? line.join("").replace(/ +$/, "") : line.join("")
+      options2.delimiterEnd === false
+        ? line.join("").replace(/ +$/, "")
+        : line.join("")
     );
   }
   return lines.join("\n");
@@ -12166,11 +13366,16 @@ function defaultStringLength(value2) {
 }
 function toAlignment(value2) {
   const code2 = typeof value2 === "string" ? value2.codePointAt(0) : 0;
-  return code2 === 67 || code2 === 99 ? 99 : code2 === 76 || code2 === 108 ? 108 : code2 === 82 || code2 === 114 ? 114 : 0;
+  return code2 === 67 || code2 === 99
+    ? 99
+    : code2 === 76 || code2 === 108
+    ? 108
+    : code2 === 82 || code2 === 114
+    ? 114
+    : 0;
 }
 var init_markdown_table = __esm({
-  "node_modules/.pnpm/markdown-table@3.0.2/node_modules/markdown-table/index.js"() {
-  }
+  "node_modules/.pnpm/markdown-table@3.0.2/node_modules/markdown-table/index.js"() {},
 });
 
 // node_modules/.pnpm/mdast-util-gfm-table@1.0.6/node_modules/mdast-util-gfm-table/lib/index.js
@@ -12179,8 +13384,8 @@ function enterTable(token) {
   this.enter(
     {
       type: "table",
-      align: align.map((d) => d === "none" ? null : d),
-      children: []
+      align: align.map((d) => (d === "none" ? null : d)),
+      children: [],
     },
     token
   );
@@ -12224,14 +13429,14 @@ function gfmTableToMarkdown(options2) {
       { atBreak: true, character: "|", after: "[	 :-]" },
       { character: "|", inConstruct: "tableCell" },
       { atBreak: true, character: ":", after: "-" },
-      { atBreak: true, character: "-", after: "[:|-]" }
+      { atBreak: true, character: "-", after: "[:|-]" },
     ],
     handlers: {
       table: handleTable,
       tableRow: handleTableRow,
       tableCell: handleTableCell,
-      inlineCode: inlineCodeWithTable
-    }
+      inlineCode: inlineCodeWithTable,
+    },
   };
   function handleTable(node, _2, context, safeOptions) {
     return serializeData2(
@@ -12250,7 +13455,7 @@ function gfmTableToMarkdown(options2) {
     const value2 = containerPhrasing(node, context, {
       ...safeOptions,
       before: around,
-      after: around
+      after: around,
     });
     subexit();
     exit2();
@@ -12261,7 +13466,7 @@ function gfmTableToMarkdown(options2) {
       align,
       alignDelimiters,
       padding,
-      stringLength
+      stringLength,
     });
   }
   function handleTableAsData(node, context, safeOptions) {
@@ -12314,24 +13519,24 @@ var init_lib2 = __esm({
         table: enterTable,
         tableData: enterCell,
         tableHeader: enterCell,
-        tableRow: enterRow
+        tableRow: enterRow,
       },
       exit: {
         codeText: exitCodeText,
         table: exitTable,
         tableData: exit,
         tableHeader: exit,
-        tableRow: exit
-      }
+        tableRow: exit,
+      },
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-gfm-table@1.0.6/node_modules/mdast-util-gfm-table/index.js
 var init_mdast_util_gfm_table = __esm({
   "node_modules/.pnpm/mdast-util-gfm-table@1.0.6/node_modules/mdast-util-gfm-table/index.js"() {
     init_lib2();
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/check-bullet.js
@@ -12339,14 +13544,15 @@ function checkBullet(context) {
   const marker = context.options.bullet || "*";
   if (marker !== "*" && marker !== "+" && marker !== "-") {
     throw new Error(
-      "Cannot serialize items with `" + marker + "` for `options.bullet`, expected `*`, `+`, or `-`"
+      "Cannot serialize items with `" +
+        marker +
+        "` for `options.bullet`, expected `*`, `+`, or `-`"
     );
   }
   return marker;
 }
 var init_check_bullet = __esm({
-  "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/check-bullet.js"() {
-  }
+  "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/check-bullet.js"() {},
 });
 
 // node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/check-list-item-indent.js
@@ -12357,14 +13563,15 @@ function checkListItemIndent(context) {
   }
   if (style2 !== "tab" && style2 !== "one" && style2 !== "mixed") {
     throw new Error(
-      "Cannot serialize items with `" + style2 + "` for `options.listItemIndent`, expected `tab`, `one`, or `mixed`"
+      "Cannot serialize items with `" +
+        style2 +
+        "` for `options.listItemIndent`, expected `tab`, `one`, or `mixed`"
     );
   }
   return style2;
 }
 var init_check_list_item_indent = __esm({
-  "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/check-list-item-indent.js"() {
-  }
+  "node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/util/check-list-item-indent.js"() {},
 });
 
 // node_modules/.pnpm/mdast-util-to-markdown@1.3.0/node_modules/mdast-util-to-markdown/lib/handle/list-item.js
@@ -12372,10 +13579,21 @@ function listItem(node, parent, context, safeOptions) {
   const listItemIndent = checkListItemIndent(context);
   let bullet = context.bulletCurrent || checkBullet(context);
   if (parent && parent.type === "list" && parent.ordered) {
-    bullet = (typeof parent.start === "number" && parent.start > -1 ? parent.start : 1) + (context.options.incrementListMarker === false ? 0 : parent.children.indexOf(node)) + bullet;
+    bullet =
+      (typeof parent.start === "number" && parent.start > -1
+        ? parent.start
+        : 1) +
+      (context.options.incrementListMarker === false
+        ? 0
+        : parent.children.indexOf(node)) +
+      bullet;
   }
   let size = bullet.length + 1;
-  if (listItemIndent === "tab" || listItemIndent === "mixed" && (parent && parent.type === "list" && parent.spread || node.spread)) {
+  if (
+    listItemIndent === "tab" ||
+    (listItemIndent === "mixed" &&
+      ((parent && parent.type === "list" && parent.spread) || node.spread))
+  ) {
     size = Math.ceil(size / 4) * 4;
   }
   const tracker = track(safeOptions);
@@ -12402,7 +13620,7 @@ var init_list_item = __esm({
     init_container_flow();
     init_indent_lines();
     init_track();
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-gfm-task-list-item@1.0.1/node_modules/mdast-util-gfm-task-list-item/index.js
@@ -12417,7 +13635,13 @@ function exitParagraphWithTaskListItem(token) {
   const head = node.children[0];
   let index = -1;
   let firstParaghraph;
-  if (parent && parent.type === "listItem" && typeof parent.checked === "boolean" && head && head.type === "text") {
+  if (
+    parent &&
+    parent.type === "listItem" &&
+    typeof parent.checked === "boolean" &&
+    head &&
+    head.type === "text"
+  ) {
     while (++index < siblings.length) {
       const sibling = siblings[index];
       if (sibling.type === "paragraph") {
@@ -12429,7 +13653,11 @@ function exitParagraphWithTaskListItem(token) {
       head.value = head.value.slice(1);
       if (head.value.length === 0) {
         node.children.shift();
-      } else if (node.position && head.position && typeof head.position.start.offset === "number") {
+      } else if (
+        node.position &&
+        head.position &&
+        typeof head.position.start.offset === "number"
+      ) {
         head.position.start.column++;
         head.position.start.offset++;
         node.position.start = Object.assign({}, head.position.start);
@@ -12440,7 +13668,8 @@ function exitParagraphWithTaskListItem(token) {
 }
 function listItemWithTaskListItem(node, parent, context, safeOptions) {
   const head = node.children[0];
-  const checkable = typeof node.checked === "boolean" && head && head.type === "paragraph";
+  const checkable =
+    typeof node.checked === "boolean" && head && head.type === "paragraph";
   const checkbox = "[" + (node.checked ? "x" : " ") + "] ";
   const tracker = track(safeOptions);
   if (checkable) {
@@ -12448,7 +13677,7 @@ function listItemWithTaskListItem(node, parent, context, safeOptions) {
   }
   let value2 = listItem(node, parent, context, {
     ...safeOptions,
-    ...tracker.current()
+    ...tracker.current(),
   });
   if (checkable) {
     value2 = value2.replace(/^(?:[*+-]|\d+\.)([\r\n]| {1,3})/, check);
@@ -12467,14 +13696,14 @@ var init_mdast_util_gfm_task_list_item = __esm({
       exit: {
         taskListCheckValueChecked: exitCheck,
         taskListCheckValueUnchecked: exitCheck,
-        paragraph: exitParagraphWithTaskListItem
-      }
+        paragraph: exitParagraphWithTaskListItem,
+      },
     };
     gfmTaskListItemToMarkdown = {
       unsafe: [{ atBreak: true, character: "-", after: "[:|-]" }],
-      handlers: { listItem: listItemWithTaskListItem }
+      handlers: { listItem: listItemWithTaskListItem },
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-gfm@2.0.1/node_modules/mdast-util-gfm/lib/index.js
@@ -12484,7 +13713,7 @@ function gfmFromMarkdown() {
     gfmFootnoteFromMarkdown(),
     gfmStrikethroughFromMarkdown,
     gfmTableFromMarkdown,
-    gfmTaskListItemFromMarkdown
+    gfmTaskListItemFromMarkdown,
   ];
 }
 function gfmToMarkdown(options2) {
@@ -12494,8 +13723,8 @@ function gfmToMarkdown(options2) {
       gfmFootnoteToMarkdown(),
       gfmStrikethroughToMarkdown,
       gfmTableToMarkdown(options2),
-      gfmTaskListItemToMarkdown
-    ]
+      gfmTaskListItemToMarkdown,
+    ],
   };
 }
 var init_lib3 = __esm({
@@ -12505,20 +13734,20 @@ var init_lib3 = __esm({
     init_mdast_util_gfm_strikethrough();
     init_mdast_util_gfm_table();
     init_mdast_util_gfm_task_list_item();
-  }
+  },
 });
 
 // node_modules/.pnpm/mdast-util-gfm@2.0.1/node_modules/mdast-util-gfm/index.js
 var init_mdast_util_gfm = __esm({
   "node_modules/.pnpm/mdast-util-gfm@2.0.1/node_modules/mdast-util-gfm/index.js"() {
     init_lib3();
-  }
+  },
 });
 
 // node_modules/.pnpm/remark-gfm@3.0.1/node_modules/remark-gfm/index.js
 var remark_gfm_exports = {};
 __export(remark_gfm_exports, {
-  default: () => remarkGfm
+  default: () => remarkGfm,
 });
 function remarkGfm(options2 = {}) {
   const data = this.data();
@@ -12526,7 +13755,7 @@ function remarkGfm(options2 = {}) {
   add("fromMarkdownExtensions", gfmFromMarkdown());
   add("toMarkdownExtensions", gfmToMarkdown(options2));
   function add(field, value2) {
-    const list = data[field] ? data[field] : data[field] = [];
+    const list = data[field] ? data[field] : (data[field] = []);
     list.push(value2);
   }
 }
@@ -12534,12 +13763,15 @@ var init_remark_gfm = __esm({
   "node_modules/.pnpm/remark-gfm@3.0.1/node_modules/remark-gfm/index.js"() {
     init_micromark_extension_gfm();
     init_mdast_util_gfm();
-  }
+  },
 });
 
 // node_modules/.pnpm/extend@3.0.2/node_modules/extend/index.js
 var require_extend = __commonJS({
-  "node_modules/.pnpm/extend@3.0.2/node_modules/extend/index.js"(exports, module2) {
+  "node_modules/.pnpm/extend@3.0.2/node_modules/extend/index.js"(
+    exports,
+    module2
+  ) {
     "use strict";
     var hasOwn = Object.prototype.hasOwnProperty;
     var toStr = Object.prototype.toString;
@@ -12556,7 +13788,10 @@ var require_extend = __commonJS({
         return false;
       }
       var hasOwnConstructor = hasOwn.call(obj, "constructor");
-      var hasIsPrototypeOf = obj.constructor && obj.constructor.prototype && hasOwn.call(obj.constructor.prototype, "isPrototypeOf");
+      var hasIsPrototypeOf =
+        obj.constructor &&
+        obj.constructor.prototype &&
+        hasOwn.call(obj.constructor.prototype, "isPrototypeOf");
       if (obj.constructor && !hasOwnConstructor && !hasIsPrototypeOf) {
         return false;
       }
@@ -12571,7 +13806,7 @@ var require_extend = __commonJS({
           enumerable: true,
           configurable: true,
           value: options2.newValue,
-          writable: true
+          writable: true,
         });
       } else {
         target[options2.name] = options2.newValue;
@@ -12598,7 +13833,10 @@ var require_extend = __commonJS({
         target = arguments[1] || {};
         i = 2;
       }
-      if (target == null || typeof target !== "object" && typeof target !== "function") {
+      if (
+        target == null ||
+        (typeof target !== "object" && typeof target !== "function")
+      ) {
         target = {};
       }
       for (; i < length; ++i) {
@@ -12608,14 +13846,21 @@ var require_extend = __commonJS({
             src = getProperty(target, name);
             copy = getProperty(options2, name);
             if (target !== copy) {
-              if (deep && copy && (isPlainObject2(copy) || (copyIsArray = isArray(copy)))) {
+              if (
+                deep &&
+                copy &&
+                (isPlainObject2(copy) || (copyIsArray = isArray(copy)))
+              ) {
                 if (copyIsArray) {
                   copyIsArray = false;
                   clone = src && isArray(src) ? src : [];
                 } else {
                   clone = src && isPlainObject2(src) ? src : {};
                 }
-                setProperty(target, { name, newValue: extend2(deep, clone, copy) });
+                setProperty(target, {
+                  name,
+                  newValue: extend2(deep, clone, copy),
+                });
               } else if (typeof copy !== "undefined") {
                 setProperty(target, { name, newValue: copy });
               }
@@ -12625,19 +13870,26 @@ var require_extend = __commonJS({
       }
       return target;
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/hast-util-has-property@2.0.0/node_modules/hast-util-has-property/index.js
 function hasProperty2(node, name) {
-  var value2 = name && node && typeof node === "object" && node.type === "element" && node.properties && own9.call(node.properties, name) && node.properties[name];
+  var value2 =
+    name &&
+    node &&
+    typeof node === "object" &&
+    node.type === "element" &&
+    node.properties &&
+    own9.call(node.properties, name) &&
+    node.properties[name];
   return value2 !== null && value2 !== void 0 && value2 !== false;
 }
 var own9;
 var init_hast_util_has_property = __esm({
   "node_modules/.pnpm/hast-util-has-property@2.0.0/node_modules/hast-util-has-property/index.js"() {
     own9 = {}.hasOwnProperty;
-  }
+  },
 });
 
 // node_modules/.pnpm/hast-util-is-element@2.1.2/node_modules/hast-util-is-element/index.js
@@ -12672,13 +13924,16 @@ function castFactory2(check) {
 }
 function element(node) {
   return Boolean(
-    node && typeof node === "object" && node.type === "element" && typeof node.tagName === "string"
+    node &&
+      typeof node === "object" &&
+      node.type === "element" &&
+      typeof node.tagName === "string"
   );
 }
 var convertElement;
 var init_hast_util_is_element = __esm({
   "node_modules/.pnpm/hast-util-is-element@2.1.2/node_modules/hast-util-is-element/index.js"() {
-    convertElement = function(test) {
+    convertElement = function (test) {
       if (test === void 0 || test === null) {
         return element;
       }
@@ -12693,7 +13948,7 @@ var init_hast_util_is_element = __esm({
       }
       throw new Error("Expected function, string, or array as test");
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/rehype-autolink-headings@6.1.1/node_modules/rehype-autolink-headings/lib/index.js
@@ -12716,20 +13971,27 @@ function rehypeAutolinkHeadings(options2 = {}) {
   }
   return (tree) => {
     visit(tree, "element", (node, index, parent) => {
-      if (headingRank(node) && hasProperty2(node, "id") && is(node, index, parent)) {
+      if (
+        headingRank(node) &&
+        hasProperty2(node, "id") &&
+        is(node, index, parent)
+      ) {
         return method(node, index, parent);
       }
     });
   };
   function inject(node) {
     node.children[behavior === "prepend" ? "unshift" : "push"](
-      create3(node, (0, import_extend.default)(true, {}, props), toChildren(content, node))
+      create3(
+        node,
+        (0, import_extend.default)(true, {}, props),
+        toChildren(content, node)
+      )
     );
     return [SKIP];
   }
   function around(node, index, parent) {
-    if (typeof index !== "number" || !parent)
-      return;
+    if (typeof index !== "number" || !parent) return;
     const link = create3(
       node,
       (0, import_extend.default)(true, {}, props),
@@ -12747,7 +14009,9 @@ function rehypeAutolinkHeadings(options2 = {}) {
     return [SKIP, index + nodes.length];
   }
   function wrap(node) {
-    node.children = [create3(node, (0, import_extend.default)(true, {}, props), node.children)];
+    node.children = [
+      create3(node, (0, import_extend.default)(true, {}, props), node.children),
+    ];
     return [SKIP];
   }
   function toChildren(value2, node) {
@@ -12755,18 +14019,21 @@ function rehypeAutolinkHeadings(options2 = {}) {
     return Array.isArray(result) ? result : [result];
   }
   function toNode(value2, node) {
-    if (typeof value2 === "function")
-      return value2(node);
-    return (0, import_extend.default)(true, Array.isArray(value2) ? [] : {}, value2);
+    if (typeof value2 === "function") return value2(node);
+    return (0, import_extend.default)(
+      true,
+      Array.isArray(value2) ? [] : {},
+      value2
+    );
   }
   function create3(node, props2, children) {
     return {
       type: "element",
       tagName: "a",
       properties: Object.assign({}, props2, {
-        href: "#" + (node.properties || {}).id
+        href: "#" + (node.properties || {}).id,
       }),
-      children
+      children,
     };
   }
 }
@@ -12782,27 +14049,27 @@ var init_lib4 = __esm({
       type: "element",
       tagName: "span",
       properties: { className: ["icon", "icon-link"] },
-      children: []
+      children: [],
     };
-  }
+  },
 });
 
 // node_modules/.pnpm/rehype-autolink-headings@6.1.1/node_modules/rehype-autolink-headings/index.js
 var rehype_autolink_headings_exports = {};
 __export(rehype_autolink_headings_exports, {
-  default: () => rehypeAutolinkHeadings
+  default: () => rehypeAutolinkHeadings,
 });
 var init_rehype_autolink_headings = __esm({
   "node_modules/.pnpm/rehype-autolink-headings@6.1.1/node_modules/rehype-autolink-headings/index.js"() {
     init_lib4();
-  }
+  },
 });
 
 // packages/qwik-city/buildtime/vite/index.ts
 var vite_exports = {};
 __export(vite_exports, {
   extendConfig: () => extendConfig,
-  qwikCity: () => qwikCity
+  qwikCity: () => qwikCity,
 });
 module.exports = __toCommonJS(vite_exports);
 
@@ -12826,7 +14093,8 @@ function extendConfig(baseConfigExport, serverConfigExport) {
 var import_source_map = require("source-map");
 
 // node_modules/.pnpm/github-slugger@2.0.0/node_modules/github-slugger/regex.js
-var regex = /[\0-\x1F!-,\.\/:-@\[-\^`\{-\xA9\xAB-\xB4\xB6-\xB9\xBB-\xBF\xD7\xF7\u02C2-\u02C5\u02D2-\u02DF\u02E5-\u02EB\u02ED\u02EF-\u02FF\u0375\u0378\u0379\u037E\u0380-\u0385\u0387\u038B\u038D\u03A2\u03F6\u0482\u0530\u0557\u0558\u055A-\u055F\u0589-\u0590\u05BE\u05C0\u05C3\u05C6\u05C8-\u05CF\u05EB-\u05EE\u05F3-\u060F\u061B-\u061F\u066A-\u066D\u06D4\u06DD\u06DE\u06E9\u06FD\u06FE\u0700-\u070F\u074B\u074C\u07B2-\u07BF\u07F6-\u07F9\u07FB\u07FC\u07FE\u07FF\u082E-\u083F\u085C-\u085F\u086B-\u089F\u08B5\u08C8-\u08D2\u08E2\u0964\u0965\u0970\u0984\u098D\u098E\u0991\u0992\u09A9\u09B1\u09B3-\u09B5\u09BA\u09BB\u09C5\u09C6\u09C9\u09CA\u09CF-\u09D6\u09D8-\u09DB\u09DE\u09E4\u09E5\u09F2-\u09FB\u09FD\u09FF\u0A00\u0A04\u0A0B-\u0A0E\u0A11\u0A12\u0A29\u0A31\u0A34\u0A37\u0A3A\u0A3B\u0A3D\u0A43-\u0A46\u0A49\u0A4A\u0A4E-\u0A50\u0A52-\u0A58\u0A5D\u0A5F-\u0A65\u0A76-\u0A80\u0A84\u0A8E\u0A92\u0AA9\u0AB1\u0AB4\u0ABA\u0ABB\u0AC6\u0ACA\u0ACE\u0ACF\u0AD1-\u0ADF\u0AE4\u0AE5\u0AF0-\u0AF8\u0B00\u0B04\u0B0D\u0B0E\u0B11\u0B12\u0B29\u0B31\u0B34\u0B3A\u0B3B\u0B45\u0B46\u0B49\u0B4A\u0B4E-\u0B54\u0B58-\u0B5B\u0B5E\u0B64\u0B65\u0B70\u0B72-\u0B81\u0B84\u0B8B-\u0B8D\u0B91\u0B96-\u0B98\u0B9B\u0B9D\u0BA0-\u0BA2\u0BA5-\u0BA7\u0BAB-\u0BAD\u0BBA-\u0BBD\u0BC3-\u0BC5\u0BC9\u0BCE\u0BCF\u0BD1-\u0BD6\u0BD8-\u0BE5\u0BF0-\u0BFF\u0C0D\u0C11\u0C29\u0C3A-\u0C3C\u0C45\u0C49\u0C4E-\u0C54\u0C57\u0C5B-\u0C5F\u0C64\u0C65\u0C70-\u0C7F\u0C84\u0C8D\u0C91\u0CA9\u0CB4\u0CBA\u0CBB\u0CC5\u0CC9\u0CCE-\u0CD4\u0CD7-\u0CDD\u0CDF\u0CE4\u0CE5\u0CF0\u0CF3-\u0CFF\u0D0D\u0D11\u0D45\u0D49\u0D4F-\u0D53\u0D58-\u0D5E\u0D64\u0D65\u0D70-\u0D79\u0D80\u0D84\u0D97-\u0D99\u0DB2\u0DBC\u0DBE\u0DBF\u0DC7-\u0DC9\u0DCB-\u0DCE\u0DD5\u0DD7\u0DE0-\u0DE5\u0DF0\u0DF1\u0DF4-\u0E00\u0E3B-\u0E3F\u0E4F\u0E5A-\u0E80\u0E83\u0E85\u0E8B\u0EA4\u0EA6\u0EBE\u0EBF\u0EC5\u0EC7\u0ECE\u0ECF\u0EDA\u0EDB\u0EE0-\u0EFF\u0F01-\u0F17\u0F1A-\u0F1F\u0F2A-\u0F34\u0F36\u0F38\u0F3A-\u0F3D\u0F48\u0F6D-\u0F70\u0F85\u0F98\u0FBD-\u0FC5\u0FC7-\u0FFF\u104A-\u104F\u109E\u109F\u10C6\u10C8-\u10CC\u10CE\u10CF\u10FB\u1249\u124E\u124F\u1257\u1259\u125E\u125F\u1289\u128E\u128F\u12B1\u12B6\u12B7\u12BF\u12C1\u12C6\u12C7\u12D7\u1311\u1316\u1317\u135B\u135C\u1360-\u137F\u1390-\u139F\u13F6\u13F7\u13FE-\u1400\u166D\u166E\u1680\u169B-\u169F\u16EB-\u16ED\u16F9-\u16FF\u170D\u1715-\u171F\u1735-\u173F\u1754-\u175F\u176D\u1771\u1774-\u177F\u17D4-\u17D6\u17D8-\u17DB\u17DE\u17DF\u17EA-\u180A\u180E\u180F\u181A-\u181F\u1879-\u187F\u18AB-\u18AF\u18F6-\u18FF\u191F\u192C-\u192F\u193C-\u1945\u196E\u196F\u1975-\u197F\u19AC-\u19AF\u19CA-\u19CF\u19DA-\u19FF\u1A1C-\u1A1F\u1A5F\u1A7D\u1A7E\u1A8A-\u1A8F\u1A9A-\u1AA6\u1AA8-\u1AAF\u1AC1-\u1AFF\u1B4C-\u1B4F\u1B5A-\u1B6A\u1B74-\u1B7F\u1BF4-\u1BFF\u1C38-\u1C3F\u1C4A-\u1C4C\u1C7E\u1C7F\u1C89-\u1C8F\u1CBB\u1CBC\u1CC0-\u1CCF\u1CD3\u1CFB-\u1CFF\u1DFA\u1F16\u1F17\u1F1E\u1F1F\u1F46\u1F47\u1F4E\u1F4F\u1F58\u1F5A\u1F5C\u1F5E\u1F7E\u1F7F\u1FB5\u1FBD\u1FBF-\u1FC1\u1FC5\u1FCD-\u1FCF\u1FD4\u1FD5\u1FDC-\u1FDF\u1FED-\u1FF1\u1FF5\u1FFD-\u203E\u2041-\u2053\u2055-\u2070\u2072-\u207E\u2080-\u208F\u209D-\u20CF\u20F1-\u2101\u2103-\u2106\u2108\u2109\u2114\u2116-\u2118\u211E-\u2123\u2125\u2127\u2129\u212E\u213A\u213B\u2140-\u2144\u214A-\u214D\u214F-\u215F\u2189-\u24B5\u24EA-\u2BFF\u2C2F\u2C5F\u2CE5-\u2CEA\u2CF4-\u2CFF\u2D26\u2D28-\u2D2C\u2D2E\u2D2F\u2D68-\u2D6E\u2D70-\u2D7E\u2D97-\u2D9F\u2DA7\u2DAF\u2DB7\u2DBF\u2DC7\u2DCF\u2DD7\u2DDF\u2E00-\u2E2E\u2E30-\u3004\u3008-\u3020\u3030\u3036\u3037\u303D-\u3040\u3097\u3098\u309B\u309C\u30A0\u30FB\u3100-\u3104\u3130\u318F-\u319F\u31C0-\u31EF\u3200-\u33FF\u4DC0-\u4DFF\u9FFD-\u9FFF\uA48D-\uA4CF\uA4FE\uA4FF\uA60D-\uA60F\uA62C-\uA63F\uA673\uA67E\uA6F2-\uA716\uA720\uA721\uA789\uA78A\uA7C0\uA7C1\uA7CB-\uA7F4\uA828-\uA82B\uA82D-\uA83F\uA874-\uA87F\uA8C6-\uA8CF\uA8DA-\uA8DF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA954-\uA95F\uA97D-\uA97F\uA9C1-\uA9CE\uA9DA-\uA9DF\uA9FF\uAA37-\uAA3F\uAA4E\uAA4F\uAA5A-\uAA5F\uAA77-\uAA79\uAAC3-\uAADA\uAADE\uAADF\uAAF0\uAAF1\uAAF7-\uAB00\uAB07\uAB08\uAB0F\uAB10\uAB17-\uAB1F\uAB27\uAB2F\uAB5B\uAB6A-\uAB6F\uABEB\uABEE\uABEF\uABFA-\uABFF\uD7A4-\uD7AF\uD7C7-\uD7CA\uD7FC-\uD7FF\uE000-\uF8FF\uFA6E\uFA6F\uFADA-\uFAFF\uFB07-\uFB12\uFB18-\uFB1C\uFB29\uFB37\uFB3D\uFB3F\uFB42\uFB45\uFBB2-\uFBD2\uFD3E-\uFD4F\uFD90\uFD91\uFDC8-\uFDEF\uFDFC-\uFDFF\uFE10-\uFE1F\uFE30-\uFE32\uFE35-\uFE4C\uFE50-\uFE6F\uFE75\uFEFD-\uFF0F\uFF1A-\uFF20\uFF3B-\uFF3E\uFF40\uFF5B-\uFF65\uFFBF-\uFFC1\uFFC8\uFFC9\uFFD0\uFFD1\uFFD8\uFFD9\uFFDD-\uFFFF]|\uD800[\uDC0C\uDC27\uDC3B\uDC3E\uDC4E\uDC4F\uDC5E-\uDC7F\uDCFB-\uDD3F\uDD75-\uDDFC\uDDFE-\uDE7F\uDE9D-\uDE9F\uDED1-\uDEDF\uDEE1-\uDEFF\uDF20-\uDF2C\uDF4B-\uDF4F\uDF7B-\uDF7F\uDF9E\uDF9F\uDFC4-\uDFC7\uDFD0\uDFD6-\uDFFF]|\uD801[\uDC9E\uDC9F\uDCAA-\uDCAF\uDCD4-\uDCD7\uDCFC-\uDCFF\uDD28-\uDD2F\uDD64-\uDDFF\uDF37-\uDF3F\uDF56-\uDF5F\uDF68-\uDFFF]|\uD802[\uDC06\uDC07\uDC09\uDC36\uDC39-\uDC3B\uDC3D\uDC3E\uDC56-\uDC5F\uDC77-\uDC7F\uDC9F-\uDCDF\uDCF3\uDCF6-\uDCFF\uDD16-\uDD1F\uDD3A-\uDD7F\uDDB8-\uDDBD\uDDC0-\uDDFF\uDE04\uDE07-\uDE0B\uDE14\uDE18\uDE36\uDE37\uDE3B-\uDE3E\uDE40-\uDE5F\uDE7D-\uDE7F\uDE9D-\uDEBF\uDEC8\uDEE7-\uDEFF\uDF36-\uDF3F\uDF56-\uDF5F\uDF73-\uDF7F\uDF92-\uDFFF]|\uD803[\uDC49-\uDC7F\uDCB3-\uDCBF\uDCF3-\uDCFF\uDD28-\uDD2F\uDD3A-\uDE7F\uDEAA\uDEAD-\uDEAF\uDEB2-\uDEFF\uDF1D-\uDF26\uDF28-\uDF2F\uDF51-\uDFAF\uDFC5-\uDFDF\uDFF7-\uDFFF]|\uD804[\uDC47-\uDC65\uDC70-\uDC7E\uDCBB-\uDCCF\uDCE9-\uDCEF\uDCFA-\uDCFF\uDD35\uDD40-\uDD43\uDD48-\uDD4F\uDD74\uDD75\uDD77-\uDD7F\uDDC5-\uDDC8\uDDCD\uDDDB\uDDDD-\uDDFF\uDE12\uDE38-\uDE3D\uDE3F-\uDE7F\uDE87\uDE89\uDE8E\uDE9E\uDEA9-\uDEAF\uDEEB-\uDEEF\uDEFA-\uDEFF\uDF04\uDF0D\uDF0E\uDF11\uDF12\uDF29\uDF31\uDF34\uDF3A\uDF45\uDF46\uDF49\uDF4A\uDF4E\uDF4F\uDF51-\uDF56\uDF58-\uDF5C\uDF64\uDF65\uDF6D-\uDF6F\uDF75-\uDFFF]|\uD805[\uDC4B-\uDC4F\uDC5A-\uDC5D\uDC62-\uDC7F\uDCC6\uDCC8-\uDCCF\uDCDA-\uDD7F\uDDB6\uDDB7\uDDC1-\uDDD7\uDDDE-\uDDFF\uDE41-\uDE43\uDE45-\uDE4F\uDE5A-\uDE7F\uDEB9-\uDEBF\uDECA-\uDEFF\uDF1B\uDF1C\uDF2C-\uDF2F\uDF3A-\uDFFF]|\uD806[\uDC3B-\uDC9F\uDCEA-\uDCFE\uDD07\uDD08\uDD0A\uDD0B\uDD14\uDD17\uDD36\uDD39\uDD3A\uDD44-\uDD4F\uDD5A-\uDD9F\uDDA8\uDDA9\uDDD8\uDDD9\uDDE2\uDDE5-\uDDFF\uDE3F-\uDE46\uDE48-\uDE4F\uDE9A-\uDE9C\uDE9E-\uDEBF\uDEF9-\uDFFF]|\uD807[\uDC09\uDC37\uDC41-\uDC4F\uDC5A-\uDC71\uDC90\uDC91\uDCA8\uDCB7-\uDCFF\uDD07\uDD0A\uDD37-\uDD39\uDD3B\uDD3E\uDD48-\uDD4F\uDD5A-\uDD5F\uDD66\uDD69\uDD8F\uDD92\uDD99-\uDD9F\uDDAA-\uDEDF\uDEF7-\uDFAF\uDFB1-\uDFFF]|\uD808[\uDF9A-\uDFFF]|\uD809[\uDC6F-\uDC7F\uDD44-\uDFFF]|[\uD80A\uD80B\uD80E-\uD810\uD812-\uD819\uD824-\uD82B\uD82D\uD82E\uD830-\uD833\uD837\uD839\uD83D\uD83F\uD87B-\uD87D\uD87F\uD885-\uDB3F\uDB41-\uDBFF][\uDC00-\uDFFF]|\uD80D[\uDC2F-\uDFFF]|\uD811[\uDE47-\uDFFF]|\uD81A[\uDE39-\uDE3F\uDE5F\uDE6A-\uDECF\uDEEE\uDEEF\uDEF5-\uDEFF\uDF37-\uDF3F\uDF44-\uDF4F\uDF5A-\uDF62\uDF78-\uDF7C\uDF90-\uDFFF]|\uD81B[\uDC00-\uDE3F\uDE80-\uDEFF\uDF4B-\uDF4E\uDF88-\uDF8E\uDFA0-\uDFDF\uDFE2\uDFE5-\uDFEF\uDFF2-\uDFFF]|\uD821[\uDFF8-\uDFFF]|\uD823[\uDCD6-\uDCFF\uDD09-\uDFFF]|\uD82C[\uDD1F-\uDD4F\uDD53-\uDD63\uDD68-\uDD6F\uDEFC-\uDFFF]|\uD82F[\uDC6B-\uDC6F\uDC7D-\uDC7F\uDC89-\uDC8F\uDC9A-\uDC9C\uDC9F-\uDFFF]|\uD834[\uDC00-\uDD64\uDD6A-\uDD6C\uDD73-\uDD7A\uDD83\uDD84\uDD8C-\uDDA9\uDDAE-\uDE41\uDE45-\uDFFF]|\uD835[\uDC55\uDC9D\uDCA0\uDCA1\uDCA3\uDCA4\uDCA7\uDCA8\uDCAD\uDCBA\uDCBC\uDCC4\uDD06\uDD0B\uDD0C\uDD15\uDD1D\uDD3A\uDD3F\uDD45\uDD47-\uDD49\uDD51\uDEA6\uDEA7\uDEC1\uDEDB\uDEFB\uDF15\uDF35\uDF4F\uDF6F\uDF89\uDFA9\uDFC3\uDFCC\uDFCD]|\uD836[\uDC00-\uDDFF\uDE37-\uDE3A\uDE6D-\uDE74\uDE76-\uDE83\uDE85-\uDE9A\uDEA0\uDEB0-\uDFFF]|\uD838[\uDC07\uDC19\uDC1A\uDC22\uDC25\uDC2B-\uDCFF\uDD2D-\uDD2F\uDD3E\uDD3F\uDD4A-\uDD4D\uDD4F-\uDEBF\uDEFA-\uDFFF]|\uD83A[\uDCC5-\uDCCF\uDCD7-\uDCFF\uDD4C-\uDD4F\uDD5A-\uDFFF]|\uD83B[\uDC00-\uDDFF\uDE04\uDE20\uDE23\uDE25\uDE26\uDE28\uDE33\uDE38\uDE3A\uDE3C-\uDE41\uDE43-\uDE46\uDE48\uDE4A\uDE4C\uDE50\uDE53\uDE55\uDE56\uDE58\uDE5A\uDE5C\uDE5E\uDE60\uDE63\uDE65\uDE66\uDE6B\uDE73\uDE78\uDE7D\uDE7F\uDE8A\uDE9C-\uDEA0\uDEA4\uDEAA\uDEBC-\uDFFF]|\uD83C[\uDC00-\uDD2F\uDD4A-\uDD4F\uDD6A-\uDD6F\uDD8A-\uDFFF]|\uD83E[\uDC00-\uDFEF\uDFFA-\uDFFF]|\uD869[\uDEDE-\uDEFF]|\uD86D[\uDF35-\uDF3F]|\uD86E[\uDC1E\uDC1F]|\uD873[\uDEA2-\uDEAF]|\uD87A[\uDFE1-\uDFFF]|\uD87E[\uDE1E-\uDFFF]|\uD884[\uDF4B-\uDFFF]|\uDB40[\uDC00-\uDCFF\uDDF0-\uDFFF]/g;
+var regex =
+  /[\0-\x1F!-,\.\/:-@\[-\^`\{-\xA9\xAB-\xB4\xB6-\xB9\xBB-\xBF\xD7\xF7\u02C2-\u02C5\u02D2-\u02DF\u02E5-\u02EB\u02ED\u02EF-\u02FF\u0375\u0378\u0379\u037E\u0380-\u0385\u0387\u038B\u038D\u03A2\u03F6\u0482\u0530\u0557\u0558\u055A-\u055F\u0589-\u0590\u05BE\u05C0\u05C3\u05C6\u05C8-\u05CF\u05EB-\u05EE\u05F3-\u060F\u061B-\u061F\u066A-\u066D\u06D4\u06DD\u06DE\u06E9\u06FD\u06FE\u0700-\u070F\u074B\u074C\u07B2-\u07BF\u07F6-\u07F9\u07FB\u07FC\u07FE\u07FF\u082E-\u083F\u085C-\u085F\u086B-\u089F\u08B5\u08C8-\u08D2\u08E2\u0964\u0965\u0970\u0984\u098D\u098E\u0991\u0992\u09A9\u09B1\u09B3-\u09B5\u09BA\u09BB\u09C5\u09C6\u09C9\u09CA\u09CF-\u09D6\u09D8-\u09DB\u09DE\u09E4\u09E5\u09F2-\u09FB\u09FD\u09FF\u0A00\u0A04\u0A0B-\u0A0E\u0A11\u0A12\u0A29\u0A31\u0A34\u0A37\u0A3A\u0A3B\u0A3D\u0A43-\u0A46\u0A49\u0A4A\u0A4E-\u0A50\u0A52-\u0A58\u0A5D\u0A5F-\u0A65\u0A76-\u0A80\u0A84\u0A8E\u0A92\u0AA9\u0AB1\u0AB4\u0ABA\u0ABB\u0AC6\u0ACA\u0ACE\u0ACF\u0AD1-\u0ADF\u0AE4\u0AE5\u0AF0-\u0AF8\u0B00\u0B04\u0B0D\u0B0E\u0B11\u0B12\u0B29\u0B31\u0B34\u0B3A\u0B3B\u0B45\u0B46\u0B49\u0B4A\u0B4E-\u0B54\u0B58-\u0B5B\u0B5E\u0B64\u0B65\u0B70\u0B72-\u0B81\u0B84\u0B8B-\u0B8D\u0B91\u0B96-\u0B98\u0B9B\u0B9D\u0BA0-\u0BA2\u0BA5-\u0BA7\u0BAB-\u0BAD\u0BBA-\u0BBD\u0BC3-\u0BC5\u0BC9\u0BCE\u0BCF\u0BD1-\u0BD6\u0BD8-\u0BE5\u0BF0-\u0BFF\u0C0D\u0C11\u0C29\u0C3A-\u0C3C\u0C45\u0C49\u0C4E-\u0C54\u0C57\u0C5B-\u0C5F\u0C64\u0C65\u0C70-\u0C7F\u0C84\u0C8D\u0C91\u0CA9\u0CB4\u0CBA\u0CBB\u0CC5\u0CC9\u0CCE-\u0CD4\u0CD7-\u0CDD\u0CDF\u0CE4\u0CE5\u0CF0\u0CF3-\u0CFF\u0D0D\u0D11\u0D45\u0D49\u0D4F-\u0D53\u0D58-\u0D5E\u0D64\u0D65\u0D70-\u0D79\u0D80\u0D84\u0D97-\u0D99\u0DB2\u0DBC\u0DBE\u0DBF\u0DC7-\u0DC9\u0DCB-\u0DCE\u0DD5\u0DD7\u0DE0-\u0DE5\u0DF0\u0DF1\u0DF4-\u0E00\u0E3B-\u0E3F\u0E4F\u0E5A-\u0E80\u0E83\u0E85\u0E8B\u0EA4\u0EA6\u0EBE\u0EBF\u0EC5\u0EC7\u0ECE\u0ECF\u0EDA\u0EDB\u0EE0-\u0EFF\u0F01-\u0F17\u0F1A-\u0F1F\u0F2A-\u0F34\u0F36\u0F38\u0F3A-\u0F3D\u0F48\u0F6D-\u0F70\u0F85\u0F98\u0FBD-\u0FC5\u0FC7-\u0FFF\u104A-\u104F\u109E\u109F\u10C6\u10C8-\u10CC\u10CE\u10CF\u10FB\u1249\u124E\u124F\u1257\u1259\u125E\u125F\u1289\u128E\u128F\u12B1\u12B6\u12B7\u12BF\u12C1\u12C6\u12C7\u12D7\u1311\u1316\u1317\u135B\u135C\u1360-\u137F\u1390-\u139F\u13F6\u13F7\u13FE-\u1400\u166D\u166E\u1680\u169B-\u169F\u16EB-\u16ED\u16F9-\u16FF\u170D\u1715-\u171F\u1735-\u173F\u1754-\u175F\u176D\u1771\u1774-\u177F\u17D4-\u17D6\u17D8-\u17DB\u17DE\u17DF\u17EA-\u180A\u180E\u180F\u181A-\u181F\u1879-\u187F\u18AB-\u18AF\u18F6-\u18FF\u191F\u192C-\u192F\u193C-\u1945\u196E\u196F\u1975-\u197F\u19AC-\u19AF\u19CA-\u19CF\u19DA-\u19FF\u1A1C-\u1A1F\u1A5F\u1A7D\u1A7E\u1A8A-\u1A8F\u1A9A-\u1AA6\u1AA8-\u1AAF\u1AC1-\u1AFF\u1B4C-\u1B4F\u1B5A-\u1B6A\u1B74-\u1B7F\u1BF4-\u1BFF\u1C38-\u1C3F\u1C4A-\u1C4C\u1C7E\u1C7F\u1C89-\u1C8F\u1CBB\u1CBC\u1CC0-\u1CCF\u1CD3\u1CFB-\u1CFF\u1DFA\u1F16\u1F17\u1F1E\u1F1F\u1F46\u1F47\u1F4E\u1F4F\u1F58\u1F5A\u1F5C\u1F5E\u1F7E\u1F7F\u1FB5\u1FBD\u1FBF-\u1FC1\u1FC5\u1FCD-\u1FCF\u1FD4\u1FD5\u1FDC-\u1FDF\u1FED-\u1FF1\u1FF5\u1FFD-\u203E\u2041-\u2053\u2055-\u2070\u2072-\u207E\u2080-\u208F\u209D-\u20CF\u20F1-\u2101\u2103-\u2106\u2108\u2109\u2114\u2116-\u2118\u211E-\u2123\u2125\u2127\u2129\u212E\u213A\u213B\u2140-\u2144\u214A-\u214D\u214F-\u215F\u2189-\u24B5\u24EA-\u2BFF\u2C2F\u2C5F\u2CE5-\u2CEA\u2CF4-\u2CFF\u2D26\u2D28-\u2D2C\u2D2E\u2D2F\u2D68-\u2D6E\u2D70-\u2D7E\u2D97-\u2D9F\u2DA7\u2DAF\u2DB7\u2DBF\u2DC7\u2DCF\u2DD7\u2DDF\u2E00-\u2E2E\u2E30-\u3004\u3008-\u3020\u3030\u3036\u3037\u303D-\u3040\u3097\u3098\u309B\u309C\u30A0\u30FB\u3100-\u3104\u3130\u318F-\u319F\u31C0-\u31EF\u3200-\u33FF\u4DC0-\u4DFF\u9FFD-\u9FFF\uA48D-\uA4CF\uA4FE\uA4FF\uA60D-\uA60F\uA62C-\uA63F\uA673\uA67E\uA6F2-\uA716\uA720\uA721\uA789\uA78A\uA7C0\uA7C1\uA7CB-\uA7F4\uA828-\uA82B\uA82D-\uA83F\uA874-\uA87F\uA8C6-\uA8CF\uA8DA-\uA8DF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA954-\uA95F\uA97D-\uA97F\uA9C1-\uA9CE\uA9DA-\uA9DF\uA9FF\uAA37-\uAA3F\uAA4E\uAA4F\uAA5A-\uAA5F\uAA77-\uAA79\uAAC3-\uAADA\uAADE\uAADF\uAAF0\uAAF1\uAAF7-\uAB00\uAB07\uAB08\uAB0F\uAB10\uAB17-\uAB1F\uAB27\uAB2F\uAB5B\uAB6A-\uAB6F\uABEB\uABEE\uABEF\uABFA-\uABFF\uD7A4-\uD7AF\uD7C7-\uD7CA\uD7FC-\uD7FF\uE000-\uF8FF\uFA6E\uFA6F\uFADA-\uFAFF\uFB07-\uFB12\uFB18-\uFB1C\uFB29\uFB37\uFB3D\uFB3F\uFB42\uFB45\uFBB2-\uFBD2\uFD3E-\uFD4F\uFD90\uFD91\uFDC8-\uFDEF\uFDFC-\uFDFF\uFE10-\uFE1F\uFE30-\uFE32\uFE35-\uFE4C\uFE50-\uFE6F\uFE75\uFEFD-\uFF0F\uFF1A-\uFF20\uFF3B-\uFF3E\uFF40\uFF5B-\uFF65\uFFBF-\uFFC1\uFFC8\uFFC9\uFFD0\uFFD1\uFFD8\uFFD9\uFFDD-\uFFFF]|\uD800[\uDC0C\uDC27\uDC3B\uDC3E\uDC4E\uDC4F\uDC5E-\uDC7F\uDCFB-\uDD3F\uDD75-\uDDFC\uDDFE-\uDE7F\uDE9D-\uDE9F\uDED1-\uDEDF\uDEE1-\uDEFF\uDF20-\uDF2C\uDF4B-\uDF4F\uDF7B-\uDF7F\uDF9E\uDF9F\uDFC4-\uDFC7\uDFD0\uDFD6-\uDFFF]|\uD801[\uDC9E\uDC9F\uDCAA-\uDCAF\uDCD4-\uDCD7\uDCFC-\uDCFF\uDD28-\uDD2F\uDD64-\uDDFF\uDF37-\uDF3F\uDF56-\uDF5F\uDF68-\uDFFF]|\uD802[\uDC06\uDC07\uDC09\uDC36\uDC39-\uDC3B\uDC3D\uDC3E\uDC56-\uDC5F\uDC77-\uDC7F\uDC9F-\uDCDF\uDCF3\uDCF6-\uDCFF\uDD16-\uDD1F\uDD3A-\uDD7F\uDDB8-\uDDBD\uDDC0-\uDDFF\uDE04\uDE07-\uDE0B\uDE14\uDE18\uDE36\uDE37\uDE3B-\uDE3E\uDE40-\uDE5F\uDE7D-\uDE7F\uDE9D-\uDEBF\uDEC8\uDEE7-\uDEFF\uDF36-\uDF3F\uDF56-\uDF5F\uDF73-\uDF7F\uDF92-\uDFFF]|\uD803[\uDC49-\uDC7F\uDCB3-\uDCBF\uDCF3-\uDCFF\uDD28-\uDD2F\uDD3A-\uDE7F\uDEAA\uDEAD-\uDEAF\uDEB2-\uDEFF\uDF1D-\uDF26\uDF28-\uDF2F\uDF51-\uDFAF\uDFC5-\uDFDF\uDFF7-\uDFFF]|\uD804[\uDC47-\uDC65\uDC70-\uDC7E\uDCBB-\uDCCF\uDCE9-\uDCEF\uDCFA-\uDCFF\uDD35\uDD40-\uDD43\uDD48-\uDD4F\uDD74\uDD75\uDD77-\uDD7F\uDDC5-\uDDC8\uDDCD\uDDDB\uDDDD-\uDDFF\uDE12\uDE38-\uDE3D\uDE3F-\uDE7F\uDE87\uDE89\uDE8E\uDE9E\uDEA9-\uDEAF\uDEEB-\uDEEF\uDEFA-\uDEFF\uDF04\uDF0D\uDF0E\uDF11\uDF12\uDF29\uDF31\uDF34\uDF3A\uDF45\uDF46\uDF49\uDF4A\uDF4E\uDF4F\uDF51-\uDF56\uDF58-\uDF5C\uDF64\uDF65\uDF6D-\uDF6F\uDF75-\uDFFF]|\uD805[\uDC4B-\uDC4F\uDC5A-\uDC5D\uDC62-\uDC7F\uDCC6\uDCC8-\uDCCF\uDCDA-\uDD7F\uDDB6\uDDB7\uDDC1-\uDDD7\uDDDE-\uDDFF\uDE41-\uDE43\uDE45-\uDE4F\uDE5A-\uDE7F\uDEB9-\uDEBF\uDECA-\uDEFF\uDF1B\uDF1C\uDF2C-\uDF2F\uDF3A-\uDFFF]|\uD806[\uDC3B-\uDC9F\uDCEA-\uDCFE\uDD07\uDD08\uDD0A\uDD0B\uDD14\uDD17\uDD36\uDD39\uDD3A\uDD44-\uDD4F\uDD5A-\uDD9F\uDDA8\uDDA9\uDDD8\uDDD9\uDDE2\uDDE5-\uDDFF\uDE3F-\uDE46\uDE48-\uDE4F\uDE9A-\uDE9C\uDE9E-\uDEBF\uDEF9-\uDFFF]|\uD807[\uDC09\uDC37\uDC41-\uDC4F\uDC5A-\uDC71\uDC90\uDC91\uDCA8\uDCB7-\uDCFF\uDD07\uDD0A\uDD37-\uDD39\uDD3B\uDD3E\uDD48-\uDD4F\uDD5A-\uDD5F\uDD66\uDD69\uDD8F\uDD92\uDD99-\uDD9F\uDDAA-\uDEDF\uDEF7-\uDFAF\uDFB1-\uDFFF]|\uD808[\uDF9A-\uDFFF]|\uD809[\uDC6F-\uDC7F\uDD44-\uDFFF]|[\uD80A\uD80B\uD80E-\uD810\uD812-\uD819\uD824-\uD82B\uD82D\uD82E\uD830-\uD833\uD837\uD839\uD83D\uD83F\uD87B-\uD87D\uD87F\uD885-\uDB3F\uDB41-\uDBFF][\uDC00-\uDFFF]|\uD80D[\uDC2F-\uDFFF]|\uD811[\uDE47-\uDFFF]|\uD81A[\uDE39-\uDE3F\uDE5F\uDE6A-\uDECF\uDEEE\uDEEF\uDEF5-\uDEFF\uDF37-\uDF3F\uDF44-\uDF4F\uDF5A-\uDF62\uDF78-\uDF7C\uDF90-\uDFFF]|\uD81B[\uDC00-\uDE3F\uDE80-\uDEFF\uDF4B-\uDF4E\uDF88-\uDF8E\uDFA0-\uDFDF\uDFE2\uDFE5-\uDFEF\uDFF2-\uDFFF]|\uD821[\uDFF8-\uDFFF]|\uD823[\uDCD6-\uDCFF\uDD09-\uDFFF]|\uD82C[\uDD1F-\uDD4F\uDD53-\uDD63\uDD68-\uDD6F\uDEFC-\uDFFF]|\uD82F[\uDC6B-\uDC6F\uDC7D-\uDC7F\uDC89-\uDC8F\uDC9A-\uDC9C\uDC9F-\uDFFF]|\uD834[\uDC00-\uDD64\uDD6A-\uDD6C\uDD73-\uDD7A\uDD83\uDD84\uDD8C-\uDDA9\uDDAE-\uDE41\uDE45-\uDFFF]|\uD835[\uDC55\uDC9D\uDCA0\uDCA1\uDCA3\uDCA4\uDCA7\uDCA8\uDCAD\uDCBA\uDCBC\uDCC4\uDD06\uDD0B\uDD0C\uDD15\uDD1D\uDD3A\uDD3F\uDD45\uDD47-\uDD49\uDD51\uDEA6\uDEA7\uDEC1\uDEDB\uDEFB\uDF15\uDF35\uDF4F\uDF6F\uDF89\uDFA9\uDFC3\uDFCC\uDFCD]|\uD836[\uDC00-\uDDFF\uDE37-\uDE3A\uDE6D-\uDE74\uDE76-\uDE83\uDE85-\uDE9A\uDEA0\uDEB0-\uDFFF]|\uD838[\uDC07\uDC19\uDC1A\uDC22\uDC25\uDC2B-\uDCFF\uDD2D-\uDD2F\uDD3E\uDD3F\uDD4A-\uDD4D\uDD4F-\uDEBF\uDEFA-\uDFFF]|\uD83A[\uDCC5-\uDCCF\uDCD7-\uDCFF\uDD4C-\uDD4F\uDD5A-\uDFFF]|\uD83B[\uDC00-\uDDFF\uDE04\uDE20\uDE23\uDE25\uDE26\uDE28\uDE33\uDE38\uDE3A\uDE3C-\uDE41\uDE43-\uDE46\uDE48\uDE4A\uDE4C\uDE50\uDE53\uDE55\uDE56\uDE58\uDE5A\uDE5C\uDE5E\uDE60\uDE63\uDE65\uDE66\uDE6B\uDE73\uDE78\uDE7D\uDE7F\uDE8A\uDE9C-\uDEA0\uDEA4\uDEAA\uDEBC-\uDFFF]|\uD83C[\uDC00-\uDD2F\uDD4A-\uDD4F\uDD6A-\uDD6F\uDD8A-\uDFFF]|\uD83E[\uDC00-\uDFEF\uDFFA-\uDFFF]|\uD869[\uDEDE-\uDEFF]|\uD86D[\uDF35-\uDF3F]|\uD86E[\uDC1E\uDC1F]|\uD873[\uDEA2-\uDEAF]|\uD87A[\uDFE1-\uDFFF]|\uD87E[\uDE1E-\uDFFF]|\uD884[\uDF4B-\uDFFF]|\uDB40[\uDC00-\uDCFF\uDDF0-\uDFFF]/g;
 
 // node_modules/.pnpm/github-slugger@2.0.0/node_modules/github-slugger/index.js
 var own = Object.hasOwnProperty;
@@ -12851,10 +14119,8 @@ var BananaSlug = class {
   }
 };
 function slug(value2, maintainCase) {
-  if (typeof value2 !== "string")
-    return "";
-  if (!maintainCase)
-    value2 = value2.toLowerCase();
+  if (typeof value2 !== "string") return "";
+  if (!maintainCase) value2 = value2.toLowerCase();
   return value2.replace(regex, "").replace(/ /g, "-");
 }
 
@@ -12864,32 +14130,50 @@ function isPlainObject(value2) {
     return false;
   }
   const prototype = Object.getPrototypeOf(value2);
-  return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(Symbol.toStringTag in value2) && !(Symbol.iterator in value2);
+  return (
+    (prototype === null ||
+      prototype === Object.prototype ||
+      Object.getPrototypeOf(prototype) === null) &&
+    !(Symbol.toStringTag in value2) &&
+    !(Symbol.iterator in value2)
+  );
 }
 
 // node_modules/.pnpm/estree-util-value-to-estree@2.1.0/node_modules/estree-util-value-to-estree/index.js
 function valueToEstree(value2, options2 = {}) {
-  if (value2 === void 0 || value2 === Number.POSITIVE_INFINITY || Number.isNaN(value2)) {
+  if (
+    value2 === void 0 ||
+    value2 === Number.POSITIVE_INFINITY ||
+    Number.isNaN(value2)
+  ) {
     return { type: "Identifier", name: String(value2) };
   }
-  if (value2 == null || typeof value2 === "string" || typeof value2 === "boolean") {
+  if (
+    value2 == null ||
+    typeof value2 === "string" ||
+    typeof value2 === "boolean"
+  ) {
     return { type: "Literal", value: value2 };
   }
   if (typeof value2 === "bigint") {
-    return value2 >= 0 ? { type: "Literal", value: value2, bigint: String(value2) } : {
-      type: "UnaryExpression",
-      operator: "-",
-      prefix: true,
-      argument: valueToEstree(-value2, options2)
-    };
+    return value2 >= 0
+      ? { type: "Literal", value: value2, bigint: String(value2) }
+      : {
+          type: "UnaryExpression",
+          operator: "-",
+          prefix: true,
+          argument: valueToEstree(-value2, options2),
+        };
   }
   if (typeof value2 === "number") {
-    return value2 >= 0 ? { type: "Literal", value: value2 } : {
-      type: "UnaryExpression",
-      operator: "-",
-      prefix: true,
-      argument: valueToEstree(-value2, options2)
-    };
+    return value2 >= 0
+      ? { type: "Literal", value: value2 }
+      : {
+          type: "UnaryExpression",
+          operator: "-",
+          prefix: true,
+          argument: valueToEstree(-value2, options2),
+        };
   }
   if (typeof value2 === "symbol") {
     if (value2.description && value2 === Symbol.for(value2.description)) {
@@ -12901,12 +14185,14 @@ function valueToEstree(value2, options2 = {}) {
           computed: false,
           optional: false,
           object: { type: "Identifier", name: "Symbol" },
-          property: { type: "Identifier", name: "for" }
+          property: { type: "Identifier", name: "for" },
         },
-        arguments: [valueToEstree(value2.description, options2)]
+        arguments: [valueToEstree(value2.description, options2)],
       };
     }
-    throw new TypeError(`Only global symbols are supported, got: ${String(value2)}`);
+    throw new TypeError(
+      `Only global symbols are supported, got: ${String(value2)}`
+    );
   }
   if (Array.isArray(value2)) {
     const elements = [];
@@ -12915,25 +14201,29 @@ function valueToEstree(value2, options2 = {}) {
     }
     return { type: "ArrayExpression", elements };
   }
-  if (value2 instanceof Boolean || value2 instanceof Number || value2 instanceof String) {
+  if (
+    value2 instanceof Boolean ||
+    value2 instanceof Number ||
+    value2 instanceof String
+  ) {
     return {
       type: "NewExpression",
       callee: { type: "Identifier", name: value2.constructor.name },
-      arguments: [valueToEstree(value2.valueOf())]
+      arguments: [valueToEstree(value2.valueOf())],
     };
   }
   if (value2 instanceof RegExp) {
     return {
       type: "Literal",
       value: value2,
-      regex: { pattern: value2.source, flags: value2.flags }
+      regex: { pattern: value2.source, flags: value2.flags },
     };
   }
   if (value2 instanceof Date) {
     return {
       type: "NewExpression",
       callee: { type: "Identifier", name: "Date" },
-      arguments: [valueToEstree(value2.getTime(), options2)]
+      arguments: [valueToEstree(value2.getTime(), options2)],
     };
   }
   if (typeof Buffer !== "undefined" && Buffer.isBuffer(value2)) {
@@ -12945,23 +14235,37 @@ function valueToEstree(value2, options2 = {}) {
         computed: false,
         optional: false,
         object: { type: "Identifier", name: "Buffer" },
-        property: { type: "Identifier", name: "from" }
+        property: { type: "Identifier", name: "from" },
       },
-      arguments: [valueToEstree([...value2])]
+      arguments: [valueToEstree([...value2])],
     };
   }
-  if (value2 instanceof BigInt64Array || value2 instanceof BigUint64Array || value2 instanceof Float32Array || value2 instanceof Float64Array || value2 instanceof Int8Array || value2 instanceof Int16Array || value2 instanceof Int32Array || value2 instanceof Map || value2 instanceof Set || value2 instanceof Uint8Array || value2 instanceof Uint8ClampedArray || value2 instanceof Uint16Array || value2 instanceof Uint32Array) {
+  if (
+    value2 instanceof BigInt64Array ||
+    value2 instanceof BigUint64Array ||
+    value2 instanceof Float32Array ||
+    value2 instanceof Float64Array ||
+    value2 instanceof Int8Array ||
+    value2 instanceof Int16Array ||
+    value2 instanceof Int32Array ||
+    value2 instanceof Map ||
+    value2 instanceof Set ||
+    value2 instanceof Uint8Array ||
+    value2 instanceof Uint8ClampedArray ||
+    value2 instanceof Uint16Array ||
+    value2 instanceof Uint32Array
+  ) {
     return {
       type: "NewExpression",
       callee: { type: "Identifier", name: value2.constructor.name },
-      arguments: [valueToEstree([...value2], options2)]
+      arguments: [valueToEstree([...value2], options2)],
     };
   }
   if (value2 instanceof URL || value2 instanceof URLSearchParams) {
     return {
       type: "NewExpression",
       callee: { type: "Identifier", name: value2.constructor.name },
-      arguments: [valueToEstree(String(value2), options2)]
+      arguments: [valueToEstree(String(value2), options2)],
     };
   }
   if (options2.instanceAsObject || isPlainObject(value2)) {
@@ -12974,8 +14278,8 @@ function valueToEstree(value2, options2 = {}) {
         computed: typeof key !== "string",
         kind: "init",
         key: valueToEstree(key, options2),
-        value: valueToEstree(value2[key], options2)
-      }))
+        value: valueToEstree(value2[key], options2),
+      })),
     };
   }
   throw new TypeError(`Unsupported value: ${String(value2)}`);
@@ -13021,13 +14325,13 @@ function toTitleCase(str) {
 function addError(ctx, e) {
   ctx.diagnostics.push({
     type: "error",
-    message: e ? String(e.stack || e) : "Error"
+    message: e ? String(e.stack || e) : "Error",
   });
 }
 function addWarning(ctx, message) {
   ctx.diagnostics.push({
     type: "warn",
-    message: String(message)
+    message: String(message),
   });
 }
 function validateSerializable(val) {
@@ -13037,7 +14341,12 @@ function validateSerializable(val) {
   }
 }
 function isSerializable(val) {
-  if (val == null || typeof val === "string" || typeof val === "boolean" || typeof val === "number") {
+  if (
+    val == null ||
+    typeof val === "string" ||
+    typeof val === "boolean" ||
+    typeof val === "number"
+  ) {
     return true;
   }
   if (Array.isArray(val)) {
@@ -13069,7 +14378,8 @@ function normalizePathname(pathname, basePathname, trailingSlash) {
         if (pathname.startsWith("/")) {
           pathname = pathname.slice(1);
         }
-        pathname = new URL(basePathname + pathname, `https://qwik.builder.io`).pathname;
+        pathname = new URL(basePathname + pathname, `https://qwik.builder.io`)
+          .pathname;
         if (pathname !== basePathname) {
           if (trailingSlash) {
             if (!pathname.endsWith("/")) {
@@ -13118,7 +14428,7 @@ var PROTOCOLS = {
   http: true,
   about: true,
   javascript: true,
-  file: true
+  file: true,
 };
 
 // packages/qwik-city/utils/fs.ts
@@ -13138,11 +14448,16 @@ function parseRouteIndexName(extlessName) {
 function getPathnameFromDirPath(opts, dirPath) {
   const relFilePath = (0, import_node_path.relative)(opts.routesDir, dirPath);
   let pathname = normalizePath(relFilePath);
-  pathname = normalizePathname(pathname, opts.basePathname, opts.trailingSlash).split("/").filter((segment) => !isGroupedLayoutName(segment)).join("/");
+  pathname = normalizePathname(pathname, opts.basePathname, opts.trailingSlash)
+    .split("/")
+    .filter((segment) => !isGroupedLayoutName(segment))
+    .join("/");
   return pathname;
 }
 function getMenuPathname(opts, filePath) {
-  let pathname = normalizePath((0, import_node_path.relative)(opts.routesDir, filePath));
+  let pathname = normalizePath(
+    (0, import_node_path.relative)(opts.routesDir, filePath)
+  );
   pathname = `/` + normalizePath((0, import_node_path.dirname)(pathname));
   return normalizePathname(pathname, opts.basePathname, true);
 }
@@ -13203,15 +14518,15 @@ function createFileId(routesDir, fsPath) {
 }
 var PAGE_MODULE_EXTS = {
   ".tsx": true,
-  ".jsx": true
+  ".jsx": true,
 };
 var MODULE_EXTS = {
   ".ts": true,
-  ".js": true
+  ".js": true,
 };
 var MARKDOWN_EXTS = {
   ".md": true,
-  ".mdx": true
+  ".mdx": true,
 };
 function isIndexModule(extlessName) {
   return /^index(|!|@.+)$/.test(extlessName);
@@ -13244,8 +14559,7 @@ function isErrorName(extlessName) {
   try {
     const statusCode = parseInt(extlessName, 10);
     return statusCode >= 400 && statusCode <= 599;
-  } catch (e) {
-  }
+  } catch (e) {}
   return false;
 }
 function isGroupedLayoutName(dirName, warn = true) {
@@ -13299,7 +14613,7 @@ var metaNames = {
   referrer: true,
   robots: true,
   "theme-color": true,
-  viewport: true
+  viewport: true,
 };
 function frontmatterAttrsToDocumentHead(attrs) {
   if (attrs != null && typeof attrs === "object") {
@@ -13310,7 +14624,7 @@ function frontmatterAttrsToDocumentHead(attrs) {
         meta: [],
         styles: [],
         links: [],
-        frontmatter: {}
+        frontmatter: {},
       };
       for (const attrName of attrNames) {
         const attrValue = attrs[attrName];
@@ -13320,7 +14634,7 @@ function frontmatterAttrsToDocumentHead(attrs) {
           } else if (metaNames[attrName]) {
             head.meta.push({
               name: attrName,
-              content: attrValue.toString()
+              content: attrValue.toString(),
             });
           } else {
             head.frontmatter[attrName] = attrValue;
@@ -13344,7 +14658,10 @@ function getSourceFile(fileName) {
   const isModule = isModuleExt(ext);
   const isMarkdown = isMarkdownExt(ext);
   let type = null;
-  if ((isIndexModule(extlessName) || isErrorName(extlessName)) && (isPageModule || isModule || isMarkdown)) {
+  if (
+    (isIndexModule(extlessName) || isErrorName(extlessName)) &&
+    (isPageModule || isModule || isMarkdown)
+  ) {
     type = "route";
   } else if (isLayoutModule(extlessName) && (isPageModule || isModule)) {
     type = "layout";
@@ -13359,7 +14676,7 @@ function getSourceFile(fileName) {
     const sourceFileName = {
       type,
       extlessName,
-      ext
+      ext,
     };
     return sourceFileName;
   }
@@ -13368,7 +14685,12 @@ function getSourceFile(fileName) {
 
 // packages/qwik-city/buildtime/markdown/markdown-url.ts
 var import_node_fs = require("fs");
-function getMarkdownRelativeUrl(opts, containingFilePath, url, checkFileExists) {
+function getMarkdownRelativeUrl(
+  opts,
+  containingFilePath,
+  url,
+  checkFileExists
+) {
   if (typeof url !== "string" || !isSameOriginUrl(url)) {
     return url;
   }
@@ -13377,8 +14699,15 @@ function getMarkdownRelativeUrl(opts, containingFilePath, url, checkFileExists) 
   const strippedUrl = url.split("?")[0].split("#")[0];
   if (isMarkdownExt(getExtension(strippedUrl))) {
     const isAbsolute3 = strippedUrl.startsWith("/");
-    const parts = normalizePath(strippedUrl).split("/").filter((p) => p.length > 0);
-    const filePath = isAbsolute3 ? (0, import_node_path2.join)(opts.routesDir, ...parts) : (0, import_node_path2.join)((0, import_node_path2.dirname)(containingFilePath), ...parts);
+    const parts = normalizePath(strippedUrl)
+      .split("/")
+      .filter((p) => p.length > 0);
+    const filePath = isAbsolute3
+      ? (0, import_node_path2.join)(opts.routesDir, ...parts)
+      : (0, import_node_path2.join)(
+          (0, import_node_path2.dirname)(containingFilePath),
+          ...parts
+        );
     if (checkFileExists && !(0, import_node_fs.existsSync)(filePath)) {
       console.warn(
         `
@@ -13415,9 +14744,10 @@ function rehypePage(ctx) {
 }
 function updateContentLinks(mdast, opts, sourcePath) {
   visit(mdast, "element", (node) => {
-    const tagName = node && node.type === "element" && node.tagName.toLowerCase();
+    const tagName =
+      node && node.type === "element" && node.tagName.toLowerCase();
     if (tagName === "a") {
-      const href = (node.properties && node.properties.href || "").trim();
+      const href = ((node.properties && node.properties.href) || "").trim();
       if (isSameOriginUrl(href)) {
         const ext = getExtension(href);
         if (isMarkdownExt(ext)) {
@@ -13456,7 +14786,7 @@ function exportContentHeadings(mdast) {
       headings.push({
         text: text2,
         id: node.properties.id,
-        level
+        level,
       });
     }
   });
@@ -13484,20 +14814,27 @@ function createExport(mdast, identifierName, val) {
                 {
                   type: "VariableDeclarator",
                   id: { type: "Identifier", name: identifierName },
-                  init: valueToEstree(val)
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
+                  init: valueToEstree(val),
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
   };
   mdast.children.unshift(mdxjsEsm);
 }
 var own2 = {}.hasOwnProperty;
 function hasProperty(node, propName) {
-  const value2 = propName && node && typeof node === "object" && node.type === "element" && node.properties && own2.call(node.properties, propName) && node.properties[propName];
+  const value2 =
+    propName &&
+    node &&
+    typeof node === "object" &&
+    node.type === "element" &&
+    node.properties &&
+    own2.call(node.properties, propName) &&
+    node.properties[propName];
   return value2 != null && value2 !== false;
 }
 
@@ -13513,31 +14850,33 @@ function clike(Prism2) {
       {
         pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
         lookbehind: true,
-        greedy: true
+        greedy: true,
       },
       {
         pattern: /(^|[^\\:])\/\/.*/,
         lookbehind: true,
-        greedy: true
-      }
+        greedy: true,
+      },
     ],
     string: {
       pattern: /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
-      greedy: true
+      greedy: true,
     },
     "class-name": {
-      pattern: /(\b(?:class|extends|implements|instanceof|interface|new|trait)\s+|\bcatch\s+\()[\w.\\]+/i,
+      pattern:
+        /(\b(?:class|extends|implements|instanceof|interface|new|trait)\s+|\bcatch\s+\()[\w.\\]+/i,
       lookbehind: true,
       inside: {
-        punctuation: /[.\\]/
-      }
+        punctuation: /[.\\]/,
+      },
     },
-    keyword: /\b(?:break|catch|continue|do|else|finally|for|function|if|in|instanceof|new|null|return|throw|try|while)\b/,
+    keyword:
+      /\b(?:break|catch|continue|do|else|finally|for|function|if|in|instanceof|new|null|return|throw|try|while)\b/,
     boolean: /\b(?:false|true)\b/,
     function: /\b\w+(?=\()/,
     number: /\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,
     operator: /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
-    punctuation: /[{}[\];(),.:]/
+    punctuation: /[{}[\];(),.:]/,
   };
 }
 
@@ -13548,31 +14887,36 @@ function c(Prism2) {
   Prism2.register(clike);
   Prism2.languages.c = Prism2.languages.extend("clike", {
     comment: {
-      pattern: /\/\/(?:[^\r\n\\]|\\(?:\r\n?|\n|(?![\r\n])))*|\/\*[\s\S]*?(?:\*\/|$)/,
-      greedy: true
+      pattern:
+        /\/\/(?:[^\r\n\\]|\\(?:\r\n?|\n|(?![\r\n])))*|\/\*[\s\S]*?(?:\*\/|$)/,
+      greedy: true,
     },
     string: {
       pattern: /"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
-      greedy: true
+      greedy: true,
     },
     "class-name": {
-      pattern: /(\b(?:enum|struct)\s+(?:__attribute__\s*\(\([\s\S]*?\)\)\s*)?)\w+|\b[a-z]\w*_t\b/,
-      lookbehind: true
+      pattern:
+        /(\b(?:enum|struct)\s+(?:__attribute__\s*\(\([\s\S]*?\)\)\s*)?)\w+|\b[a-z]\w*_t\b/,
+      lookbehind: true,
     },
-    keyword: /\b(?:_Alignas|_Alignof|_Atomic|_Bool|_Complex|_Generic|_Imaginary|_Noreturn|_Static_assert|_Thread_local|__attribute__|asm|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|inline|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|typeof|union|unsigned|void|volatile|while)\b/,
+    keyword:
+      /\b(?:_Alignas|_Alignof|_Atomic|_Bool|_Complex|_Generic|_Imaginary|_Noreturn|_Static_assert|_Thread_local|__attribute__|asm|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|inline|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|typeof|union|unsigned|void|volatile|while)\b/,
     function: /\b[a-z_]\w*(?=\s*\()/i,
-    number: /(?:\b0x(?:[\da-f]+(?:\.[\da-f]*)?|\.[\da-f]+)(?:p[+-]?\d+)?|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?)[ful]{0,4}/i,
-    operator: />>=?|<<=?|->|([-+&|:])\1|[?:~]|[-+*/%&|^!=<>]=?/
+    number:
+      /(?:\b0x(?:[\da-f]+(?:\.[\da-f]*)?|\.[\da-f]+)(?:p[+-]?\d+)?|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?)[ful]{0,4}/i,
+    operator: />>=?|<<=?|->|([-+&|:])\1|[?:~]|[-+*/%&|^!=<>]=?/,
   });
   Prism2.languages.insertBefore("c", "string", {
     char: {
       pattern: /'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n]){0,32}'/,
-      greedy: true
-    }
+      greedy: true,
+    },
   });
   Prism2.languages.insertBefore("c", "string", {
     macro: {
-      pattern: /(^[\t ]*)#\s*[a-z](?:[^\r\n\\/]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|\\(?:\r\n|[\s\S]))*/im,
+      pattern:
+        /(^[\t ]*)#\s*[a-z](?:[^\r\n\\/]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|\\(?:\r\n|[\s\S]))*/im,
       lookbehind: true,
       greedy: true,
       alias: "property",
@@ -13580,39 +14924,40 @@ function c(Prism2) {
         string: [
           {
             pattern: /^(#\s*include\s*)<[^>]+>/,
-            lookbehind: true
+            lookbehind: true,
           },
-          Prism2.languages.c["string"]
+          Prism2.languages.c["string"],
         ],
         char: Prism2.languages.c["char"],
         comment: Prism2.languages.c["comment"],
         "macro-name": [
           {
             pattern: /(^#\s*define\s+)\w+\b(?!\()/i,
-            lookbehind: true
+            lookbehind: true,
           },
           {
             pattern: /(^#\s*define\s+)\w+\b(?=\()/i,
             lookbehind: true,
-            alias: "function"
-          }
+            alias: "function",
+          },
         ],
         directive: {
           pattern: /^(#\s*)[a-z]+/,
           lookbehind: true,
-          alias: "keyword"
+          alias: "keyword",
         },
         "directive-hash": /^#/,
         punctuation: /##|\\(?=[\r\n])/,
         expression: {
           pattern: /\S[\s\S]*/,
-          inside: Prism2.languages.c
-        }
-      }
-    }
+          inside: Prism2.languages.c,
+        },
+      },
+    },
   });
   Prism2.languages.insertBefore("c", "function", {
-    constant: /\b(?:EOF|NULL|SEEK_CUR|SEEK_END|SEEK_SET|__DATE__|__FILE__|__LINE__|__TIMESTAMP__|__TIME__|__func__|stderr|stdin|stdout)\b/
+    constant:
+      /\b(?:EOF|NULL|SEEK_CUR|SEEK_END|SEEK_SET|__DATE__|__FILE__|__LINE__|__TIMESTAMP__|__TIME__|__func__|stderr|stdin|stdout)\b/,
   });
   delete Prism2.languages.c["boolean"];
 }
@@ -13622,11 +14967,12 @@ cpp.displayName = "cpp";
 cpp.aliases = [];
 function cpp(Prism2) {
   Prism2.register(c);
-  (function(Prism3) {
-    var keyword = /\b(?:alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|char8_t|class|co_await|co_return|co_yield|compl|concept|const|const_cast|consteval|constexpr|constinit|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|final|float|for|friend|goto|if|import|inline|int|int16_t|int32_t|int64_t|int8_t|long|module|mutable|namespace|new|noexcept|nullptr|operator|override|private|protected|public|register|reinterpret_cast|requires|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|uint16_t|uint32_t|uint64_t|uint8_t|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/;
+  (function (Prism3) {
+    var keyword =
+      /\b(?:alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|char8_t|class|co_await|co_return|co_yield|compl|concept|const|const_cast|consteval|constexpr|constinit|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|final|float|for|friend|goto|if|import|inline|int|int16_t|int32_t|int64_t|int8_t|long|module|mutable|namespace|new|noexcept|nullptr|operator|override|private|protected|public|register|reinterpret_cast|requires|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|uint16_t|uint32_t|uint64_t|uint8_t|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/;
     var modName = /\b(?!<keyword>)\w+(?:\s*\.\s*\w+)*\b/.source.replace(
       /<keyword>/g,
-      function() {
+      function () {
         return keyword.source;
       }
     );
@@ -13636,48 +14982,55 @@ function cpp(Prism2) {
           pattern: RegExp(
             /(\b(?:class|concept|enum|struct|typename)\s+)(?!<keyword>)\w+/.source.replace(
               /<keyword>/g,
-              function() {
+              function () {
                 return keyword.source;
               }
             )
           ),
-          lookbehind: true
+          lookbehind: true,
         },
         /\b[A-Z]\w*(?=\s*::\s*\w+\s*\()/,
         /\b[A-Z_]\w*(?=\s*::\s*~\w+\s*\()/i,
-        /\b\w+(?=\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>\s*::\s*\w+\s*\()/
+        /\b\w+(?=\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>\s*::\s*\w+\s*\()/,
       ],
       keyword,
       number: {
-        pattern: /(?:\b0b[01']+|\b0x(?:[\da-f']+(?:\.[\da-f']*)?|\.[\da-f']+)(?:p[+-]?[\d']+)?|(?:\b[\d']+(?:\.[\d']*)?|\B\.[\d']+)(?:e[+-]?[\d']+)?)[ful]{0,4}/i,
-        greedy: true
+        pattern:
+          /(?:\b0b[01']+|\b0x(?:[\da-f']+(?:\.[\da-f']*)?|\.[\da-f']+)(?:p[+-]?[\d']+)?|(?:\b[\d']+(?:\.[\d']*)?|\B\.[\d']+)(?:e[+-]?[\d']+)?)[ful]{0,4}/i,
+        greedy: true,
       },
-      operator: />>=?|<<=?|->|--|\+\+|&&|\|\||[?:~]|<=>|[-+*/%&|^!=<>]=?|\b(?:and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/,
-      boolean: /\b(?:false|true)\b/
+      operator:
+        />>=?|<<=?|->|--|\+\+|&&|\|\||[?:~]|<=>|[-+*/%&|^!=<>]=?|\b(?:and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/,
+      boolean: /\b(?:false|true)\b/,
     });
     Prism3.languages.insertBefore("cpp", "string", {
       module: {
         pattern: RegExp(
-          /(\b(?:import|module)\s+)/.source + "(?:" + /"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|<[^<>\r\n]*>/.source + "|" + /<mod-name>(?:\s*:\s*<mod-name>)?|:\s*<mod-name>/.source.replace(
-            /<mod-name>/g,
-            function() {
-              return modName;
-            }
-          ) + ")"
+          /(\b(?:import|module)\s+)/.source +
+            "(?:" +
+            /"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|<[^<>\r\n]*>/.source +
+            "|" +
+            /<mod-name>(?:\s*:\s*<mod-name>)?|:\s*<mod-name>/.source.replace(
+              /<mod-name>/g,
+              function () {
+                return modName;
+              }
+            ) +
+            ")"
         ),
         lookbehind: true,
         greedy: true,
         inside: {
           string: /^[<"][\s\S]+/,
           operator: /:/,
-          punctuation: /\./
-        }
+          punctuation: /\./,
+        },
       },
       "raw-string": {
         pattern: /R"([^()\\ ]{0,16})\([\s\S]*?\)\1"/,
         alias: "string",
-        greedy: true
-      }
+        greedy: true,
+      },
     });
     Prism3.languages.insertBefore("cpp", "keyword", {
       "generic-function": {
@@ -13687,30 +15040,31 @@ function cpp(Prism2) {
           generic: {
             pattern: /<[\s\S]+/,
             alias: "class-name",
-            inside: Prism3.languages.cpp
-          }
-        }
-      }
+            inside: Prism3.languages.cpp,
+          },
+        },
+      },
     });
     Prism3.languages.insertBefore("cpp", "operator", {
       "double-colon": {
         pattern: /::/,
-        alias: "punctuation"
-      }
+        alias: "punctuation",
+      },
     });
     Prism3.languages.insertBefore("cpp", "class-name", {
       "base-clause": {
-        pattern: /(\b(?:class|struct)\s+\w+\s*:\s*)[^;{}"'\s]+(?:\s+[^;{}"'\s]+)*(?=\s*[;{])/,
+        pattern:
+          /(\b(?:class|struct)\s+\w+\s*:\s*)[^;{}"'\s]+(?:\s+[^;{}"'\s]+)*(?=\s*[;{])/,
         lookbehind: true,
         greedy: true,
-        inside: Prism3.languages.extend("cpp", {})
-      }
+        inside: Prism3.languages.extend("cpp", {}),
+      },
     });
     Prism3.languages.insertBefore(
       "inside",
       "double-colon",
       {
-        "class-name": /\b[a-z_]\w*\b(?!\s*::)/i
+        "class-name": /\b[a-z_]\w*\b(?!\s*::)/i,
       },
       Prism3.languages.cpp["base-clause"]
     );
@@ -13723,9 +15077,12 @@ arduino.aliases = ["ino"];
 function arduino(Prism2) {
   Prism2.register(cpp);
   Prism2.languages.arduino = Prism2.languages.extend("cpp", {
-    keyword: /\b(?:String|array|bool|boolean|break|byte|case|catch|continue|default|do|double|else|finally|for|function|goto|if|in|instanceof|int|integer|long|loop|new|null|return|setup|string|switch|throw|try|void|while|word)\b/,
-    constant: /\b(?:ANALOG_MESSAGE|DEFAULT|DIGITAL_MESSAGE|EXTERNAL|FIRMATA_STRING|HIGH|INPUT|INPUT_PULLUP|INTERNAL|INTERNAL1V1|INTERNAL2V56|LED_BUILTIN|LOW|OUTPUT|REPORT_ANALOG|REPORT_DIGITAL|SET_PIN_MODE|SYSEX_START|SYSTEM_RESET)\b/,
-    builtin: /\b(?:Audio|BSSID|Bridge|Client|Console|EEPROM|Esplora|EsploraTFT|Ethernet|EthernetClient|EthernetServer|EthernetUDP|File|FileIO|FileSystem|Firmata|GPRS|GSM|GSMBand|GSMClient|GSMModem|GSMPIN|GSMScanner|GSMServer|GSMVoiceCall|GSM_SMS|HttpClient|IPAddress|IRread|Keyboard|KeyboardController|LiquidCrystal|LiquidCrystal_I2C|Mailbox|Mouse|MouseController|PImage|Process|RSSI|RobotControl|RobotMotor|SD|SPI|SSID|Scheduler|Serial|Server|Servo|SoftwareSerial|Stepper|Stream|TFT|Task|USBHost|WiFi|WiFiClient|WiFiServer|WiFiUDP|Wire|YunClient|YunServer|abs|addParameter|analogRead|analogReadResolution|analogReference|analogWrite|analogWriteResolution|answerCall|attach|attachGPRS|attachInterrupt|attached|autoscroll|available|background|beep|begin|beginPacket|beginSD|beginSMS|beginSpeaker|beginTFT|beginTransmission|beginWrite|bit|bitClear|bitRead|bitSet|bitWrite|blink|blinkVersion|buffer|changePIN|checkPIN|checkPUK|checkReg|circle|cityNameRead|cityNameWrite|clear|clearScreen|click|close|compassRead|config|connect|connected|constrain|cos|countryNameRead|countryNameWrite|createChar|cursor|debugPrint|delay|delayMicroseconds|detach|detachInterrupt|digitalRead|digitalWrite|disconnect|display|displayLogos|drawBMP|drawCompass|encryptionType|end|endPacket|endSMS|endTransmission|endWrite|exists|exitValue|fill|find|findUntil|flush|gatewayIP|get|getAsynchronously|getBand|getButton|getCurrentCarrier|getIMEI|getKey|getModifiers|getOemKey|getPINUsed|getResult|getSignalStrength|getSocket|getVoiceCallStatus|getXChange|getYChange|hangCall|height|highByte|home|image|interrupts|isActionDone|isDirectory|isListening|isPIN|isPressed|isValid|keyPressed|keyReleased|keyboardRead|knobRead|leftToRight|line|lineFollowConfig|listen|listenOnLocalhost|loadImage|localIP|lowByte|macAddress|maintain|map|max|messageAvailable|micros|millis|min|mkdir|motorsStop|motorsWrite|mouseDragged|mouseMoved|mousePressed|mouseReleased|move|noAutoscroll|noBlink|noBuffer|noCursor|noDisplay|noFill|noInterrupts|noListenOnLocalhost|noStroke|noTone|onReceive|onRequest|open|openNextFile|overflow|parseCommand|parseFloat|parseInt|parsePacket|pauseMode|peek|pinMode|playFile|playMelody|point|pointTo|position|pow|prepare|press|print|printFirmwareVersion|printVersion|println|process|processInput|pulseIn|put|random|randomSeed|read|readAccelerometer|readBlue|readButton|readBytes|readBytesUntil|readGreen|readJoystickButton|readJoystickSwitch|readJoystickX|readJoystickY|readLightSensor|readMessage|readMicrophone|readNetworks|readRed|readSlider|readString|readStringUntil|readTemperature|ready|rect|release|releaseAll|remoteIP|remoteNumber|remotePort|remove|requestFrom|retrieveCallingNumber|rewindDirectory|rightToLeft|rmdir|robotNameRead|robotNameWrite|run|runAsynchronously|runShellCommand|runShellCommandAsynchronously|running|scanNetworks|scrollDisplayLeft|scrollDisplayRight|seek|sendAnalog|sendDigitalPortPair|sendDigitalPorts|sendString|sendSysex|serialEvent|setBand|setBitOrder|setClockDivider|setCursor|setDNS|setDataMode|setFirmwareVersion|setMode|setPINUsed|setSpeed|setTextSize|setTimeout|shiftIn|shiftOut|shutdown|sin|size|sqrt|startLoop|step|stop|stroke|subnetMask|switchPIN|tan|tempoWrite|text|tone|transfer|tuneWrite|turn|updateIR|userNameRead|userNameWrite|voiceCall|waitContinue|width|write|writeBlue|writeGreen|writeJSON|writeMessage|writeMicroseconds|writeRGB|writeRed|yield)\b/
+    keyword:
+      /\b(?:String|array|bool|boolean|break|byte|case|catch|continue|default|do|double|else|finally|for|function|goto|if|in|instanceof|int|integer|long|loop|new|null|return|setup|string|switch|throw|try|void|while|word)\b/,
+    constant:
+      /\b(?:ANALOG_MESSAGE|DEFAULT|DIGITAL_MESSAGE|EXTERNAL|FIRMATA_STRING|HIGH|INPUT|INPUT_PULLUP|INTERNAL|INTERNAL1V1|INTERNAL2V56|LED_BUILTIN|LOW|OUTPUT|REPORT_ANALOG|REPORT_DIGITAL|SET_PIN_MODE|SYSEX_START|SYSTEM_RESET)\b/,
+    builtin:
+      /\b(?:Audio|BSSID|Bridge|Client|Console|EEPROM|Esplora|EsploraTFT|Ethernet|EthernetClient|EthernetServer|EthernetUDP|File|FileIO|FileSystem|Firmata|GPRS|GSM|GSMBand|GSMClient|GSMModem|GSMPIN|GSMScanner|GSMServer|GSMVoiceCall|GSM_SMS|HttpClient|IPAddress|IRread|Keyboard|KeyboardController|LiquidCrystal|LiquidCrystal_I2C|Mailbox|Mouse|MouseController|PImage|Process|RSSI|RobotControl|RobotMotor|SD|SPI|SSID|Scheduler|Serial|Server|Servo|SoftwareSerial|Stepper|Stream|TFT|Task|USBHost|WiFi|WiFiClient|WiFiServer|WiFiUDP|Wire|YunClient|YunServer|abs|addParameter|analogRead|analogReadResolution|analogReference|analogWrite|analogWriteResolution|answerCall|attach|attachGPRS|attachInterrupt|attached|autoscroll|available|background|beep|begin|beginPacket|beginSD|beginSMS|beginSpeaker|beginTFT|beginTransmission|beginWrite|bit|bitClear|bitRead|bitSet|bitWrite|blink|blinkVersion|buffer|changePIN|checkPIN|checkPUK|checkReg|circle|cityNameRead|cityNameWrite|clear|clearScreen|click|close|compassRead|config|connect|connected|constrain|cos|countryNameRead|countryNameWrite|createChar|cursor|debugPrint|delay|delayMicroseconds|detach|detachInterrupt|digitalRead|digitalWrite|disconnect|display|displayLogos|drawBMP|drawCompass|encryptionType|end|endPacket|endSMS|endTransmission|endWrite|exists|exitValue|fill|find|findUntil|flush|gatewayIP|get|getAsynchronously|getBand|getButton|getCurrentCarrier|getIMEI|getKey|getModifiers|getOemKey|getPINUsed|getResult|getSignalStrength|getSocket|getVoiceCallStatus|getXChange|getYChange|hangCall|height|highByte|home|image|interrupts|isActionDone|isDirectory|isListening|isPIN|isPressed|isValid|keyPressed|keyReleased|keyboardRead|knobRead|leftToRight|line|lineFollowConfig|listen|listenOnLocalhost|loadImage|localIP|lowByte|macAddress|maintain|map|max|messageAvailable|micros|millis|min|mkdir|motorsStop|motorsWrite|mouseDragged|mouseMoved|mousePressed|mouseReleased|move|noAutoscroll|noBlink|noBuffer|noCursor|noDisplay|noFill|noInterrupts|noListenOnLocalhost|noStroke|noTone|onReceive|onRequest|open|openNextFile|overflow|parseCommand|parseFloat|parseInt|parsePacket|pauseMode|peek|pinMode|playFile|playMelody|point|pointTo|position|pow|prepare|press|print|printFirmwareVersion|printVersion|println|process|processInput|pulseIn|put|random|randomSeed|read|readAccelerometer|readBlue|readButton|readBytes|readBytesUntil|readGreen|readJoystickButton|readJoystickSwitch|readJoystickX|readJoystickY|readLightSensor|readMessage|readMicrophone|readNetworks|readRed|readSlider|readString|readStringUntil|readTemperature|ready|rect|release|releaseAll|remoteIP|remoteNumber|remotePort|remove|requestFrom|retrieveCallingNumber|rewindDirectory|rightToLeft|rmdir|robotNameRead|robotNameWrite|run|runAsynchronously|runShellCommand|runShellCommandAsynchronously|running|scanNetworks|scrollDisplayLeft|scrollDisplayRight|seek|sendAnalog|sendDigitalPortPair|sendDigitalPorts|sendString|sendSysex|serialEvent|setBand|setBitOrder|setClockDivider|setCursor|setDNS|setDataMode|setFirmwareVersion|setMode|setPINUsed|setSpeed|setTextSize|setTimeout|shiftIn|shiftOut|shutdown|sin|size|sqrt|startLoop|step|stop|stroke|subnetMask|switchPIN|tan|tempoWrite|text|tone|transfer|tuneWrite|turn|updateIR|userNameRead|userNameWrite|voiceCall|waitContinue|width|write|writeBlue|writeGreen|writeJSON|writeMessage|writeMicroseconds|writeRGB|writeRed|yield)\b/,
   });
   Prism2.languages.ino = Prism2.languages.arduino;
 }
@@ -13734,20 +15091,20 @@ function arduino(Prism2) {
 bash.displayName = "bash";
 bash.aliases = ["sh", "shell"];
 function bash(Prism2) {
-  ;
-  (function(Prism3) {
-    var envVars = "\\b(?:BASH|BASHOPTS|BASH_ALIASES|BASH_ARGC|BASH_ARGV|BASH_CMDS|BASH_COMPLETION_COMPAT_DIR|BASH_LINENO|BASH_REMATCH|BASH_SOURCE|BASH_VERSINFO|BASH_VERSION|COLORTERM|COLUMNS|COMP_WORDBREAKS|DBUS_SESSION_BUS_ADDRESS|DEFAULTS_PATH|DESKTOP_SESSION|DIRSTACK|DISPLAY|EUID|GDMSESSION|GDM_LANG|GNOME_KEYRING_CONTROL|GNOME_KEYRING_PID|GPG_AGENT_INFO|GROUPS|HISTCONTROL|HISTFILE|HISTFILESIZE|HISTSIZE|HOME|HOSTNAME|HOSTTYPE|IFS|INSTANCE|JOB|LANG|LANGUAGE|LC_ADDRESS|LC_ALL|LC_IDENTIFICATION|LC_MEASUREMENT|LC_MONETARY|LC_NAME|LC_NUMERIC|LC_PAPER|LC_TELEPHONE|LC_TIME|LESSCLOSE|LESSOPEN|LINES|LOGNAME|LS_COLORS|MACHTYPE|MAILCHECK|MANDATORY_PATH|NO_AT_BRIDGE|OLDPWD|OPTERR|OPTIND|ORBIT_SOCKETDIR|OSTYPE|PAPERSIZE|PATH|PIPESTATUS|PPID|PS1|PS2|PS3|PS4|PWD|RANDOM|REPLY|SECONDS|SELINUX_INIT|SESSION|SESSIONTYPE|SESSION_MANAGER|SHELL|SHELLOPTS|SHLVL|SSH_AUTH_SOCK|TERM|UID|UPSTART_EVENTS|UPSTART_INSTANCE|UPSTART_JOB|UPSTART_SESSION|USER|WINDOWID|XAUTHORITY|XDG_CONFIG_DIRS|XDG_CURRENT_DESKTOP|XDG_DATA_DIRS|XDG_GREETER_DATA_DIR|XDG_MENU_PREFIX|XDG_RUNTIME_DIR|XDG_SEAT|XDG_SEAT_PATH|XDG_SESSION_DESKTOP|XDG_SESSION_ID|XDG_SESSION_PATH|XDG_SESSION_TYPE|XDG_VTNR|XMODIFIERS)\\b";
+  (function (Prism3) {
+    var envVars =
+      "\\b(?:BASH|BASHOPTS|BASH_ALIASES|BASH_ARGC|BASH_ARGV|BASH_CMDS|BASH_COMPLETION_COMPAT_DIR|BASH_LINENO|BASH_REMATCH|BASH_SOURCE|BASH_VERSINFO|BASH_VERSION|COLORTERM|COLUMNS|COMP_WORDBREAKS|DBUS_SESSION_BUS_ADDRESS|DEFAULTS_PATH|DESKTOP_SESSION|DIRSTACK|DISPLAY|EUID|GDMSESSION|GDM_LANG|GNOME_KEYRING_CONTROL|GNOME_KEYRING_PID|GPG_AGENT_INFO|GROUPS|HISTCONTROL|HISTFILE|HISTFILESIZE|HISTSIZE|HOME|HOSTNAME|HOSTTYPE|IFS|INSTANCE|JOB|LANG|LANGUAGE|LC_ADDRESS|LC_ALL|LC_IDENTIFICATION|LC_MEASUREMENT|LC_MONETARY|LC_NAME|LC_NUMERIC|LC_PAPER|LC_TELEPHONE|LC_TIME|LESSCLOSE|LESSOPEN|LINES|LOGNAME|LS_COLORS|MACHTYPE|MAILCHECK|MANDATORY_PATH|NO_AT_BRIDGE|OLDPWD|OPTERR|OPTIND|ORBIT_SOCKETDIR|OSTYPE|PAPERSIZE|PATH|PIPESTATUS|PPID|PS1|PS2|PS3|PS4|PWD|RANDOM|REPLY|SECONDS|SELINUX_INIT|SESSION|SESSIONTYPE|SESSION_MANAGER|SHELL|SHELLOPTS|SHLVL|SSH_AUTH_SOCK|TERM|UID|UPSTART_EVENTS|UPSTART_INSTANCE|UPSTART_JOB|UPSTART_SESSION|USER|WINDOWID|XAUTHORITY|XDG_CONFIG_DIRS|XDG_CURRENT_DESKTOP|XDG_DATA_DIRS|XDG_GREETER_DATA_DIR|XDG_MENU_PREFIX|XDG_RUNTIME_DIR|XDG_SEAT|XDG_SEAT_PATH|XDG_SESSION_DESKTOP|XDG_SESSION_ID|XDG_SESSION_PATH|XDG_SESSION_TYPE|XDG_VTNR|XMODIFIERS)\\b";
     var commandAfterHeredoc = {
       pattern: /(^(["']?)\w+\2)[ \t]+\S.*/,
       lookbehind: true,
       alias: "punctuation",
-      inside: null
+      inside: null,
     };
     var insideString = {
       bash: commandAfterHeredoc,
       environment: {
         pattern: RegExp("\\$" + envVars),
-        alias: "constant"
+        alias: "constant",
       },
       variable: [
         {
@@ -13757,21 +15114,23 @@ function bash(Prism2) {
             variable: [
               {
                 pattern: /(^\$\(\([\s\S]+)\)\)/,
-                lookbehind: true
+                lookbehind: true,
               },
-              /^\$\(\(/
+              /^\$\(\(/,
             ],
-            number: /\b0x[\dA-Fa-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee]-?\d+)?/,
-            operator: /--|\+\+|\*\*=?|<<=?|>>=?|&&|\|\||[=!+\-*/%<>^&|]=?|[?~:]/,
-            punctuation: /\(\(?|\)\)?|,|;/
-          }
+            number:
+              /\b0x[\dA-Fa-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee]-?\d+)?/,
+            operator:
+              /--|\+\+|\*\*=?|<<=?|>>=?|&&|\|\||[=!+\-*/%<>^&|]=?|[?~:]/,
+            punctuation: /\(\(?|\)\)?|,|;/,
+          },
         },
         {
           pattern: /\$\((?:\([^)]+\)|[^()])+\)|`[^`]+`/,
           greedy: true,
           inside: {
-            variable: /^\$\(|^`|\)$|`$/
-          }
+            variable: /^\$\(|^`|\)$|`$/,
+          },
         },
         {
           pattern: /\$\{[^}]+\}/,
@@ -13782,38 +15141,39 @@ function bash(Prism2) {
             environment: {
               pattern: RegExp("(\\{)" + envVars),
               lookbehind: true,
-              alias: "constant"
-            }
-          }
+              alias: "constant",
+            },
+          },
         },
-        /\$(?:\w+|[#?*!@$])/
+        /\$(?:\w+|[#?*!@$])/,
       ],
-      entity: /\\(?:[abceEfnrtv\\"]|O?[0-7]{1,3}|U[0-9a-fA-F]{8}|u[0-9a-fA-F]{4}|x[0-9a-fA-F]{1,2})/
+      entity:
+        /\\(?:[abceEfnrtv\\"]|O?[0-7]{1,3}|U[0-9a-fA-F]{8}|u[0-9a-fA-F]{4}|x[0-9a-fA-F]{1,2})/,
     };
     Prism3.languages.bash = {
       shebang: {
         pattern: /^#!\s*\/.*/,
-        alias: "important"
+        alias: "important",
       },
       comment: {
         pattern: /(^|[^"{\\$])#.*/,
-        lookbehind: true
+        lookbehind: true,
       },
       "function-name": [
         {
           pattern: /(\bfunction\s+)[\w-]+(?=(?:\s*\(?:\s*\))?\s*\{)/,
           lookbehind: true,
-          alias: "function"
+          alias: "function",
         },
         {
           pattern: /\b[\w-]+(?=\s*\(\s*\)\s*\{)/,
-          alias: "function"
-        }
+          alias: "function",
+        },
       ],
       "for-or-select": {
         pattern: /(\b(?:for|select)\s+)\w+(?=\s+in\s)/,
         alias: "variable",
-        lookbehind: true
+        lookbehind: true,
       },
       "assign-left": {
         pattern: /(^|[\s;|&]|[<>]\()\w+(?:\.\w+)*(?=\+?=)/,
@@ -13821,91 +15181,96 @@ function bash(Prism2) {
           environment: {
             pattern: RegExp("(^|[\\s;|&]|[<>]\\()" + envVars),
             lookbehind: true,
-            alias: "constant"
-          }
+            alias: "constant",
+          },
         },
         alias: "variable",
-        lookbehind: true
+        lookbehind: true,
       },
       parameter: {
         pattern: /(^|\s)-{1,2}(?:\w+:[+-]?)?\w+(?:\.\w+)*(?=[=\s]|$)/,
         alias: "variable",
-        lookbehind: true
+        lookbehind: true,
       },
       string: [
         {
           pattern: /((?:^|[^<])<<-?\s*)(\w+)\s[\s\S]*?(?:\r?\n|\r)\2/,
           lookbehind: true,
           greedy: true,
-          inside: insideString
+          inside: insideString,
         },
         {
           pattern: /((?:^|[^<])<<-?\s*)(["'])(\w+)\2\s[\s\S]*?(?:\r?\n|\r)\3/,
           lookbehind: true,
           greedy: true,
           inside: {
-            bash: commandAfterHeredoc
-          }
+            bash: commandAfterHeredoc,
+          },
         },
         {
-          pattern: /(^|[^\\](?:\\\\)*)"(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|[^"\\`$])*"/,
+          pattern:
+            /(^|[^\\](?:\\\\)*)"(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|[^"\\`$])*"/,
           lookbehind: true,
           greedy: true,
-          inside: insideString
+          inside: insideString,
         },
         {
           pattern: /(^|[^$\\])'[^']*'/,
           lookbehind: true,
-          greedy: true
+          greedy: true,
         },
         {
           pattern: /\$'(?:[^'\\]|\\[\s\S])*'/,
           greedy: true,
           inside: {
-            entity: insideString.entity
-          }
-        }
+            entity: insideString.entity,
+          },
+        },
       ],
       environment: {
         pattern: RegExp("\\$?" + envVars),
-        alias: "constant"
+        alias: "constant",
       },
       variable: insideString.variable,
       function: {
-        pattern: /(^|[\s;|&]|[<>]\()(?:add|apropos|apt|apt-cache|apt-get|aptitude|aspell|automysqlbackup|awk|basename|bash|bc|bconsole|bg|bzip2|cal|cargo|cat|cfdisk|chgrp|chkconfig|chmod|chown|chroot|cksum|clear|cmp|column|comm|composer|cp|cron|crontab|csplit|curl|cut|date|dc|dd|ddrescue|debootstrap|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|docker|docker-compose|du|egrep|eject|env|ethtool|expand|expect|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|git|gparted|grep|groupadd|groupdel|groupmod|groups|grub-mkconfig|gzip|halt|head|hg|history|host|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|ip|java|jobs|join|kill|killall|less|link|ln|locate|logname|logrotate|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|lynx|make|man|mc|mdadm|mkconfig|mkdir|mke2fs|mkfifo|mkfs|mkisofs|mknod|mkswap|mmv|more|most|mount|mtools|mtr|mutt|mv|nano|nc|netstat|nice|nl|node|nohup|notify-send|npm|nslookup|op|open|parted|passwd|paste|pathchk|ping|pkill|pnpm|podman|podman-compose|popd|pr|printcap|printenv|ps|pushd|pv|quota|quotacheck|quotactl|ram|rar|rcp|reboot|remsync|rename|renice|rev|rm|rmdir|rpm|rsync|scp|screen|sdiff|sed|sendmail|seq|service|sftp|sh|shellcheck|shuf|shutdown|sleep|slocate|sort|split|ssh|stat|strace|su|sudo|sum|suspend|swapon|sync|sysctl|tac|tail|tar|tee|time|timeout|top|touch|tr|traceroute|tsort|tty|umount|uname|unexpand|uniq|units|unrar|unshar|unzip|update-grub|uptime|useradd|userdel|usermod|users|uudecode|uuencode|v|vcpkg|vdir|vi|vim|virsh|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yarn|yes|zenity|zip|zsh|zypper)(?=$|[)\s;|&])/,
-        lookbehind: true
+        pattern:
+          /(^|[\s;|&]|[<>]\()(?:add|apropos|apt|apt-cache|apt-get|aptitude|aspell|automysqlbackup|awk|basename|bash|bc|bconsole|bg|bzip2|cal|cargo|cat|cfdisk|chgrp|chkconfig|chmod|chown|chroot|cksum|clear|cmp|column|comm|composer|cp|cron|crontab|csplit|curl|cut|date|dc|dd|ddrescue|debootstrap|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|docker|docker-compose|du|egrep|eject|env|ethtool|expand|expect|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|git|gparted|grep|groupadd|groupdel|groupmod|groups|grub-mkconfig|gzip|halt|head|hg|history|host|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|ip|java|jobs|join|kill|killall|less|link|ln|locate|logname|logrotate|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|lynx|make|man|mc|mdadm|mkconfig|mkdir|mke2fs|mkfifo|mkfs|mkisofs|mknod|mkswap|mmv|more|most|mount|mtools|mtr|mutt|mv|nano|nc|netstat|nice|nl|node|nohup|notify-send|npm|nslookup|op|open|parted|passwd|paste|pathchk|ping|pkill|pnpm|podman|podman-compose|popd|pr|printcap|printenv|ps|pushd|pv|quota|quotacheck|quotactl|ram|rar|rcp|reboot|remsync|rename|renice|rev|rm|rmdir|rpm|rsync|scp|screen|sdiff|sed|sendmail|seq|service|sftp|sh|shellcheck|shuf|shutdown|sleep|slocate|sort|split|ssh|stat|strace|su|sudo|sum|suspend|swapon|sync|sysctl|tac|tail|tar|tee|time|timeout|top|touch|tr|traceroute|tsort|tty|umount|uname|unexpand|uniq|units|unrar|unshar|unzip|update-grub|uptime|useradd|userdel|usermod|users|uudecode|uuencode|v|vcpkg|vdir|vi|vim|virsh|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yarn|yes|zenity|zip|zsh|zypper)(?=$|[)\s;|&])/,
+        lookbehind: true,
       },
       keyword: {
-        pattern: /(^|[\s;|&]|[<>]\()(?:case|do|done|elif|else|esac|fi|for|function|if|in|select|then|until|while)(?=$|[)\s;|&])/,
-        lookbehind: true
+        pattern:
+          /(^|[\s;|&]|[<>]\()(?:case|do|done|elif|else|esac|fi|for|function|if|in|select|then|until|while)(?=$|[)\s;|&])/,
+        lookbehind: true,
       },
       builtin: {
-        pattern: /(^|[\s;|&]|[<>]\()(?:\.|:|alias|bind|break|builtin|caller|cd|command|continue|declare|echo|enable|eval|exec|exit|export|getopts|hash|help|let|local|logout|mapfile|printf|pwd|read|readarray|readonly|return|set|shift|shopt|source|test|times|trap|type|typeset|ulimit|umask|unalias|unset)(?=$|[)\s;|&])/,
+        pattern:
+          /(^|[\s;|&]|[<>]\()(?:\.|:|alias|bind|break|builtin|caller|cd|command|continue|declare|echo|enable|eval|exec|exit|export|getopts|hash|help|let|local|logout|mapfile|printf|pwd|read|readarray|readonly|return|set|shift|shopt|source|test|times|trap|type|typeset|ulimit|umask|unalias|unset)(?=$|[)\s;|&])/,
         lookbehind: true,
-        alias: "class-name"
+        alias: "class-name",
       },
       boolean: {
         pattern: /(^|[\s;|&]|[<>]\()(?:false|true)(?=$|[)\s;|&])/,
-        lookbehind: true
+        lookbehind: true,
       },
       "file-descriptor": {
         pattern: /\B&\d\b/,
-        alias: "important"
+        alias: "important",
       },
       operator: {
-        pattern: /\d?<>|>\||\+=|=[=~]?|!=?|<<[<-]?|[&\d]?>>|\d[<>]&?|[<>][&=]?|&[>&]?|\|[&|]?/,
+        pattern:
+          /\d?<>|>\||\+=|=[=~]?|!=?|<<[<-]?|[&\d]?>>|\d[<>]&?|[<>][&=]?|&[>&]?|\|[&|]?/,
         inside: {
           "file-descriptor": {
             pattern: /^\d/,
-            alias: "important"
-          }
-        }
+            alias: "important",
+          },
+        },
       },
       punctuation: /\$?\(\(?|\)\)?|\.\.|[{}[\];\\]/,
       number: {
         pattern: /(^|\s)(?:[1-9]\d*|0)(?:[.,]\d+)?\b/,
-        lookbehind: true
-      }
+        lookbehind: true,
+      },
     };
     commandAfterHeredoc.inside = Prism3.languages.bash;
     var toBeCopied = [
@@ -13923,7 +15288,7 @@ function bash(Prism2) {
       "file-descriptor",
       "operator",
       "punctuation",
-      "number"
+      "number",
     ];
     var inside = insideString.variable[1].inside;
     for (var i = 0; i < toBeCopied.length; i++) {
@@ -13939,9 +15304,9 @@ csharp.displayName = "csharp";
 csharp.aliases = ["cs", "dotnet"];
 function csharp(Prism2) {
   Prism2.register(clike);
-  (function(Prism3) {
+  (function (Prism3) {
     function replace2(pattern, replacements) {
-      return pattern.replace(/<<(\d+)>>/g, function(m, index) {
+      return pattern.replace(/<<(\d+)>>/g, function (m, index) {
         return "(?:" + replacements[+index] + ")";
       });
     }
@@ -13950,7 +15315,7 @@ function csharp(Prism2) {
     }
     function nested(pattern, depthLog2) {
       for (var i = 0; i < depthLog2; i++) {
-        pattern = pattern.replace(/<<self>>/g, function() {
+        pattern = pattern.replace(/<<self>>/g, function () {
           return "(?:" + pattern + ")";
         });
       }
@@ -13959,8 +15324,10 @@ function csharp(Prism2) {
     var keywordKinds = {
       type: "bool byte char decimal double dynamic float int long object sbyte short string uint ulong ushort var void",
       typeDeclaration: "class enum interface record struct",
-      contextual: "add alias and ascending async await by descending from(?=\\s*(?:\\w|$)) get global group into init(?=\\s*;) join let nameof not notnull on or orderby partial remove select set unmanaged value when where with(?=\\s*{)",
-      other: "abstract as base break case catch checked const continue default delegate do else event explicit extern finally fixed for foreach goto if implicit in internal is lock namespace new null operator out override params private protected public readonly ref return sealed sizeof stackalloc static switch this throw try typeof unchecked unsafe using virtual volatile while yield"
+      contextual:
+        "add alias and ascending async await by descending from(?=\\s*(?:\\w|$)) get global group into init(?=\\s*;) join let nameof not notnull on or orderby partial remove select set unmanaged value when where with(?=\\s*{)",
+      other:
+        "abstract as base break case catch checked const continue default delegate do else event explicit extern finally fixed for foreach goto if implicit in internal is lock namespace new null operator out override params private protected public readonly ref return sealed sizeof stackalloc static switch this throw try typeof unchecked unsafe using virtual volatile while yield",
     };
     function keywordsToPattern(words) {
       return "\\b(?:" + words.trim().replace(/ /g, "|") + ")\\b";
@@ -13970,14 +15337,28 @@ function csharp(Prism2) {
     );
     var keywords = RegExp(
       keywordsToPattern(
-        keywordKinds.type + " " + keywordKinds.typeDeclaration + " " + keywordKinds.contextual + " " + keywordKinds.other
+        keywordKinds.type +
+          " " +
+          keywordKinds.typeDeclaration +
+          " " +
+          keywordKinds.contextual +
+          " " +
+          keywordKinds.other
       )
     );
     var nonTypeKeywords = keywordsToPattern(
-      keywordKinds.typeDeclaration + " " + keywordKinds.contextual + " " + keywordKinds.other
+      keywordKinds.typeDeclaration +
+        " " +
+        keywordKinds.contextual +
+        " " +
+        keywordKinds.other
     );
     var nonContextualKeywords = keywordsToPattern(
-      keywordKinds.type + " " + keywordKinds.typeDeclaration + " " + keywordKinds.other
+      keywordKinds.type +
+        " " +
+        keywordKinds.typeDeclaration +
+        " " +
+        keywordKinds.other
     );
     var generic = nested(/<(?:[^<>;=+\-*/%&|^]|<<self>>)*>/.source, 2);
     var nestedRound = nested(/\((?:[^()]|<<self>>)*\)/.source, 2);
@@ -13985,7 +15366,7 @@ function csharp(Prism2) {
     var genericName = replace2(/<<0>>(?:\s*<<1>>)?/.source, [name, generic]);
     var identifier = replace2(/(?!<<0>>)<<1>>(?:\s*\.\s*<<1>>)*/.source, [
       nonTypeKeywords,
-      genericName
+      genericName,
     ]);
     var array = /\[\s*(?:,\s*)*\]/.source;
     var typeExpressionWithoutTuple = replace2(
@@ -14003,7 +15384,7 @@ function csharp(Prism2) {
     );
     var typeInside = {
       keyword: keywords,
-      punctuation: /[<>()?,.:[\]]/
+      punctuation: /[<>()?,.:[\]]/,
     };
     var character = /'(?:[^\r\n'\\]|\\.|\\[Uux][\da-fA-F]{1,8})'/.source;
     var regularString = /"(?:\\.|[^\\"\r\n])*"/.source;
@@ -14013,83 +15394,85 @@ function csharp(Prism2) {
         {
           pattern: re(/(^|[^$\\])<<0>>/.source, [verbatimString]),
           lookbehind: true,
-          greedy: true
+          greedy: true,
         },
         {
           pattern: re(/(^|[^@$\\])<<0>>/.source, [regularString]),
           lookbehind: true,
-          greedy: true
-        }
+          greedy: true,
+        },
       ],
       "class-name": [
         {
           pattern: re(/(\busing\s+static\s+)<<0>>(?=\s*;)/.source, [
-            identifier
+            identifier,
           ]),
           lookbehind: true,
-          inside: typeInside
+          inside: typeInside,
         },
         {
           pattern: re(/(\busing\s+<<0>>\s*=\s*)<<1>>(?=\s*;)/.source, [
             name,
-            typeExpression
+            typeExpression,
           ]),
           lookbehind: true,
-          inside: typeInside
+          inside: typeInside,
         },
         {
           pattern: re(/(\busing\s+)<<0>>(?=\s*=)/.source, [name]),
-          lookbehind: true
+          lookbehind: true,
         },
         {
           pattern: re(/(\b<<0>>\s+)<<1>>/.source, [
             typeDeclarationKeywords,
-            genericName
+            genericName,
           ]),
           lookbehind: true,
-          inside: typeInside
+          inside: typeInside,
         },
         {
           pattern: re(/(\bcatch\s*\(\s*)<<0>>/.source, [identifier]),
           lookbehind: true,
-          inside: typeInside
+          inside: typeInside,
         },
         {
           pattern: re(/(\bwhere\s+)<<0>>/.source, [name]),
-          lookbehind: true
+          lookbehind: true,
         },
         {
           pattern: re(/(\b(?:is(?:\s+not)?|as)\s+)<<0>>/.source, [
-            typeExpressionWithoutTuple
+            typeExpressionWithoutTuple,
           ]),
           lookbehind: true,
-          inside: typeInside
+          inside: typeInside,
         },
         {
           pattern: re(
-            /\b<<0>>(?=\s+(?!<<1>>|with\s*\{)<<2>>(?:\s*[=,;:{)\]]|\s+(?:in|when)\b))/.source,
+            /\b<<0>>(?=\s+(?!<<1>>|with\s*\{)<<2>>(?:\s*[=,;:{)\]]|\s+(?:in|when)\b))/
+              .source,
             [typeExpression, nonContextualKeywords, name]
           ),
-          inside: typeInside
-        }
+          inside: typeInside,
+        },
       ],
       keyword: keywords,
-      number: /(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:[dflmu]|lu|ul)?\b/i,
+      number:
+        /(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:[dflmu]|lu|ul)?\b/i,
       operator: />>=?|<<=?|[-=]>|([-+&|])\1|~|\?\?=?|[-+*/%&|^!=<>]=?/,
-      punctuation: /\?\.?|::|[{}[\];(),.:]/
+      punctuation: /\?\.?|::|[{}[\];(),.:]/,
     });
     Prism3.languages.insertBefore("csharp", "number", {
       range: {
         pattern: /\.\./,
-        alias: "operator"
-      }
+        alias: "operator",
+      },
     });
     Prism3.languages.insertBefore("csharp", "punctuation", {
       "named-parameter": {
         pattern: re(/([(,]\s*)<<0>>(?=\s*:)/.source, [name]),
         lookbehind: true,
-        alias: "punctuation"
-      }
+        alias: "punctuation",
+      },
     });
     Prism3.languages.insertBefore("csharp", "class-name", {
       namespace: {
@@ -14099,17 +15482,18 @@ function csharp(Prism2) {
         ),
         lookbehind: true,
         inside: {
-          punctuation: /\./
-        }
+          punctuation: /\./,
+        },
       },
       "type-expression": {
         pattern: re(
-          /(\b(?:default|sizeof|typeof)\s*\(\s*(?!\s))(?:[^()\s]|\s(?!\s)|<<0>>)*(?=\s*\))/.source,
+          /(\b(?:default|sizeof|typeof)\s*\(\s*(?!\s))(?:[^()\s]|\s(?!\s)|<<0>>)*(?=\s*\))/
+            .source,
           [nestedRound]
         ),
         lookbehind: true,
         alias: "class-name",
-        inside: typeInside
+        inside: typeInside,
       },
       "return-type": {
         pattern: re(
@@ -14117,13 +15501,13 @@ function csharp(Prism2) {
           [typeExpression, identifier]
         ),
         inside: typeInside,
-        alias: "class-name"
+        alias: "class-name",
       },
       "constructor-invocation": {
         pattern: re(/(\bnew\s+)<<0>>(?=\s*[[({])/.source, [typeExpression]),
         lookbehind: true,
         inside: typeInside,
-        alias: "class-name"
+        alias: "class-name",
       },
       "generic-method": {
         pattern: re(/<<0>>\s*<<1>>(?=\s*\()/.source, [name, generic]),
@@ -14132,13 +15516,14 @@ function csharp(Prism2) {
           generic: {
             pattern: RegExp(generic),
             alias: "class-name",
-            inside: typeInside
-          }
-        }
+            inside: typeInside,
+          },
+        },
       },
       "type-list": {
         pattern: re(
-          /\b((?:<<0>>\s+<<1>>|record\s+<<1>>\s*<<5>>|where\s+<<2>>)\s*:\s*)(?:<<3>>|<<4>>|<<1>>\s*<<5>>|<<6>>)(?:\s*,\s*(?:<<3>>|<<4>>|<<6>>))*(?=\s*(?:where|[{;]|=>|$))/.source,
+          /\b((?:<<0>>\s+<<1>>|record\s+<<1>>\s*<<5>>|where\s+<<2>>)\s*:\s*)(?:<<3>>|<<4>>|<<1>>\s*<<5>>|<<6>>)(?:\s*,\s*(?:<<3>>|<<4>>|<<6>>))*(?=\s*(?:where|[{;]|=>|$))/
+            .source,
           [
             typeDeclarationKeywords,
             genericName,
@@ -14146,7 +15531,7 @@ function csharp(Prism2) {
             typeExpression,
             keywords.source,
             nestedRound,
-            /\bnew\s*\(\s*\)/.source
+            /\bnew\s*\(\s*\)/.source,
           ]
         ),
         lookbehind: true,
@@ -14154,20 +15539,20 @@ function csharp(Prism2) {
           "record-arguments": {
             pattern: re(/(^(?!new\s*\()<<0>>\s*)<<1>>/.source, [
               genericName,
-              nestedRound
+              nestedRound,
             ]),
             lookbehind: true,
             greedy: true,
-            inside: Prism3.languages.csharp
+            inside: Prism3.languages.csharp,
           },
           keyword: keywords,
           "class-name": {
             pattern: RegExp(typeExpression),
             greedy: true,
-            inside: typeInside
+            inside: typeInside,
           },
-          punctuation: /[,()]/
-        }
+          punctuation: /[,()]/,
+        },
       },
       preprocessor: {
         pattern: /(^[\t ]*)#.*/m,
@@ -14175,12 +15560,13 @@ function csharp(Prism2) {
         alias: "property",
         inside: {
           directive: {
-            pattern: /(#)\b(?:define|elif|else|endif|endregion|error|if|line|nullable|pragma|region|undef|warning)\b/,
+            pattern:
+              /(#)\b(?:define|elif|else|endif|endregion|error|if|line|nullable|pragma|region|undef|warning)\b/,
             lookbehind: true,
-            alias: "keyword"
-          }
-        }
-      }
+            alias: "keyword",
+          },
+        },
+      },
     });
     var regularStringOrCharacter = regularString + "|" + character;
     var regularStringCharacterOrComment = replace2(
@@ -14189,19 +15575,22 @@ function csharp(Prism2) {
     );
     var roundExpression = nested(
       replace2(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [
-        regularStringCharacterOrComment
+        regularStringCharacterOrComment,
       ]),
       2
     );
-    var attrTarget = /\b(?:assembly|event|field|method|module|param|property|return|type)\b/.source;
+    var attrTarget =
+      /\b(?:assembly|event|field|method|module|param|property|return|type)\b/
+        .source;
     var attr = replace2(/<<0>>(?:\s*\(<<1>>*\))?/.source, [
       identifier,
-      roundExpression
+      roundExpression,
     ]);
     Prism3.languages.insertBefore("csharp", "class-name", {
       attribute: {
         pattern: re(
-          /((?:^|[^\s\w>)?])\s*\[\s*)(?:<<0>>\s*:\s*)?<<1>>(?:\s*,\s*<<1>>)*(?=\s*\])/.source,
+          /((?:^|[^\s\w>)?])\s*\[\s*)(?:<<0>>\s*:\s*)?<<1>>(?:\s*,\s*<<1>>)*(?=\s*\])/
+            .source,
           [attrTarget, attr]
         ),
         lookbehind: true,
@@ -14209,43 +15598,44 @@ function csharp(Prism2) {
         inside: {
           target: {
             pattern: re(/^<<0>>(?=\s*:)/.source, [attrTarget]),
-            alias: "keyword"
+            alias: "keyword",
           },
           "attribute-arguments": {
             pattern: re(/\(<<0>>*\)/.source, [roundExpression]),
-            inside: Prism3.languages.csharp
+            inside: Prism3.languages.csharp,
           },
           "class-name": {
             pattern: RegExp(identifier),
             inside: {
-              punctuation: /\./
-            }
+              punctuation: /\./,
+            },
           },
-          punctuation: /[:,]/
-        }
-      }
+          punctuation: /[:,]/,
+        },
+      },
     });
     var formatString = /:[^}\r\n]+/.source;
     var mInterpolationRound = nested(
       replace2(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [
-        regularStringCharacterOrComment
+        regularStringCharacterOrComment,
       ]),
       2
     );
     var mInterpolation = replace2(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [
       mInterpolationRound,
-      formatString
+      formatString,
     ]);
     var sInterpolationRound = nested(
       replace2(
-        /[^"'/()]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>|\(<<self>>*\)/.source,
+        /[^"'/()]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>|\(<<self>>*\)/
+          .source,
         [regularStringOrCharacter]
       ),
       2
     );
     var sInterpolation = replace2(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [
       sInterpolationRound,
-      formatString
+      formatString,
     ]);
     function createInterpolationInside(interpolation, interpolationRound) {
       return {
@@ -14256,22 +15646,22 @@ function csharp(Prism2) {
             "format-string": {
               pattern: re(/(^\{(?:(?![}:])<<0>>)*)<<1>>(?=\}$)/.source, [
                 interpolationRound,
-                formatString
+                formatString,
               ]),
               lookbehind: true,
               inside: {
-                punctuation: /^:/
-              }
+                punctuation: /^:/,
+              },
             },
             punctuation: /^\{|\}$/,
             expression: {
               pattern: /[\s\S]+/,
               alias: "language-csharp",
-              inside: Prism3.languages.csharp
-            }
-          }
+              inside: Prism3.languages.csharp,
+            },
+          },
         },
-        string: /[\s\S]+/
+        string: /[\s\S]+/,
       };
     }
     Prism3.languages.insertBefore("csharp", "string", {
@@ -14283,21 +15673,27 @@ function csharp(Prism2) {
           ),
           lookbehind: true,
           greedy: true,
-          inside: createInterpolationInside(mInterpolation, mInterpolationRound)
+          inside: createInterpolationInside(
+            mInterpolation,
+            mInterpolationRound
+          ),
         },
         {
           pattern: re(/(^|[^@\\])\$"(?:\\.|\{\{|<<0>>|[^\\"{])*"/.source, [
-            sInterpolation
+            sInterpolation,
           ]),
           lookbehind: true,
           greedy: true,
-          inside: createInterpolationInside(sInterpolation, sInterpolationRound)
-        }
+          inside: createInterpolationInside(
+            sInterpolation,
+            sInterpolationRound
+          ),
+        },
       ],
       char: {
         pattern: RegExp(character),
-        greedy: true
-      }
+        greedy: true,
+      },
     });
     Prism3.languages.dotnet = Prism3.languages.cs = Prism3.languages.csharp;
   })(Prism2);
@@ -14310,45 +15706,47 @@ function markup(Prism2) {
   Prism2.languages.markup = {
     comment: {
       pattern: /<!--(?:(?!<!--)[\s\S])*?-->/,
-      greedy: true
+      greedy: true,
     },
     prolog: {
       pattern: /<\?[\s\S]+?\?>/,
-      greedy: true
+      greedy: true,
     },
     doctype: {
-      pattern: /<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^<"'\]]|"[^"]*"|'[^']*'|<(?!!--)|<!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,
+      pattern:
+        /<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^<"'\]]|"[^"]*"|'[^']*'|<(?!!--)|<!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,
       greedy: true,
       inside: {
         "internal-subset": {
           pattern: /(^[^\[]*\[)[\s\S]+(?=\]>$)/,
           lookbehind: true,
           greedy: true,
-          inside: null
+          inside: null,
         },
         string: {
           pattern: /"[^"]*"|'[^']*'/,
-          greedy: true
+          greedy: true,
         },
         punctuation: /^<!|>$|[[\]]/,
         "doctype-tag": /^DOCTYPE/i,
-        name: /[^\s<>'"]+/
-      }
+        name: /[^\s<>'"]+/,
+      },
     },
     cdata: {
       pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
-      greedy: true
+      greedy: true,
     },
     tag: {
-      pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/,
+      pattern:
+        /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/,
       greedy: true,
       inside: {
         tag: {
           pattern: /^<\/?[^\s>\/]+/,
           inside: {
             punctuation: /^<\/?/,
-            namespace: /^[^\s>\/:]+:/
-          }
+            namespace: /^[^\s>\/:]+:/,
+          },
         },
         "special-attr": [],
         "attr-value": {
@@ -14357,35 +15755,37 @@ function markup(Prism2) {
             punctuation: [
               {
                 pattern: /^=/,
-                alias: "attr-equals"
+                alias: "attr-equals",
               },
               {
                 pattern: /^(\s*)["']|["']$/,
-                lookbehind: true
-              }
-            ]
-          }
+                lookbehind: true,
+              },
+            ],
+          },
         },
         punctuation: /\/?>/,
         "attr-name": {
           pattern: /[^\s>\/]+/,
           inside: {
-            namespace: /^[^\s>\/:]+:/
-          }
-        }
-      }
+            namespace: /^[^\s>\/:]+:/,
+          },
+        },
+      },
     },
     entity: [
       {
         pattern: /&[\da-z]{1,8};/i,
-        alias: "named-entity"
+        alias: "named-entity",
       },
-      /&#x?[\da-f]{1,8};/i
-    ]
+      /&#x?[\da-f]{1,8};/i,
+    ],
   };
-  Prism2.languages.markup["tag"].inside["attr-value"].inside["entity"] = Prism2.languages.markup["entity"];
-  Prism2.languages.markup["doctype"].inside["internal-subset"].inside = Prism2.languages.markup;
-  Prism2.hooks.add("wrap", function(env) {
+  Prism2.languages.markup["tag"].inside["attr-value"].inside["entity"] =
+    Prism2.languages.markup["entity"];
+  Prism2.languages.markup["doctype"].inside["internal-subset"].inside =
+    Prism2.languages.markup;
+  Prism2.hooks.add("wrap", function (env) {
     if (env.type === "entity") {
       env.attributes["title"] = env.content.value.replace(/&amp;/, "&");
     }
@@ -14396,25 +15796,25 @@ function markup(Prism2) {
       includedCdataInside["language-" + lang] = {
         pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
         lookbehind: true,
-        inside: Prism2.languages[lang]
+        inside: Prism2.languages[lang],
       };
       includedCdataInside["cdata"] = /^<!\[CDATA\[|\]\]>$/i;
       var inside = {
         "included-cdata": {
           pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
-          inside: includedCdataInside
-        }
+          inside: includedCdataInside,
+        },
       };
       inside["language-" + lang] = {
         pattern: /[\s\S]+/,
-        inside: Prism2.languages[lang]
+        inside: Prism2.languages[lang],
       };
       var def = {};
       def[tagName] = {
         pattern: RegExp(
           /(<__[^>]*>)(?:<!\[CDATA\[(?:[^\]]|\](?!\]>))*\]\]>|(?!<!\[CDATA\[)[\s\S])*?(?=<\/__>)/.source.replace(
             /__/g,
-            function() {
+            function () {
               return tagName;
             }
           ),
@@ -14422,16 +15822,20 @@ function markup(Prism2) {
         ),
         lookbehind: true,
         greedy: true,
-        inside
+        inside,
       };
       Prism2.languages.insertBefore("markup", "cdata", def);
-    }
+    },
   });
   Object.defineProperty(Prism2.languages.markup.tag, "addAttribute", {
-    value: function(attrName, lang) {
+    value: function (attrName, lang) {
       Prism2.languages.markup.tag.inside["special-attr"].push({
         pattern: RegExp(
-          /(^|["'\s])/.source + "(?:" + attrName + ")" + /\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))/.source,
+          /(^|["'\s])/.source +
+            "(?:" +
+            attrName +
+            ")" +
+            /\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))/.source,
           "i"
         ),
         lookbehind: true,
@@ -14444,20 +15848,20 @@ function markup(Prism2) {
                 pattern: /(^=\s*(["']|(?!["'])))\S[\s\S]*(?=\2$)/,
                 lookbehind: true,
                 alias: [lang, "language-" + lang],
-                inside: Prism2.languages[lang]
+                inside: Prism2.languages[lang],
               },
               punctuation: [
                 {
                   pattern: /^=/,
-                  alias: "attr-equals"
+                  alias: "attr-equals",
                 },
-                /"|'/
-              ]
-            }
-          }
-        }
+                /"|'/,
+              ],
+            },
+          },
+        },
       });
-    }
+    },
   });
   Prism2.languages.html = Prism2.languages.markup;
   Prism2.languages.mathml = Prism2.languages.markup;
@@ -14472,31 +15876,41 @@ function markup(Prism2) {
 css.displayName = "css";
 css.aliases = [];
 function css(Prism2) {
-  ;
-  (function(Prism3) {
-    var string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
+  (function (Prism3) {
+    var string =
+      /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
     Prism3.languages.css = {
       comment: /\/\*[\s\S]*?\*\//,
       atrule: {
         pattern: RegExp(
-          "@[\\w-](?:" + /[^;{\s"']|\s+(?!\s)/.source + "|" + string.source + ")*?" + /(?:;|(?=\s*\{))/.source
+          "@[\\w-](?:" +
+            /[^;{\s"']|\s+(?!\s)/.source +
+            "|" +
+            string.source +
+            ")*?" +
+            /(?:;|(?=\s*\{))/.source
         ),
         inside: {
           rule: /^@[\w-]+/,
           "selector-function-argument": {
-            pattern: /(\bselector\s*\(\s*(?![\s)]))(?:[^()\s]|\s+(?![\s)])|\((?:[^()]|\([^()]*\))*\))+(?=\s*\))/,
+            pattern:
+              /(\bselector\s*\(\s*(?![\s)]))(?:[^()\s]|\s+(?![\s)])|\((?:[^()]|\([^()]*\))*\))+(?=\s*\))/,
             lookbehind: true,
-            alias: "selector"
+            alias: "selector",
           },
           keyword: {
             pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
-            lookbehind: true
-          }
-        }
+            lookbehind: true,
+          },
+        },
       },
       url: {
         pattern: RegExp(
-          "\\burl\\((?:" + string.source + "|" + /(?:[^\\\r\n()"']|\\[\s\S])*/.source + ")\\)",
+          "\\burl\\((?:" +
+            string.source +
+            "|" +
+            /(?:[^\\\r\n()"']|\\[\s\S])*/.source +
+            ")\\)",
           "i"
         ),
         greedy: true,
@@ -14505,30 +15919,33 @@ function css(Prism2) {
           punctuation: /^\(|\)$/,
           string: {
             pattern: RegExp("^" + string.source + "$"),
-            alias: "url"
-          }
-        }
+            alias: "url",
+          },
+        },
       },
       selector: {
         pattern: RegExp(
-          `(^|[{}\\s])[^{}\\s](?:[^{};"'\\s]|\\s+(?![\\s{])|` + string.source + ")*(?=\\s*\\{)"
+          `(^|[{}\\s])[^{}\\s](?:[^{};"'\\s]|\\s+(?![\\s{])|` +
+            string.source +
+            ")*(?=\\s*\\{)"
         ),
-        lookbehind: true
+        lookbehind: true,
       },
       string: {
         pattern: string,
-        greedy: true
+        greedy: true,
       },
       property: {
-        pattern: /(^|[^-\w\xA0-\uFFFF])(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*(?=\s*:)/i,
-        lookbehind: true
+        pattern:
+          /(^|[^-\w\xA0-\uFFFF])(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*(?=\s*:)/i,
+        lookbehind: true,
       },
       important: /!important\b/i,
       function: {
         pattern: /(^|[^-a-z0-9])[-a-z0-9]+(?=\()/i,
-        lookbehind: true
+        lookbehind: true,
       },
-      punctuation: /[(){};:,]/
+      punctuation: /[(){};:,]/,
     };
     Prism3.languages.css["atrule"].inside.rest = Prism3.languages.css;
     var markup2 = Prism3.languages.markup;
@@ -14543,14 +15960,9 @@ function css(Prism2) {
 diff.displayName = "diff";
 diff.aliases = [];
 function diff(Prism2) {
-  ;
-  (function(Prism3) {
+  (function (Prism3) {
     Prism3.languages.diff = {
-      coord: [
-        /^(?:\*{3}|-{3}|\+{3}).*$/m,
-        /^@@.*@@$/m,
-        /^\d.*$/m
-      ]
+      coord: [/^(?:\*{3}|-{3}|\+{3}).*$/m, /^@@.*@@$/m, /^\d.*$/m],
     };
     var PREFIXES = {
       "deleted-sign": "-",
@@ -14558,9 +15970,9 @@ function diff(Prism2) {
       "inserted-sign": "+",
       "inserted-arrow": ">",
       unchanged: " ",
-      diff: "!"
+      diff: "!",
     };
-    Object.keys(PREFIXES).forEach(function(name) {
+    Object.keys(PREFIXES).forEach(function (name) {
       var prefix = PREFIXES[name];
       var alias2 = [];
       if (!/^\w+$/.test(name)) {
@@ -14578,17 +15990,17 @@ function diff(Prism2) {
         inside: {
           line: {
             pattern: /(.)(?=[\s\S]).*(?:\r\n?|\n)?/,
-            lookbehind: true
+            lookbehind: true,
           },
           prefix: {
             pattern: /[\s\S]/,
-            alias: /\w+/.exec(name)[0]
-          }
-        }
+            alias: /\w+/.exec(name)[0],
+          },
+        },
       };
     });
     Object.defineProperty(Prism3.languages.diff, "PREFIXES", {
-      value: PREFIXES
+      value: PREFIXES,
     });
   })(Prism2);
 }
@@ -14602,23 +16014,26 @@ function go(Prism2) {
     string: {
       pattern: /(^|[^\\])"(?:\\.|[^"\\\r\n])*"|`[^`]*`/,
       lookbehind: true,
-      greedy: true
+      greedy: true,
     },
-    keyword: /\b(?:break|case|chan|const|continue|default|defer|else|fallthrough|for|func|go(?:to)?|if|import|interface|map|package|range|return|select|struct|switch|type|var)\b/,
+    keyword:
+      /\b(?:break|case|chan|const|continue|default|defer|else|fallthrough|for|func|go(?:to)?|if|import|interface|map|package|range|return|select|struct|switch|type|var)\b/,
     boolean: /\b(?:_|false|iota|nil|true)\b/,
     number: [
       /\b0(?:b[01_]+|o[0-7_]+)i?\b/i,
       /\b0x(?:[a-f\d_]+(?:\.[a-f\d_]*)?|\.[a-f\d_]+)(?:p[+-]?\d+(?:_\d+)*)?i?(?!\w)/i,
-      /(?:\b\d[\d_]*(?:\.[\d_]*)?|\B\.\d[\d_]*)(?:e[+-]?[\d_]+)?i?(?!\w)/i
+      /(?:\b\d[\d_]*(?:\.[\d_]*)?|\B\.\d[\d_]*)(?:e[+-]?[\d_]+)?i?(?!\w)/i,
     ],
-    operator: /[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\./,
-    builtin: /\b(?:append|bool|byte|cap|close|complex|complex(?:64|128)|copy|delete|error|float(?:32|64)|u?int(?:8|16|32|64)?|imag|len|make|new|panic|print(?:ln)?|real|recover|rune|string|uintptr)\b/
+    operator:
+      /[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\./,
+    builtin:
+      /\b(?:append|bool|byte|cap|close|complex|complex(?:64|128)|copy|delete|error|float(?:32|64)|u?int(?:8|16|32|64)?|imag|len|make|new|panic|print(?:ln)?|real|recover|rune|string|uintptr)\b/,
   });
   Prism2.languages.insertBefore("go", "string", {
     char: {
       pattern: /'(?:\\.|[^'\\\r\n]){0,10}'/,
-      greedy: true
-    }
+      greedy: true,
+    },
   });
   delete Prism2.languages.go["class-name"];
 }
@@ -14630,7 +16045,7 @@ function ini(Prism2) {
   Prism2.languages.ini = {
     comment: {
       pattern: /(^[ \f\t\v]*)[#;][^\n\r]*/m,
-      lookbehind: true
+      lookbehind: true,
     },
     section: {
       pattern: /(^[ \f\t\v]*)\[[^\n\r\]]*\]?/m,
@@ -14639,15 +16054,16 @@ function ini(Prism2) {
         "section-name": {
           pattern: /(^\[[ \f\t\v]*)[^ \f\t\v\]]+(?:[ \f\t\v]+[^ \f\t\v\]]+)*/,
           lookbehind: true,
-          alias: "selector"
+          alias: "selector",
         },
-        punctuation: /\[|\]/
-      }
+        punctuation: /\[|\]/,
+      },
     },
     key: {
-      pattern: /(^[ \f\t\v]*)[^ \f\n\r\t\v=]+(?:[ \f\t\v]+[^ \f\n\r\t\v=]+)*(?=[ \f\t\v]*=)/m,
+      pattern:
+        /(^[ \f\t\v]*)[^ \f\n\r\t\v=]+(?:[ \f\t\v]+[^ \f\n\r\t\v=]+)*(?=[ \f\t\v]*=)/m,
       lookbehind: true,
-      alias: "attr-name"
+      alias: "attr-name",
     },
     value: {
       pattern: /(=[ \f\t\v]*)[^ \f\n\r\t\v]+(?:[ \f\t\v]+[^ \f\n\r\t\v]+)*/,
@@ -14656,11 +16072,11 @@ function ini(Prism2) {
       inside: {
         "inner-value": {
           pattern: /^("|').+(?=\1$)/,
-          lookbehind: true
-        }
-      }
+          lookbehind: true,
+        },
+      },
     },
-    punctuation: /=/
+    punctuation: /=/,
   };
 }
 
@@ -14669,104 +16085,120 @@ java.displayName = "java";
 java.aliases = [];
 function java(Prism2) {
   Prism2.register(clike);
-  (function(Prism3) {
-    var keywords = /\b(?:abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|enum|exports|extends|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|module|native|new|non-sealed|null|open|opens|package|permits|private|protected|provides|public|record(?!\s*[(){}[\]<>=%~.:,;?+\-*/&|^])|requires|return|sealed|short|static|strictfp|super|switch|synchronized|this|throw|throws|to|transient|transitive|try|uses|var|void|volatile|while|with|yield)\b/;
+  (function (Prism3) {
+    var keywords =
+      /\b(?:abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|enum|exports|extends|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|module|native|new|non-sealed|null|open|opens|package|permits|private|protected|provides|public|record(?!\s*[(){}[\]<>=%~.:,;?+\-*/&|^])|requires|return|sealed|short|static|strictfp|super|switch|synchronized|this|throw|throws|to|transient|transitive|try|uses|var|void|volatile|while|with|yield)\b/;
     var classNamePrefix = /(?:[a-z]\w*\s*\.\s*)*(?:[A-Z]\w*\s*\.\s*)*/.source;
     var className = {
       pattern: RegExp(
-        /(^|[^\w.])/.source + classNamePrefix + /[A-Z](?:[\d_A-Z]*[a-z]\w*)?\b/.source
+        /(^|[^\w.])/.source +
+          classNamePrefix +
+          /[A-Z](?:[\d_A-Z]*[a-z]\w*)?\b/.source
       ),
       lookbehind: true,
       inside: {
         namespace: {
           pattern: /^[a-z]\w*(?:\s*\.\s*[a-z]\w*)*(?:\s*\.)?/,
           inside: {
-            punctuation: /\./
-          }
+            punctuation: /\./,
+          },
         },
-        punctuation: /\./
-      }
+        punctuation: /\./,
+      },
     };
     Prism3.languages.java = Prism3.languages.extend("clike", {
       string: {
         pattern: /(^|[^\\])"(?:\\.|[^"\\\r\n])*"/,
         lookbehind: true,
-        greedy: true
+        greedy: true,
       },
       "class-name": [
         className,
         {
           pattern: RegExp(
-            /(^|[^\w.])/.source + classNamePrefix + /[A-Z]\w*(?=\s+\w+\s*[;,=()]|\s*(?:\[[\s,]*\]\s*)?::\s*new\b)/.source
+            /(^|[^\w.])/.source +
+              classNamePrefix +
+              /[A-Z]\w*(?=\s+\w+\s*[;,=()]|\s*(?:\[[\s,]*\]\s*)?::\s*new\b)/
+                .source
           ),
           lookbehind: true,
-          inside: className.inside
+          inside: className.inside,
         },
         {
           pattern: RegExp(
-            /(\b(?:class|enum|extends|implements|instanceof|interface|new|record|throws)\s+)/.source + classNamePrefix + /[A-Z]\w*\b/.source
+            /(\b(?:class|enum|extends|implements|instanceof|interface|new|record|throws)\s+)/
+              .source +
+              classNamePrefix +
+              /[A-Z]\w*\b/.source
           ),
           lookbehind: true,
-          inside: className.inside
-        }
+          inside: className.inside,
+        },
       ],
       keyword: keywords,
       function: [
         Prism3.languages.clike.function,
         {
           pattern: /(::\s*)[a-z_]\w*/,
-          lookbehind: true
-        }
+          lookbehind: true,
+        },
       ],
-      number: /\b0b[01][01_]*L?\b|\b0x(?:\.[\da-f_p+-]+|[\da-f_]+(?:\.[\da-f_p+-]+)?)\b|(?:\b\d[\d_]*(?:\.[\d_]*)?|\B\.\d[\d_]*)(?:e[+-]?\d[\d_]*)?[dfl]?/i,
+      number:
+        /\b0b[01][01_]*L?\b|\b0x(?:\.[\da-f_p+-]+|[\da-f_]+(?:\.[\da-f_p+-]+)?)\b|(?:\b\d[\d_]*(?:\.[\d_]*)?|\B\.\d[\d_]*)(?:e[+-]?\d[\d_]*)?[dfl]?/i,
       operator: {
-        pattern: /(^|[^.])(?:<<=?|>>>?=?|->|--|\+\+|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?)/m,
-        lookbehind: true
+        pattern:
+          /(^|[^.])(?:<<=?|>>>?=?|->|--|\+\+|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?)/m,
+        lookbehind: true,
       },
-      constant: /\b[A-Z][A-Z_\d]+\b/
+      constant: /\b[A-Z][A-Z_\d]+\b/,
     });
     Prism3.languages.insertBefore("java", "string", {
       "triple-quoted-string": {
         pattern: /"""[ \t]*[\r\n](?:(?:"|"")?(?:\\.|[^"\\]))*"""/,
         greedy: true,
-        alias: "string"
+        alias: "string",
       },
       char: {
         pattern: /'(?:\\.|[^'\\\r\n]){1,6}'/,
-        greedy: true
-      }
+        greedy: true,
+      },
     });
     Prism3.languages.insertBefore("java", "class-name", {
       annotation: {
         pattern: /(^|[^.])@\w+(?:\s*\.\s*\w+)*/,
         lookbehind: true,
-        alias: "punctuation"
+        alias: "punctuation",
       },
       generics: {
-        pattern: /<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&))*>)*>)*>)*>/,
+        pattern:
+          /<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&))*>)*>)*>)*>/,
         inside: {
           "class-name": className,
           keyword: keywords,
           punctuation: /[<>(),.:]/,
-          operator: /[?&|]/
-        }
+          operator: /[?&|]/,
+        },
       },
       import: [
         {
           pattern: RegExp(
-            /(\bimport\s+)/.source + classNamePrefix + /(?:[A-Z]\w*|\*)(?=\s*;)/.source
+            /(\bimport\s+)/.source +
+              classNamePrefix +
+              /(?:[A-Z]\w*|\*)(?=\s*;)/.source
           ),
           lookbehind: true,
           inside: {
             namespace: className.inside.namespace,
             punctuation: /\./,
             operator: /\*/,
-            "class-name": /\w+/
-          }
+            "class-name": /\w+/,
+          },
         },
         {
           pattern: RegExp(
-            /(\bimport\s+static\s+)/.source + classNamePrefix + /(?:\w+|\*)(?=\s*;)/.source
+            /(\bimport\s+static\s+)/.source +
+              classNamePrefix +
+              /(?:\w+|\*)(?=\s*;)/.source
           ),
           lookbehind: true,
           alias: "static",
@@ -14775,24 +16207,24 @@ function java(Prism2) {
             static: /\b\w+$/,
             punctuation: /\./,
             operator: /\*/,
-            "class-name": /\w+/
-          }
-        }
+            "class-name": /\w+/,
+          },
+        },
       ],
       namespace: {
         pattern: RegExp(
           /(\b(?:exports|import(?:\s+static)?|module|open|opens|package|provides|requires|to|transitive|uses|with)\s+)(?!<keyword>)[a-z]\w*(?:\.[a-z]\w*)*\.?/.source.replace(
             /<keyword>/g,
-            function() {
+            function () {
               return keywords.source;
             }
           )
         ),
         lookbehind: true,
         inside: {
-          punctuation: /\./
-        }
-      }
+          punctuation: /\./,
+        },
+      },
     });
   })(Prism2);
 }
@@ -14801,27 +16233,27 @@ function java(Prism2) {
 regex2.displayName = "regex";
 regex2.aliases = [];
 function regex2(Prism2) {
-  ;
-  (function(Prism3) {
+  (function (Prism3) {
     var specialEscape = {
       pattern: /\\[\\(){}[\]^$+*?|.]/,
-      alias: "escape"
+      alias: "escape",
     };
-    var escape2 = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|0[0-7]{0,2}|[123][0-7]{2}|c[a-zA-Z]|.)/;
+    var escape2 =
+      /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|0[0-7]{0,2}|[123][0-7]{2}|c[a-zA-Z]|.)/;
     var charSet = {
       pattern: /\.|\\[wsd]|\\p\{[^{}]+\}/i,
-      alias: "class-name"
+      alias: "class-name",
     };
     var charSetWithoutDot = {
       pattern: /\\[wsd]|\\p\{[^{}]+\}/i,
-      alias: "class-name"
+      alias: "class-name",
     };
     var rangeChar = "(?:[^\\\\-]|" + escape2.source + ")";
     var range2 = RegExp(rangeChar + "-" + rangeChar);
     var groupName = {
       pattern: /(<|')[^<>']+(?=[>']$)/,
       lookbehind: true,
-      alias: "variable"
+      alias: "variable",
     };
     Prism3.languages.regex = {
       "char-class": {
@@ -14831,11 +16263,11 @@ function regex2(Prism2) {
           "char-class-negation": {
             pattern: /(^\[)\^/,
             lookbehind: true,
-            alias: "operator"
+            alias: "operator",
           },
           "char-class-punctuation": {
             pattern: /^\[|\]$/,
-            alias: "punctuation"
+            alias: "punctuation",
           },
           range: {
             pattern: range2,
@@ -14843,56 +16275,57 @@ function regex2(Prism2) {
               escape: escape2,
               "range-punctuation": {
                 pattern: /-/,
-                alias: "operator"
-              }
-            }
+                alias: "operator",
+              },
+            },
           },
           "special-escape": specialEscape,
           "char-set": charSetWithoutDot,
-          escape: escape2
-        }
+          escape: escape2,
+        },
       },
       "special-escape": specialEscape,
       "char-set": charSet,
       backreference: [
         {
           pattern: /\\(?![123][0-7]{2})[1-9]/,
-          alias: "keyword"
+          alias: "keyword",
         },
         {
           pattern: /\\k<[^<>']+>/,
           alias: "keyword",
           inside: {
-            "group-name": groupName
-          }
-        }
+            "group-name": groupName,
+          },
+        },
       ],
       anchor: {
         pattern: /[$^]|\\[ABbGZz]/,
-        alias: "function"
+        alias: "function",
       },
       escape: escape2,
       group: [
         {
-          pattern: /\((?:\?(?:<[^<>']+>|'[^<>']+'|[>:]|<?[=!]|[idmnsuxU]+(?:-[idmnsuxU]+)?:?))?/,
+          pattern:
+            /\((?:\?(?:<[^<>']+>|'[^<>']+'|[>:]|<?[=!]|[idmnsuxU]+(?:-[idmnsuxU]+)?:?))?/,
           alias: "punctuation",
           inside: {
-            "group-name": groupName
-          }
+            "group-name": groupName,
+          },
         },
         {
           pattern: /\)/,
-          alias: "punctuation"
-        }
+          alias: "punctuation",
+        },
       ],
       quantifier: {
         pattern: /(?:[+*?]|\{\d+(?:,\d*)?\})[?+]?/,
-        alias: "number"
+        alias: "number",
       },
       alternation: {
         pattern: /\|/,
-        alias: "keyword"
-      }
+        alias: "keyword",
+      },
     };
   })(Prism2);
 }
@@ -14906,34 +16339,64 @@ function javascript(Prism2) {
     "class-name": [
       Prism2.languages.clike["class-name"],
       {
-        pattern: /(^|[^$\w\xA0-\uFFFF])(?!\s)[_$A-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\.(?:constructor|prototype))/,
-        lookbehind: true
-      }
+        pattern:
+          /(^|[^$\w\xA0-\uFFFF])(?!\s)[_$A-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\.(?:constructor|prototype))/,
+        lookbehind: true,
+      },
     ],
     keyword: [
       {
         pattern: /((?:^|\})\s*)catch\b/,
-        lookbehind: true
+        lookbehind: true,
       },
       {
-        pattern: /(^|[^.]|\.\.\.\s*)\b(?:as|assert(?=\s*\{)|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally(?=\s*(?:\{|$))|for|from(?=\s*(?:['"]|$))|function|(?:get|set)(?=\s*(?:[#\[$\w\xA0-\uFFFF]|$))|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,
-        lookbehind: true
-      }
+        pattern:
+          /(^|[^.]|\.\.\.\s*)\b(?:as|assert(?=\s*\{)|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally(?=\s*(?:\{|$))|for|from(?=\s*(?:['"]|$))|function|(?:get|set)(?=\s*(?:[#\[$\w\xA0-\uFFFF]|$))|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,
+        lookbehind: true,
+      },
     ],
-    function: /#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,
+    function:
+      /#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,
     number: {
       pattern: RegExp(
-        /(^|[^\w$])/.source + "(?:" + (/NaN|Infinity/.source + "|" + /0[bB][01]+(?:_[01]+)*n?/.source + "|" + /0[oO][0-7]+(?:_[0-7]+)*n?/.source + "|" + /0[xX][\dA-Fa-f]+(?:_[\dA-Fa-f]+)*n?/.source + "|" + /\d+(?:_\d+)*n/.source + "|" + /(?:\d+(?:_\d+)*(?:\.(?:\d+(?:_\d+)*)?)?|\.\d+(?:_\d+)*)(?:[Ee][+-]?\d+(?:_\d+)*)?/.source) + ")" + /(?![\w$])/.source
+        /(^|[^\w$])/.source +
+          "(?:" +
+          (/NaN|Infinity/.source +
+            "|" +
+            /0[bB][01]+(?:_[01]+)*n?/.source +
+            "|" +
+            /0[oO][0-7]+(?:_[0-7]+)*n?/.source +
+            "|" +
+            /0[xX][\dA-Fa-f]+(?:_[\dA-Fa-f]+)*n?/.source +
+            "|" +
+            /\d+(?:_\d+)*n/.source +
+            "|" +
+            /(?:\d+(?:_\d+)*(?:\.(?:\d+(?:_\d+)*)?)?|\.\d+(?:_\d+)*)(?:[Ee][+-]?\d+(?:_\d+)*)?/
+              .source) +
+          ")" +
+          /(?![\w$])/.source
       ),
-      lookbehind: true
+      lookbehind: true,
     },
-    operator: /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/
+    operator:
+      /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/,
   });
-  Prism2.languages.javascript["class-name"][0].pattern = /(\b(?:class|extends|implements|instanceof|interface|new)\s+)[\w.\\]+/;
+  Prism2.languages.javascript["class-name"][0].pattern =
+    /(\b(?:class|extends|implements|instanceof|interface|new)\s+)[\w.\\]+/;
   Prism2.languages.insertBefore("javascript", "keyword", {
     regex: {
       pattern: RegExp(
-        /((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)/.source + /\//.source + "(?:" + /(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}/.source + "|" + /(?:\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.)*\])*\])*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}v[dgimyus]{0,7}/.source + ")" + /(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/.source
+        /((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)/.source +
+          /\//.source +
+          "(?:" +
+          /(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}/
+            .source +
+          "|" +
+          /(?:\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.)*\])*\])*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}v[dgimyus]{0,7}/
+            .source +
+          ")" +
+          /(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/
+            .source
       ),
       lookbehind: true,
       greedy: true,
@@ -14942,86 +16405,96 @@ function javascript(Prism2) {
           pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
           lookbehind: true,
           alias: "language-regex",
-          inside: Prism2.languages.regex
+          inside: Prism2.languages.regex,
         },
         "regex-delimiter": /^\/|\/$/,
-        "regex-flags": /^[a-z]+$/
-      }
+        "regex-flags": /^[a-z]+$/,
+      },
     },
     "function-variable": {
-      pattern: /#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,
-      alias: "function"
+      pattern:
+        /#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,
+      alias: "function",
     },
     parameter: [
       {
-        pattern: /(function(?:\s+(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)?\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\))/,
+        pattern:
+          /(function(?:\s+(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)?\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\))/,
         lookbehind: true,
-        inside: Prism2.languages.javascript
+        inside: Prism2.languages.javascript,
       },
       {
-        pattern: /(^|[^$\w\xA0-\uFFFF])(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=>)/i,
+        pattern:
+          /(^|[^$\w\xA0-\uFFFF])(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=>)/i,
         lookbehind: true,
-        inside: Prism2.languages.javascript
+        inside: Prism2.languages.javascript,
       },
       {
-        pattern: /(\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*=>)/,
+        pattern:
+          /(\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*=>)/,
         lookbehind: true,
-        inside: Prism2.languages.javascript
+        inside: Prism2.languages.javascript,
       },
       {
-        pattern: /((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/,
+        pattern:
+          /((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/,
         lookbehind: true,
-        inside: Prism2.languages.javascript
-      }
+        inside: Prism2.languages.javascript,
+      },
     ],
-    constant: /\b[A-Z](?:[A-Z_]|\dx?)*\b/
+    constant: /\b[A-Z](?:[A-Z_]|\dx?)*\b/,
   });
   Prism2.languages.insertBefore("javascript", "string", {
     hashbang: {
       pattern: /^#!.*/,
       greedy: true,
-      alias: "comment"
+      alias: "comment",
     },
     "template-string": {
-      pattern: /`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,
+      pattern:
+        /`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,
       greedy: true,
       inside: {
         "template-punctuation": {
           pattern: /^`|`$/,
-          alias: "string"
+          alias: "string",
         },
         interpolation: {
-          pattern: /((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
+          pattern:
+            /((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
           lookbehind: true,
           inside: {
             "interpolation-punctuation": {
               pattern: /^\$\{|\}$/,
-              alias: "punctuation"
+              alias: "punctuation",
             },
-            rest: Prism2.languages.javascript
-          }
+            rest: Prism2.languages.javascript,
+          },
         },
-        string: /[\s\S]+/
-      }
+        string: /[\s\S]+/,
+      },
     },
     "string-property": {
-      pattern: /((?:^|[,{])[ \t]*)(["'])(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2(?=\s*:)/m,
+      pattern:
+        /((?:^|[,{])[ \t]*)(["'])(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2(?=\s*:)/m,
       lookbehind: true,
       greedy: true,
-      alias: "property"
-    }
+      alias: "property",
+    },
   });
   Prism2.languages.insertBefore("javascript", "operator", {
     "literal-property": {
-      pattern: /((?:^|[,{])[ \t]*)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/m,
+      pattern:
+        /((?:^|[,{])[ \t]*)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/m,
       lookbehind: true,
-      alias: "property"
-    }
+      alias: "property",
+    },
   });
   if (Prism2.languages.markup) {
     Prism2.languages.markup.tag.addInlined("script", "javascript");
     Prism2.languages.markup.tag.addAttribute(
-      /on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)/.source,
+      /on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)/
+        .source,
       "javascript"
     );
   }
@@ -15036,16 +16509,16 @@ function json(Prism2) {
     property: {
       pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"(?=\s*:)/,
       lookbehind: true,
-      greedy: true
+      greedy: true,
     },
     string: {
       pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"(?!\s*:)/,
       lookbehind: true,
-      greedy: true
+      greedy: true,
     },
     comment: {
       pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
-      greedy: true
+      greedy: true,
     },
     number: /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
     punctuation: /[{}[\],]/,
@@ -15053,8 +16526,8 @@ function json(Prism2) {
     boolean: /\b(?:false|true)\b/,
     null: {
       pattern: /\bnull\b/,
-      alias: "keyword"
-    }
+      alias: "keyword",
+    },
   };
   Prism2.languages.webmanifest = Prism2.languages.json;
 }
@@ -15064,36 +16537,39 @@ kotlin.displayName = "kotlin";
 kotlin.aliases = ["kt", "kts"];
 function kotlin(Prism2) {
   Prism2.register(clike);
-  (function(Prism3) {
+  (function (Prism3) {
     Prism3.languages.kotlin = Prism3.languages.extend("clike", {
       keyword: {
-        pattern: /(^|[^.])\b(?:abstract|actual|annotation|as|break|by|catch|class|companion|const|constructor|continue|crossinline|data|do|dynamic|else|enum|expect|external|final|finally|for|fun|get|if|import|in|infix|init|inline|inner|interface|internal|is|lateinit|noinline|null|object|open|operator|out|override|package|private|protected|public|reified|return|sealed|set|super|suspend|tailrec|this|throw|to|try|typealias|val|var|vararg|when|where|while)\b/,
-        lookbehind: true
+        pattern:
+          /(^|[^.])\b(?:abstract|actual|annotation|as|break|by|catch|class|companion|const|constructor|continue|crossinline|data|do|dynamic|else|enum|expect|external|final|finally|for|fun|get|if|import|in|infix|init|inline|inner|interface|internal|is|lateinit|noinline|null|object|open|operator|out|override|package|private|protected|public|reified|return|sealed|set|super|suspend|tailrec|this|throw|to|try|typealias|val|var|vararg|when|where|while)\b/,
+        lookbehind: true,
       },
       function: [
         {
           pattern: /(?:`[^\r\n`]+`|\b\w+)(?=\s*\()/,
-          greedy: true
+          greedy: true,
         },
         {
           pattern: /(\.)(?:`[^\r\n`]+`|\w+)(?=\s*\{)/,
           lookbehind: true,
-          greedy: true
-        }
+          greedy: true,
+        },
       ],
-      number: /\b(?:0[xX][\da-fA-F]+(?:_[\da-fA-F]+)*|0[bB][01]+(?:_[01]+)*|\d+(?:_\d+)*(?:\.\d+(?:_\d+)*)?(?:[eE][+-]?\d+(?:_\d+)*)?[fFL]?)\b/,
-      operator: /\+[+=]?|-[-=>]?|==?=?|!(?:!|==?)?|[\/*%<>]=?|[?:]:?|\.\.|&&|\|\||\b(?:and|inv|or|shl|shr|ushr|xor)\b/
+      number:
+        /\b(?:0[xX][\da-fA-F]+(?:_[\da-fA-F]+)*|0[bB][01]+(?:_[01]+)*|\d+(?:_\d+)*(?:\.\d+(?:_\d+)*)?(?:[eE][+-]?\d+(?:_\d+)*)?[fFL]?)\b/,
+      operator:
+        /\+[+=]?|-[-=>]?|==?=?|!(?:!|==?)?|[\/*%<>]=?|[?:]:?|\.\.|&&|\|\||\b(?:and|inv|or|shl|shr|ushr|xor)\b/,
     });
     delete Prism3.languages.kotlin["class-name"];
     var interpolationInside = {
       "interpolation-punctuation": {
         pattern: /^\$\{?|\}$/,
-        alias: "punctuation"
+        alias: "punctuation",
       },
       expression: {
         pattern: /[\s\S]+/,
-        inside: Prism3.languages.kotlin
-      }
+        inside: Prism3.languages.kotlin,
+      },
     };
     Prism3.languages.insertBefore("kotlin", "string", {
       "string-literal": [
@@ -15103,10 +16579,10 @@ function kotlin(Prism2) {
           inside: {
             interpolation: {
               pattern: /\$(?:[a-z_]\w*|\{[^{}]*\})/i,
-              inside: interpolationInside
+              inside: interpolationInside,
             },
-            string: /[\s\S]+/
-          }
+            string: /[\s\S]+/,
+          },
         },
         {
           pattern: /"(?:[^"\\\r\n$]|\\.|\$(?:(?!\{)|\{[^{}]*\}))*"/,
@@ -15115,29 +16591,29 @@ function kotlin(Prism2) {
             interpolation: {
               pattern: /((?:^|[^\\])(?:\\{2})*)\$(?:[a-z_]\w*|\{[^{}]*\})/i,
               lookbehind: true,
-              inside: interpolationInside
+              inside: interpolationInside,
             },
-            string: /[\s\S]+/
-          }
-        }
+            string: /[\s\S]+/,
+          },
+        },
       ],
       char: {
         pattern: /'(?:[^'\\\r\n]|\\(?:.|u[a-fA-F0-9]{0,4}))'/,
-        greedy: true
-      }
+        greedy: true,
+      },
     });
     delete Prism3.languages.kotlin["string"];
     Prism3.languages.insertBefore("kotlin", "keyword", {
       annotation: {
         pattern: /\B@(?:\w+:)?(?:[A-Z]\w*|\[[^\]]+\])/,
-        alias: "builtin"
-      }
+        alias: "builtin",
+      },
     });
     Prism3.languages.insertBefore("kotlin", "function", {
       label: {
         pattern: /\b\w+@|@\w+\b/,
-        alias: "symbol"
-      }
+        alias: "symbol",
+      },
     });
     Prism3.languages.kt = Prism3.languages.kotlin;
     Prism3.languages.kts = Prism3.languages.kotlin;
@@ -15154,39 +16630,41 @@ function less(Prism2) {
       /\/\*[\s\S]*?\*\//,
       {
         pattern: /(^|[^\\])\/\/.*/,
-        lookbehind: true
-      }
+        lookbehind: true,
+      },
     ],
     atrule: {
-      pattern: /@[\w-](?:\((?:[^(){}]|\([^(){}]*\))*\)|[^(){};\s]|\s+(?!\s))*?(?=\s*\{)/,
+      pattern:
+        /@[\w-](?:\((?:[^(){}]|\([^(){}]*\))*\)|[^(){};\s]|\s+(?!\s))*?(?=\s*\{)/,
       inside: {
-        punctuation: /[:()]/
-      }
+        punctuation: /[:()]/,
+      },
     },
     selector: {
-      pattern: /(?:@\{[\w-]+\}|[^{};\s@])(?:@\{[\w-]+\}|\((?:[^(){}]|\([^(){}]*\))*\)|[^(){};@\s]|\s+(?!\s))*?(?=\s*\{)/,
+      pattern:
+        /(?:@\{[\w-]+\}|[^{};\s@])(?:@\{[\w-]+\}|\((?:[^(){}]|\([^(){}]*\))*\)|[^(){};@\s]|\s+(?!\s))*?(?=\s*\{)/,
       inside: {
-        variable: /@+[\w-]+/
-      }
+        variable: /@+[\w-]+/,
+      },
     },
     property: /(?:@\{[\w-]+\}|[\w-])+(?:\+_?)?(?=\s*:)/,
-    operator: /[+\-*\/]/
+    operator: /[+\-*\/]/,
   });
   Prism2.languages.insertBefore("less", "property", {
     variable: [
       {
         pattern: /@[\w-]+\s*:/,
         inside: {
-          punctuation: /:/
-        }
+          punctuation: /:/,
+        },
       },
-      /@@?[\w-]+/
+      /@@?[\w-]+/,
     ],
     "mixin-usage": {
       pattern: /([{;]\s*)[.#](?!\d)[\w-].*?(?=[(;])/,
       lookbehind: true,
-      alias: "function"
-    }
+      alias: "function",
+    },
   });
 }
 
@@ -15197,20 +16675,23 @@ function lua(Prism2) {
   Prism2.languages.lua = {
     comment: /^#!.+|--(?:\[(=*)\[[\s\S]*?\]\1\]|.*)/m,
     string: {
-      pattern: /(["'])(?:(?!\1)[^\\\r\n]|\\z(?:\r\n|\s)|\\(?:\r\n|[^z]))*\1|\[(=*)\[[\s\S]*?\]\2\]/,
-      greedy: true
+      pattern:
+        /(["'])(?:(?!\1)[^\\\r\n]|\\z(?:\r\n|\s)|\\(?:\r\n|[^z]))*\1|\[(=*)\[[\s\S]*?\]\2\]/,
+      greedy: true,
     },
-    number: /\b0x[a-f\d]+(?:\.[a-f\d]*)?(?:p[+-]?\d+)?\b|\b\d+(?:\.\B|(?:\.\d*)?(?:e[+-]?\d+)?\b)|\B\.\d+(?:e[+-]?\d+)?\b/i,
-    keyword: /\b(?:and|break|do|else|elseif|end|false|for|function|goto|if|in|local|nil|not|or|repeat|return|then|true|until|while)\b/,
+    number:
+      /\b0x[a-f\d]+(?:\.[a-f\d]*)?(?:p[+-]?\d+)?\b|\b\d+(?:\.\B|(?:\.\d*)?(?:e[+-]?\d+)?\b)|\B\.\d+(?:e[+-]?\d+)?\b/i,
+    keyword:
+      /\b(?:and|break|do|else|elseif|end|false|for|function|goto|if|in|local|nil|not|or|repeat|return|then|true|until|while)\b/,
     function: /(?!\d)\w+(?=\s*(?:[({]))/,
     operator: [
       /[-+*%^&|#]|\/\/?|<[<=]?|>[>=]?|[=~]=?/,
       {
         pattern: /(^|[^.])\.\.(?!\.)/,
-        lookbehind: true
-      }
+        lookbehind: true,
+      },
     ],
-    punctuation: /[\[\](){},;]|\.+|:+/
+    punctuation: /[\[\](){},;]|\.+|:+/,
   };
 }
 
@@ -15221,31 +16702,33 @@ function makefile(Prism2) {
   Prism2.languages.makefile = {
     comment: {
       pattern: /(^|[^\\])#(?:\\(?:\r\n|[\s\S])|[^\\\r\n])*/,
-      lookbehind: true
+      lookbehind: true,
     },
     string: {
       pattern: /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
-      greedy: true
+      greedy: true,
     },
     "builtin-target": {
       pattern: /\.[A-Z][^:#=\s]+(?=\s*:(?!=))/,
-      alias: "builtin"
+      alias: "builtin",
     },
     target: {
       pattern: /^(?:[^:=\s]|[ \t]+(?![\s:]))+(?=\s*:(?!=))/m,
       alias: "symbol",
       inside: {
-        variable: /\$+(?:(?!\$)[^(){}:#=\s]+|(?=[({]))/
-      }
+        variable: /\$+(?:(?!\$)[^(){}:#=\s]+|(?=[({]))/,
+      },
     },
     variable: /\$+(?:(?!\$)[^(){}:#=\s]+|\([@*%<^+?][DF]\)|(?=[({]))/,
-    keyword: /-include\b|\b(?:define|else|endef|endif|export|ifn?def|ifn?eq|include|override|private|sinclude|undefine|unexport|vpath)\b/,
+    keyword:
+      /-include\b|\b(?:define|else|endef|endif|export|ifn?def|ifn?eq|include|override|private|sinclude|undefine|unexport|vpath)\b/,
     function: {
-      pattern: /(\()(?:abspath|addsuffix|and|basename|call|dir|error|eval|file|filter(?:-out)?|findstring|firstword|flavor|foreach|guile|if|info|join|lastword|load|notdir|or|origin|patsubst|realpath|shell|sort|strip|subst|suffix|value|warning|wildcard|word(?:list|s)?)(?=[ \t])/,
-      lookbehind: true
+      pattern:
+        /(\()(?:abspath|addsuffix|and|basename|call|dir|error|eval|file|filter(?:-out)?|findstring|firstword|flavor|foreach|guile|if|info|join|lastword|load|notdir|or|origin|patsubst|realpath|shell|sort|strip|subst|suffix|value|warning|wildcard|word(?:list|s)?)(?=[ \t])/,
+      lookbehind: true,
     },
     operator: /(?:::|[?:+!])?=|[|@]/,
-    punctuation: /[:;(){}]/
+    punctuation: /[:;(){}]/,
   };
 }
 
@@ -15253,25 +16736,39 @@ function makefile(Prism2) {
 yaml.displayName = "yaml";
 yaml.aliases = ["yml"];
 function yaml(Prism2) {
-  ;
-  (function(Prism3) {
+  (function (Prism3) {
     var anchorOrAlias = /[*&][^\s[\]{},]+/;
-    var tag = /!(?:<[\w\-%#;/?:@&=+$,.!~*'()[\]]+>|(?:[a-zA-Z\d-]*!)?[\w\-%#;/?:@&=+$.~*'()]+)?/;
-    var properties = "(?:" + tag.source + "(?:[ 	]+" + anchorOrAlias.source + ")?|" + anchorOrAlias.source + "(?:[ 	]+" + tag.source + ")?)";
-    var plainKey = /(?:[^\s\x00-\x08\x0e-\x1f!"#%&'*,\-:>?@[\]`{|}\x7f-\x84\x86-\x9f\ud800-\udfff\ufffe\uffff]|[?:-]<PLAIN>)(?:[ \t]*(?:(?![#:])<PLAIN>|:<PLAIN>))*/.source.replace(
-      /<PLAIN>/g,
-      function() {
-        return /[^\s\x00-\x08\x0e-\x1f,[\]{}\x7f-\x84\x86-\x9f\ud800-\udfff\ufffe\uffff]/.source;
-      }
-    );
+    var tag =
+      /!(?:<[\w\-%#;/?:@&=+$,.!~*'()[\]]+>|(?:[a-zA-Z\d-]*!)?[\w\-%#;/?:@&=+$.~*'()]+)?/;
+    var properties =
+      "(?:" +
+      tag.source +
+      "(?:[ 	]+" +
+      anchorOrAlias.source +
+      ")?|" +
+      anchorOrAlias.source +
+      "(?:[ 	]+" +
+      tag.source +
+      ")?)";
+    var plainKey =
+      /(?:[^\s\x00-\x08\x0e-\x1f!"#%&'*,\-:>?@[\]`{|}\x7f-\x84\x86-\x9f\ud800-\udfff\ufffe\uffff]|[?:-]<PLAIN>)(?:[ \t]*(?:(?![#:])<PLAIN>|:<PLAIN>))*/.source.replace(
+        /<PLAIN>/g,
+        function () {
+          return /[^\s\x00-\x08\x0e-\x1f,[\]{}\x7f-\x84\x86-\x9f\ud800-\udfff\ufffe\uffff]/
+            .source;
+        }
+      );
     var string = /"(?:[^"\\\r\n]|\\.)*"|'(?:[^'\\\r\n]|\\.)*'/.source;
     function createValuePattern(value2, flags) {
       flags = (flags || "").replace(/m/g, "") + "m";
-      var pattern = /([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|\]|\}|(?:[\r\n]\s*)?#))/.source.replace(/<<prop>>/g, function() {
-        return properties;
-      }).replace(/<<value>>/g, function() {
-        return value2;
-      });
+      var pattern =
+        /([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|\]|\}|(?:[\r\n]\s*)?#))/.source
+          .replace(/<<prop>>/g, function () {
+            return properties;
+          })
+          .replace(/<<value>>/g, function () {
+            return value2;
+          });
       return RegExp(pattern, flags);
     }
     Prism3.languages.yaml = {
@@ -15279,64 +16776,68 @@ function yaml(Prism2) {
         pattern: RegExp(
           /([\-:]\s*(?:\s<<prop>>[ \t]+)?[|>])[ \t]*(?:((?:\r?\n|\r)[ \t]+)\S[^\r\n]*(?:\2[^\r\n]+)*)/.source.replace(
             /<<prop>>/g,
-            function() {
+            function () {
               return properties;
             }
           )
         ),
         lookbehind: true,
-        alias: "string"
+        alias: "string",
       },
       comment: /#.*/,
       key: {
         pattern: RegExp(
-          /((?:^|[:\-,[{\r\n?])[ \t]*(?:<<prop>>[ \t]+)?)<<key>>(?=\s*:\s)/.source.replace(/<<prop>>/g, function() {
-            return properties;
-          }).replace(/<<key>>/g, function() {
-            return "(?:" + plainKey + "|" + string + ")";
-          })
+          /((?:^|[:\-,[{\r\n?])[ \t]*(?:<<prop>>[ \t]+)?)<<key>>(?=\s*:\s)/.source
+            .replace(/<<prop>>/g, function () {
+              return properties;
+            })
+            .replace(/<<key>>/g, function () {
+              return "(?:" + plainKey + "|" + string + ")";
+            })
         ),
         lookbehind: true,
         greedy: true,
-        alias: "atrule"
+        alias: "atrule",
       },
       directive: {
         pattern: /(^[ \t]*)%.+/m,
         lookbehind: true,
-        alias: "important"
+        alias: "important",
       },
       datetime: {
         pattern: createValuePattern(
-          /\d{4}-\d\d?-\d\d?(?:[tT]|[ \t]+)\d\d?:\d{2}:\d{2}(?:\.\d*)?(?:[ \t]*(?:Z|[-+]\d\d?(?::\d{2})?))?|\d{4}-\d{2}-\d{2}|\d\d?:\d{2}(?::\d{2}(?:\.\d*)?)?/.source
+          /\d{4}-\d\d?-\d\d?(?:[tT]|[ \t]+)\d\d?:\d{2}:\d{2}(?:\.\d*)?(?:[ \t]*(?:Z|[-+]\d\d?(?::\d{2})?))?|\d{4}-\d{2}-\d{2}|\d\d?:\d{2}(?::\d{2}(?:\.\d*)?)?/
+            .source
         ),
         lookbehind: true,
-        alias: "number"
+        alias: "number",
       },
       boolean: {
         pattern: createValuePattern(/false|true/.source, "i"),
         lookbehind: true,
-        alias: "important"
+        alias: "important",
       },
       null: {
         pattern: createValuePattern(/null|~/.source, "i"),
         lookbehind: true,
-        alias: "important"
+        alias: "important",
       },
       string: {
         pattern: createValuePattern(string),
         lookbehind: true,
-        greedy: true
+        greedy: true,
       },
       number: {
         pattern: createValuePattern(
-          /[+-]?(?:0x[\da-f]+|0o[0-7]+|(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?|\.inf|\.nan)/.source,
+          /[+-]?(?:0x[\da-f]+|0o[0-7]+|(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?|\.inf|\.nan)/
+            .source,
           "i"
         ),
-        lookbehind: true
+        lookbehind: true,
       },
       tag,
       important: anchorOrAlias,
-      punctuation: /---|[:[\]{}\-,|>?]|\.\.\./
+      punctuation: /---|[:[\]{}\-,|>?]|\.\.\./,
     };
     Prism3.languages.yml = Prism3.languages.yaml;
   })(Prism2);
@@ -15347,22 +16848,26 @@ markdown.displayName = "markdown";
 markdown.aliases = ["md"];
 function markdown(Prism2) {
   Prism2.register(markup);
-  (function(Prism3) {
+  (function (Prism3) {
     var inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
     function createInline(pattern) {
-      pattern = pattern.replace(/<inner>/g, function() {
+      pattern = pattern.replace(/<inner>/g, function () {
         return inner;
       });
       return RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + "(?:" + pattern + ")");
     }
-    var tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
-    var tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(
-      /__/g,
-      function() {
-        return tableCell;
-      }
-    );
-    var tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
+    var tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/
+      .source;
+    var tableRow =
+      /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(
+        /__/g,
+        function () {
+          return tableCell;
+        }
+      );
+    var tableLine =
+      /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/
+        .source;
     Prism3.languages.markdown = Prism3.languages.extend("markup", {});
     Prism3.languages.insertBefore("markdown", "prolog", {
       "front-matter-block": {
@@ -15374,13 +16879,13 @@ function markdown(Prism2) {
           "front-matter": {
             pattern: /\S+(?:\s+\S+)*/,
             alias: ["yaml", "language-yaml"],
-            inside: Prism3.languages.yaml
-          }
-        }
+            inside: Prism3.languages.yaml,
+          },
+        },
       },
       blockquote: {
         pattern: /^>(?:[\t ]*>)*/m,
-        alias: "punctuation"
+        alias: "punctuation",
       },
       table: {
         pattern: RegExp(
@@ -15396,17 +16901,17 @@ function markdown(Prism2) {
             inside: {
               "table-data": {
                 pattern: RegExp(tableCell),
-                inside: Prism3.languages.markdown
+                inside: Prism3.languages.markdown,
               },
-              punctuation: /\|/
-            }
+              punctuation: /\|/,
+            },
           },
           "table-line": {
             pattern: RegExp("^(" + tableRow + ")" + tableLine + "$"),
             lookbehind: true,
             inside: {
-              punctuation: /\||:?-{3,}:?/
-            }
+              punctuation: /\||:?-{3,}:?/,
+            },
           },
           "table-header-row": {
             pattern: RegExp("^" + tableRow + "$"),
@@ -15414,18 +16919,19 @@ function markdown(Prism2) {
               "table-header": {
                 pattern: RegExp(tableCell),
                 alias: "important",
-                inside: Prism3.languages.markdown
+                inside: Prism3.languages.markdown,
               },
-              punctuation: /\|/
-            }
-          }
-        }
+              punctuation: /\|/,
+            },
+          },
+        },
       },
       code: [
         {
-          pattern: /((?:^|\n)[ \t]*\n|(?:^|\r\n?)[ \t]*\r\n?)(?: {4}|\t).+(?:(?:\n|\r\n?)(?: {4}|\t).+)*/,
+          pattern:
+            /((?:^|\n)[ \t]*\n|(?:^|\r\n?)[ \t]*\r\n?)(?: {4}|\t).+(?:(?:\n|\r\n?)(?: {4}|\t).+)*/,
           lookbehind: true,
-          alias: "keyword"
+          alias: "keyword",
         },
         {
           pattern: /^```[\s\S]*?^```$/m,
@@ -15433,58 +16939,61 @@ function markdown(Prism2) {
           inside: {
             "code-block": {
               pattern: /^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)^```$)/m,
-              lookbehind: true
+              lookbehind: true,
             },
             "code-language": {
               pattern: /^(```).+/,
-              lookbehind: true
+              lookbehind: true,
             },
-            punctuation: /```/
-          }
-        }
+            punctuation: /```/,
+          },
+        },
       ],
       title: [
         {
           pattern: /\S.*(?:\n|\r\n?)(?:==+|--+)(?=[ \t]*$)/m,
           alias: "important",
           inside: {
-            punctuation: /==+$|--+$/
-          }
+            punctuation: /==+$|--+$/,
+          },
         },
         {
           pattern: /(^\s*)#.+/m,
           lookbehind: true,
           alias: "important",
           inside: {
-            punctuation: /^#+|#+$/
-          }
-        }
+            punctuation: /^#+|#+$/,
+          },
+        },
       ],
       hr: {
         pattern: /(^\s*)([*-])(?:[\t ]*\2){2,}(?=\s*$)/m,
         lookbehind: true,
-        alias: "punctuation"
+        alias: "punctuation",
       },
       list: {
         pattern: /(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,
         lookbehind: true,
-        alias: "punctuation"
+        alias: "punctuation",
       },
       "url-reference": {
-        pattern: /!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,
+        pattern:
+          /!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,
         inside: {
           variable: {
             pattern: /^(!?\[)[^\]]+/,
-            lookbehind: true
+            lookbehind: true,
           },
-          string: /(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,
-          punctuation: /^[\[\]!:]|[<>]/
+          string:
+            /(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,
+          punctuation: /^[\[\]!:]|[<>]/,
         },
-        alias: "url"
+        alias: "url",
       },
       bold: {
         pattern: createInline(
-          /\b__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__\b|\*\*(?:(?!\*)<inner>|\*(?:(?!\*)<inner>)+\*)+\*\*/.source
+          /\b__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__\b|\*\*(?:(?!\*)<inner>|\*(?:(?!\*)<inner>)+\*)+\*\*/
+            .source
         ),
         lookbehind: true,
         greedy: true,
@@ -15492,14 +17001,15 @@ function markdown(Prism2) {
           content: {
             pattern: /(^..)[\s\S]+(?=..$)/,
             lookbehind: true,
-            inside: {}
+            inside: {},
           },
-          punctuation: /\*\*|__/
-        }
+          punctuation: /\*\*|__/,
+        },
       },
       italic: {
         pattern: createInline(
-          /\b_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_\b|\*(?:(?!\*)<inner>|\*\*(?:(?!\*)<inner>)+\*\*)+\*/.source
+          /\b_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_\b|\*(?:(?!\*)<inner>|\*\*(?:(?!\*)<inner>)+\*\*)+\*/
+            .source
         ),
         lookbehind: true,
         greedy: true,
@@ -15507,10 +17017,10 @@ function markdown(Prism2) {
           content: {
             pattern: /(^.)[\s\S]+(?=.$)/,
             lookbehind: true,
-            inside: {}
+            inside: {},
           },
-          punctuation: /[*_]/
-        }
+          punctuation: /[*_]/,
+        },
       },
       strike: {
         pattern: createInline(/(~~?)(?:(?!~)<inner>)+\2/.source),
@@ -15520,20 +17030,22 @@ function markdown(Prism2) {
           content: {
             pattern: /(^~~?)[\s\S]+(?=\1$)/,
             lookbehind: true,
-            inside: {}
+            inside: {},
           },
-          punctuation: /~~?/
-        }
+          punctuation: /~~?/,
+        },
       },
       "code-snippet": {
-        pattern: /(^|[^\\`])(?:``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`))/,
+        pattern:
+          /(^|[^\\`])(?:``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`))/,
         lookbehind: true,
         greedy: true,
-        alias: ["code", "keyword"]
+        alias: ["code", "keyword"],
       },
       url: {
         pattern: createInline(
-          /!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)|[ \t]?\[(?:(?!\])<inner>)+\])/.source
+          /!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)|[ \t]?\[(?:(?!\])<inner>)+\])/
+            .source
         ),
         lookbehind: true,
         greedy: true,
@@ -15542,32 +17054,34 @@ function markdown(Prism2) {
           content: {
             pattern: /(^\[)[^\]]+(?=\])/,
             lookbehind: true,
-            inside: {}
+            inside: {},
           },
           variable: {
             pattern: /(^\][ \t]?\[)[^\]]+(?=\]$)/,
-            lookbehind: true
+            lookbehind: true,
           },
           url: {
             pattern: /(^\]\()[^\s)]+/,
-            lookbehind: true
+            lookbehind: true,
           },
           string: {
             pattern: /(^[ \t]+)"(?:\\.|[^"\\])*"(?=\)$)/,
-            lookbehind: true
-          }
-        }
-      }
+            lookbehind: true,
+          },
+        },
+      },
     });
-    ["url", "bold", "italic", "strike"].forEach(function(token) {
-      ;
-      ["url", "bold", "italic", "strike", "code-snippet"].forEach(function(inside) {
+    ["url", "bold", "italic", "strike"].forEach(function (token) {
+      ["url", "bold", "italic", "strike", "code-snippet"].forEach(function (
+        inside
+      ) {
         if (token !== inside) {
-          Prism3.languages.markdown[token].inside.content.inside[inside] = Prism3.languages.markdown[inside];
+          Prism3.languages.markdown[token].inside.content.inside[inside] =
+            Prism3.languages.markdown[inside];
         }
       });
     });
-    Prism3.hooks.add("after-tokenize", function(env) {
+    Prism3.hooks.add("after-tokenize", function (env) {
       if (env.language !== "markdown" && env.language !== "md") {
         return;
       }
@@ -15583,8 +17097,16 @@ function markdown(Prism2) {
           }
           var codeLang = token.content[1];
           var codeBlock = token.content[3];
-          if (codeLang && codeBlock && codeLang.type === "code-language" && codeBlock.type === "code-block" && typeof codeLang.content === "string") {
-            var lang = codeLang.content.replace(/\b#/g, "sharp").replace(/\b\+\+/g, "pp");
+          if (
+            codeLang &&
+            codeBlock &&
+            codeLang.type === "code-language" &&
+            codeBlock.type === "code-block" &&
+            typeof codeLang.content === "string"
+          ) {
+            var lang = codeLang.content
+              .replace(/\b#/g, "sharp")
+              .replace(/\b\+\+/g, "pp");
             lang = (/[a-z][\w-]*/i.exec(lang) || [""])[0].toLowerCase();
             var alias2 = "language-" + lang;
             if (!codeBlock.alias) {
@@ -15599,7 +17121,7 @@ function markdown(Prism2) {
       }
       walkTokens2(env.tokens);
     });
-    Prism3.hooks.add("wrap", function(env) {
+    Prism3.hooks.add("wrap", function (env) {
       if (env.type !== "code-block") {
         return;
       }
@@ -15615,9 +17137,13 @@ function markdown(Prism2) {
       var grammar = Prism3.languages[codeLang];
       if (!grammar) {
         if (codeLang && codeLang !== "none" && Prism3.plugins.autoloader) {
-          var id = "md-" + new Date().valueOf() + "-" + Math.floor(Math.random() * 1e16);
+          var id =
+            "md-" +
+            new Date().valueOf() +
+            "-" +
+            Math.floor(Math.random() * 1e16);
           env.attributes["id"] = id;
-          Prism3.plugins.autoloader.loadLanguages(codeLang, function() {
+          Prism3.plugins.autoloader.loadLanguages(codeLang, function () {
             var ele = document.getElementById(id);
             if (ele) {
               ele.innerHTML = Prism3.highlight(
@@ -15641,29 +17167,32 @@ function markdown(Prism2) {
       amp: "&",
       lt: "<",
       gt: ">",
-      quot: '"'
+      quot: '"',
     };
     var fromCodePoint = String.fromCodePoint || String.fromCharCode;
     function textContent(html3) {
       var text2 = html3.replace(tagPattern, "");
-      text2 = text2.replace(/&(\w{1,8}|#x?[\da-f]{1,8});/gi, function(m, code2) {
-        code2 = code2.toLowerCase();
-        if (code2[0] === "#") {
-          var value2;
-          if (code2[1] === "x") {
-            value2 = parseInt(code2.slice(2), 16);
+      text2 = text2.replace(
+        /&(\w{1,8}|#x?[\da-f]{1,8});/gi,
+        function (m, code2) {
+          code2 = code2.toLowerCase();
+          if (code2[0] === "#") {
+            var value2;
+            if (code2[1] === "x") {
+              value2 = parseInt(code2.slice(2), 16);
+            } else {
+              value2 = Number(code2.slice(1));
+            }
+            return fromCodePoint(value2);
           } else {
-            value2 = Number(code2.slice(1));
+            var known = KNOWN_ENTITY_NAMES[code2];
+            if (known) {
+              return known;
+            }
+            return m;
           }
-          return fromCodePoint(value2);
-        } else {
-          var known = KNOWN_ENTITY_NAMES[code2];
-          if (known) {
-            return known;
-          }
-          return m;
         }
-      });
+      );
       return text2;
     }
     Prism3.languages.md = Prism3.languages.markdown;
@@ -15678,10 +17207,11 @@ function objectivec(Prism2) {
   Prism2.languages.objectivec = Prism2.languages.extend("c", {
     string: {
       pattern: /@?"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
-      greedy: true
+      greedy: true,
     },
-    keyword: /\b(?:asm|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|in|inline|int|long|register|return|self|short|signed|sizeof|static|struct|super|switch|typedef|typeof|union|unsigned|void|volatile|while)\b|(?:@interface|@end|@implementation|@protocol|@class|@public|@protected|@private|@property|@try|@catch|@finally|@throw|@synthesize|@dynamic|@selector)\b/,
-    operator: /-[->]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|\|?|[~^%?*\/@]/
+    keyword:
+      /\b(?:asm|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|in|inline|int|long|register|return|self|short|signed|sizeof|static|struct|super|switch|typedef|typeof|union|unsigned|void|volatile|while)\b|(?:@interface|@end|@implementation|@protocol|@class|@public|@protected|@private|@property|@try|@catch|@finally|@throw|@synthesize|@dynamic|@selector)\b/,
+    operator: /-[->]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|\|?|[~^%?*\/@]/,
   });
   delete Prism2.languages.objectivec["class-name"];
   Prism2.languages.objc = Prism2.languages.objectivec;
@@ -15691,68 +17221,83 @@ function objectivec(Prism2) {
 perl.displayName = "perl";
 perl.aliases = [];
 function perl(Prism2) {
-  ;
-  (function(Prism3) {
-    var brackets = /(?:\((?:[^()\\]|\\[\s\S])*\)|\{(?:[^{}\\]|\\[\s\S])*\}|\[(?:[^[\]\\]|\\[\s\S])*\]|<(?:[^<>\\]|\\[\s\S])*>)/.source;
+  (function (Prism3) {
+    var brackets =
+      /(?:\((?:[^()\\]|\\[\s\S])*\)|\{(?:[^{}\\]|\\[\s\S])*\}|\[(?:[^[\]\\]|\\[\s\S])*\]|<(?:[^<>\\]|\\[\s\S])*>)/
+        .source;
     Prism3.languages.perl = {
       comment: [
         {
           pattern: /(^\s*)=\w[\s\S]*?=cut.*/m,
           lookbehind: true,
-          greedy: true
+          greedy: true,
         },
         {
           pattern: /(^|[^\\$])#.*/,
           lookbehind: true,
-          greedy: true
-        }
+          greedy: true,
+        },
       ],
       string: [
         {
           pattern: RegExp(
-            /\b(?:q|qq|qw|qx)(?![a-zA-Z0-9])\s*/.source + "(?:" + [
-              /([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
-              /([a-zA-Z0-9])(?:(?!\2)[^\\]|\\[\s\S])*\2/.source,
-              brackets
-            ].join("|") + ")"
+            /\b(?:q|qq|qw|qx)(?![a-zA-Z0-9])\s*/.source +
+              "(?:" +
+              [
+                /([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
+                /([a-zA-Z0-9])(?:(?!\2)[^\\]|\\[\s\S])*\2/.source,
+                brackets,
+              ].join("|") +
+              ")"
           ),
-          greedy: true
+          greedy: true,
         },
         {
           pattern: /("|`)(?:(?!\1)[^\\]|\\[\s\S])*\1/,
-          greedy: true
+          greedy: true,
         },
         {
           pattern: /'(?:[^'\\\r\n]|\\.)*'/,
-          greedy: true
-        }
+          greedy: true,
+        },
       ],
       regex: [
         {
           pattern: RegExp(
-            /\b(?:m|qr)(?![a-zA-Z0-9])\s*/.source + "(?:" + [
-              /([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
-              /([a-zA-Z0-9])(?:(?!\2)[^\\]|\\[\s\S])*\2/.source,
-              brackets
-            ].join("|") + ")" + /[msixpodualngc]*/.source
+            /\b(?:m|qr)(?![a-zA-Z0-9])\s*/.source +
+              "(?:" +
+              [
+                /([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
+                /([a-zA-Z0-9])(?:(?!\2)[^\\]|\\[\s\S])*\2/.source,
+                brackets,
+              ].join("|") +
+              ")" +
+              /[msixpodualngc]*/.source
           ),
-          greedy: true
+          greedy: true,
         },
         {
           pattern: RegExp(
-            /(^|[^-])\b(?:s|tr|y)(?![a-zA-Z0-9])\s*/.source + "(?:" + [
-              /([^a-zA-Z0-9\s{(\[<])(?:(?!\2)[^\\]|\\[\s\S])*\2(?:(?!\2)[^\\]|\\[\s\S])*\2/.source,
-              /([a-zA-Z0-9])(?:(?!\3)[^\\]|\\[\s\S])*\3(?:(?!\3)[^\\]|\\[\s\S])*\3/.source,
-              brackets + /\s*/.source + brackets
-            ].join("|") + ")" + /[msixpodualngcer]*/.source
+            /(^|[^-])\b(?:s|tr|y)(?![a-zA-Z0-9])\s*/.source +
+              "(?:" +
+              [
+                /([^a-zA-Z0-9\s{(\[<])(?:(?!\2)[^\\]|\\[\s\S])*\2(?:(?!\2)[^\\]|\\[\s\S])*\2/
+                  .source,
+                /([a-zA-Z0-9])(?:(?!\3)[^\\]|\\[\s\S])*\3(?:(?!\3)[^\\]|\\[\s\S])*\3/
+                  .source,
+                brackets + /\s*/.source + brackets,
+              ].join("|") +
+              ")" +
+              /[msixpodualngcer]*/.source
           ),
           lookbehind: true,
-          greedy: true
+          greedy: true,
         },
         {
-          pattern: /\/(?:[^\/\\\r\n]|\\.)*\/[msixpodualngc]*(?=\s*(?:$|[\r\n,.;})&|\-+*~<>!?^]|(?:and|cmp|eq|ge|gt|le|lt|ne|not|or|x|xor)\b))/,
-          greedy: true
-        }
+          pattern:
+            /\/(?:[^\/\\\r\n]|\\.)*\/[msixpodualngc]*(?=\s*(?:$|[\r\n,.;})&|\-+*~<>!?^]|(?:and|cmp|eq|ge|gt|le|lt|ne|not|or|x|xor)\b))/,
+          greedy: true,
+        },
       ],
       variable: [
         /[&*$@%]\{\^[A-Z]+\}/,
@@ -15760,24 +17305,27 @@ function perl(Prism2) {
         /[&*$@%]#?(?=\{)/,
         /[&*$@%]#?(?:(?:::)*'?(?!\d)[\w$]+(?![\w$]))+(?:::)*/,
         /[&*$@%]\d+/,
-        /(?!%=)[$@%][!"#$%&'()*+,\-.\/:;<=>?@[\\\]^_`{|}~]/
+        /(?!%=)[$@%][!"#$%&'()*+,\-.\/:;<=>?@[\\\]^_`{|}~]/,
       ],
       filehandle: {
         pattern: /<(?![<=])\S*?>|\b_\b/,
-        alias: "symbol"
+        alias: "symbol",
       },
       "v-string": {
         pattern: /v\d+(?:\.\d+)*|\d+(?:\.\d+){2,}/,
-        alias: "string"
+        alias: "string",
       },
       function: {
         pattern: /(\bsub[ \t]+)\w+/,
-        lookbehind: true
+        lookbehind: true,
       },
-      keyword: /\b(?:any|break|continue|default|delete|die|do|else|elsif|eval|for|foreach|given|goto|if|last|local|my|next|our|package|print|redo|require|return|say|state|sub|switch|undef|unless|until|use|when|while)\b/,
-      number: /\b(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0b[01](?:_?[01])*|(?:(?:\d(?:_?\d)*)?\.)?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)\b/,
-      operator: /-[rwxoRWXOezsfdlpSbctugkTBMAC]\b|\+[+=]?|-[-=>]?|\*\*?=?|\/\/?=?|=[=~>]?|~[~=]?|\|\|?=?|&&?=?|<(?:=>?|<=?)?|>>?=?|![~=]?|[%^]=?|\.(?:=|\.\.?)?|[\\?]|\bx(?:=|\b)|\b(?:and|cmp|eq|ge|gt|le|lt|ne|not|or|xor)\b/,
-      punctuation: /[{}[\];(),:]/
+      keyword:
+        /\b(?:any|break|continue|default|delete|die|do|else|elsif|eval|for|foreach|given|goto|if|last|local|my|next|our|package|print|redo|require|return|say|state|sub|switch|undef|unless|until|use|when|while)\b/,
+      number:
+        /\b(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0b[01](?:_?[01])*|(?:(?:\d(?:_?\d)*)?\.)?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)\b/,
+      operator:
+        /-[rwxoRWXOezsfdlpSbctugkTBMAC]\b|\+[+=]?|-[-=>]?|\*\*?=?|\/\/?=?|=[=~>]?|~[~=]?|\|\|?=?|&&?=?|<(?:=>?|<=?)?|>>?=?|![~=]?|[%^]=?|\.(?:=|\.\.?)?|[\\?]|\bx(?:=|\b)|\b(?:and|cmp|eq|ge|gt|le|lt|ne|not|or|xor)\b/,
+      punctuation: /[{}[\];(),:]/,
     };
   })(Prism2);
 }
@@ -15787,34 +17335,37 @@ markupTemplating.displayName = "markup-templating";
 markupTemplating.aliases = [];
 function markupTemplating(Prism2) {
   Prism2.register(markup);
-  (function(Prism3) {
+  (function (Prism3) {
     function getPlaceholder(language, index) {
       return "___" + language.toUpperCase() + index + "___";
     }
-    Object.defineProperties(Prism3.languages["markup-templating"] = {}, {
+    Object.defineProperties((Prism3.languages["markup-templating"] = {}), {
       buildPlaceholders: {
-        value: function(env, language, placeholderPattern, replaceFilter) {
+        value: function (env, language, placeholderPattern, replaceFilter) {
           if (env.language !== language) {
             return;
           }
-          var tokenStack = env.tokenStack = [];
-          env.code = env.code.replace(placeholderPattern, function(match) {
+          var tokenStack = (env.tokenStack = []);
+          env.code = env.code.replace(placeholderPattern, function (match) {
             if (typeof replaceFilter === "function" && !replaceFilter(match)) {
               return match;
             }
             var i = tokenStack.length;
             var placeholder;
-            while (env.code.indexOf(placeholder = getPlaceholder(language, i)) !== -1) {
+            while (
+              env.code.indexOf((placeholder = getPlaceholder(language, i))) !==
+              -1
+            ) {
               ++i;
             }
             tokenStack[i] = match;
             return placeholder;
           });
           env.grammar = Prism3.languages.markup;
-        }
+        },
       },
       tokenizePlaceholders: {
-        value: function(env, language) {
+        value: function (env, language) {
           if (env.language !== language || !env.tokenStack) {
             return;
           }
@@ -15827,7 +17378,10 @@ function markupTemplating(Prism2) {
                 break;
               }
               var token = tokens[i];
-              if (typeof token === "string" || token.content && typeof token.content === "string") {
+              if (
+                typeof token === "string" ||
+                (token.content && typeof token.content === "string")
+              ) {
                 var k = keys[j];
                 var t = env.tokenStack[k];
                 var s2 = typeof token === "string" ? token : token.content;
@@ -15864,8 +17418,8 @@ function markupTemplating(Prism2) {
             return tokens;
           }
           walkTokens2(env.tokens);
-        }
-      }
+        },
+      },
     });
   })(Prism2);
 }
@@ -15875,116 +17429,125 @@ php.displayName = "php";
 php.aliases = [];
 function php(Prism2) {
   Prism2.register(markupTemplating);
-  (function(Prism3) {
+  (function (Prism3) {
     var comment = /\/\*[\s\S]*?\*\/|\/\/.*|#(?!\[).*/;
     var constant = [
       {
         pattern: /\b(?:false|true)\b/i,
-        alias: "boolean"
+        alias: "boolean",
       },
       {
         pattern: /(::\s*)\b[a-z_]\w*\b(?!\s*\()/i,
         greedy: true,
-        lookbehind: true
+        lookbehind: true,
       },
       {
         pattern: /(\b(?:case|const)\s+)\b[a-z_]\w*(?=\s*[;=])/i,
         greedy: true,
-        lookbehind: true
+        lookbehind: true,
       },
       /\b(?:null)\b/i,
-      /\b[A-Z_][A-Z0-9_]*\b(?!\s*\()/
+      /\b[A-Z_][A-Z0-9_]*\b(?!\s*\()/,
     ];
-    var number2 = /\b0b[01]+(?:_[01]+)*\b|\b0o[0-7]+(?:_[0-7]+)*\b|\b0x[\da-f]+(?:_[\da-f]+)*\b|(?:\b\d+(?:_\d+)*\.?(?:\d+(?:_\d+)*)?|\B\.\d+)(?:e[+-]?\d+)?/i;
-    var operator = /<?=>|\?\?=?|\.{3}|\??->|[!=]=?=?|::|\*\*=?|--|\+\+|&&|\|\||<<|>>|[?~]|[/^|%*&<>.+-]=?/;
+    var number2 =
+      /\b0b[01]+(?:_[01]+)*\b|\b0o[0-7]+(?:_[0-7]+)*\b|\b0x[\da-f]+(?:_[\da-f]+)*\b|(?:\b\d+(?:_\d+)*\.?(?:\d+(?:_\d+)*)?|\B\.\d+)(?:e[+-]?\d+)?/i;
+    var operator =
+      /<?=>|\?\?=?|\.{3}|\??->|[!=]=?=?|::|\*\*=?|--|\+\+|&&|\|\||<<|>>|[?~]|[/^|%*&<>.+-]=?/;
     var punctuation2 = /[{}\[\](),:;]/;
     Prism3.languages.php = {
       delimiter: {
         pattern: /\?>$|^<\?(?:php(?=\s)|=)?/i,
-        alias: "important"
+        alias: "important",
       },
       comment,
       variable: /\$+(?:\w+\b|(?=\{))/,
       package: {
-        pattern: /(namespace\s+|use\s+(?:function\s+)?)(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
+        pattern:
+          /(namespace\s+|use\s+(?:function\s+)?)(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
         lookbehind: true,
         inside: {
-          punctuation: /\\/
-        }
+          punctuation: /\\/,
+        },
       },
       "class-name-definition": {
         pattern: /(\b(?:class|enum|interface|trait)\s+)\b[a-z_]\w*(?!\\)\b/i,
         lookbehind: true,
-        alias: "class-name"
+        alias: "class-name",
       },
       "function-definition": {
         pattern: /(\bfunction\s+)[a-z_]\w*(?=\s*\()/i,
         lookbehind: true,
-        alias: "function"
+        alias: "function",
       },
       keyword: [
         {
-          pattern: /(\(\s*)\b(?:array|bool|boolean|float|int|integer|object|string)\b(?=\s*\))/i,
+          pattern:
+            /(\(\s*)\b(?:array|bool|boolean|float|int|integer|object|string)\b(?=\s*\))/i,
           alias: "type-casting",
           greedy: true,
-          lookbehind: true
+          lookbehind: true,
         },
         {
-          pattern: /([(,?]\s*)\b(?:array(?!\s*\()|bool|callable|(?:false|null)(?=\s*\|)|float|int|iterable|mixed|object|self|static|string)\b(?=\s*\$)/i,
+          pattern:
+            /([(,?]\s*)\b(?:array(?!\s*\()|bool|callable|(?:false|null)(?=\s*\|)|float|int|iterable|mixed|object|self|static|string)\b(?=\s*\$)/i,
           alias: "type-hint",
           greedy: true,
-          lookbehind: true
+          lookbehind: true,
         },
         {
-          pattern: /(\)\s*:\s*(?:\?\s*)?)\b(?:array(?!\s*\()|bool|callable|(?:false|null)(?=\s*\|)|float|int|iterable|mixed|never|object|self|static|string|void)\b/i,
+          pattern:
+            /(\)\s*:\s*(?:\?\s*)?)\b(?:array(?!\s*\()|bool|callable|(?:false|null)(?=\s*\|)|float|int|iterable|mixed|never|object|self|static|string|void)\b/i,
           alias: "return-type",
           greedy: true,
-          lookbehind: true
+          lookbehind: true,
         },
         {
-          pattern: /\b(?:array(?!\s*\()|bool|float|int|iterable|mixed|object|string|void)\b/i,
+          pattern:
+            /\b(?:array(?!\s*\()|bool|float|int|iterable|mixed|object|string|void)\b/i,
           alias: "type-declaration",
-          greedy: true
+          greedy: true,
         },
         {
           pattern: /(\|\s*)(?:false|null)\b|\b(?:false|null)(?=\s*\|)/i,
           alias: "type-declaration",
           greedy: true,
-          lookbehind: true
+          lookbehind: true,
         },
         {
           pattern: /\b(?:parent|self|static)(?=\s*::)/i,
           alias: "static-context",
-          greedy: true
+          greedy: true,
         },
         {
           pattern: /(\byield\s+)from\b/i,
-          lookbehind: true
+          lookbehind: true,
         },
         /\bclass\b/i,
         {
-          pattern: /((?:^|[^\s>:]|(?:^|[^-])>|(?:^|[^:]):)\s*)\b(?:abstract|and|array|as|break|callable|case|catch|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|enum|eval|exit|extends|final|finally|fn|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof|interface|isset|list|match|namespace|never|new|or|parent|print|private|protected|public|readonly|require|require_once|return|self|static|switch|throw|trait|try|unset|use|var|while|xor|yield|__halt_compiler)\b/i,
-          lookbehind: true
-        }
+          pattern:
+            /((?:^|[^\s>:]|(?:^|[^-])>|(?:^|[^:]):)\s*)\b(?:abstract|and|array|as|break|callable|case|catch|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|enum|eval|exit|extends|final|finally|fn|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof|interface|isset|list|match|namespace|never|new|or|parent|print|private|protected|public|readonly|require|require_once|return|self|static|switch|throw|trait|try|unset|use|var|while|xor|yield|__halt_compiler)\b/i,
+          lookbehind: true,
+        },
       ],
       "argument-name": {
         pattern: /([(,]\s*)\b[a-z_]\w*(?=\s*:(?!:))/i,
-        lookbehind: true
+        lookbehind: true,
       },
       "class-name": [
         {
-          pattern: /(\b(?:extends|implements|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s*\()\b[a-z_]\w*(?!\\)\b/i,
+          pattern:
+            /(\b(?:extends|implements|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s*\()\b[a-z_]\w*(?!\\)\b/i,
           greedy: true,
-          lookbehind: true
+          lookbehind: true,
         },
         {
           pattern: /(\|\s*)\b[a-z_]\w*(?!\\)\b/i,
           greedy: true,
-          lookbehind: true
+          lookbehind: true,
         },
         {
           pattern: /\b[a-z_]\w*(?!\\)\b(?=\s*\|)/i,
-          greedy: true
+          greedy: true,
         },
         {
           pattern: /(\|\s*)(?:\\?\b[a-z_]\w*)+\b/i,
@@ -15992,57 +17555,58 @@ function php(Prism2) {
           greedy: true,
           lookbehind: true,
           inside: {
-            punctuation: /\\/
-          }
+            punctuation: /\\/,
+          },
         },
         {
           pattern: /(?:\\?\b[a-z_]\w*)+\b(?=\s*\|)/i,
           alias: "class-name-fully-qualified",
           greedy: true,
           inside: {
-            punctuation: /\\/
-          }
+            punctuation: /\\/,
+          },
         },
         {
-          pattern: /(\b(?:extends|implements|instanceof|new(?!\s+self\b|\s+static\b))\s+|\bcatch\s*\()(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
+          pattern:
+            /(\b(?:extends|implements|instanceof|new(?!\s+self\b|\s+static\b))\s+|\bcatch\s*\()(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
           alias: "class-name-fully-qualified",
           greedy: true,
           lookbehind: true,
           inside: {
-            punctuation: /\\/
-          }
+            punctuation: /\\/,
+          },
         },
         {
           pattern: /\b[a-z_]\w*(?=\s*\$)/i,
           alias: "type-declaration",
-          greedy: true
+          greedy: true,
         },
         {
           pattern: /(?:\\?\b[a-z_]\w*)+(?=\s*\$)/i,
           alias: ["class-name-fully-qualified", "type-declaration"],
           greedy: true,
           inside: {
-            punctuation: /\\/
-          }
+            punctuation: /\\/,
+          },
         },
         {
           pattern: /\b[a-z_]\w*(?=\s*::)/i,
           alias: "static-context",
-          greedy: true
+          greedy: true,
         },
         {
           pattern: /(?:\\?\b[a-z_]\w*)+(?=\s*::)/i,
           alias: ["class-name-fully-qualified", "static-context"],
           greedy: true,
           inside: {
-            punctuation: /\\/
-          }
+            punctuation: /\\/,
+          },
         },
         {
           pattern: /([(,?]\s*)[a-z_]\w*(?=\s*\$)/i,
           alias: "type-hint",
           greedy: true,
-          lookbehind: true
+          lookbehind: true,
         },
         {
           pattern: /([(,?]\s*)(?:\\?\b[a-z_]\w*)+(?=\s*\$)/i,
@@ -16050,14 +17614,14 @@ function php(Prism2) {
           greedy: true,
           lookbehind: true,
           inside: {
-            punctuation: /\\/
-          }
+            punctuation: /\\/,
+          },
         },
         {
           pattern: /(\)\s*:\s*(?:\?\s*)?)\b[a-z_]\w*(?!\\)\b/i,
           alias: "return-type",
           greedy: true,
-          lookbehind: true
+          lookbehind: true,
         },
         {
           pattern: /(\)\s*:\s*(?:\?\s*)?)(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
@@ -16065,30 +17629,31 @@ function php(Prism2) {
           greedy: true,
           lookbehind: true,
           inside: {
-            punctuation: /\\/
-          }
-        }
+            punctuation: /\\/,
+          },
+        },
       ],
       constant,
       function: {
         pattern: /(^|[^\\\w])\\?[a-z_](?:[\w\\]*\w)?(?=\s*\()/i,
         lookbehind: true,
         inside: {
-          punctuation: /\\/
-        }
+          punctuation: /\\/,
+        },
       },
       property: {
         pattern: /(->\s*)\w+/,
-        lookbehind: true
+        lookbehind: true,
       },
       number: number2,
       operator,
-      punctuation: punctuation2
+      punctuation: punctuation2,
     };
     var string_interpolation = {
-      pattern: /\{\$(?:\{(?:\{[^{}]+\}|[^{}]+)\}|[^{}])+\}|(^|[^\\{])\$+(?:\w+(?:\[[^\r\n\[\]]+\]|->\w+)?)/,
+      pattern:
+        /\{\$(?:\{(?:\{[^{}]+\}|[^{}]+)\}|[^{}])+\}|(^|[^\\{])\$+(?:\w+(?:\[[^\r\n\[\]]+\]|->\w+)?)/,
       lookbehind: true,
-      inside: Prism3.languages.php
+      inside: Prism3.languages.php,
     };
     var string = [
       {
@@ -16100,13 +17665,14 @@ function php(Prism2) {
             pattern: /^<<<'[^']+'|[a-z_]\w*;$/i,
             alias: "symbol",
             inside: {
-              punctuation: /^<<<'?|[';]$/
-            }
-          }
-        }
+              punctuation: /^<<<'?|[';]$/,
+            },
+          },
+        },
       },
       {
-        pattern: /<<<(?:"([^"]+)"[\r\n](?:.*[\r\n])*?\1;|([a-z_]\w*)[\r\n](?:.*[\r\n])*?\2;)/i,
+        pattern:
+          /<<<(?:"([^"]+)"[\r\n](?:.*[\r\n])*?\1;|([a-z_]\w*)[\r\n](?:.*[\r\n])*?\2;)/i,
         alias: "heredoc-string",
         greedy: true,
         inside: {
@@ -16114,35 +17680,36 @@ function php(Prism2) {
             pattern: /^<<<(?:"[^"]+"|[a-z_]\w*)|[a-z_]\w*;$/i,
             alias: "symbol",
             inside: {
-              punctuation: /^<<<"?|[";]$/
-            }
+              punctuation: /^<<<"?|[";]$/,
+            },
           },
-          interpolation: string_interpolation
-        }
+          interpolation: string_interpolation,
+        },
       },
       {
         pattern: /`(?:\\[\s\S]|[^\\`])*`/,
         alias: "backtick-quoted-string",
-        greedy: true
+        greedy: true,
       },
       {
         pattern: /'(?:\\[\s\S]|[^\\'])*'/,
         alias: "single-quoted-string",
-        greedy: true
+        greedy: true,
       },
       {
         pattern: /"(?:\\[\s\S]|[^\\"])*"/,
         alias: "double-quoted-string",
         greedy: true,
         inside: {
-          interpolation: string_interpolation
-        }
-      }
+          interpolation: string_interpolation,
+        },
+      },
     ];
     Prism3.languages.insertBefore("php", "variable", {
       string,
       attribute: {
-        pattern: /#\[(?:[^"'\/#]|\/(?![*/])|\/\/.*$|#(?!\[).*$|\/\*(?:[^*]|\*(?!\/))*\*\/|"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*')+\](?=\s*[a-z$#])/im,
+        pattern:
+          /#\[(?:[^"'\/#]|\/(?![*/])|\/\/.*$|#(?!\[).*$|\/\*(?:[^*]|\*(?!\/))*\*\/|"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*')+\](?=\s*[a-z$#])/im,
         greedy: true,
         inside: {
           "attribute-content": {
@@ -16156,7 +17723,7 @@ function php(Prism2) {
                   pattern: /([^:]|^)\b[a-z_]\w*(?!\\)\b/i,
                   alias: "class-name",
                   greedy: true,
-                  lookbehind: true
+                  lookbehind: true,
                 },
                 {
                   pattern: /([^:]|^)(?:\\?\b[a-z_]\w*)+/i,
@@ -16164,35 +17731,36 @@ function php(Prism2) {
                   greedy: true,
                   lookbehind: true,
                   inside: {
-                    punctuation: /\\/
-                  }
-                }
+                    punctuation: /\\/,
+                  },
+                },
               ],
               constant,
               number: number2,
               operator,
-              punctuation: punctuation2
-            }
+              punctuation: punctuation2,
+            },
           },
           delimiter: {
             pattern: /^#\[|\]$/,
-            alias: "punctuation"
-          }
-        }
-      }
+            alias: "punctuation",
+          },
+        },
+      },
     });
-    Prism3.hooks.add("before-tokenize", function(env) {
+    Prism3.hooks.add("before-tokenize", function (env) {
       if (!/<\?/.test(env.code)) {
         return;
       }
-      var phpPattern = /<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#(?!\[))(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|#\[|\/\*(?:[^*]|\*(?!\/))*(?:\*\/|$))*?(?:\?>|$)/g;
+      var phpPattern =
+        /<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#(?!\[))(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|#\[|\/\*(?:[^*]|\*(?!\/))*(?:\*\/|$))*?(?:\?>|$)/g;
       Prism3.languages["markup-templating"].buildPlaceholders(
         env,
         "php",
         phpPattern
       );
     });
-    Prism3.hooks.add("after-tokenize", function(env) {
+    Prism3.hooks.add("after-tokenize", function (env) {
       Prism3.languages["markup-templating"].tokenizePlaceholders(env, "php");
     });
   })(Prism2);
@@ -16206,63 +17774,70 @@ function python(Prism2) {
     comment: {
       pattern: /(^|[^\\])#.*/,
       lookbehind: true,
-      greedy: true
+      greedy: true,
     },
     "string-interpolation": {
-      pattern: /(?:f|fr|rf)(?:("""|''')[\s\S]*?\1|("|')(?:\\.|(?!\2)[^\\\r\n])*\2)/i,
+      pattern:
+        /(?:f|fr|rf)(?:("""|''')[\s\S]*?\1|("|')(?:\\.|(?!\2)[^\\\r\n])*\2)/i,
       greedy: true,
       inside: {
         interpolation: {
-          pattern: /((?:^|[^{])(?:\{\{)*)\{(?!\{)(?:[^{}]|\{(?!\{)(?:[^{}]|\{(?!\{)(?:[^{}])+\})+\})+\}/,
+          pattern:
+            /((?:^|[^{])(?:\{\{)*)\{(?!\{)(?:[^{}]|\{(?!\{)(?:[^{}]|\{(?!\{)(?:[^{}])+\})+\})+\}/,
           lookbehind: true,
           inside: {
             "format-spec": {
               pattern: /(:)[^:(){}]+(?=\}$)/,
-              lookbehind: true
+              lookbehind: true,
             },
             "conversion-option": {
               pattern: /![sra](?=[:}]$)/,
-              alias: "punctuation"
+              alias: "punctuation",
             },
-            rest: null
-          }
+            rest: null,
+          },
         },
-        string: /[\s\S]+/
-      }
+        string: /[\s\S]+/,
+      },
     },
     "triple-quoted-string": {
       pattern: /(?:[rub]|br|rb)?("""|''')[\s\S]*?\1/i,
       greedy: true,
-      alias: "string"
+      alias: "string",
     },
     string: {
       pattern: /(?:[rub]|br|rb)?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/i,
-      greedy: true
+      greedy: true,
     },
     function: {
       pattern: /((?:^|\s)def[ \t]+)[a-zA-Z_]\w*(?=\s*\()/g,
-      lookbehind: true
+      lookbehind: true,
     },
     "class-name": {
       pattern: /(\bclass\s+)\w+/i,
-      lookbehind: true
+      lookbehind: true,
     },
     decorator: {
       pattern: /(^[\t ]*)@\w+(?:\.\w+)*/m,
       lookbehind: true,
       alias: ["annotation", "punctuation"],
       inside: {
-        punctuation: /\./
-      }
+        punctuation: /\./,
+      },
     },
-    keyword: /\b(?:_(?=\s*:)|and|as|assert|async|await|break|case|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|match|nonlocal|not|or|pass|print|raise|return|try|while|with|yield)\b/,
-    builtin: /\b(?:__import__|abs|all|any|apply|ascii|basestring|bin|bool|buffer|bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|complex|delattr|dict|dir|divmod|enumerate|eval|execfile|file|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|intern|isinstance|issubclass|iter|len|list|locals|long|map|max|memoryview|min|next|object|oct|open|ord|pow|property|range|raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|vars|xrange|zip)\b/,
+    keyword:
+      /\b(?:_(?=\s*:)|and|as|assert|async|await|break|case|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|match|nonlocal|not|or|pass|print|raise|return|try|while|with|yield)\b/,
+    builtin:
+      /\b(?:__import__|abs|all|any|apply|ascii|basestring|bin|bool|buffer|bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|complex|delattr|dict|dir|divmod|enumerate|eval|execfile|file|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|intern|isinstance|issubclass|iter|len|list|locals|long|map|max|memoryview|min|next|object|oct|open|ord|pow|property|range|raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|vars|xrange|zip)\b/,
     boolean: /\b(?:False|None|True)\b/,
-    number: /\b0(?:b(?:_?[01])+|o(?:_?[0-7])+|x(?:_?[a-f0-9])+)\b|(?:\b\d+(?:_\d+)*(?:\.(?:\d+(?:_\d+)*)?)?|\B\.\d+(?:_\d+)*)(?:e[+-]?\d+(?:_\d+)*)?j?(?!\w)/i,
+    number:
+      /\b0(?:b(?:_?[01])+|o(?:_?[0-7])+|x(?:_?[a-f0-9])+)\b|(?:\b\d+(?:_\d+)*(?:\.(?:\d+(?:_\d+)*)?)?|\B\.\d+(?:_\d+)*)(?:e[+-]?\d+(?:_\d+)*)?j?(?!\w)/i,
     operator: /[-+%=]=?|!=|:=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
-    punctuation: /[{}[\];(),.:]/
+    punctuation: /[{}[\];(),.:]/,
   };
-  Prism2.languages.python["string-interpolation"].inside["interpolation"].inside.rest = Prism2.languages.python;
+  Prism2.languages.python["string-interpolation"].inside[
+    "interpolation"
+  ].inside.rest = Prism2.languages.python;
   Prism2.languages.py = Prism2.languages.python;
 }
 
@@ -16274,21 +17849,22 @@ function r(Prism2) {
     comment: /#.*/,
     string: {
       pattern: /(['"])(?:\\.|(?!\1)[^\\\r\n])*\1/,
-      greedy: true
+      greedy: true,
     },
     "percent-operator": {
       pattern: /%[^%\s]*%/,
-      alias: "operator"
+      alias: "operator",
     },
     boolean: /\b(?:FALSE|TRUE)\b/,
     ellipsis: /\.\.(?:\.|\d+)/,
     number: [
       /\b(?:Inf|NaN)\b/,
-      /(?:\b0x[\dA-Fa-f]+(?:\.\d*)?|\b\d+(?:\.\d*)?|\B\.\d+)(?:[EePp][+-]?\d+)?[iL]?/
+      /(?:\b0x[\dA-Fa-f]+(?:\.\d*)?|\b\d+(?:\.\d*)?|\B\.\d+)(?:[EePp][+-]?\d+)?[iL]?/,
     ],
-    keyword: /\b(?:NA|NA_character_|NA_complex_|NA_integer_|NA_real_|NULL|break|else|for|function|if|in|next|repeat|while)\b/,
+    keyword:
+      /\b(?:NA|NA_character_|NA_complex_|NA_integer_|NA_real_|NULL|break|else|for|function|if|in|next|repeat|while)\b/,
     operator: /->?>?|<(?:=|<?-)?|[>=!]=?|::?|&&?|\|\|?|[+*\/^$@~]/,
-    punctuation: /[(){}\[\],;]/
+    punctuation: /[(){}\[\],;]/,
   };
 }
 
@@ -16297,28 +17873,31 @@ ruby.displayName = "ruby";
 ruby.aliases = ["rb"];
 function ruby(Prism2) {
   Prism2.register(clike);
-  (function(Prism3) {
+  (function (Prism3) {
     Prism3.languages.ruby = Prism3.languages.extend("clike", {
       comment: {
         pattern: /#.*|^=begin\s[\s\S]*?^=end/m,
-        greedy: true
+        greedy: true,
       },
       "class-name": {
-        pattern: /(\b(?:class|module)\s+|\bcatch\s+\()[\w.\\]+|\b[A-Z_]\w*(?=\s*\.\s*new\b)/,
+        pattern:
+          /(\b(?:class|module)\s+|\bcatch\s+\()[\w.\\]+|\b[A-Z_]\w*(?=\s*\.\s*new\b)/,
         lookbehind: true,
         inside: {
-          punctuation: /[.\\]/
-        }
+          punctuation: /[.\\]/,
+        },
       },
-      keyword: /\b(?:BEGIN|END|alias|and|begin|break|case|class|def|define_method|defined|do|each|else|elsif|end|ensure|extend|for|if|in|include|module|new|next|nil|not|or|prepend|private|protected|public|raise|redo|require|rescue|retry|return|self|super|then|throw|undef|unless|until|when|while|yield)\b/,
-      operator: /\.{2,3}|&\.|===|<?=>|[!=]?~|(?:&&|\|\||<<|>>|\*\*|[+\-*/%<>!^&|=])=?|[?:]/,
-      punctuation: /[(){}[\].,;]/
+      keyword:
+        /\b(?:BEGIN|END|alias|and|begin|break|case|class|def|define_method|defined|do|each|else|elsif|end|ensure|extend|for|if|in|include|module|new|next|nil|not|or|prepend|private|protected|public|raise|redo|require|rescue|retry|return|self|super|then|throw|undef|unless|until|when|while|yield)\b/,
+      operator:
+        /\.{2,3}|&\.|===|<?=>|[!=]?~|(?:&&|\|\||<<|>>|\*\*|[+\-*/%<>!^&|=])=?|[?:]/,
+      punctuation: /[(){}[\].,;]/,
     });
     Prism3.languages.insertBefore("ruby", "operator", {
       "double-colon": {
         pattern: /::/,
-        alias: "punctuation"
-      }
+        alias: "punctuation",
+      },
     });
     var interpolation = {
       pattern: /((?:^|[^\\])(?:\\{2})*)#\{(?:[^{}]|\{[^{}]*\})*\}/,
@@ -16327,23 +17906,28 @@ function ruby(Prism2) {
         content: {
           pattern: /^(#\{)[\s\S]+(?=\}$)/,
           lookbehind: true,
-          inside: Prism3.languages.ruby
+          inside: Prism3.languages.ruby,
         },
         delimiter: {
           pattern: /^#\{|\}$/,
-          alias: "punctuation"
-        }
-      }
+          alias: "punctuation",
+        },
+      },
     };
     delete Prism3.languages.ruby.function;
-    var percentExpression = "(?:" + [
-      /([^a-zA-Z0-9\s{(\[<=])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
-      /\((?:[^()\\]|\\[\s\S]|\((?:[^()\\]|\\[\s\S])*\))*\)/.source,
-      /\{(?:[^{}\\]|\\[\s\S]|\{(?:[^{}\\]|\\[\s\S])*\})*\}/.source,
-      /\[(?:[^\[\]\\]|\\[\s\S]|\[(?:[^\[\]\\]|\\[\s\S])*\])*\]/.source,
-      /<(?:[^<>\\]|\\[\s\S]|<(?:[^<>\\]|\\[\s\S])*>)*>/.source
-    ].join("|") + ")";
-    var symbolName = /(?:"(?:\\.|[^"\\\r\n])*"|(?:\b[a-zA-Z_]\w*|[^\s\0-\x7F]+)[?!]?|\$.)/.source;
+    var percentExpression =
+      "(?:" +
+      [
+        /([^a-zA-Z0-9\s{(\[<=])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
+        /\((?:[^()\\]|\\[\s\S]|\((?:[^()\\]|\\[\s\S])*\))*\)/.source,
+        /\{(?:[^{}\\]|\\[\s\S]|\{(?:[^{}\\]|\\[\s\S])*\})*\}/.source,
+        /\[(?:[^\[\]\\]|\\[\s\S]|\[(?:[^\[\]\\]|\\[\s\S])*\])*\]/.source,
+        /<(?:[^<>\\]|\\[\s\S]|<(?:[^<>\\]|\\[\s\S])*>)*>/.source,
+      ].join("|") +
+      ")";
+    var symbolName =
+      /(?:"(?:\\.|[^"\\\r\n])*"|(?:\b[a-zA-Z_]\w*|[^\s\0-\x7F]+)[?!]?|\$.)/
+        .source;
     Prism3.languages.insertBefore("ruby", "keyword", {
       "regex-literal": [
         {
@@ -16353,33 +17937,34 @@ function ruby(Prism2) {
           greedy: true,
           inside: {
             interpolation,
-            regex: /[\s\S]+/
-          }
+            regex: /[\s\S]+/,
+          },
         },
         {
-          pattern: /(^|[^/])\/(?!\/)(?:\[[^\r\n\]]+\]|\\.|[^[/\\\r\n])+\/[egimnosux]{0,6}(?=\s*(?:$|[\r\n,.;})#]))/,
+          pattern:
+            /(^|[^/])\/(?!\/)(?:\[[^\r\n\]]+\]|\\.|[^[/\\\r\n])+\/[egimnosux]{0,6}(?=\s*(?:$|[\r\n,.;})#]))/,
           lookbehind: true,
           greedy: true,
           inside: {
             interpolation,
-            regex: /[\s\S]+/
-          }
-        }
+            regex: /[\s\S]+/,
+          },
+        },
       ],
       variable: /[@$]+[a-zA-Z_]\w*(?:[?!]|\b)/,
       symbol: [
         {
           pattern: RegExp(/(^|[^:]):/.source + symbolName),
           lookbehind: true,
-          greedy: true
+          greedy: true,
         },
         {
           pattern: RegExp(
             /([\r\n{(,][ \t]*)/.source + symbolName + /(?=:(?!:))/.source
           ),
           lookbehind: true,
-          greedy: true
-        }
+          greedy: true,
+        },
       ],
       "method-definition": {
         pattern: /(\bdef\s+)\w+(?:\s*\.\s*\w+)?/,
@@ -16388,9 +17973,9 @@ function ruby(Prism2) {
           function: /\b\w+$/,
           keyword: /^self\b/,
           "class-name": /^\w+/,
-          punctuation: /\./
-        }
-      }
+          punctuation: /\./,
+        },
+      },
     });
     Prism3.languages.insertBefore("ruby", "string", {
       "string-literal": [
@@ -16399,16 +17984,17 @@ function ruby(Prism2) {
           greedy: true,
           inside: {
             interpolation,
-            string: /[\s\S]+/
-          }
+            string: /[\s\S]+/,
+          },
         },
         {
-          pattern: /("|')(?:#\{[^}]+\}|#(?!\{)|\\(?:\r\n|[\s\S])|(?!\1)[^\\#\r\n])*\1/,
+          pattern:
+            /("|')(?:#\{[^}]+\}|#(?!\{)|\\(?:\r\n|[\s\S])|(?!\1)[^\\#\r\n])*\1/,
           greedy: true,
           inside: {
             interpolation,
-            string: /[\s\S]+/
-          }
+            string: /[\s\S]+/,
+          },
         },
         {
           pattern: /<<[-~]?([a-z_]\w*)[\r\n](?:.*[\r\n])*?[\t ]*\1/i,
@@ -16419,12 +18005,12 @@ function ruby(Prism2) {
               pattern: /^<<[-~]?[a-z_]\w*|\b[a-z_]\w*$/i,
               inside: {
                 symbol: /\b\w+/,
-                punctuation: /^<<[-~]?/
-              }
+                punctuation: /^<<[-~]?/,
+              },
             },
             interpolation,
-            string: /[\s\S]+/
-          }
+            string: /[\s\S]+/,
+          },
         },
         {
           pattern: /<<[-~]?'([a-z_]\w*)'[\r\n](?:.*[\r\n])*?[\t ]*\1/i,
@@ -16435,12 +18021,12 @@ function ruby(Prism2) {
               pattern: /^<<[-~]?'[a-z_]\w*'|\b[a-z_]\w*$/i,
               inside: {
                 symbol: /\b\w+/,
-                punctuation: /^<<[-~]?'|'$/
-              }
+                punctuation: /^<<[-~]?'|'$/,
+              },
             },
-            string: /[\s\S]+/
-          }
-        }
+            string: /[\s\S]+/,
+          },
+        },
       ],
       "command-literal": [
         {
@@ -16450,9 +18036,9 @@ function ruby(Prism2) {
             interpolation,
             command: {
               pattern: /[\s\S]+/,
-              alias: "string"
-            }
-          }
+              alias: "string",
+            },
+          },
         },
         {
           pattern: /`(?:#\{[^}]+\}|#(?!\{)|\\(?:\r\n|[\s\S])|[^\\`#\r\n])*`/,
@@ -16461,16 +18047,17 @@ function ruby(Prism2) {
             interpolation,
             command: {
               pattern: /[\s\S]+/,
-              alias: "string"
-            }
-          }
-        }
-      ]
+              alias: "string",
+            },
+          },
+        },
+      ],
     });
     delete Prism3.languages.ruby.string;
     Prism3.languages.insertBefore("ruby", "number", {
-      builtin: /\b(?:Array|Bignum|Binding|Class|Continuation|Dir|Exception|FalseClass|File|Fixnum|Float|Hash|IO|Integer|MatchData|Method|Module|NilClass|Numeric|Object|Proc|Range|Regexp|Stat|String|Struct|Symbol|TMS|Thread|ThreadGroup|Time|TrueClass)\b/,
-      constant: /\b[A-Z][A-Z0-9_]*(?:[?!]|\b)/
+      builtin:
+        /\b(?:Array|Bignum|Binding|Class|Continuation|Dir|Exception|FalseClass|File|Fixnum|Float|Hash|IO|Integer|MatchData|Method|Module|NilClass|Numeric|Object|Proc|Range|Regexp|Stat|String|Struct|Symbol|TMS|Thread|ThreadGroup|Time|TrueClass)\b/,
+      constant: /\b[A-Z][A-Z0-9_]*(?:[?!]|\b)/,
     });
     Prism3.languages.rb = Prism3.languages.ruby;
   })(Prism2);
@@ -16480,15 +18067,14 @@ function ruby(Prism2) {
 rust.displayName = "rust";
 rust.aliases = [];
 function rust(Prism2) {
-  ;
-  (function(Prism3) {
+  (function (Prism3) {
     var multilineComment = /\/\*(?:[^*/]|\*(?!\/)|\/(?!\*)|<self>)*\*\//.source;
     for (var i = 0; i < 2; i++) {
-      multilineComment = multilineComment.replace(/<self>/g, function() {
+      multilineComment = multilineComment.replace(/<self>/g, function () {
         return multilineComment;
       });
     }
-    multilineComment = multilineComment.replace(/<self>/g, function() {
+    multilineComment = multilineComment.replace(/<self>/g, function () {
       return /[^\s\S]/.source;
     });
     Prism3.languages.rust = {
@@ -16496,29 +18082,30 @@ function rust(Prism2) {
         {
           pattern: RegExp(/(^|[^\\])/.source + multilineComment),
           lookbehind: true,
-          greedy: true
+          greedy: true,
         },
         {
           pattern: /(^|[^\\:])\/\/.*/,
           lookbehind: true,
-          greedy: true
-        }
+          greedy: true,
+        },
       ],
       string: {
         pattern: /b?"(?:\\[\s\S]|[^\\"])*"|b?r(#*)"(?:[^"]|"(?!\1))*"\1/,
-        greedy: true
+        greedy: true,
       },
       char: {
-        pattern: /b?'(?:\\(?:x[0-7][\da-fA-F]|u\{(?:[\da-fA-F]_*){1,6}\}|.)|[^\\\r\n\t'])'/,
-        greedy: true
+        pattern:
+          /b?'(?:\\(?:x[0-7][\da-fA-F]|u\{(?:[\da-fA-F]_*){1,6}\}|.)|[^\\\r\n\t'])'/,
+        greedy: true,
       },
       attribute: {
         pattern: /#!?\[(?:[^\[\]"]|"(?:\\[\s\S]|[^\\"])*")*\]/,
         greedy: true,
         alias: "attr-name",
         inside: {
-          string: null
-        }
+          string: null,
+        },
       },
       "closure-params": {
         pattern: /([=(,:]\s*|\bmove\s*)\|[^|]*\||\|[^|]*\|(?=\s*(?:\{|->))/,
@@ -16527,70 +18114,73 @@ function rust(Prism2) {
         inside: {
           "closure-punctuation": {
             pattern: /^\||\|$/,
-            alias: "punctuation"
+            alias: "punctuation",
           },
-          rest: null
-        }
+          rest: null,
+        },
       },
       "lifetime-annotation": {
         pattern: /'\w+/,
-        alias: "symbol"
+        alias: "symbol",
       },
       "fragment-specifier": {
         pattern: /(\$\w+:)[a-z]+/,
         lookbehind: true,
-        alias: "punctuation"
+        alias: "punctuation",
       },
       variable: /\$\w+/,
       "function-definition": {
         pattern: /(\bfn\s+)\w+/,
         lookbehind: true,
-        alias: "function"
+        alias: "function",
       },
       "type-definition": {
         pattern: /(\b(?:enum|struct|trait|type|union)\s+)\w+/,
         lookbehind: true,
-        alias: "class-name"
+        alias: "class-name",
       },
       "module-declaration": [
         {
           pattern: /(\b(?:crate|mod)\s+)[a-z][a-z_\d]*/,
           lookbehind: true,
-          alias: "namespace"
+          alias: "namespace",
         },
         {
-          pattern: /(\b(?:crate|self|super)\s*)::\s*[a-z][a-z_\d]*\b(?:\s*::(?:\s*[a-z][a-z_\d]*\s*::)*)?/,
+          pattern:
+            /(\b(?:crate|self|super)\s*)::\s*[a-z][a-z_\d]*\b(?:\s*::(?:\s*[a-z][a-z_\d]*\s*::)*)?/,
           lookbehind: true,
           alias: "namespace",
           inside: {
-            punctuation: /::/
-          }
-        }
+            punctuation: /::/,
+          },
+        },
       ],
       keyword: [
         /\b(?:Self|abstract|as|async|await|become|box|break|const|continue|crate|do|dyn|else|enum|extern|final|fn|for|if|impl|in|let|loop|macro|match|mod|move|mut|override|priv|pub|ref|return|self|static|struct|super|trait|try|type|typeof|union|unsafe|unsized|use|virtual|where|while|yield)\b/,
-        /\b(?:bool|char|f(?:32|64)|[ui](?:8|16|32|64|128|size)|str)\b/
+        /\b(?:bool|char|f(?:32|64)|[ui](?:8|16|32|64|128|size)|str)\b/,
       ],
       function: /\b[a-z_]\w*(?=\s*(?:::\s*<|\())/,
       macro: {
         pattern: /\b\w+!/,
-        alias: "property"
+        alias: "property",
       },
       constant: /\b[A-Z_][A-Z_\d]+\b/,
       "class-name": /\b[A-Z]\w*\b/,
       namespace: {
         pattern: /(?:\b[a-z][a-z_\d]*\s*::\s*)*\b[a-z][a-z_\d]*\s*::(?!\s*<)/,
         inside: {
-          punctuation: /::/
-        }
+          punctuation: /::/,
+        },
       },
-      number: /\b(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0o[0-7](?:_?[0-7])*|0b[01](?:_?[01])*|(?:(?:\d(?:_?\d)*)?\.)?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)(?:_?(?:f32|f64|[iu](?:8|16|32|64|size)?))?\b/,
+      number:
+        /\b(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0o[0-7](?:_?[0-7])*|0b[01](?:_?[01])*|(?:(?:\d(?:_?\d)*)?\.)?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)(?:_?(?:f32|f64|[iu](?:8|16|32|64|size)?))?\b/,
       boolean: /\b(?:false|true)\b/,
       punctuation: /->|\.\.=|\.{1,3}|::|[{}[\];(),:]/,
-      operator: /[-+*\/%!^]=?|=[=>]?|&[&=]?|\|[|=]?|<<?=?|>>?=?|[@?]/
+      operator: /[-+*\/%!^]=?|=[=>]?|&[&=]?|\|[|=]?|<<?=?|>>?=?|[@?]/,
     };
     Prism3.languages.rust["closure-params"].inside.rest = Prism3.languages.rust;
-    Prism3.languages.rust["attribute"].inside["string"] = Prism3.languages.rust["string"];
+    Prism3.languages.rust["attribute"].inside["string"] =
+      Prism3.languages.rust["string"];
   })(Prism2);
 }
 
@@ -16599,22 +18189,22 @@ sass.displayName = "sass";
 sass.aliases = [];
 function sass(Prism2) {
   Prism2.register(css);
-  (function(Prism3) {
+  (function (Prism3) {
     Prism3.languages.sass = Prism3.languages.extend("css", {
       comment: {
         pattern: /^([ \t]*)\/[\/*].*(?:(?:\r?\n|\r)\1[ \t].+)*/m,
         lookbehind: true,
-        greedy: true
-      }
+        greedy: true,
+      },
     });
     Prism3.languages.insertBefore("sass", "atrule", {
       "atrule-line": {
         pattern: /^(?:[ \t]*)[@+=].+/m,
         greedy: true,
         inside: {
-          atrule: /(?:@[\w-]+|[+=])/
-        }
-      }
+          atrule: /(?:@[\w-]+|[+=])/,
+        },
+      },
     });
     delete Prism3.languages.sass.atrule;
     var variable = /\$[-\w]+|#\{\$[-\w]+\}/;
@@ -16622,8 +18212,8 @@ function sass(Prism2) {
       /[+*\/%]|[=!]=|<=?|>=?|\b(?:and|not|or)\b/,
       {
         pattern: /(\s)-(?=\s)/,
-        lookbehind: true
-      }
+        lookbehind: true,
+      },
     ];
     Prism3.languages.insertBefore("sass", "property", {
       "variable-line": {
@@ -16632,8 +18222,8 @@ function sass(Prism2) {
         inside: {
           punctuation: /:/,
           variable,
-          operator
-        }
+          operator,
+        },
       },
       "property-line": {
         pattern: /^[ \t]*(?:[^:\s]+ *:.*|:[^:\s].*)/m,
@@ -16643,24 +18233,25 @@ function sass(Prism2) {
             /[^:\s]+(?=\s*:)/,
             {
               pattern: /(:)[^:\s]+/,
-              lookbehind: true
-            }
+              lookbehind: true,
+            },
           ],
           punctuation: /:/,
           variable,
           operator,
-          important: Prism3.languages.sass.important
-        }
-      }
+          important: Prism3.languages.sass.important,
+        },
+      },
     });
     delete Prism3.languages.sass.property;
     delete Prism3.languages.sass.important;
     Prism3.languages.insertBefore("sass", "punctuation", {
       selector: {
-        pattern: /^([ \t]*)\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*(?:,(?:\r?\n|\r)\1[ \t]+\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*)*/m,
+        pattern:
+          /^([ \t]*)\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*(?:,(?:\r?\n|\r)\1[ \t]+\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*)*/m,
         lookbehind: true,
-        greedy: true
-      }
+        greedy: true,
+      },
     });
   })(Prism2);
 }
@@ -16673,67 +18264,68 @@ function scss(Prism2) {
   Prism2.languages.scss = Prism2.languages.extend("css", {
     comment: {
       pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
-      lookbehind: true
+      lookbehind: true,
     },
     atrule: {
       pattern: /@[\w-](?:\([^()]+\)|[^()\s]|\s+(?!\s))*?(?=\s+[{;])/,
       inside: {
-        rule: /@[\w-]+/
-      }
+        rule: /@[\w-]+/,
+      },
     },
     url: /(?:[-a-z]+-)?url(?=\()/i,
     selector: {
-      pattern: /(?=\S)[^@;{}()]?(?:[^@;{}()\s]|\s+(?!\s)|#\{\$[-\w]+\})+(?=\s*\{(?:\}|\s|[^}][^:{}]*[:{][^}]))/,
+      pattern:
+        /(?=\S)[^@;{}()]?(?:[^@;{}()\s]|\s+(?!\s)|#\{\$[-\w]+\})+(?=\s*\{(?:\}|\s|[^}][^:{}]*[:{][^}]))/,
       inside: {
         parent: {
           pattern: /&/,
-          alias: "important"
+          alias: "important",
         },
         placeholder: /%[-\w]+/,
-        variable: /\$[-\w]+|#\{\$[-\w]+\}/
-      }
+        variable: /\$[-\w]+|#\{\$[-\w]+\}/,
+      },
     },
     property: {
       pattern: /(?:[-\w]|\$[-\w]|#\{\$[-\w]+\})+(?=\s*:)/,
       inside: {
-        variable: /\$[-\w]+|#\{\$[-\w]+\}/
-      }
-    }
+        variable: /\$[-\w]+|#\{\$[-\w]+\}/,
+      },
+    },
   });
   Prism2.languages.insertBefore("scss", "atrule", {
     keyword: [
       /@(?:content|debug|each|else(?: if)?|extend|for|forward|function|if|import|include|mixin|return|use|warn|while)\b/i,
       {
         pattern: /( )(?:from|through)(?= )/,
-        lookbehind: true
-      }
-    ]
+        lookbehind: true,
+      },
+    ],
   });
   Prism2.languages.insertBefore("scss", "important", {
-    variable: /\$[-\w]+|#\{\$[-\w]+\}/
+    variable: /\$[-\w]+|#\{\$[-\w]+\}/,
   });
   Prism2.languages.insertBefore("scss", "function", {
     "module-modifier": {
       pattern: /\b(?:as|hide|show|with)\b/i,
-      alias: "keyword"
+      alias: "keyword",
     },
     placeholder: {
       pattern: /%[-\w]+/,
-      alias: "selector"
+      alias: "selector",
     },
     statement: {
       pattern: /\B!(?:default|optional)\b/i,
-      alias: "keyword"
+      alias: "keyword",
     },
     boolean: /\b(?:false|true)\b/,
     null: {
       pattern: /\bnull\b/,
-      alias: "keyword"
+      alias: "keyword",
     },
     operator: {
       pattern: /(\s)(?:[-+*\/%]|[=!]=|<=?|>=?|and|not|or)(?=\s)/,
-      lookbehind: true
-    }
+      lookbehind: true,
+    },
   });
   Prism2.languages.scss["atrule"].inside.rest = Prism2.languages.scss;
 }
@@ -16745,34 +18337,37 @@ function sql(Prism2) {
   Prism2.languages.sql = {
     comment: {
       pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:--|\/\/|#).*)/,
-      lookbehind: true
+      lookbehind: true,
     },
     variable: [
       {
         pattern: /@(["'`])(?:\\[\s\S]|(?!\1)[^\\])+\1/,
-        greedy: true
+        greedy: true,
       },
-      /@[\w.$]+/
+      /@[\w.$]+/,
     ],
     string: {
       pattern: /(^|[^@\\])("|')(?:\\[\s\S]|(?!\2)[^\\]|\2\2)*\2/,
       greedy: true,
-      lookbehind: true
+      lookbehind: true,
     },
     identifier: {
       pattern: /(^|[^@\\])`(?:\\[\s\S]|[^`\\]|``)*`/,
       greedy: true,
       lookbehind: true,
       inside: {
-        punctuation: /^`|`$/
-      }
+        punctuation: /^`|`$/,
+      },
     },
-    function: /\b(?:AVG|COUNT|FIRST|FORMAT|LAST|LCASE|LEN|MAX|MID|MIN|MOD|NOW|ROUND|SUM|UCASE)(?=\s*\()/i,
-    keyword: /\b(?:ACTION|ADD|AFTER|ALGORITHM|ALL|ALTER|ANALYZE|ANY|APPLY|AS|ASC|AUTHORIZATION|AUTO_INCREMENT|BACKUP|BDB|BEGIN|BERKELEYDB|BIGINT|BINARY|BIT|BLOB|BOOL|BOOLEAN|BREAK|BROWSE|BTREE|BULK|BY|CALL|CASCADED?|CASE|CHAIN|CHAR(?:ACTER|SET)?|CHECK(?:POINT)?|CLOSE|CLUSTERED|COALESCE|COLLATE|COLUMNS?|COMMENT|COMMIT(?:TED)?|COMPUTE|CONNECT|CONSISTENT|CONSTRAINT|CONTAINS(?:TABLE)?|CONTINUE|CONVERT|CREATE|CROSS|CURRENT(?:_DATE|_TIME|_TIMESTAMP|_USER)?|CURSOR|CYCLE|DATA(?:BASES?)?|DATE(?:TIME)?|DAY|DBCC|DEALLOCATE|DEC|DECIMAL|DECLARE|DEFAULT|DEFINER|DELAYED|DELETE|DELIMITERS?|DENY|DESC|DESCRIBE|DETERMINISTIC|DISABLE|DISCARD|DISK|DISTINCT|DISTINCTROW|DISTRIBUTED|DO|DOUBLE|DROP|DUMMY|DUMP(?:FILE)?|DUPLICATE|ELSE(?:IF)?|ENABLE|ENCLOSED|END|ENGINE|ENUM|ERRLVL|ERRORS|ESCAPED?|EXCEPT|EXEC(?:UTE)?|EXISTS|EXIT|EXPLAIN|EXTENDED|FETCH|FIELDS|FILE|FILLFACTOR|FIRST|FIXED|FLOAT|FOLLOWING|FOR(?: EACH ROW)?|FORCE|FOREIGN|FREETEXT(?:TABLE)?|FROM|FULL|FUNCTION|GEOMETRY(?:COLLECTION)?|GLOBAL|GOTO|GRANT|GROUP|HANDLER|HASH|HAVING|HOLDLOCK|HOUR|IDENTITY(?:COL|_INSERT)?|IF|IGNORE|IMPORT|INDEX|INFILE|INNER|INNODB|INOUT|INSERT|INT|INTEGER|INTERSECT|INTERVAL|INTO|INVOKER|ISOLATION|ITERATE|JOIN|KEYS?|KILL|LANGUAGE|LAST|LEAVE|LEFT|LEVEL|LIMIT|LINENO|LINES|LINESTRING|LOAD|LOCAL|LOCK|LONG(?:BLOB|TEXT)|LOOP|MATCH(?:ED)?|MEDIUM(?:BLOB|INT|TEXT)|MERGE|MIDDLEINT|MINUTE|MODE|MODIFIES|MODIFY|MONTH|MULTI(?:LINESTRING|POINT|POLYGON)|NATIONAL|NATURAL|NCHAR|NEXT|NO|NONCLUSTERED|NULLIF|NUMERIC|OFF?|OFFSETS?|ON|OPEN(?:DATASOURCE|QUERY|ROWSET)?|OPTIMIZE|OPTION(?:ALLY)?|ORDER|OUT(?:ER|FILE)?|OVER|PARTIAL|PARTITION|PERCENT|PIVOT|PLAN|POINT|POLYGON|PRECEDING|PRECISION|PREPARE|PREV|PRIMARY|PRINT|PRIVILEGES|PROC(?:EDURE)?|PUBLIC|PURGE|QUICK|RAISERROR|READS?|REAL|RECONFIGURE|REFERENCES|RELEASE|RENAME|REPEAT(?:ABLE)?|REPLACE|REPLICATION|REQUIRE|RESIGNAL|RESTORE|RESTRICT|RETURN(?:ING|S)?|REVOKE|RIGHT|ROLLBACK|ROUTINE|ROW(?:COUNT|GUIDCOL|S)?|RTREE|RULE|SAVE(?:POINT)?|SCHEMA|SECOND|SELECT|SERIAL(?:IZABLE)?|SESSION(?:_USER)?|SET(?:USER)?|SHARE|SHOW|SHUTDOWN|SIMPLE|SMALLINT|SNAPSHOT|SOME|SONAME|SQL|START(?:ING)?|STATISTICS|STATUS|STRIPED|SYSTEM_USER|TABLES?|TABLESPACE|TEMP(?:ORARY|TABLE)?|TERMINATED|TEXT(?:SIZE)?|THEN|TIME(?:STAMP)?|TINY(?:BLOB|INT|TEXT)|TOP?|TRAN(?:SACTIONS?)?|TRIGGER|TRUNCATE|TSEQUAL|TYPES?|UNBOUNDED|UNCOMMITTED|UNDEFINED|UNION|UNIQUE|UNLOCK|UNPIVOT|UNSIGNED|UPDATE(?:TEXT)?|USAGE|USE|USER|USING|VALUES?|VAR(?:BINARY|CHAR|CHARACTER|YING)|VIEW|WAITFOR|WARNINGS|WHEN|WHERE|WHILE|WITH(?: ROLLUP|IN)?|WORK|WRITE(?:TEXT)?|YEAR)\b/i,
+    function:
+      /\b(?:AVG|COUNT|FIRST|FORMAT|LAST|LCASE|LEN|MAX|MID|MIN|MOD|NOW|ROUND|SUM|UCASE)(?=\s*\()/i,
+    keyword:
+      /\b(?:ACTION|ADD|AFTER|ALGORITHM|ALL|ALTER|ANALYZE|ANY|APPLY|AS|ASC|AUTHORIZATION|AUTO_INCREMENT|BACKUP|BDB|BEGIN|BERKELEYDB|BIGINT|BINARY|BIT|BLOB|BOOL|BOOLEAN|BREAK|BROWSE|BTREE|BULK|BY|CALL|CASCADED?|CASE|CHAIN|CHAR(?:ACTER|SET)?|CHECK(?:POINT)?|CLOSE|CLUSTERED|COALESCE|COLLATE|COLUMNS?|COMMENT|COMMIT(?:TED)?|COMPUTE|CONNECT|CONSISTENT|CONSTRAINT|CONTAINS(?:TABLE)?|CONTINUE|CONVERT|CREATE|CROSS|CURRENT(?:_DATE|_TIME|_TIMESTAMP|_USER)?|CURSOR|CYCLE|DATA(?:BASES?)?|DATE(?:TIME)?|DAY|DBCC|DEALLOCATE|DEC|DECIMAL|DECLARE|DEFAULT|DEFINER|DELAYED|DELETE|DELIMITERS?|DENY|DESC|DESCRIBE|DETERMINISTIC|DISABLE|DISCARD|DISK|DISTINCT|DISTINCTROW|DISTRIBUTED|DO|DOUBLE|DROP|DUMMY|DUMP(?:FILE)?|DUPLICATE|ELSE(?:IF)?|ENABLE|ENCLOSED|END|ENGINE|ENUM|ERRLVL|ERRORS|ESCAPED?|EXCEPT|EXEC(?:UTE)?|EXISTS|EXIT|EXPLAIN|EXTENDED|FETCH|FIELDS|FILE|FILLFACTOR|FIRST|FIXED|FLOAT|FOLLOWING|FOR(?: EACH ROW)?|FORCE|FOREIGN|FREETEXT(?:TABLE)?|FROM|FULL|FUNCTION|GEOMETRY(?:COLLECTION)?|GLOBAL|GOTO|GRANT|GROUP|HANDLER|HASH|HAVING|HOLDLOCK|HOUR|IDENTITY(?:COL|_INSERT)?|IF|IGNORE|IMPORT|INDEX|INFILE|INNER|INNODB|INOUT|INSERT|INT|INTEGER|INTERSECT|INTERVAL|INTO|INVOKER|ISOLATION|ITERATE|JOIN|KEYS?|KILL|LANGUAGE|LAST|LEAVE|LEFT|LEVEL|LIMIT|LINENO|LINES|LINESTRING|LOAD|LOCAL|LOCK|LONG(?:BLOB|TEXT)|LOOP|MATCH(?:ED)?|MEDIUM(?:BLOB|INT|TEXT)|MERGE|MIDDLEINT|MINUTE|MODE|MODIFIES|MODIFY|MONTH|MULTI(?:LINESTRING|POINT|POLYGON)|NATIONAL|NATURAL|NCHAR|NEXT|NO|NONCLUSTERED|NULLIF|NUMERIC|OFF?|OFFSETS?|ON|OPEN(?:DATASOURCE|QUERY|ROWSET)?|OPTIMIZE|OPTION(?:ALLY)?|ORDER|OUT(?:ER|FILE)?|OVER|PARTIAL|PARTITION|PERCENT|PIVOT|PLAN|POINT|POLYGON|PRECEDING|PRECISION|PREPARE|PREV|PRIMARY|PRINT|PRIVILEGES|PROC(?:EDURE)?|PUBLIC|PURGE|QUICK|RAISERROR|READS?|REAL|RECONFIGURE|REFERENCES|RELEASE|RENAME|REPEAT(?:ABLE)?|REPLACE|REPLICATION|REQUIRE|RESIGNAL|RESTORE|RESTRICT|RETURN(?:ING|S)?|REVOKE|RIGHT|ROLLBACK|ROUTINE|ROW(?:COUNT|GUIDCOL|S)?|RTREE|RULE|SAVE(?:POINT)?|SCHEMA|SECOND|SELECT|SERIAL(?:IZABLE)?|SESSION(?:_USER)?|SET(?:USER)?|SHARE|SHOW|SHUTDOWN|SIMPLE|SMALLINT|SNAPSHOT|SOME|SONAME|SQL|START(?:ING)?|STATISTICS|STATUS|STRIPED|SYSTEM_USER|TABLES?|TABLESPACE|TEMP(?:ORARY|TABLE)?|TERMINATED|TEXT(?:SIZE)?|THEN|TIME(?:STAMP)?|TINY(?:BLOB|INT|TEXT)|TOP?|TRAN(?:SACTIONS?)?|TRIGGER|TRUNCATE|TSEQUAL|TYPES?|UNBOUNDED|UNCOMMITTED|UNDEFINED|UNION|UNIQUE|UNLOCK|UNPIVOT|UNSIGNED|UPDATE(?:TEXT)?|USAGE|USE|USER|USING|VALUES?|VAR(?:BINARY|CHAR|CHARACTER|YING)|VIEW|WAITFOR|WARNINGS|WHEN|WHERE|WHILE|WITH(?: ROLLUP|IN)?|WORK|WRITE(?:TEXT)?|YEAR)\b/i,
     boolean: /\b(?:FALSE|NULL|TRUE)\b/i,
     number: /\b0x[\da-f]+\b|\b\d+(?:\.\d*)?|\B\.\d+\b/i,
-    operator: /[-+*\/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?|\b(?:AND|BETWEEN|DIV|ILIKE|IN|IS|LIKE|NOT|OR|REGEXP|RLIKE|SOUNDS LIKE|XOR)\b/i,
-    punctuation: /[;[\]()`,.]/
+    operator:
+      /[-+*\/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?|\b(?:AND|BETWEEN|DIV|ILIKE|IN|IS|LIKE|NOT|OR|REGEXP|RLIKE|SOUNDS LIKE|XOR)\b/i,
+    punctuation: /[;[\]()`,.]/,
   };
 }
 
@@ -16782,14 +18377,23 @@ swift.aliases = [];
 function swift(Prism2) {
   Prism2.languages.swift = {
     comment: {
-      pattern: /(^|[^\\:])(?:\/\/.*|\/\*(?:[^/*]|\/(?!\*)|\*(?!\/)|\/\*(?:[^*]|\*(?!\/))*\*\/)*\*\/)/,
+      pattern:
+        /(^|[^\\:])(?:\/\/.*|\/\*(?:[^/*]|\/(?!\*)|\*(?!\/)|\/\*(?:[^*]|\*(?!\/))*\*\/)*\*\/)/,
       lookbehind: true,
-      greedy: true
+      greedy: true,
     },
     "string-literal": [
       {
         pattern: RegExp(
-          /(^|[^"#])/.source + "(?:" + /"(?:\\(?:\((?:[^()]|\([^()]*\))*\)|\r\n|[^(])|[^\\\r\n"])*"/.source + "|" + /"""(?:\\(?:\((?:[^()]|\([^()]*\))*\)|[^(])|[^\\"]|"(?!""))*"""/.source + ")" + /(?!["#])/.source
+          /(^|[^"#])/.source +
+            "(?:" +
+            /"(?:\\(?:\((?:[^()]|\([^()]*\))*\)|\r\n|[^(])|[^\\\r\n"])*"/
+              .source +
+            "|" +
+            /"""(?:\\(?:\((?:[^()]|\([^()]*\))*\)|[^(])|[^\\"]|"(?!""))*"""/
+              .source +
+            ")" +
+            /(?!["#])/.source
         ),
         lookbehind: true,
         greedy: true,
@@ -16797,19 +18401,25 @@ function swift(Prism2) {
           interpolation: {
             pattern: /(\\\()(?:[^()]|\([^()]*\))*(?=\))/,
             lookbehind: true,
-            inside: null
+            inside: null,
           },
           "interpolation-punctuation": {
             pattern: /^\)|\\\($/,
-            alias: "punctuation"
+            alias: "punctuation",
           },
           punctuation: /\\(?=[\r\n])/,
-          string: /[\s\S]+/
-        }
+          string: /[\s\S]+/,
+        },
       },
       {
         pattern: RegExp(
-          /(^|[^"#])(#+)/.source + "(?:" + /"(?:\\(?:#+\((?:[^()]|\([^()]*\))*\)|\r\n|[^#])|[^\\\r\n])*?"/.source + "|" + /"""(?:\\(?:#+\((?:[^()]|\([^()]*\))*\)|[^#])|[^\\])*?"""/.source + ")\\2"
+          /(^|[^"#])(#+)/.source +
+            "(?:" +
+            /"(?:\\(?:#+\((?:[^()]|\([^()]*\))*\)|\r\n|[^#])|[^\\\r\n])*?"/
+              .source +
+            "|" +
+            /"""(?:\\(?:#+\((?:[^()]|\([^()]*\))*\)|[^#])|[^\\])*?"""/.source +
+            ")\\2"
         ),
         lookbehind: true,
         greedy: true,
@@ -16817,19 +18427,28 @@ function swift(Prism2) {
           interpolation: {
             pattern: /(\\#+\()(?:[^()]|\([^()]*\))*(?=\))/,
             lookbehind: true,
-            inside: null
+            inside: null,
           },
           "interpolation-punctuation": {
             pattern: /^\)|\\#+\($/,
-            alias: "punctuation"
+            alias: "punctuation",
           },
-          string: /[\s\S]+/
-        }
-      }
+          string: /[\s\S]+/,
+        },
+      },
     ],
     directive: {
       pattern: RegExp(
-        /#/.source + "(?:" + (/(?:elseif|if)\b/.source + "(?:[ 	]*" + /(?:![ \t]*)?(?:\b\w+\b(?:[ \t]*\((?:[^()]|\([^()]*\))*\))?|\((?:[^()]|\([^()]*\))*\))(?:[ \t]*(?:&&|\|\|))?/.source + ")+") + "|" + /(?:else|endif)\b/.source + ")"
+        /#/.source +
+          "(?:" +
+          (/(?:elseif|if)\b/.source +
+            "(?:[ 	]*" +
+            /(?:![ \t]*)?(?:\b\w+\b(?:[ \t]*\((?:[^()]|\([^()]*\))*\))?|\((?:[^()]|\([^()]*\))*\))(?:[ \t]*(?:&&|\|\|))?/
+              .source +
+            ")+") +
+          "|" +
+          /(?:else|endif)\b/.source +
+          ")"
       ),
       alias: "property",
       inside: {
@@ -16837,50 +18456,54 @@ function swift(Prism2) {
         boolean: /\b(?:false|true)\b/,
         number: /\b\d+(?:\.\d+)*\b/,
         operator: /!|&&|\|\||[<>]=?/,
-        punctuation: /[(),]/
-      }
+        punctuation: /[(),]/,
+      },
     },
     literal: {
-      pattern: /#(?:colorLiteral|column|dsohandle|file(?:ID|Literal|Path)?|function|imageLiteral|line)\b/,
-      alias: "constant"
+      pattern:
+        /#(?:colorLiteral|column|dsohandle|file(?:ID|Literal|Path)?|function|imageLiteral|line)\b/,
+      alias: "constant",
     },
     "other-directive": {
       pattern: /#\w+\b/,
-      alias: "property"
+      alias: "property",
     },
     attribute: {
       pattern: /@\w+/,
-      alias: "atrule"
+      alias: "atrule",
     },
     "function-definition": {
       pattern: /(\bfunc\s+)\w+/,
       lookbehind: true,
-      alias: "function"
+      alias: "function",
     },
     label: {
-      pattern: /\b(break|continue)\s+\w+|\b[a-zA-Z_]\w*(?=\s*:\s*(?:for|repeat|while)\b)/,
+      pattern:
+        /\b(break|continue)\s+\w+|\b[a-zA-Z_]\w*(?=\s*:\s*(?:for|repeat|while)\b)/,
       lookbehind: true,
-      alias: "important"
+      alias: "important",
     },
-    keyword: /\b(?:Any|Protocol|Self|Type|actor|as|assignment|associatedtype|associativity|async|await|break|case|catch|class|continue|convenience|default|defer|deinit|didSet|do|dynamic|else|enum|extension|fallthrough|fileprivate|final|for|func|get|guard|higherThan|if|import|in|indirect|infix|init|inout|internal|is|isolated|lazy|left|let|lowerThan|mutating|none|nonisolated|nonmutating|open|operator|optional|override|postfix|precedencegroup|prefix|private|protocol|public|repeat|required|rethrows|return|right|safe|self|set|some|static|struct|subscript|super|switch|throw|throws|try|typealias|unowned|unsafe|var|weak|where|while|willSet)\b/,
+    keyword:
+      /\b(?:Any|Protocol|Self|Type|actor|as|assignment|associatedtype|associativity|async|await|break|case|catch|class|continue|convenience|default|defer|deinit|didSet|do|dynamic|else|enum|extension|fallthrough|fileprivate|final|for|func|get|guard|higherThan|if|import|in|indirect|infix|init|inout|internal|is|isolated|lazy|left|let|lowerThan|mutating|none|nonisolated|nonmutating|open|operator|optional|override|postfix|precedencegroup|prefix|private|protocol|public|repeat|required|rethrows|return|right|safe|self|set|some|static|struct|subscript|super|switch|throw|throws|try|typealias|unowned|unsafe|var|weak|where|while|willSet)\b/,
     boolean: /\b(?:false|true)\b/,
     nil: {
       pattern: /\bnil\b/,
-      alias: "constant"
+      alias: "constant",
     },
     "short-argument": /\$\d+\b/,
     omit: {
       pattern: /\b_\b/,
-      alias: "keyword"
+      alias: "keyword",
     },
-    number: /\b(?:[\d_]+(?:\.[\de_]+)?|0x[a-f0-9_]+(?:\.[a-f0-9p_]+)?|0b[01_]+|0o[0-7_]+)\b/i,
+    number:
+      /\b(?:[\d_]+(?:\.[\de_]+)?|0x[a-f0-9_]+(?:\.[a-f0-9p_]+)?|0b[01_]+|0o[0-7_]+)\b/i,
     "class-name": /\b[A-Z](?:[A-Z_\d]*[a-z]\w*)?\b/,
     function: /\b[a-z_]\w*(?=\s*\()/i,
     constant: /\b(?:[A-Z_]{2,}|k[A-Z][A-Za-z_]+)\b/,
     operator: /[-+*/%=!<>&|^~?]+|\.[.\-+*/%=!<>&|^~?]+/,
-    punctuation: /[{}[\]();,.:\\]/
+    punctuation: /[{}[\]();,.:\\]/,
   };
-  Prism2.languages.swift["string-literal"].forEach(function(rule) {
+  Prism2.languages.swift["string-literal"].forEach(function (rule) {
     rule.inside["interpolation"].inside = Prism2.languages.swift;
   });
 }
@@ -16890,15 +18513,17 @@ typescript.displayName = "typescript";
 typescript.aliases = ["ts"];
 function typescript(Prism2) {
   Prism2.register(javascript);
-  (function(Prism3) {
+  (function (Prism3) {
     Prism3.languages.typescript = Prism3.languages.extend("javascript", {
       "class-name": {
-        pattern: /(\b(?:class|extends|implements|instanceof|interface|new|type)\s+)(?!keyof\b)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?:\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>)?/,
+        pattern:
+          /(\b(?:class|extends|implements|instanceof|interface|new|type)\s+)(?!keyof\b)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?:\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>)?/,
         lookbehind: true,
         greedy: true,
-        inside: null
+        inside: null,
       },
-      builtin: /\b(?:Array|Function|Promise|any|boolean|console|never|number|string|symbol|unknown)\b/
+      builtin:
+        /\b(?:Array|Function|Promise|any|boolean|console|never|number|string|symbol|unknown)\b/,
     });
     Prism3.languages.typescript.keyword.push(
       /\b(?:abstract|declare|is|keyof|readonly|require)\b/,
@@ -16916,23 +18541,24 @@ function typescript(Prism2) {
         inside: {
           at: {
             pattern: /^@/,
-            alias: "operator"
+            alias: "operator",
           },
-          function: /^[\s\S]+/
-        }
+          function: /^[\s\S]+/,
+        },
       },
       "generic-function": {
-        pattern: /#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>(?=\s*\()/,
+        pattern:
+          /#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>(?=\s*\()/,
         greedy: true,
         inside: {
           function: /^#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*/,
           generic: {
             pattern: /<[\s\S]+/,
             alias: "class-name",
-            inside: typeInside
-          }
-        }
-      }
+            inside: typeInside,
+          },
+        },
+      },
     });
     Prism3.languages.ts = Prism3.languages.typescript;
   })(Prism2);
@@ -16946,18 +18572,20 @@ function basic(Prism2) {
     comment: {
       pattern: /(?:!|REM\b).+/i,
       inside: {
-        keyword: /^REM/i
-      }
+        keyword: /^REM/i,
+      },
     },
     string: {
       pattern: /"(?:""|[!#$%&'()*,\/:;<=>?^\w +\-.])*"/,
-      greedy: true
+      greedy: true,
     },
     number: /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:E[+-]?\d+)?/i,
-    keyword: /\b(?:AS|BEEP|BLOAD|BSAVE|CALL(?: ABSOLUTE)?|CASE|CHAIN|CHDIR|CLEAR|CLOSE|CLS|COM|COMMON|CONST|DATA|DECLARE|DEF(?: FN| SEG|DBL|INT|LNG|SNG|STR)|DIM|DO|DOUBLE|ELSE|ELSEIF|END|ENVIRON|ERASE|ERROR|EXIT|FIELD|FILES|FOR|FUNCTION|GET|GOSUB|GOTO|IF|INPUT|INTEGER|IOCTL|KEY|KILL|LINE INPUT|LOCATE|LOCK|LONG|LOOP|LSET|MKDIR|NAME|NEXT|OFF|ON(?: COM| ERROR| KEY| TIMER)?|OPEN|OPTION BASE|OUT|POKE|PUT|READ|REDIM|REM|RESTORE|RESUME|RETURN|RMDIR|RSET|RUN|SELECT CASE|SHARED|SHELL|SINGLE|SLEEP|STATIC|STEP|STOP|STRING|SUB|SWAP|SYSTEM|THEN|TIMER|TO|TROFF|TRON|TYPE|UNLOCK|UNTIL|USING|VIEW PRINT|WAIT|WEND|WHILE|WRITE)(?:\$|\b)/i,
-    function: /\b(?:ABS|ACCESS|ACOS|ANGLE|AREA|ARITHMETIC|ARRAY|ASIN|ASK|AT|ATN|BASE|BEGIN|BREAK|CAUSE|CEIL|CHR|CLIP|COLLATE|COLOR|CON|COS|COSH|COT|CSC|DATE|DATUM|DEBUG|DECIMAL|DEF|DEG|DEGREES|DELETE|DET|DEVICE|DISPLAY|DOT|ELAPSED|EPS|ERASABLE|EXLINE|EXP|EXTERNAL|EXTYPE|FILETYPE|FIXED|FP|GO|GRAPH|HANDLER|IDN|IMAGE|IN|INT|INTERNAL|IP|IS|KEYED|LBOUND|LCASE|LEFT|LEN|LENGTH|LET|LINE|LINES|LOG|LOG10|LOG2|LTRIM|MARGIN|MAT|MAX|MAXNUM|MID|MIN|MISSING|MOD|NATIVE|NUL|NUMERIC|OF|OPTION|ORD|ORGANIZATION|OUTIN|OUTPUT|PI|POINT|POINTER|POINTS|POS|PRINT|PROGRAM|PROMPT|RAD|RADIANS|RANDOMIZE|RECORD|RECSIZE|RECTYPE|RELATIVE|REMAINDER|REPEAT|REST|RETRY|REWRITE|RIGHT|RND|ROUND|RTRIM|SAME|SEC|SELECT|SEQUENTIAL|SET|SETTER|SGN|SIN|SINH|SIZE|SKIP|SQR|STANDARD|STATUS|STR|STREAM|STYLE|TAB|TAN|TANH|TEMPLATE|TEXT|THERE|TIME|TIMEOUT|TRACE|TRANSFORM|TRUNCATE|UBOUND|UCASE|USE|VAL|VARIABLE|VIEWPORT|WHEN|WINDOW|WITH|ZER|ZONEWIDTH)(?:\$|\b)/i,
+    keyword:
+      /\b(?:AS|BEEP|BLOAD|BSAVE|CALL(?: ABSOLUTE)?|CASE|CHAIN|CHDIR|CLEAR|CLOSE|CLS|COM|COMMON|CONST|DATA|DECLARE|DEF(?: FN| SEG|DBL|INT|LNG|SNG|STR)|DIM|DO|DOUBLE|ELSE|ELSEIF|END|ENVIRON|ERASE|ERROR|EXIT|FIELD|FILES|FOR|FUNCTION|GET|GOSUB|GOTO|IF|INPUT|INTEGER|IOCTL|KEY|KILL|LINE INPUT|LOCATE|LOCK|LONG|LOOP|LSET|MKDIR|NAME|NEXT|OFF|ON(?: COM| ERROR| KEY| TIMER)?|OPEN|OPTION BASE|OUT|POKE|PUT|READ|REDIM|REM|RESTORE|RESUME|RETURN|RMDIR|RSET|RUN|SELECT CASE|SHARED|SHELL|SINGLE|SLEEP|STATIC|STEP|STOP|STRING|SUB|SWAP|SYSTEM|THEN|TIMER|TO|TROFF|TRON|TYPE|UNLOCK|UNTIL|USING|VIEW PRINT|WAIT|WEND|WHILE|WRITE)(?:\$|\b)/i,
+    function:
+      /\b(?:ABS|ACCESS|ACOS|ANGLE|AREA|ARITHMETIC|ARRAY|ASIN|ASK|AT|ATN|BASE|BEGIN|BREAK|CAUSE|CEIL|CHR|CLIP|COLLATE|COLOR|CON|COS|COSH|COT|CSC|DATE|DATUM|DEBUG|DECIMAL|DEF|DEG|DEGREES|DELETE|DET|DEVICE|DISPLAY|DOT|ELAPSED|EPS|ERASABLE|EXLINE|EXP|EXTERNAL|EXTYPE|FILETYPE|FIXED|FP|GO|GRAPH|HANDLER|IDN|IMAGE|IN|INT|INTERNAL|IP|IS|KEYED|LBOUND|LCASE|LEFT|LEN|LENGTH|LET|LINE|LINES|LOG|LOG10|LOG2|LTRIM|MARGIN|MAT|MAX|MAXNUM|MID|MIN|MISSING|MOD|NATIVE|NUL|NUMERIC|OF|OPTION|ORD|ORGANIZATION|OUTIN|OUTPUT|PI|POINT|POINTER|POINTS|POS|PRINT|PROGRAM|PROMPT|RAD|RADIANS|RANDOMIZE|RECORD|RECSIZE|RECTYPE|RELATIVE|REMAINDER|REPEAT|REST|RETRY|REWRITE|RIGHT|RND|ROUND|RTRIM|SAME|SEC|SELECT|SEQUENTIAL|SET|SETTER|SGN|SIN|SINH|SIZE|SKIP|SQR|STANDARD|STATUS|STR|STREAM|STYLE|TAB|TAN|TANH|TEMPLATE|TEXT|THERE|TIME|TIMEOUT|TRACE|TRANSFORM|TRUNCATE|UBOUND|UCASE|USE|VAL|VARIABLE|VIEWPORT|WHEN|WINDOW|WITH|ZER|ZONEWIDTH)(?:\$|\b)/i,
     operator: /<[=>]?|>=?|[+\-*\/^=&]|\b(?:AND|EQV|IMP|NOT|OR|XOR)\b/i,
-    punctuation: /[,;:()]/
+    punctuation: /[,;:()]/,
   };
 }
 
@@ -16971,22 +18599,23 @@ function vbnet(Prism2) {
       {
         pattern: /(?:!|REM\b).+/i,
         inside: {
-          keyword: /^REM/i
-        }
+          keyword: /^REM/i,
+        },
       },
       {
         pattern: /(^|[^\\:])'.*/,
         lookbehind: true,
-        greedy: true
-      }
+        greedy: true,
+      },
     ],
     string: {
       pattern: /(^|[^"])"(?:""|[^"])*"(?!")/,
       lookbehind: true,
-      greedy: true
+      greedy: true,
     },
-    keyword: /(?:\b(?:ADDHANDLER|ADDRESSOF|ALIAS|AND|ANDALSO|AS|BEEP|BLOAD|BOOLEAN|BSAVE|BYREF|BYTE|BYVAL|CALL(?: ABSOLUTE)?|CASE|CATCH|CBOOL|CBYTE|CCHAR|CDATE|CDBL|CDEC|CHAIN|CHAR|CHDIR|CINT|CLASS|CLEAR|CLNG|CLOSE|CLS|COBJ|COM|COMMON|CONST|CONTINUE|CSBYTE|CSHORT|CSNG|CSTR|CTYPE|CUINT|CULNG|CUSHORT|DATA|DATE|DECIMAL|DECLARE|DEF(?: FN| SEG|DBL|INT|LNG|SNG|STR)|DEFAULT|DELEGATE|DIM|DIRECTCAST|DO|DOUBLE|ELSE|ELSEIF|END|ENUM|ENVIRON|ERASE|ERROR|EVENT|EXIT|FALSE|FIELD|FILES|FINALLY|FOR(?: EACH)?|FRIEND|FUNCTION|GET|GETTYPE|GETXMLNAMESPACE|GLOBAL|GOSUB|GOTO|HANDLES|IF|IMPLEMENTS|IMPORTS|IN|INHERITS|INPUT|INTEGER|INTERFACE|IOCTL|IS|ISNOT|KEY|KILL|LET|LIB|LIKE|LINE INPUT|LOCATE|LOCK|LONG|LOOP|LSET|ME|MKDIR|MOD|MODULE|MUSTINHERIT|MUSTOVERRIDE|MYBASE|MYCLASS|NAME|NAMESPACE|NARROWING|NEW|NEXT|NOT|NOTHING|NOTINHERITABLE|NOTOVERRIDABLE|OBJECT|OF|OFF|ON(?: COM| ERROR| KEY| TIMER)?|OPEN|OPERATOR|OPTION(?: BASE)?|OPTIONAL|OR|ORELSE|OUT|OVERLOADS|OVERRIDABLE|OVERRIDES|PARAMARRAY|PARTIAL|POKE|PRIVATE|PROPERTY|PROTECTED|PUBLIC|PUT|RAISEEVENT|READ|READONLY|REDIM|REM|REMOVEHANDLER|RESTORE|RESUME|RETURN|RMDIR|RSET|RUN|SBYTE|SELECT(?: CASE)?|SET|SHADOWS|SHARED|SHELL|SHORT|SINGLE|SLEEP|STATIC|STEP|STOP|STRING|STRUCTURE|SUB|SWAP|SYNCLOCK|SYSTEM|THEN|THROW|TIMER|TO|TROFF|TRON|TRUE|TRY|TRYCAST|TYPE|TYPEOF|UINTEGER|ULONG|UNLOCK|UNTIL|USHORT|USING|VIEW PRINT|WAIT|WEND|WHEN|WHILE|WIDENING|WITH|WITHEVENTS|WRITE|WRITEONLY|XOR)|\B(?:#CONST|#ELSE|#ELSEIF|#END|#IF))(?:\$|\b)/i,
-    punctuation: /[,;:(){}]/
+    keyword:
+      /(?:\b(?:ADDHANDLER|ADDRESSOF|ALIAS|AND|ANDALSO|AS|BEEP|BLOAD|BOOLEAN|BSAVE|BYREF|BYTE|BYVAL|CALL(?: ABSOLUTE)?|CASE|CATCH|CBOOL|CBYTE|CCHAR|CDATE|CDBL|CDEC|CHAIN|CHAR|CHDIR|CINT|CLASS|CLEAR|CLNG|CLOSE|CLS|COBJ|COM|COMMON|CONST|CONTINUE|CSBYTE|CSHORT|CSNG|CSTR|CTYPE|CUINT|CULNG|CUSHORT|DATA|DATE|DECIMAL|DECLARE|DEF(?: FN| SEG|DBL|INT|LNG|SNG|STR)|DEFAULT|DELEGATE|DIM|DIRECTCAST|DO|DOUBLE|ELSE|ELSEIF|END|ENUM|ENVIRON|ERASE|ERROR|EVENT|EXIT|FALSE|FIELD|FILES|FINALLY|FOR(?: EACH)?|FRIEND|FUNCTION|GET|GETTYPE|GETXMLNAMESPACE|GLOBAL|GOSUB|GOTO|HANDLES|IF|IMPLEMENTS|IMPORTS|IN|INHERITS|INPUT|INTEGER|INTERFACE|IOCTL|IS|ISNOT|KEY|KILL|LET|LIB|LIKE|LINE INPUT|LOCATE|LOCK|LONG|LOOP|LSET|ME|MKDIR|MOD|MODULE|MUSTINHERIT|MUSTOVERRIDE|MYBASE|MYCLASS|NAME|NAMESPACE|NARROWING|NEW|NEXT|NOT|NOTHING|NOTINHERITABLE|NOTOVERRIDABLE|OBJECT|OF|OFF|ON(?: COM| ERROR| KEY| TIMER)?|OPEN|OPERATOR|OPTION(?: BASE)?|OPTIONAL|OR|ORELSE|OUT|OVERLOADS|OVERRIDABLE|OVERRIDES|PARAMARRAY|PARTIAL|POKE|PRIVATE|PROPERTY|PROTECTED|PUBLIC|PUT|RAISEEVENT|READ|READONLY|REDIM|REM|REMOVEHANDLER|RESTORE|RESUME|RETURN|RMDIR|RSET|RUN|SBYTE|SELECT(?: CASE)?|SET|SHADOWS|SHARED|SHELL|SHORT|SINGLE|SLEEP|STATIC|STEP|STOP|STRING|STRUCTURE|SUB|SWAP|SYNCLOCK|SYSTEM|THEN|THROW|TIMER|TO|TROFF|TRON|TRUE|TRY|TRYCAST|TYPE|TYPEOF|UINTEGER|ULONG|UNLOCK|UNTIL|USHORT|USING|VIEW PRINT|WAIT|WEND|WHEN|WHILE|WIDENING|WITH|WITHEVENTS|WRITE|WRITEONLY|XOR)|\B(?:#CONST|#ELSE|#ELSEIF|#END|#IF))(?:\$|\b)/i,
+    punctuation: /[,;:(){}]/,
   });
 }
 
@@ -17048,7 +18677,7 @@ __export(types_exports, {
   commaSeparated: () => commaSeparated,
   number: () => number,
   overloadedBoolean: () => overloadedBoolean,
-  spaceSeparated: () => spaceSeparated
+  spaceSeparated: () => spaceSeparated,
 });
 var powers = 0;
 var boolean = increment();
@@ -17072,7 +18701,11 @@ var DefinedInfo = class extends Info {
     if (typeof mask === "number") {
       while (++index < checks.length) {
         const check = checks[index];
-        mark(this, checks[index], (mask & types_exports[check]) === types_exports[check]);
+        mark(
+          this,
+          checks[index],
+          (mask & types_exports[check]) === types_exports[check]
+        );
       }
     }
   }
@@ -17099,7 +18732,10 @@ function create(definition) {
         value2,
         definition.space
       );
-      if (definition.mustUseProperty && definition.mustUseProperty.includes(prop)) {
+      if (
+        definition.mustUseProperty &&
+        definition.mustUseProperty.includes(prop)
+      ) {
         info.mustUseProperty = true;
       }
       property[prop] = info;
@@ -17123,8 +18759,8 @@ var xlink = create({
     xLinkRole: null,
     xLinkShow: null,
     xLinkTitle: null,
-    xLinkType: null
-  }
+    xLinkType: null,
+  },
 });
 
 // node_modules/.pnpm/property-information@6.1.1/node_modules/property-information/lib/xml.js
@@ -17133,7 +18769,7 @@ var xml = create({
   transform(_2, prop) {
     return "xml:" + prop.slice(3).toLowerCase();
   },
-  properties: { xmlLang: null, xmlBase: null, xmlSpace: null }
+  properties: { xmlLang: null, xmlBase: null, xmlSpace: null },
 });
 
 // node_modules/.pnpm/property-information@6.1.1/node_modules/property-information/lib/util/case-sensitive-transform.js
@@ -17151,7 +18787,7 @@ var xmlns = create({
   space: "xmlns",
   attributes: { xmlnsxlink: "xmlns:xlink" },
   transform: caseInsensitiveTransform,
-  properties: { xmlns: null, xmlnsXLink: null }
+  properties: { xmlns: null, xmlnsXLink: null },
 });
 
 // node_modules/.pnpm/property-information@6.1.1/node_modules/property-information/lib/aria.js
@@ -17208,8 +18844,8 @@ var aria = create({
     ariaValueMin: number,
     ariaValueNow: number,
     ariaValueText: null,
-    role: null
-  }
+    role: null,
+  },
 });
 
 // node_modules/.pnpm/property-information@6.1.1/node_modules/property-information/lib/html.js
@@ -17219,7 +18855,7 @@ var html = create({
     acceptcharset: "accept-charset",
     classname: "class",
     htmlfor: "for",
-    httpequiv: "http-equiv"
+    httpequiv: "http-equiv",
   },
   transform: caseInsensitiveTransform,
   mustUseProperty: ["checked", "multiple", "muted", "selected"],
@@ -17502,8 +19138,8 @@ var html = create({
     property: null,
     results: number,
     security: null,
-    unselectable: null
-  }
+    unselectable: null,
+  },
 });
 
 // node_modules/.pnpm/property-information@6.1.1/node_modules/property-information/lib/svg.js
@@ -17680,7 +19316,7 @@ var svg = create({
     writingMode: "writing-mode",
     xHeight: "x-height",
     playbackOrder: "playbackorder",
-    timelineBegin: "timelinebegin"
+    timelineBegin: "timelinebegin",
   },
   transform: caseSensitiveTransform,
   properties: {
@@ -18058,8 +19694,8 @@ var svg = create({
     y2: null,
     yChannelSelector: null,
     z: null,
-    zoomAndPan: null
-  }
+    zoomAndPan: null,
+  },
 });
 
 // node_modules/.pnpm/property-information@6.1.1/node_modules/property-information/lib/find.js
@@ -18073,7 +19709,11 @@ function find(schema, value2) {
   if (normal in schema.normal) {
     return schema.property[schema.normal[normal]];
   }
-  if (normal.length > 4 && normal.slice(0, 4) === "data" && valid.test(value2)) {
+  if (
+    normal.length > 4 &&
+    normal.slice(0, 4) === "data" &&
+    valid.test(value2)
+  ) {
     if (value2.charAt(4) === "-") {
       const rest = value2.slice(5).replace(dash, camelcase);
       prop = "data" + rest.charAt(0).toUpperCase() + rest.slice(1);
@@ -18104,7 +19744,7 @@ var svg2 = merge([xml, xlink, xmlns, aria, svg], "svg");
 
 // node_modules/.pnpm/hast-util-parse-selector@3.1.0/node_modules/hast-util-parse-selector/index.js
 var search = /[#.]/g;
-var parseSelector = function(selector, defaultTagName = "div") {
+var parseSelector = function (selector, defaultTagName = "div") {
   var value2 = selector || "";
   var props = {};
   var start = 0;
@@ -18136,7 +19776,7 @@ var parseSelector = function(selector, defaultTagName = "div") {
     type: "element",
     tagName: defaultTagName,
     properties: props,
-    children: []
+    children: [],
   };
 };
 
@@ -18170,11 +19810,16 @@ function parse2(value2) {
 }
 
 // node_modules/.pnpm/hastscript@7.1.0/node_modules/hastscript/lib/core.js
-var buttonTypes = /* @__PURE__ */ new Set(["menu", "submit", "reset", "button"]);
+var buttonTypes = /* @__PURE__ */ new Set([
+  "menu",
+  "submit",
+  "reset",
+  "button",
+]);
 var own4 = {}.hasOwnProperty;
 function core(schema, defaultTagName, caseSensitive) {
   const adjust = caseSensitive && createAdjustMap(caseSensitive);
-  const h2 = function(selector, properties, ...children) {
+  const h2 = function (selector, properties, ...children) {
     let index = -1;
     let node;
     if (selector === void 0 || selector === null) {
@@ -18209,7 +19854,12 @@ function core(schema, defaultTagName, caseSensitive) {
   return h2;
 }
 function isProperties(value2, name) {
-  if (value2 === null || value2 === void 0 || typeof value2 !== "object" || Array.isArray(value2)) {
+  if (
+    value2 === null ||
+    value2 === void 0 ||
+    typeof value2 !== "object" ||
+    Array.isArray(value2)
+  ) {
     return false;
   }
   if (name === "input" || !value2.type || typeof value2.type !== "string") {
@@ -18227,11 +19877,9 @@ function addProperty(schema, properties, key, value2) {
   const info = find(schema, key);
   let index = -1;
   let result;
-  if (value2 === void 0 || value2 === null)
-    return;
+  if (value2 === void 0 || value2 === null) return;
   if (typeof value2 === "number") {
-    if (Number.isNaN(value2))
-      return;
+    if (Number.isNaN(value2)) return;
     result = value2;
   } else if (typeof value2 === "boolean") {
     result = value2;
@@ -18286,7 +19934,10 @@ function parsePrimitive(info, name, value2) {
     if (info.number && value2 && !Number.isNaN(Number(value2))) {
       return Number(value2);
     }
-    if ((info.boolean || info.overloadedBoolean) && (value2 === "" || normalize2(value2) === normalize2(name))) {
+    if (
+      (info.boolean || info.overloadedBoolean) &&
+      (value2 === "" || normalize2(value2) === normalize2(name))
+    ) {
       return true;
     }
   }
@@ -18421,7 +20072,7 @@ var characterEntitiesLegacy = [
   "uuml",
   "yacute",
   "yen",
-  "yuml"
+  "yuml",
 ];
 
 // node_modules/.pnpm/character-reference-invalid@2.0.1/node_modules/character-reference-invalid/index.js
@@ -18453,25 +20104,32 @@ var characterReferenceInvalid = {
   155: "\u203A",
   156: "\u0153",
   158: "\u017E",
-  159: "\u0178"
+  159: "\u0178",
 };
 
 // node_modules/.pnpm/is-decimal@2.0.1/node_modules/is-decimal/index.js
 function isDecimal(character) {
-  const code2 = typeof character === "string" ? character.charCodeAt(0) : character;
+  const code2 =
+    typeof character === "string" ? character.charCodeAt(0) : character;
   return code2 >= 48 && code2 <= 57;
 }
 
 // node_modules/.pnpm/is-hexadecimal@2.0.1/node_modules/is-hexadecimal/index.js
 function isHexadecimal(character) {
-  const code2 = typeof character === "string" ? character.charCodeAt(0) : character;
-  return code2 >= 97 && code2 <= 102 || code2 >= 65 && code2 <= 70 || code2 >= 48 && code2 <= 57;
+  const code2 =
+    typeof character === "string" ? character.charCodeAt(0) : character;
+  return (
+    (code2 >= 97 && code2 <= 102) ||
+    (code2 >= 65 && code2 <= 70) ||
+    (code2 >= 48 && code2 <= 57)
+  );
 }
 
 // node_modules/.pnpm/is-alphabetical@2.0.1/node_modules/is-alphabetical/index.js
 function isAlphabetical(character) {
-  const code2 = typeof character === "string" ? character.charCodeAt(0) : character;
-  return code2 >= 97 && code2 <= 122 || code2 >= 65 && code2 <= 90;
+  const code2 =
+    typeof character === "string" ? character.charCodeAt(0) : character;
+  return (code2 >= 97 && code2 <= 122) || (code2 >= 65 && code2 <= 90);
 }
 
 // node_modules/.pnpm/is-alphanumerical@2.0.1/node_modules/is-alphanumerical/index.js
@@ -18490,10 +20148,13 @@ var messages = [
   "Numeric character references cannot be empty",
   "Named character references must be known",
   "Numeric character references cannot be disallowed",
-  "Numeric character references cannot be outside the permissible Unicode range"
+  "Numeric character references cannot be outside the permissible Unicode range",
 ];
 function parseEntities(value2, options2 = {}) {
-  const additional = typeof options2.additional === "string" ? options2.additional.charCodeAt(0) : options2.additional;
+  const additional =
+    typeof options2.additional === "string"
+      ? options2.additional.charCodeAt(0)
+      : options2.additional;
   const result = [];
   let index = 0;
   let lines = -1;
@@ -18520,7 +20181,16 @@ function parseEntities(value2, options2 = {}) {
     character = value2.charCodeAt(index);
     if (character === 38) {
       const following = value2.charCodeAt(index + 1);
-      if (following === 9 || following === 10 || following === 12 || following === 32 || following === 38 || following === 60 || Number.isNaN(following) || additional && following === additional) {
+      if (
+        following === 9 ||
+        following === 10 ||
+        following === 12 ||
+        following === 32 ||
+        following === 38 ||
+        following === 60 ||
+        Number.isNaN(following) ||
+        (additional && following === additional)
+      ) {
         queue += fromCharCode(character);
         column++;
         continue;
@@ -18544,7 +20214,12 @@ function parseEntities(value2, options2 = {}) {
       let characterReferenceCharacters = "";
       let characterReference = "";
       let characters = "";
-      const test = type === "named" ? isAlphanumerical : type === "decimal" ? isDecimal : isHexadecimal;
+      const test =
+        type === "named"
+          ? isAlphanumerical
+          : type === "decimal"
+          ? isDecimal
+          : isHexadecimal;
       end--;
       while (++end <= value2.length) {
         const following2 = value2.charCodeAt(end);
@@ -18560,7 +20235,8 @@ function parseEntities(value2, options2 = {}) {
       let terminated = value2.charCodeAt(end) === 59;
       if (terminated) {
         end++;
-        const namedReference = type === "named" ? decodeNamedCharacterReference(characters) : false;
+        const namedReference =
+          type === "named" ? decodeNamedCharacterReference(characters) : false;
         if (namedReference) {
           characterReferenceCharacters = characters;
           characterReference = namedReference;
@@ -18621,8 +20297,8 @@ function parseEntities(value2, options2 = {}) {
           }
           if (referenceCode > 65535) {
             referenceCode -= 65536;
-            output += fromCharCode(referenceCode >>> (10 & 1023) | 55296);
-            referenceCode = 56320 | referenceCode & 1023;
+            output += fromCharCode((referenceCode >>> (10 & 1023)) | 55296);
+            referenceCode = 56320 | (referenceCode & 1023);
           }
           reference = output + fromCharCode(referenceCode);
         }
@@ -18669,7 +20345,7 @@ function parseEntities(value2, options2 = {}) {
     return {
       line,
       column,
-      offset: index + ((point ? point.offset : 0) || 0)
+      offset: index + ((point ? point.offset : 0) || 0),
     };
   }
   function warning(code2, offset) {
@@ -18692,7 +20368,7 @@ function parseEntities(value2, options2 = {}) {
       if (options2.text) {
         options2.text.call(options2.textContext, queue, {
           start: previous2,
-          end: now()
+          end: now(),
         });
       }
       queue = "";
@@ -18700,10 +20376,18 @@ function parseEntities(value2, options2 = {}) {
   }
 }
 function prohibited(code2) {
-  return code2 >= 55296 && code2 <= 57343 || code2 > 1114111;
+  return (code2 >= 55296 && code2 <= 57343) || code2 > 1114111;
 }
 function disallowed(code2) {
-  return code2 >= 1 && code2 <= 8 || code2 === 11 || code2 >= 13 && code2 <= 31 || code2 >= 127 && code2 <= 159 || code2 >= 64976 && code2 <= 65007 || (code2 & 65535) === 65535 || (code2 & 65535) === 65534;
+  return (
+    (code2 >= 1 && code2 <= 8) ||
+    code2 === 11 ||
+    (code2 >= 13 && code2 <= 31) ||
+    (code2 >= 127 && code2 <= 159) ||
+    (code2 >= 64976 && code2 <= 65007) ||
+    (code2 & 65535) === 65535 ||
+    (code2 & 65535) === 65534
+  );
 }
 
 // node_modules/.pnpm/refractor@4.8.0/node_modules/refractor/lib/prism-core.js
@@ -18711,10 +20395,10 @@ var uniqueId = 0;
 var plainTextGrammar = {};
 var _ = {
   util: {
-    type: function(o) {
+    type: function (o) {
       return Object.prototype.toString.call(o).slice(8, -1);
     },
-    objId: function(obj) {
+    objId: function (obj) {
       if (!obj["__id"]) {
         Object.defineProperty(obj, "__id", { value: ++uniqueId });
       }
@@ -18745,28 +20429,28 @@ var _ = {
           }
           clone = [];
           visited[id] = clone;
-          o.forEach(function(v, i) {
+          o.forEach(function (v, i) {
             clone[i] = deepClone(v, visited);
           });
           return clone;
         default:
           return o;
       }
-    }
+    },
   },
   languages: {
     plain: plainTextGrammar,
     plaintext: plainTextGrammar,
     text: plainTextGrammar,
     txt: plainTextGrammar,
-    extend: function(id, redef) {
+    extend: function (id, redef) {
       var lang = _.util.clone(_.languages[id]);
       for (var key in redef) {
         lang[key] = redef[key];
       }
       return lang;
     },
-    insertBefore: function(inside, before, insert, root) {
+    insertBefore: function (inside, before, insert, root) {
       root = root || _.languages;
       var grammar = root[inside];
       var ret = {};
@@ -18786,7 +20470,7 @@ var _ = {
       }
       var old = root[inside];
       root[inside] = ret;
-      _.languages.DFS(_.languages, function(key, value2) {
+      _.languages.DFS(_.languages, function (key, value2) {
         if (value2 === old && key != inside) {
           this[key] = ret;
         }
@@ -18810,14 +20494,14 @@ var _ = {
           }
         }
       }
-    }
+    },
   },
   plugins: {},
-  highlight: function(text2, grammar, language) {
+  highlight: function (text2, grammar, language) {
     var env = {
       code: text2,
       grammar,
-      language
+      language,
     };
     _.hooks.run("before-tokenize", env);
     if (!env.grammar) {
@@ -18827,7 +20511,7 @@ var _ = {
     _.hooks.run("after-tokenize", env);
     return Token.stringify(_.util.encode(env.tokens), env.language);
   },
-  tokenize: function(text2, grammar) {
+  tokenize: function (text2, grammar) {
     var rest = grammar.rest;
     if (rest) {
       for (var token in rest) {
@@ -18842,22 +20526,22 @@ var _ = {
   },
   hooks: {
     all: {},
-    add: function(name, callback) {
+    add: function (name, callback) {
       var hooks = _.hooks.all;
       hooks[name] = hooks[name] || [];
       hooks[name].push(callback);
     },
-    run: function(name, env) {
+    run: function (name, env) {
       var callbacks = _.hooks.all[name];
       if (!callbacks || !callbacks.length) {
         return;
       }
-      for (var i = 0, callback; callback = callbacks[i++]; ) {
+      for (var i = 0, callback; (callback = callbacks[i++]); ) {
         callback(env);
       }
-    }
+    },
   },
-  Token
+  Token,
 };
 function Token(type, content, alias2, matchedStr) {
   this.type = type;
@@ -18896,7 +20580,11 @@ function matchGrammar(text2, tokenList, grammar, startNode, startPos, rematch) {
         patternObj.pattern = RegExp(patternObj.pattern.source, flags + "g");
       }
       var pattern = patternObj.pattern || patternObj;
-      for (var currentNode = startNode.next, pos = startPos; currentNode !== tokenList.tail; pos += currentNode.value.length, currentNode = currentNode.next) {
+      for (
+        var currentNode = startNode.next, pos = startPos;
+        currentNode !== tokenList.tail;
+        pos += currentNode.value.length, currentNode = currentNode.next
+      ) {
         if (rematch && pos >= rematch.reach) {
           break;
         }
@@ -18927,7 +20615,11 @@ function matchGrammar(text2, tokenList, grammar, startNode, startPos, rematch) {
           if (currentNode.value instanceof Token) {
             continue;
           }
-          for (var k = currentNode; k !== tokenList.tail && (p < to || typeof k.value === "string"); k = k.next) {
+          for (
+            var k = currentNode;
+            k !== tokenList.tail && (p < to || typeof k.value === "string");
+            k = k.next
+          ) {
             removeCount++;
             p += k.value.length;
           }
@@ -18967,7 +20659,7 @@ function matchGrammar(text2, tokenList, grammar, startNode, startPos, rematch) {
         if (removeCount > 1) {
           var nestedRematch = {
             cause: token + "," + j,
-            reach
+            reach,
           };
           matchGrammar(
             text2,
@@ -19023,8 +20715,7 @@ var Prism = _;
 
 // node_modules/.pnpm/refractor@4.8.0/node_modules/refractor/lib/core.js
 var own6 = {}.hasOwnProperty;
-function Refractor() {
-}
+function Refractor() {}
 Refractor.prototype = Prism;
 var refractor = new Refractor();
 refractor.highlight = highlight;
@@ -19055,7 +20746,7 @@ function highlight(value2, language) {
   }
   return {
     type: "root",
-    children: Prism.highlight.call(refractor, value2, grammar, name)
+    children: Prism.highlight.call(refractor, value2, grammar, name),
   };
 }
 function register(syntax) {
@@ -19101,7 +20792,10 @@ function listLanguages() {
   const list = [];
   let language;
   for (language in languages) {
-    if (own6.call(languages, language) && typeof languages[language] === "object") {
+    if (
+      own6.call(languages, language) &&
+      typeof languages[language] === "object"
+    ) {
       list.push(language);
     }
   }
@@ -19115,7 +20809,11 @@ function stringify(value2, language) {
     const result = [];
     let index = -1;
     while (++index < value2.length) {
-      if (value2[index] !== "" && value2[index] !== null && value2[index] !== void 0) {
+      if (
+        value2[index] !== "" &&
+        value2[index] !== null &&
+        value2[index] !== void 0
+      ) {
         result.push(stringify(value2[index], language));
       }
     }
@@ -19127,11 +20825,11 @@ function stringify(value2, language) {
     tag: "span",
     classes: ["token", value2.type],
     attributes: {},
-    language
+    language,
   };
   if (value2.alias) {
     env.classes.push(
-      ...typeof value2.alias === "string" ? [value2.alias] : value2.alias
+      ...(typeof value2.alias === "string" ? [value2.alias] : value2.alias)
     );
   }
   refractor.hooks.run("wrap", env);
@@ -19198,29 +20896,35 @@ jsx.aliases = [];
 function jsx(Prism2) {
   Prism2.register(javascript);
   Prism2.register(markup);
-  (function(Prism3) {
+  (function (Prism3) {
     var javascript2 = Prism3.util.clone(Prism3.languages.javascript);
     var space = /(?:\s|\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))\*\/)/.source;
     var braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;
     var spread = /(?:\{<S>*\.{3}(?:[^{}]|<BRACES>)*\})/.source;
     function re(source, flags) {
-      source = source.replace(/<S>/g, function() {
-        return space;
-      }).replace(/<BRACES>/g, function() {
-        return braces;
-      }).replace(/<SPREAD>/g, function() {
-        return spread;
-      });
+      source = source
+        .replace(/<S>/g, function () {
+          return space;
+        })
+        .replace(/<BRACES>/g, function () {
+          return braces;
+        })
+        .replace(/<SPREAD>/g, function () {
+          return spread;
+        });
       return RegExp(source, flags);
     }
     spread = re(spread).source;
     Prism3.languages.jsx = Prism3.languages.extend("markup", javascript2);
     Prism3.languages.jsx.tag.pattern = re(
-      /<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/.source
+      /<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/
+        .source
     );
     Prism3.languages.jsx.tag.inside["tag"].pattern = /^<\/?[^\s>\/]*/;
-    Prism3.languages.jsx.tag.inside["attr-value"].pattern = /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
-    Prism3.languages.jsx.tag.inside["tag"].inside["class-name"] = /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
+    Prism3.languages.jsx.tag.inside["attr-value"].pattern =
+      /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
+    Prism3.languages.jsx.tag.inside["tag"].inside["class-name"] =
+      /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
     Prism3.languages.jsx.tag.inside["comment"] = javascript2["comment"];
     Prism3.languages.insertBefore(
       "inside",
@@ -19228,8 +20932,8 @@ function jsx(Prism2) {
       {
         spread: {
           pattern: re(/<SPREAD>/.source),
-          inside: Prism3.languages.jsx
-        }
+          inside: Prism3.languages.jsx,
+        },
       },
       Prism3.languages.jsx.tag
     );
@@ -19243,15 +20947,15 @@ function jsx(Prism2) {
           inside: {
             "script-punctuation": {
               pattern: /^=(?=\{)/,
-              alias: "punctuation"
+              alias: "punctuation",
             },
-            rest: Prism3.languages.jsx
-          }
-        }
+            rest: Prism3.languages.jsx,
+          },
+        },
       },
       Prism3.languages.jsx.tag
     );
-    var stringifyToken = function(token) {
+    var stringifyToken = function (token) {
       if (!token) {
         return "";
       }
@@ -19263,15 +20967,23 @@ function jsx(Prism2) {
       }
       return token.content.map(stringifyToken).join("");
     };
-    var walkTokens2 = function(tokens) {
+    var walkTokens2 = function (tokens) {
       var openedTags = [];
       for (var i = 0; i < tokens.length; i++) {
         var token = tokens[i];
         var notTagNorBrace = false;
         if (typeof token !== "string") {
-          if (token.type === "tag" && token.content[0] && token.content[0].type === "tag") {
+          if (
+            token.type === "tag" &&
+            token.content[0] &&
+            token.content[0].type === "tag"
+          ) {
             if (token.content[0].content[0].content === "</") {
-              if (openedTags.length > 0 && openedTags[openedTags.length - 1].tagName === stringifyToken(token.content[0].content[1])) {
+              if (
+                openedTags.length > 0 &&
+                openedTags[openedTags.length - 1].tagName ===
+                  stringifyToken(token.content[0].content[1])
+              ) {
                 openedTags.pop();
               }
             } else {
@@ -19279,26 +20991,46 @@ function jsx(Prism2) {
               } else {
                 openedTags.push({
                   tagName: stringifyToken(token.content[0].content[1]),
-                  openedBraces: 0
+                  openedBraces: 0,
                 });
               }
             }
-          } else if (openedTags.length > 0 && token.type === "punctuation" && token.content === "{") {
+          } else if (
+            openedTags.length > 0 &&
+            token.type === "punctuation" &&
+            token.content === "{"
+          ) {
             openedTags[openedTags.length - 1].openedBraces++;
-          } else if (openedTags.length > 0 && openedTags[openedTags.length - 1].openedBraces > 0 && token.type === "punctuation" && token.content === "}") {
+          } else if (
+            openedTags.length > 0 &&
+            openedTags[openedTags.length - 1].openedBraces > 0 &&
+            token.type === "punctuation" &&
+            token.content === "}"
+          ) {
             openedTags[openedTags.length - 1].openedBraces--;
           } else {
             notTagNorBrace = true;
           }
         }
         if (notTagNorBrace || typeof token === "string") {
-          if (openedTags.length > 0 && openedTags[openedTags.length - 1].openedBraces === 0) {
+          if (
+            openedTags.length > 0 &&
+            openedTags[openedTags.length - 1].openedBraces === 0
+          ) {
             var plainText = stringifyToken(token);
-            if (i < tokens.length - 1 && (typeof tokens[i + 1] === "string" || tokens[i + 1].type === "plain-text")) {
+            if (
+              i < tokens.length - 1 &&
+              (typeof tokens[i + 1] === "string" ||
+                tokens[i + 1].type === "plain-text")
+            ) {
               plainText += stringifyToken(tokens[i + 1]);
               tokens.splice(i + 1, 1);
             }
-            if (i > 0 && (typeof tokens[i - 1] === "string" || tokens[i - 1].type === "plain-text")) {
+            if (
+              i > 0 &&
+              (typeof tokens[i - 1] === "string" ||
+                tokens[i - 1].type === "plain-text")
+            ) {
               plainText = stringifyToken(tokens[i - 1]) + plainText;
               tokens.splice(i - 1, 1);
               i--;
@@ -19316,7 +21048,7 @@ function jsx(Prism2) {
         }
       }
     };
-    Prism3.hooks.add("after-tokenize", function(env) {
+    Prism3.hooks.add("after-tokenize", function (env) {
       if (env.language !== "jsx" && env.language !== "tsx") {
         return;
       }
@@ -19331,7 +21063,7 @@ tsx.aliases = [];
 function tsx(Prism2) {
   Prism2.register(jsx);
   Prism2.register(typescript);
-  (function(Prism3) {
+  (function (Prism3) {
     var typescript2 = Prism3.util.clone(Prism3.languages.typescript);
     Prism3.languages.tsx = Prism3.languages.extend("jsx", typescript2);
     delete Prism3.languages.tsx["parameter"];
@@ -19350,7 +21082,12 @@ function rehypeSyntaxHighlight() {
   refractor.register(tsx);
   return async (ast) => {
     visit(ast, "element", (node, _index, parent) => {
-      if (!parent || parent.tagName !== "pre" || node.tagName !== "code" || !Array.isArray(node.properties.className)) {
+      if (
+        !parent ||
+        parent.tagName !== "pre" ||
+        node.tagName !== "code" ||
+        !Array.isArray(node.properties.className)
+      ) {
         return;
       }
       for (let i = 0; i < node.properties.className.length; i++) {
@@ -19384,24 +21121,46 @@ function getLanguage(className) {
 
 // packages/qwik-city/buildtime/markdown/mdx.ts
 async function createMdxTransformer(ctx) {
-  const { createFormatAwareProcessors } = await import("@mdx-js/mdx/lib/util/create-format-aware-processors.js");
-  const { default: remarkFrontmatter2 } = await Promise.resolve().then(() => (init_remark_frontmatter(), remark_frontmatter_exports));
-  const { default: remarkGfm2 } = await Promise.resolve().then(() => (init_remark_gfm(), remark_gfm_exports));
-  const { default: rehypeAutolinkHeadings2 } = await Promise.resolve().then(() => (init_rehype_autolink_headings(), rehype_autolink_headings_exports));
+  const { createFormatAwareProcessors } = await import(
+    "@mdx-js/mdx/lib/util/create-format-aware-processors.js"
+  );
+  const { default: remarkFrontmatter2 } = await Promise.resolve().then(
+    () => (init_remark_frontmatter(), remark_frontmatter_exports)
+  );
+  const { default: remarkGfm2 } = await Promise.resolve().then(
+    () => (init_remark_gfm(), remark_gfm_exports)
+  );
+  const { default: rehypeAutolinkHeadings2 } = await Promise.resolve().then(
+    () => (init_rehype_autolink_headings(), rehype_autolink_headings_exports)
+  );
   const { VFile } = await import("vfile");
   const userMdxOpts = ctx.opts.mdx;
   const userRemarkPlugins = userMdxOpts.remarkPlugins || [];
   const userRehypePlugins = userMdxOpts.rehypePlugins || [];
   const coreMdxPlugins = ctx.opts.mdxPlugins;
   const coreRemarkPlugins = [];
-  if (typeof (coreMdxPlugins == null ? void 0 : coreMdxPlugins.remarkGfm) === "undefined" || coreMdxPlugins.remarkGfm) {
+  if (
+    typeof (coreMdxPlugins == null ? void 0 : coreMdxPlugins.remarkGfm) ===
+      "undefined" ||
+    coreMdxPlugins.remarkGfm
+  ) {
     coreRemarkPlugins.push(remarkGfm2);
   }
   const coreRehypePlugins = [];
-  if (typeof (coreMdxPlugins == null ? void 0 : coreMdxPlugins.rehypeSyntaxHighlight) === "undefined" || coreMdxPlugins.rehypeSyntaxHighlight) {
+  if (
+    typeof (coreMdxPlugins == null
+      ? void 0
+      : coreMdxPlugins.rehypeSyntaxHighlight) === "undefined" ||
+    coreMdxPlugins.rehypeSyntaxHighlight
+  ) {
     coreRehypePlugins.push(rehypeSyntaxHighlight);
   }
-  if (typeof (coreMdxPlugins == null ? void 0 : coreMdxPlugins.rehypeAutolinkHeadings) === "undefined" || coreMdxPlugins.rehypeAutolinkHeadings) {
+  if (
+    typeof (coreMdxPlugins == null
+      ? void 0
+      : coreMdxPlugins.rehypeAutolinkHeadings) === "undefined" ||
+    coreMdxPlugins.rehypeAutolinkHeadings
+  ) {
     coreRehypePlugins.push(rehypeAutolinkHeadings2);
   }
   const mdxOpts = {
@@ -19412,19 +21171,23 @@ async function createMdxTransformer(ctx) {
       ...userRemarkPlugins,
       ...coreRemarkPlugins,
       remarkFrontmatter2,
-      [parseFrontmatter, ctx]
+      [parseFrontmatter, ctx],
     ],
-    rehypePlugins: [...userRehypePlugins, ...coreRehypePlugins, [rehypePage, ctx]]
+    rehypePlugins: [
+      ...userRehypePlugins,
+      ...coreRehypePlugins,
+      [rehypePage, ctx],
+    ],
   };
   const { extnames, process: process2 } = createFormatAwareProcessors(mdxOpts);
-  return async function(code2, id) {
+  return async function (code2, id) {
     const ext = getExtension(id);
     if (extnames.includes(ext)) {
       const file = new VFile({ value: code2, path: id });
       const compiled = await process2(file);
       return {
         code: String(compiled.value),
-        map: compiled.map
+        map: compiled.map,
       };
     }
   };
@@ -19451,7 +21214,11 @@ function generateQwikCityEntries(ctx) {
 /** Qwik City Entries (${entries.length}) */`);
   for (let i = 0; i < entries.length; i++) {
     const entry = entries[i];
-    c2.push(`export const ${entry.id} = () => import(${JSON.stringify(entry.filePath)});`);
+    c2.push(
+      `export const ${entry.id} = () => import(${JSON.stringify(
+        entry.filePath
+      )});`
+    );
   }
   return c2.join("\n") + "\n";
 }
@@ -19518,12 +21285,16 @@ function createRoutes(ctx, qwikPlugin, c2, esmImports) {
       if (dynamicImports) {
         loaders.push(`()=>import(${JSON.stringify(importPath)})`);
       } else {
-        esmImports.push(`import * as ${route.id} from ${JSON.stringify(importPath)};`);
+        esmImports.push(
+          `import * as ${route.id} from ${JSON.stringify(importPath)};`
+        );
         loaders.push(`()=>${route.id}`);
       }
     } else if (includeEndpoints && isModuleExt(route.ext)) {
       const importPath = getImportPath(route.filePath);
-      esmImports.push(`import * as ${route.id} from ${JSON.stringify(importPath)};`);
+      esmImports.push(
+        `import * as ${route.id} from ${JSON.stringify(importPath)};`
+      );
       loaders.push(`()=>${route.id}`);
     }
     if (loaders.length > 0) {
@@ -19536,9 +21307,14 @@ function createRouteData(qwikPlugin, r2, loaders, isSsr) {
   const pattern = r2.pattern.toString();
   const moduleLoaders = `[ ${loaders.join(", ")} ]`;
   if (isSsr) {
-    const paramNames = r2.paramNames && r2.paramNames.length > 0 ? JSON.stringify(r2.paramNames) : `undefined`;
+    const paramNames =
+      r2.paramNames && r2.paramNames.length > 0
+        ? JSON.stringify(r2.paramNames)
+        : `undefined`;
     const originalPathname = JSON.stringify(r2.pathname);
-    const clientBundleNames = JSON.stringify(getClientRouteBundleNames(qwikPlugin, r2));
+    const clientBundleNames = JSON.stringify(
+      getClientRouteBundleNames(qwikPlugin, r2)
+    );
     return `[ ${pattern}, ${moduleLoaders}, ${paramNames}, ${originalPathname}, ${clientBundleNames} ]`;
   }
   if (r2.paramNames.length > 0) {
@@ -19585,10 +21361,16 @@ function generateQwikCityPlan(ctx, qwikPlugin) {
   createRoutes(ctx, qwikPlugin, c2, esmImports);
   createMenus(ctx, c2, esmImports);
   createEntries(ctx, c2);
-  c2.push(`export const trailingSlash = ${JSON.stringify(!!ctx.opts.trailingSlash)};`);
-  c2.push(`export const basePathname = ${JSON.stringify(ctx.opts.basePathname)};`);
+  c2.push(
+    `export const trailingSlash = ${JSON.stringify(!!ctx.opts.trailingSlash)};`
+  );
+  c2.push(
+    `export const basePathname = ${JSON.stringify(ctx.opts.basePathname)};`
+  );
   c2.push(`export const cacheModules = ${JSON.stringify(!ctx.isDevServer)};`);
-  c2.push(`export default { routes, menus, trailingSlash, basePathname, cacheModules };`);
+  c2.push(
+    `export default { routes, menus, trailingSlash, basePathname, cacheModules };`
+  );
   return esmImports.join("\n") + c2.join("\n");
 }
 
@@ -19609,7 +21391,7 @@ function createBuildContext(rootDir, userOpts, target) {
     isDevServer: false,
     isDevServerClientOnly: false,
     isDirty: true,
-    activeBuild: null
+    activeBuild: null,
   };
   return ctx;
 }
@@ -19666,7 +21448,9 @@ async function validatePlugin(opts) {
   try {
     const s2 = await import_node_fs2.default.promises.stat(opts.routesDir);
     if (!s2.isDirectory()) {
-      throw new Error(`qwikCity plugin "routesDir" option must be a directory: ${opts.routesDir}`);
+      throw new Error(
+        `qwikCity plugin "routesDir" option must be a directory: ${opts.routesDir}`
+      );
     }
   } catch (e) {
     throw new Error(`qwikCity plugin "routesDir" not found: ${e}`);
@@ -19678,15 +21462,23 @@ var import_node_fs3 = __toESM(require("fs"), 1);
 var import_node_path5 = require("path");
 async function walkRoutes(routesDir) {
   const sourceFiles = [];
-  await walkRouteDir(sourceFiles, normalizePath(routesDir), (0, import_node_path5.basename)(routesDir));
+  await walkRouteDir(
+    sourceFiles,
+    normalizePath(routesDir),
+    (0, import_node_path5.basename)(routesDir)
+  );
   return sourceFiles;
 }
 async function walkRouteDir(sourceFiles, dirPath, dirName) {
   try {
-    const dirItemNames = await import_node_fs3.default.promises.readdir(dirPath);
+    const dirItemNames = await import_node_fs3.default.promises.readdir(
+      dirPath
+    );
     await Promise.all(
       dirItemNames.map(async (itemName) => {
-        const itemPath = normalizePath((0, import_node_path5.join)(dirPath, itemName));
+        const itemPath = normalizePath(
+          (0, import_node_path5.join)(dirPath, itemName)
+        );
         const sourceFileName = getSourceFile(itemName);
         if (sourceFileName !== null) {
           sourceFiles.push({
@@ -19694,15 +21486,14 @@ async function walkRouteDir(sourceFiles, dirPath, dirName) {
             fileName: itemName,
             filePath: itemPath,
             dirName,
-            dirPath
+            dirPath,
           });
         } else {
           await walkRouteDir(sourceFiles, itemPath, itemName);
         }
       })
     );
-  } catch (e) {
-  }
+  } catch (e) {}
 }
 
 // packages/qwik-city/buildtime/routing/resolve-source-file.ts
@@ -19729,7 +21520,7 @@ function getDefaults() {
     smartypants: false,
     tokenizer: null,
     walkTokens: null,
-    xhtml: false
+    xhtml: false,
   };
 }
 var defaults = getDefaults();
@@ -19745,7 +21536,7 @@ var escapeReplacements = {
   "<": "&lt;",
   ">": "&gt;",
   '"': "&quot;",
-  "'": "&#39;"
+  "'": "&#39;",
 };
 var getEscapeReplacement = (ch) => escapeReplacements[ch];
 function escape(html3, encode2) {
@@ -19760,14 +21551,15 @@ function escape(html3, encode2) {
   }
   return html3;
 }
-var unescapeTest = /&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/ig;
+var unescapeTest = /&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/gi;
 function unescape(html3) {
   return html3.replace(unescapeTest, (_2, n) => {
     n = n.toLowerCase();
-    if (n === "colon")
-      return ":";
+    if (n === "colon") return ":";
     if (n.charAt(0) === "#") {
-      return n.charAt(1) === "x" ? String.fromCharCode(parseInt(n.substring(2), 16)) : String.fromCharCode(+n.substring(1));
+      return n.charAt(1) === "x"
+        ? String.fromCharCode(parseInt(n.substring(2), 16))
+        : String.fromCharCode(+n.substring(1));
     }
     return "";
   });
@@ -19785,7 +21577,7 @@ function edit(regex3, opt) {
     },
     getRegex: () => {
       return new RegExp(regex3, opt);
-    }
+    },
   };
   return obj;
 }
@@ -19795,11 +21587,17 @@ function cleanUrl(sanitize, base, href) {
   if (sanitize) {
     let prot;
     try {
-      prot = decodeURIComponent(unescape(href)).replace(nonWordAndColonTest, "").toLowerCase();
+      prot = decodeURIComponent(unescape(href))
+        .replace(nonWordAndColonTest, "")
+        .toLowerCase();
     } catch (e) {
       return null;
     }
-    if (prot.indexOf("javascript:") === 0 || prot.indexOf("vbscript:") === 0 || prot.indexOf("data:") === 0) {
+    if (
+      prot.indexOf("javascript:") === 0 ||
+      prot.indexOf("vbscript:") === 0 ||
+      prot.indexOf("data:") === 0
+    ) {
       return null;
     }
   }
@@ -19841,10 +21639,11 @@ function resolveUrl(base, href) {
     return base + href;
   }
 }
-var noopTest = { exec: function noopTest2() {
-} };
+var noopTest = { exec: function noopTest2() {} };
 function merge2(obj) {
-  let i = 1, target, key;
+  let i = 1,
+    target,
+    key;
   for (; i < arguments.length; i++) {
     target = arguments[i];
     for (key in target) {
@@ -19857,15 +21656,16 @@ function merge2(obj) {
 }
 function splitCells(tableRow, count) {
   const row = tableRow.replace(/\|/g, (match, offset, str) => {
-    let escaped = false, curr = offset;
-    while (--curr >= 0 && str[curr] === "\\")
-      escaped = !escaped;
-    if (escaped) {
-      return "|";
-    } else {
-      return " |";
-    }
-  }), cells = row.split(/ \|/);
+      let escaped = false,
+        curr = offset;
+      while (--curr >= 0 && str[curr] === "\\") escaped = !escaped;
+      if (escaped) {
+        return "|";
+      } else {
+        return " |";
+      }
+    }),
+    cells = row.split(/ \|/);
   let i = 0;
   if (!cells[0].trim()) {
     cells.shift();
@@ -19876,8 +21676,7 @@ function splitCells(tableRow, count) {
   if (cells.length > count) {
     cells.splice(count);
   } else {
-    while (cells.length < count)
-      cells.push("");
+    while (cells.length < count) cells.push("");
   }
   for (; i < cells.length; i++) {
     cells[i] = cells[i].trim().replace(/\\\|/g, "|");
@@ -19907,7 +21706,8 @@ function findClosingBracket(str, b) {
     return -1;
   }
   const l = str.length;
-  let level = 0, i = 0;
+  let level = 0,
+    i = 0;
   for (; i < l; i++) {
     if (str[i] === "\\") {
       i++;
@@ -19924,7 +21724,9 @@ function findClosingBracket(str, b) {
 }
 function checkSanitizeDeprecation(opt) {
   if (opt && opt.sanitize && !opt.silent) {
-    console.warn("marked(): sanitize and sanitizer parameters are deprecated since version 0.7.0, should not be used and will be removed in the future. Read more here: https://marked.js.org/#/USING_ADVANCED.md#options");
+    console.warn(
+      "marked(): sanitize and sanitizer parameters are deprecated since version 0.7.0, should not be used and will be removed in the future. Read more here: https://marked.js.org/#/USING_ADVANCED.md#options"
+    );
   }
 }
 function repeatString(pattern, count) {
@@ -19953,7 +21755,7 @@ function outputLink(cap2, link, raw, lexer2) {
       href,
       title,
       text: text2,
-      tokens: lexer2.inlineTokens(text2)
+      tokens: lexer2.inlineTokens(text2),
     };
     lexer2.state.inLink = false;
     return token;
@@ -19963,7 +21765,7 @@ function outputLink(cap2, link, raw, lexer2) {
     raw,
     href,
     title,
-    text: escape(text2)
+    text: escape(text2),
   };
 }
 function indentCodeCompensation(raw, text2) {
@@ -19972,17 +21774,20 @@ function indentCodeCompensation(raw, text2) {
     return text2;
   }
   const indentToCode = matchIndentToCode[1];
-  return text2.split("\n").map((node) => {
-    const matchIndentInNode = node.match(/^\s+/);
-    if (matchIndentInNode === null) {
+  return text2
+    .split("\n")
+    .map((node) => {
+      const matchIndentInNode = node.match(/^\s+/);
+      if (matchIndentInNode === null) {
+        return node;
+      }
+      const [indentInNode] = matchIndentInNode;
+      if (indentInNode.length >= indentToCode.length) {
+        return node.slice(indentToCode.length);
+      }
       return node;
-    }
-    const [indentInNode] = matchIndentInNode;
-    if (indentInNode.length >= indentToCode.length) {
-      return node.slice(indentToCode.length);
-    }
-    return node;
-  }).join("\n");
+    })
+    .join("\n");
 }
 var Tokenizer = class {
   constructor(options2) {
@@ -19993,7 +21798,7 @@ var Tokenizer = class {
     if (cap2 && cap2[0].length > 0) {
       return {
         type: "space",
-        raw: cap2[0]
+        raw: cap2[0],
       };
     }
   }
@@ -20005,7 +21810,7 @@ var Tokenizer = class {
         type: "code",
         raw: cap2[0],
         codeBlockStyle: "indented",
-        text: !this.options.pedantic ? rtrim(text2, "\n") : text2
+        text: !this.options.pedantic ? rtrim(text2, "\n") : text2,
       };
     }
   }
@@ -20017,8 +21822,10 @@ var Tokenizer = class {
       return {
         type: "code",
         raw,
-        lang: cap2[2] ? cap2[2].trim().replace(this.rules.inline._escapes, "$1") : cap2[2],
-        text: text2
+        lang: cap2[2]
+          ? cap2[2].trim().replace(this.rules.inline._escapes, "$1")
+          : cap2[2],
+        text: text2,
       };
     }
   }
@@ -20039,7 +21846,7 @@ var Tokenizer = class {
         raw: cap2[0],
         depth: cap2[1].length,
         text: text2,
-        tokens: this.lexer.inline(text2)
+        tokens: this.lexer.inline(text2),
       };
     }
   }
@@ -20048,7 +21855,7 @@ var Tokenizer = class {
     if (cap2) {
       return {
         type: "hr",
-        raw: cap2[0]
+        raw: cap2[0],
       };
     }
   }
@@ -20064,14 +21871,25 @@ var Tokenizer = class {
         type: "blockquote",
         raw: cap2[0],
         tokens,
-        text: text2
+        text: text2,
       };
     }
   }
   list(src) {
     let cap2 = this.rules.block.list.exec(src);
     if (cap2) {
-      let raw, istask, ischecked, indent2, i, blankLine2, endsWithBlankLine, line, nextLine, rawLine, itemContents, endEarly;
+      let raw,
+        istask,
+        ischecked,
+        indent2,
+        i,
+        blankLine2,
+        endsWithBlankLine,
+        line,
+        nextLine,
+        rawLine,
+        itemContents,
+        endEarly;
       let bull = cap2[1].trim();
       const isordered = bull.length > 1;
       const list = {
@@ -20080,13 +21898,15 @@ var Tokenizer = class {
         ordered: isordered,
         start: isordered ? +bull.slice(0, -1) : "",
         loose: false,
-        items: []
+        items: [],
       };
       bull = isordered ? `\\d{1,9}\\${bull.slice(-1)}` : `\\${bull}`;
       if (this.options.pedantic) {
         bull = isordered ? bull : "[*+-]";
       }
-      const itemRegex = new RegExp(`^( {0,3}${bull})((?:[	 ][^\\n]*)?(?:\\n|$))`);
+      const itemRegex = new RegExp(
+        `^( {0,3}${bull})((?:[	 ][^\\n]*)?(?:\\n|$))`
+      );
       while (src) {
         endEarly = false;
         if (!(cap2 = itemRegex.exec(src))) {
@@ -20115,10 +21935,24 @@ var Tokenizer = class {
           endEarly = true;
         }
         if (!endEarly) {
-          const nextBulletRegex = new RegExp(`^ {0,${Math.min(3, indent2 - 1)}}(?:[*+-]|\\d{1,9}[.)])((?: [^\\n]*)?(?:\\n|$))`);
-          const hrRegex = new RegExp(`^ {0,${Math.min(3, indent2 - 1)}}((?:- *){3,}|(?:_ *){3,}|(?:\\* *){3,})(?:\\n+|$)`);
-          const fencesBeginRegex = new RegExp(`^ {0,${Math.min(3, indent2 - 1)}}(?:\`\`\`|~~~)`);
-          const headingBeginRegex = new RegExp(`^ {0,${Math.min(3, indent2 - 1)}}#`);
+          const nextBulletRegex = new RegExp(
+            `^ {0,${Math.min(
+              3,
+              indent2 - 1
+            )}}(?:[*+-]|\\d{1,9}[.)])((?: [^\\n]*)?(?:\\n|$))`
+          );
+          const hrRegex = new RegExp(
+            `^ {0,${Math.min(
+              3,
+              indent2 - 1
+            )}}((?:- *){3,}|(?:_ *){3,}|(?:\\* *){3,})(?:\\n+|$)`
+          );
+          const fencesBeginRegex = new RegExp(
+            `^ {0,${Math.min(3, indent2 - 1)}}(?:\`\`\`|~~~)`
+          );
+          const headingBeginRegex = new RegExp(
+            `^ {0,${Math.min(3, indent2 - 1)}}#`
+          );
           while (src) {
             rawLine = src.split("\n", 1)[0];
             line = rawLine;
@@ -20171,7 +22005,7 @@ var Tokenizer = class {
           task: !!istask,
           checked: ischecked,
           loose: false,
-          text: itemContents
+          text: itemContents,
         });
         list.raw += raw;
       }
@@ -20183,8 +22017,11 @@ var Tokenizer = class {
         this.lexer.state.top = false;
         list.items[i].tokens = this.lexer.blockTokens(list.items[i].text, []);
         if (!list.loose) {
-          const spacers = list.items[i].tokens.filter((t) => t.type === "space");
-          const hasMultipleLineBreaks = spacers.length > 0 && spacers.some((t) => /\n.*\n/.test(t.raw));
+          const spacers = list.items[i].tokens.filter(
+            (t) => t.type === "space"
+          );
+          const hasMultipleLineBreaks =
+            spacers.length > 0 && spacers.some((t) => /\n.*\n/.test(t.raw));
           list.loose = hasMultipleLineBreaks;
         }
       }
@@ -20202,11 +22039,15 @@ var Tokenizer = class {
       const token = {
         type: "html",
         raw: cap2[0],
-        pre: !this.options.sanitizer && (cap2[1] === "pre" || cap2[1] === "script" || cap2[1] === "style"),
-        text: cap2[0]
+        pre:
+          !this.options.sanitizer &&
+          (cap2[1] === "pre" || cap2[1] === "script" || cap2[1] === "style"),
+        text: cap2[0],
       };
       if (this.options.sanitize) {
-        const text2 = this.options.sanitizer ? this.options.sanitizer(cap2[0]) : escape(cap2[0]);
+        const text2 = this.options.sanitizer
+          ? this.options.sanitizer(cap2[0])
+          : escape(cap2[0]);
         token.type = "paragraph";
         token.text = text2;
         token.tokens = this.lexer.inline(text2);
@@ -20218,14 +22059,22 @@ var Tokenizer = class {
     const cap2 = this.rules.block.def.exec(src);
     if (cap2) {
       const tag = cap2[1].toLowerCase().replace(/\s+/g, " ");
-      const href = cap2[2] ? cap2[2].replace(/^<(.*)>$/, "$1").replace(this.rules.inline._escapes, "$1") : "";
-      const title = cap2[3] ? cap2[3].substring(1, cap2[3].length - 1).replace(this.rules.inline._escapes, "$1") : cap2[3];
+      const href = cap2[2]
+        ? cap2[2]
+            .replace(/^<(.*)>$/, "$1")
+            .replace(this.rules.inline._escapes, "$1")
+        : "";
+      const title = cap2[3]
+        ? cap2[3]
+            .substring(1, cap2[3].length - 1)
+            .replace(this.rules.inline._escapes, "$1")
+        : cap2[3];
       return {
         type: "def",
         tag,
         raw: cap2[0],
         href,
-        title
+        title,
       };
     }
   }
@@ -20238,7 +22087,10 @@ var Tokenizer = class {
           return { text: c2 };
         }),
         align: cap2[2].replace(/^ *|\| *$/g, "").split(/ *\| */),
-        rows: cap2[3] && cap2[3].trim() ? cap2[3].replace(/\n[ \t]*$/, "").split("\n") : []
+        rows:
+          cap2[3] && cap2[3].trim()
+            ? cap2[3].replace(/\n[ \t]*$/, "").split("\n")
+            : [],
       };
       if (item.header.length === item.align.length) {
         item.raw = cap2[0];
@@ -20257,9 +22109,11 @@ var Tokenizer = class {
         }
         l = item.rows.length;
         for (i = 0; i < l; i++) {
-          item.rows[i] = splitCells(item.rows[i], item.header.length).map((c2) => {
-            return { text: c2 };
-          });
+          item.rows[i] = splitCells(item.rows[i], item.header.length).map(
+            (c2) => {
+              return { text: c2 };
+            }
+          );
         }
         l = item.header.length;
         for (j = 0; j < l; j++) {
@@ -20284,19 +22138,22 @@ var Tokenizer = class {
         raw: cap2[0],
         depth: cap2[2].charAt(0) === "=" ? 1 : 2,
         text: cap2[1],
-        tokens: this.lexer.inline(cap2[1])
+        tokens: this.lexer.inline(cap2[1]),
       };
     }
   }
   paragraph(src) {
     const cap2 = this.rules.block.paragraph.exec(src);
     if (cap2) {
-      const text2 = cap2[1].charAt(cap2[1].length - 1) === "\n" ? cap2[1].slice(0, -1) : cap2[1];
+      const text2 =
+        cap2[1].charAt(cap2[1].length - 1) === "\n"
+          ? cap2[1].slice(0, -1)
+          : cap2[1];
       return {
         type: "paragraph",
         raw: cap2[0],
         text: text2,
-        tokens: this.lexer.inline(text2)
+        tokens: this.lexer.inline(text2),
       };
     }
   }
@@ -20307,7 +22164,7 @@ var Tokenizer = class {
         type: "text",
         raw: cap2[0],
         text: cap2[0],
-        tokens: this.lexer.inline(cap2[0])
+        tokens: this.lexer.inline(cap2[0]),
       };
     }
   }
@@ -20317,7 +22174,7 @@ var Tokenizer = class {
       return {
         type: "escape",
         raw: cap2[0],
-        text: escape(cap2[1])
+        text: escape(cap2[1]),
       };
     }
   }
@@ -20329,9 +22186,15 @@ var Tokenizer = class {
       } else if (this.lexer.state.inLink && /^<\/a>/i.test(cap2[0])) {
         this.lexer.state.inLink = false;
       }
-      if (!this.lexer.state.inRawBlock && /^<(pre|code|kbd|script)(\s|>)/i.test(cap2[0])) {
+      if (
+        !this.lexer.state.inRawBlock &&
+        /^<(pre|code|kbd|script)(\s|>)/i.test(cap2[0])
+      ) {
         this.lexer.state.inRawBlock = true;
-      } else if (this.lexer.state.inRawBlock && /^<\/(pre|code|kbd|script)(\s|>)/i.test(cap2[0])) {
+      } else if (
+        this.lexer.state.inRawBlock &&
+        /^<\/(pre|code|kbd|script)(\s|>)/i.test(cap2[0])
+      ) {
         this.lexer.state.inRawBlock = false;
       }
       return {
@@ -20339,7 +22202,11 @@ var Tokenizer = class {
         raw: cap2[0],
         inLink: this.lexer.state.inLink,
         inRawBlock: this.lexer.state.inRawBlock,
-        text: this.options.sanitize ? this.options.sanitizer ? this.options.sanitizer(cap2[0]) : escape(cap2[0]) : cap2[0]
+        text: this.options.sanitize
+          ? this.options.sanitizer
+            ? this.options.sanitizer(cap2[0])
+            : escape(cap2[0])
+          : cap2[0],
       };
     }
   }
@@ -20384,15 +22251,25 @@ var Tokenizer = class {
           href = href.slice(1, -1);
         }
       }
-      return outputLink(cap2, {
-        href: href ? href.replace(this.rules.inline._escapes, "$1") : href,
-        title: title ? title.replace(this.rules.inline._escapes, "$1") : title
-      }, cap2[0], this.lexer);
+      return outputLink(
+        cap2,
+        {
+          href: href ? href.replace(this.rules.inline._escapes, "$1") : href,
+          title: title
+            ? title.replace(this.rules.inline._escapes, "$1")
+            : title,
+        },
+        cap2[0],
+        this.lexer
+      );
     }
   }
   reflink(src, links) {
     let cap2;
-    if ((cap2 = this.rules.inline.reflink.exec(src)) || (cap2 = this.rules.inline.nolink.exec(src))) {
+    if (
+      (cap2 = this.rules.inline.reflink.exec(src)) ||
+      (cap2 = this.rules.inline.nolink.exec(src))
+    ) {
       let link = (cap2[2] || cap2[1]).replace(/\s+/g, " ");
       link = links[link.toLowerCase()];
       if (!link) {
@@ -20400,7 +22277,7 @@ var Tokenizer = class {
         return {
           type: "text",
           raw: text2,
-          text: text2
+          text: text2,
         };
       }
       return outputLink(cap2, link, cap2[0], this.lexer);
@@ -20408,21 +22285,29 @@ var Tokenizer = class {
   }
   emStrong(src, maskedSrc, prevChar = "") {
     let match = this.rules.inline.emStrong.lDelim.exec(src);
-    if (!match)
-      return;
-    if (match[3] && prevChar.match(/[\p{L}\p{N}]/u))
-      return;
+    if (!match) return;
+    if (match[3] && prevChar.match(/[\p{L}\p{N}]/u)) return;
     const nextChar = match[1] || match[2] || "";
-    if (!nextChar || nextChar && (prevChar === "" || this.rules.inline.punctuation.exec(prevChar))) {
+    if (
+      !nextChar ||
+      (nextChar &&
+        (prevChar === "" || this.rules.inline.punctuation.exec(prevChar)))
+    ) {
       const lLength = match[0].length - 1;
-      let rDelim, rLength, delimTotal = lLength, midDelimTotal = 0;
-      const endReg = match[0][0] === "*" ? this.rules.inline.emStrong.rDelimAst : this.rules.inline.emStrong.rDelimUnd;
+      let rDelim,
+        rLength,
+        delimTotal = lLength,
+        midDelimTotal = 0;
+      const endReg =
+        match[0][0] === "*"
+          ? this.rules.inline.emStrong.rDelimAst
+          : this.rules.inline.emStrong.rDelimUnd;
       endReg.lastIndex = 0;
       maskedSrc = maskedSrc.slice(-1 * src.length + lLength);
       while ((match = endReg.exec(maskedSrc)) != null) {
-        rDelim = match[1] || match[2] || match[3] || match[4] || match[5] || match[6];
-        if (!rDelim)
-          continue;
+        rDelim =
+          match[1] || match[2] || match[3] || match[4] || match[5] || match[6];
+        if (!rDelim) continue;
         rLength = rDelim.length;
         if (match[3] || match[4]) {
           delimTotal += rLength;
@@ -20434,17 +22319,19 @@ var Tokenizer = class {
           }
         }
         delimTotal -= rLength;
-        if (delimTotal > 0)
-          continue;
+        if (delimTotal > 0) continue;
         rLength = Math.min(rLength, rLength + delimTotal + midDelimTotal);
-        const raw = src.slice(0, lLength + match.index + (match[0].length - rDelim.length) + rLength);
+        const raw = src.slice(
+          0,
+          lLength + match.index + (match[0].length - rDelim.length) + rLength
+        );
         if (Math.min(lLength, rLength) % 2) {
           const text3 = raw.slice(1, -1);
           return {
             type: "em",
             raw,
             text: text3,
-            tokens: this.lexer.inlineTokens(text3)
+            tokens: this.lexer.inlineTokens(text3),
           };
         }
         const text2 = raw.slice(2, -2);
@@ -20452,7 +22339,7 @@ var Tokenizer = class {
           type: "strong",
           raw,
           text: text2,
-          tokens: this.lexer.inlineTokens(text2)
+          tokens: this.lexer.inlineTokens(text2),
         };
       }
     }
@@ -20470,7 +22357,7 @@ var Tokenizer = class {
       return {
         type: "codespan",
         raw: cap2[0],
-        text: text2
+        text: text2,
       };
     }
   }
@@ -20479,7 +22366,7 @@ var Tokenizer = class {
     if (cap2) {
       return {
         type: "br",
-        raw: cap2[0]
+        raw: cap2[0],
       };
     }
   }
@@ -20490,7 +22377,7 @@ var Tokenizer = class {
         type: "del",
         raw: cap2[0],
         text: cap2[2],
-        tokens: this.lexer.inlineTokens(cap2[2])
+        tokens: this.lexer.inlineTokens(cap2[2]),
       };
     }
   }
@@ -20514,15 +22401,15 @@ var Tokenizer = class {
           {
             type: "text",
             raw: text2,
-            text: text2
-          }
-        ]
+            text: text2,
+          },
+        ],
       };
     }
   }
   url(src, mangle2) {
     let cap2;
-    if (cap2 = this.rules.inline.url.exec(src)) {
+    if ((cap2 = this.rules.inline.url.exec(src))) {
       let text2, href;
       if (cap2[2] === "@") {
         text2 = escape(this.options.mangle ? mangle2(cap2[0]) : cap2[0]);
@@ -20549,9 +22436,9 @@ var Tokenizer = class {
           {
             type: "text",
             raw: text2,
-            text: text2
-          }
-        ]
+            text: text2,
+          },
+        ],
       };
     }
   }
@@ -20560,14 +22447,20 @@ var Tokenizer = class {
     if (cap2) {
       let text2;
       if (this.lexer.state.inRawBlock) {
-        text2 = this.options.sanitize ? this.options.sanitizer ? this.options.sanitizer(cap2[0]) : escape(cap2[0]) : cap2[0];
+        text2 = this.options.sanitize
+          ? this.options.sanitizer
+            ? this.options.sanitizer(cap2[0])
+            : escape(cap2[0])
+          : cap2[0];
       } else {
-        text2 = escape(this.options.smartypants ? smartypants2(cap2[0]) : cap2[0]);
+        text2 = escape(
+          this.options.smartypants ? smartypants2(cap2[0]) : cap2[0]
+        );
       }
       return {
         type: "text",
         raw: cap2[0],
-        text: text2
+        text: text2,
       };
     }
   }
@@ -20575,7 +22468,8 @@ var Tokenizer = class {
 var block = {
   newline: /^(?: *(?:\n|$))+/,
   code: /^( {4}[^\n]+(?:\n(?: *(?:\n|$))*)?)+/,
-  fences: /^ {0,3}(`{3,}(?=[^`\n]*\n)|~{3,})([^\n]*)\n(?:|([\s\S]*?)\n)(?: {0,3}\1[~`]* *(?=\n|$)|$)/,
+  fences:
+    /^ {0,3}(`{3,}(?=[^`\n]*\n)|~{3,})([^\n]*)\n(?:|([\s\S]*?)\n)(?: {0,3}\1[~`]* *(?=\n|$)|$)/,
   hr: /^ {0,3}((?:-[\t ]*){3,}|(?:_[ \t]*){3,}|(?:\*[ \t]*){3,})(?:\n+|$)/,
   heading: /^ {0,3}(#{1,6})(?=\s|$)(.*)(?:\n+|$)/,
   blockquote: /^( {0,3}> ?(paragraph|[^\n]*)(?:\n|$))+/,
@@ -20584,35 +22478,111 @@ var block = {
   def: /^ {0,3}\[(label)\]: *(?:\n *)?([^<\s][^\s]*|<.*?>)(?:(?: +(?:\n *)?| *\n *)(title))? *(?:\n+|$)/,
   table: noopTest,
   lheading: /^((?:.|\n(?!\n))+?)\n {0,3}(=+|-+) *(?:\n+|$)/,
-  _paragraph: /^([^\n]+(?:\n(?!hr|heading|lheading|blockquote|fences|list|html|table| +\n)[^\n]+)*)/,
-  text: /^[^\n]+/
+  _paragraph:
+    /^([^\n]+(?:\n(?!hr|heading|lheading|blockquote|fences|list|html|table| +\n)[^\n]+)*)/,
+  text: /^[^\n]+/,
 };
 block._label = /(?!\s*\])(?:\\.|[^\[\]\\])+/;
 block._title = /(?:"(?:\\"?|[^"\\])*"|'[^'\n]*(?:\n[^'\n]+)*\n?'|\([^()]*\))/;
-block.def = edit(block.def).replace("label", block._label).replace("title", block._title).getRegex();
+block.def = edit(block.def)
+  .replace("label", block._label)
+  .replace("title", block._title)
+  .getRegex();
 block.bullet = /(?:[*+-]|\d{1,9}[.)])/;
-block.listItemStart = edit(/^( *)(bull) */).replace("bull", block.bullet).getRegex();
-block.list = edit(block.list).replace(/bull/g, block.bullet).replace("hr", "\\n+(?=\\1?(?:(?:- *){3,}|(?:_ *){3,}|(?:\\* *){3,})(?:\\n+|$))").replace("def", "\\n+(?=" + block.def.source + ")").getRegex();
-block._tag = "address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|meta|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul";
+block.listItemStart = edit(/^( *)(bull) */)
+  .replace("bull", block.bullet)
+  .getRegex();
+block.list = edit(block.list)
+  .replace(/bull/g, block.bullet)
+  .replace(
+    "hr",
+    "\\n+(?=\\1?(?:(?:- *){3,}|(?:_ *){3,}|(?:\\* *){3,})(?:\\n+|$))"
+  )
+  .replace("def", "\\n+(?=" + block.def.source + ")")
+  .getRegex();
+block._tag =
+  "address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|meta|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul";
 block._comment = /<!--(?!-?>)[\s\S]*?(?:-->|$)/;
-block.html = edit(block.html, "i").replace("comment", block._comment).replace("tag", block._tag).replace("attribute", / +[a-zA-Z:_][\w.:-]*(?: *= *"[^"\n]*"| *= *'[^'\n]*'| *= *[^\s"'=<>`]+)?/).getRegex();
-block.paragraph = edit(block._paragraph).replace("hr", block.hr).replace("heading", " {0,3}#{1,6} ").replace("|lheading", "").replace("|table", "").replace("blockquote", " {0,3}>").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)]) ").replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", block._tag).getRegex();
-block.blockquote = edit(block.blockquote).replace("paragraph", block.paragraph).getRegex();
+block.html = edit(block.html, "i")
+  .replace("comment", block._comment)
+  .replace("tag", block._tag)
+  .replace(
+    "attribute",
+    / +[a-zA-Z:_][\w.:-]*(?: *= *"[^"\n]*"| *= *'[^'\n]*'| *= *[^\s"'=<>`]+)?/
+  )
+  .getRegex();
+block.paragraph = edit(block._paragraph)
+  .replace("hr", block.hr)
+  .replace("heading", " {0,3}#{1,6} ")
+  .replace("|lheading", "")
+  .replace("|table", "")
+  .replace("blockquote", " {0,3}>")
+  .replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n")
+  .replace("list", " {0,3}(?:[*+-]|1[.)]) ")
+  .replace(
+    "html",
+    "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)"
+  )
+  .replace("tag", block._tag)
+  .getRegex();
+block.blockquote = edit(block.blockquote)
+  .replace("paragraph", block.paragraph)
+  .getRegex();
 block.normal = merge2({}, block);
 block.gfm = merge2({}, block.normal, {
-  table: "^ *([^\\n ].*\\|.*)\\n {0,3}(?:\\| *)?(:?-+:? *(?:\\| *:?-+:? *)*)(?:\\| *)?(?:\\n((?:(?! *\\n|hr|heading|blockquote|code|fences|list|html).*(?:\\n|$))*)\\n*|$)"
+  table:
+    "^ *([^\\n ].*\\|.*)\\n {0,3}(?:\\| *)?(:?-+:? *(?:\\| *:?-+:? *)*)(?:\\| *)?(?:\\n((?:(?! *\\n|hr|heading|blockquote|code|fences|list|html).*(?:\\n|$))*)\\n*|$)",
 });
-block.gfm.table = edit(block.gfm.table).replace("hr", block.hr).replace("heading", " {0,3}#{1,6} ").replace("blockquote", " {0,3}>").replace("code", " {4}[^\\n]").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)]) ").replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", block._tag).getRegex();
-block.gfm.paragraph = edit(block._paragraph).replace("hr", block.hr).replace("heading", " {0,3}#{1,6} ").replace("|lheading", "").replace("table", block.gfm.table).replace("blockquote", " {0,3}>").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)]) ").replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", block._tag).getRegex();
+block.gfm.table = edit(block.gfm.table)
+  .replace("hr", block.hr)
+  .replace("heading", " {0,3}#{1,6} ")
+  .replace("blockquote", " {0,3}>")
+  .replace("code", " {4}[^\\n]")
+  .replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n")
+  .replace("list", " {0,3}(?:[*+-]|1[.)]) ")
+  .replace(
+    "html",
+    "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)"
+  )
+  .replace("tag", block._tag)
+  .getRegex();
+block.gfm.paragraph = edit(block._paragraph)
+  .replace("hr", block.hr)
+  .replace("heading", " {0,3}#{1,6} ")
+  .replace("|lheading", "")
+  .replace("table", block.gfm.table)
+  .replace("blockquote", " {0,3}>")
+  .replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n")
+  .replace("list", " {0,3}(?:[*+-]|1[.)]) ")
+  .replace(
+    "html",
+    "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)"
+  )
+  .replace("tag", block._tag)
+  .getRegex();
 block.pedantic = merge2({}, block.normal, {
   html: edit(
     `^ *(?:comment *(?:\\n|\\s*$)|<(tag)[\\s\\S]+?</\\1> *(?:\\n{2,}|\\s*$)|<tag(?:"[^"]*"|'[^']*'|\\s[^'"/>\\s]*)*?/?> *(?:\\n{2,}|\\s*$))`
-  ).replace("comment", block._comment).replace(/tag/g, "(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\\b)\\w+(?!:|[^\\w\\s@]*@)\\b").getRegex(),
+  )
+    .replace("comment", block._comment)
+    .replace(
+      /tag/g,
+      "(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\\b)\\w+(?!:|[^\\w\\s@]*@)\\b"
+    )
+    .getRegex(),
   def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +(["(][^\n]+[")]))? *(?:\n+|$)/,
   heading: /^(#{1,6})(.*)(?:\n+|$)/,
   fences: noopTest,
   lheading: /^(.+?)\n {0,3}(=+|-+) *(?:\n+|$)/,
-  paragraph: edit(block.normal._paragraph).replace("hr", block.hr).replace("heading", " *#{1,6} *[^\n]").replace("lheading", block.lheading).replace("blockquote", " {0,3}>").replace("|fences", "").replace("|list", "").replace("|html", "").getRegex()
+  paragraph: edit(block.normal._paragraph)
+    .replace("hr", block.hr)
+    .replace("heading", " *#{1,6} *[^\n]")
+    .replace("lheading", block.lheading)
+    .replace("blockquote", " {0,3}>")
+    .replace("|fences", "")
+    .replace("|list", "")
+    .replace("|html", "")
+    .getRegex(),
 });
 var inline = {
   escape: /^\\([!"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])/,
@@ -20625,71 +22595,119 @@ var inline = {
   reflinkSearch: "reflink|nolink(?!\\()",
   emStrong: {
     lDelim: /^(?:\*+(?:([punct_])|[^\s*]))|^_+(?:([punct*])|([^\s_]))/,
-    rDelimAst: /^(?:[^_*\\]|\\.)*?\_\_(?:[^_*\\]|\\.)*?\*(?:[^_*\\]|\\.)*?(?=\_\_)|(?:[^*\\]|\\.)+(?=[^*])|[punct_](\*+)(?=[\s]|$)|(?:[^punct*_\s\\]|\\.)(\*+)(?=[punct_\s]|$)|[punct_\s](\*+)(?=[^punct*_\s])|[\s](\*+)(?=[punct_])|[punct_](\*+)(?=[punct_])|(?:[^punct*_\s\\]|\\.)(\*+)(?=[^punct*_\s])/,
-    rDelimUnd: /^(?:[^_*\\]|\\.)*?\*\*(?:[^_*\\]|\\.)*?\_(?:[^_*\\]|\\.)*?(?=\*\*)|(?:[^_\\]|\\.)+(?=[^_])|[punct*](\_+)(?=[\s]|$)|(?:[^punct*_\s\\]|\\.)(\_+)(?=[punct*\s]|$)|[punct*\s](\_+)(?=[^punct*_\s])|[\s](\_+)(?=[punct*])|[punct*](\_+)(?=[punct*])/
+    rDelimAst:
+      /^(?:[^_*\\]|\\.)*?\_\_(?:[^_*\\]|\\.)*?\*(?:[^_*\\]|\\.)*?(?=\_\_)|(?:[^*\\]|\\.)+(?=[^*])|[punct_](\*+)(?=[\s]|$)|(?:[^punct*_\s\\]|\\.)(\*+)(?=[punct_\s]|$)|[punct_\s](\*+)(?=[^punct*_\s])|[\s](\*+)(?=[punct_])|[punct_](\*+)(?=[punct_])|(?:[^punct*_\s\\]|\\.)(\*+)(?=[^punct*_\s])/,
+    rDelimUnd:
+      /^(?:[^_*\\]|\\.)*?\*\*(?:[^_*\\]|\\.)*?\_(?:[^_*\\]|\\.)*?(?=\*\*)|(?:[^_\\]|\\.)+(?=[^_])|[punct*](\_+)(?=[\s]|$)|(?:[^punct*_\s\\]|\\.)(\_+)(?=[punct*\s]|$)|[punct*\s](\_+)(?=[^punct*_\s])|[\s](\_+)(?=[punct*])|[punct*](\_+)(?=[punct*])/,
   },
   code: /^(`+)([^`]|[^`][\s\S]*?[^`])\1(?!`)/,
   br: /^( {2,}|\\)\n(?!\s*$)/,
   del: noopTest,
   text: /^(`+|[^`])(?:(?= {2,}\n)|[\s\S]*?(?:(?=[\\<!\[`*_]|\b_|$)|[^ ](?= {2,}\n)))/,
-  punctuation: /^([\spunctuation])/
+  punctuation: /^([\spunctuation])/,
 };
 inline._punctuation = "!\"#$%&'()+\\-.,/:;<=>?@\\[\\]`^{|}~";
-inline.punctuation = edit(inline.punctuation).replace(/punctuation/g, inline._punctuation).getRegex();
+inline.punctuation = edit(inline.punctuation)
+  .replace(/punctuation/g, inline._punctuation)
+  .getRegex();
 inline.blockSkip = /\[[^\]]*?\]\([^\)]*?\)|`[^`]*?`|<[^>]*?>/g;
 inline.escapedEmSt = /(?:^|[^\\])(?:\\\\)*\\[*_]/g;
 inline._comment = edit(block._comment).replace("(?:-->|$)", "-->").getRegex();
-inline.emStrong.lDelim = edit(inline.emStrong.lDelim).replace(/punct/g, inline._punctuation).getRegex();
-inline.emStrong.rDelimAst = edit(inline.emStrong.rDelimAst, "g").replace(/punct/g, inline._punctuation).getRegex();
-inline.emStrong.rDelimUnd = edit(inline.emStrong.rDelimUnd, "g").replace(/punct/g, inline._punctuation).getRegex();
+inline.emStrong.lDelim = edit(inline.emStrong.lDelim)
+  .replace(/punct/g, inline._punctuation)
+  .getRegex();
+inline.emStrong.rDelimAst = edit(inline.emStrong.rDelimAst, "g")
+  .replace(/punct/g, inline._punctuation)
+  .getRegex();
+inline.emStrong.rDelimUnd = edit(inline.emStrong.rDelimUnd, "g")
+  .replace(/punct/g, inline._punctuation)
+  .getRegex();
 inline._escapes = /\\([!"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])/g;
 inline._scheme = /[a-zA-Z][a-zA-Z0-9+.-]{1,31}/;
-inline._email = /[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+(@)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+(?![-_])/;
-inline.autolink = edit(inline.autolink).replace("scheme", inline._scheme).replace("email", inline._email).getRegex();
-inline._attribute = /\s+[a-zA-Z:_][\w.:-]*(?:\s*=\s*"[^"]*"|\s*=\s*'[^']*'|\s*=\s*[^\s"'=<>`]+)?/;
-inline.tag = edit(inline.tag).replace("comment", inline._comment).replace("attribute", inline._attribute).getRegex();
+inline._email =
+  /[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+(@)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+(?![-_])/;
+inline.autolink = edit(inline.autolink)
+  .replace("scheme", inline._scheme)
+  .replace("email", inline._email)
+  .getRegex();
+inline._attribute =
+  /\s+[a-zA-Z:_][\w.:-]*(?:\s*=\s*"[^"]*"|\s*=\s*'[^']*'|\s*=\s*[^\s"'=<>`]+)?/;
+inline.tag = edit(inline.tag)
+  .replace("comment", inline._comment)
+  .replace("attribute", inline._attribute)
+  .getRegex();
 inline._label = /(?:\[(?:\\.|[^\[\]\\])*\]|\\.|`[^`]*`|[^\[\]\\`])*?/;
 inline._href = /<(?:\\.|[^\n<>\\])+>|[^\s\x00-\x1f]*/;
 inline._title = /"(?:\\"?|[^"\\])*"|'(?:\\'?|[^'\\])*'|\((?:\\\)?|[^)\\])*\)/;
-inline.link = edit(inline.link).replace("label", inline._label).replace("href", inline._href).replace("title", inline._title).getRegex();
-inline.reflink = edit(inline.reflink).replace("label", inline._label).replace("ref", block._label).getRegex();
+inline.link = edit(inline.link)
+  .replace("label", inline._label)
+  .replace("href", inline._href)
+  .replace("title", inline._title)
+  .getRegex();
+inline.reflink = edit(inline.reflink)
+  .replace("label", inline._label)
+  .replace("ref", block._label)
+  .getRegex();
 inline.nolink = edit(inline.nolink).replace("ref", block._label).getRegex();
-inline.reflinkSearch = edit(inline.reflinkSearch, "g").replace("reflink", inline.reflink).replace("nolink", inline.nolink).getRegex();
+inline.reflinkSearch = edit(inline.reflinkSearch, "g")
+  .replace("reflink", inline.reflink)
+  .replace("nolink", inline.nolink)
+  .getRegex();
 inline.normal = merge2({}, inline);
 inline.pedantic = merge2({}, inline.normal, {
   strong: {
     start: /^__|\*\*/,
     middle: /^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
     endAst: /\*\*(?!\*)/g,
-    endUnd: /__(?!_)/g
+    endUnd: /__(?!_)/g,
   },
   em: {
     start: /^_|\*/,
     middle: /^()\*(?=\S)([\s\S]*?\S)\*(?!\*)|^_(?=\S)([\s\S]*?\S)_(?!_)/,
     endAst: /\*(?!\*)/g,
-    endUnd: /_(?!_)/g
+    endUnd: /_(?!_)/g,
   },
-  link: edit(/^!?\[(label)\]\((.*?)\)/).replace("label", inline._label).getRegex(),
-  reflink: edit(/^!?\[(label)\]\s*\[([^\]]*)\]/).replace("label", inline._label).getRegex()
+  link: edit(/^!?\[(label)\]\((.*?)\)/)
+    .replace("label", inline._label)
+    .getRegex(),
+  reflink: edit(/^!?\[(label)\]\s*\[([^\]]*)\]/)
+    .replace("label", inline._label)
+    .getRegex(),
 });
 inline.gfm = merge2({}, inline.normal, {
   escape: edit(inline.escape).replace("])", "~|])").getRegex(),
-  _extended_email: /[A-Za-z0-9._+-]+(@)[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]*[a-zA-Z0-9])+(?![-_])/,
+  _extended_email:
+    /[A-Za-z0-9._+-]+(@)[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]*[a-zA-Z0-9])+(?![-_])/,
   url: /^((?:ftp|https?):\/\/|www\.)(?:[a-zA-Z0-9\-]+\.?)+[^\s<]*|^email/,
-  _backpedal: /(?:[^?!.,:;*_'"~()&]+|\([^)]*\)|&(?![a-zA-Z0-9]+;$)|[?!.,:;*_'"~)]+(?!$))+/,
+  _backpedal:
+    /(?:[^?!.,:;*_'"~()&]+|\([^)]*\)|&(?![a-zA-Z0-9]+;$)|[?!.,:;*_'"~)]+(?!$))+/,
   del: /^(~~?)(?=[^\s~])([\s\S]*?[^\s~])\1(?=[^~]|$)/,
-  text: /^([`~]+|[^`~])(?:(?= {2,}\n)|(?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)|[\s\S]*?(?:(?=[\\<!\[`*~_]|\b_|https?:\/\/|ftp:\/\/|www\.|$)|[^ ](?= {2,}\n)|[^a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-](?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)))/
+  text: /^([`~]+|[^`~])(?:(?= {2,}\n)|(?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)|[\s\S]*?(?:(?=[\\<!\[`*~_]|\b_|https?:\/\/|ftp:\/\/|www\.|$)|[^ ](?= {2,}\n)|[^a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-](?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)))/,
 });
-inline.gfm.url = edit(inline.gfm.url, "i").replace("email", inline.gfm._extended_email).getRegex();
+inline.gfm.url = edit(inline.gfm.url, "i")
+  .replace("email", inline.gfm._extended_email)
+  .getRegex();
 inline.breaks = merge2({}, inline.gfm, {
   br: edit(inline.br).replace("{2,}", "*").getRegex(),
-  text: edit(inline.gfm.text).replace("\\b_", "\\b_| {2,}\\n").replace(/\{2,\}/g, "*").getRegex()
+  text: edit(inline.gfm.text)
+    .replace("\\b_", "\\b_| {2,}\\n")
+    .replace(/\{2,\}/g, "*")
+    .getRegex(),
 });
 function smartypants(text2) {
-  return text2.replace(/---/g, "\u2014").replace(/--/g, "\u2013").replace(/(^|[-\u2014/(\[{"\s])'/g, "$1\u2018").replace(/'/g, "\u2019").replace(/(^|[-\u2014/(\[{\u2018\s])"/g, "$1\u201C").replace(/"/g, "\u201D").replace(/\.{3}/g, "\u2026");
+  return text2
+    .replace(/---/g, "\u2014")
+    .replace(/--/g, "\u2013")
+    .replace(/(^|[-\u2014/(\[{"\s])'/g, "$1\u2018")
+    .replace(/'/g, "\u2019")
+    .replace(/(^|[-\u2014/(\[{\u2018\s])"/g, "$1\u201C")
+    .replace(/"/g, "\u201D")
+    .replace(/\.{3}/g, "\u2026");
 }
 function mangle(text2) {
-  let out = "", i, ch;
+  let out = "",
+    i,
+    ch;
   const l = text2.length;
   for (i = 0; i < l; i++) {
     ch = text2.charCodeAt(i);
@@ -20713,11 +22731,11 @@ var Lexer = class {
     this.state = {
       inLink: false,
       inRawBlock: false,
-      top: true
+      top: true,
     };
     const rules = {
       block: block.normal,
-      inline: inline.normal
+      inline: inline.normal,
     };
     if (this.options.pedantic) {
       rules.block = block.pedantic;
@@ -20735,7 +22753,7 @@ var Lexer = class {
   static get rules() {
     return {
       block,
-      inline
+      inline,
     };
   }
   static lex(src, options2) {
@@ -20750,7 +22768,7 @@ var Lexer = class {
     src = src.replace(/\r\n|\r/g, "\n");
     this.blockTokens(src, this.tokens);
     let next;
-    while (next = this.inlineQueue.shift()) {
+    while ((next = this.inlineQueue.shift())) {
       this.inlineTokens(next.src, next.tokens);
     }
     return this.tokens;
@@ -20765,17 +22783,21 @@ var Lexer = class {
     }
     let token, lastToken, cutSrc, lastParagraphClipped;
     while (src) {
-      if (this.options.extensions && this.options.extensions.block && this.options.extensions.block.some((extTokenizer) => {
-        if (token = extTokenizer.call({ lexer: this }, src, tokens)) {
-          src = src.substring(token.raw.length);
-          tokens.push(token);
-          return true;
-        }
-        return false;
-      })) {
+      if (
+        this.options.extensions &&
+        this.options.extensions.block &&
+        this.options.extensions.block.some((extTokenizer) => {
+          if ((token = extTokenizer.call({ lexer: this }, src, tokens))) {
+            src = src.substring(token.raw.length);
+            tokens.push(token);
+            return true;
+          }
+          return false;
+        })
+      ) {
         continue;
       }
-      if (token = this.tokenizer.space(src)) {
+      if ((token = this.tokenizer.space(src))) {
         src = src.substring(token.raw.length);
         if (token.raw.length === 1 && tokens.length > 0) {
           tokens[tokens.length - 1].raw += "\n";
@@ -20784,10 +22806,13 @@ var Lexer = class {
         }
         continue;
       }
-      if (token = this.tokenizer.code(src)) {
+      if ((token = this.tokenizer.code(src))) {
         src = src.substring(token.raw.length);
         lastToken = tokens[tokens.length - 1];
-        if (lastToken && (lastToken.type === "paragraph" || lastToken.type === "text")) {
+        if (
+          lastToken &&
+          (lastToken.type === "paragraph" || lastToken.type === "text")
+        ) {
           lastToken.raw += "\n" + token.raw;
           lastToken.text += "\n" + token.text;
           this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
@@ -20796,57 +22821,60 @@ var Lexer = class {
         }
         continue;
       }
-      if (token = this.tokenizer.fences(src)) {
+      if ((token = this.tokenizer.fences(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.heading(src)) {
+      if ((token = this.tokenizer.heading(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.hr(src)) {
+      if ((token = this.tokenizer.hr(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.blockquote(src)) {
+      if ((token = this.tokenizer.blockquote(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.list(src)) {
+      if ((token = this.tokenizer.list(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.html(src)) {
+      if ((token = this.tokenizer.html(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.def(src)) {
+      if ((token = this.tokenizer.def(src))) {
         src = src.substring(token.raw.length);
         lastToken = tokens[tokens.length - 1];
-        if (lastToken && (lastToken.type === "paragraph" || lastToken.type === "text")) {
+        if (
+          lastToken &&
+          (lastToken.type === "paragraph" || lastToken.type === "text")
+        ) {
           lastToken.raw += "\n" + token.raw;
           lastToken.text += "\n" + token.raw;
           this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
         } else if (!this.tokens.links[token.tag]) {
           this.tokens.links[token.tag] = {
             href: token.href,
-            title: token.title
+            title: token.title,
           };
         }
         continue;
       }
-      if (token = this.tokenizer.table(src)) {
+      if ((token = this.tokenizer.table(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.lheading(src)) {
+      if ((token = this.tokenizer.lheading(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
@@ -20856,7 +22884,7 @@ var Lexer = class {
         let startIndex = Infinity;
         const tempSrc = src.slice(1);
         let tempStart;
-        this.options.extensions.startBlock.forEach(function(getStartIndex) {
+        this.options.extensions.startBlock.forEach(function (getStartIndex) {
           tempStart = getStartIndex.call({ lexer: this }, tempSrc);
           if (typeof tempStart === "number" && tempStart >= 0) {
             startIndex = Math.min(startIndex, tempStart);
@@ -20880,7 +22908,7 @@ var Lexer = class {
         src = src.substring(token.raw.length);
         continue;
       }
-      if (token = this.tokenizer.text(src)) {
+      if ((token = this.tokenizer.text(src))) {
         src = src.substring(token.raw.length);
         lastToken = tokens[tokens.length - 1];
         if (lastToken && lastToken.type === "text") {
@@ -20918,18 +22946,42 @@ var Lexer = class {
     if (this.tokens.links) {
       const links = Object.keys(this.tokens.links);
       if (links.length > 0) {
-        while ((match = this.tokenizer.rules.inline.reflinkSearch.exec(maskedSrc)) != null) {
-          if (links.includes(match[0].slice(match[0].lastIndexOf("[") + 1, -1))) {
-            maskedSrc = maskedSrc.slice(0, match.index) + "[" + repeatString("a", match[0].length - 2) + "]" + maskedSrc.slice(this.tokenizer.rules.inline.reflinkSearch.lastIndex);
+        while (
+          (match = this.tokenizer.rules.inline.reflinkSearch.exec(maskedSrc)) !=
+          null
+        ) {
+          if (
+            links.includes(match[0].slice(match[0].lastIndexOf("[") + 1, -1))
+          ) {
+            maskedSrc =
+              maskedSrc.slice(0, match.index) +
+              "[" +
+              repeatString("a", match[0].length - 2) +
+              "]" +
+              maskedSrc.slice(
+                this.tokenizer.rules.inline.reflinkSearch.lastIndex
+              );
           }
         }
       }
     }
-    while ((match = this.tokenizer.rules.inline.blockSkip.exec(maskedSrc)) != null) {
-      maskedSrc = maskedSrc.slice(0, match.index) + "[" + repeatString("a", match[0].length - 2) + "]" + maskedSrc.slice(this.tokenizer.rules.inline.blockSkip.lastIndex);
+    while (
+      (match = this.tokenizer.rules.inline.blockSkip.exec(maskedSrc)) != null
+    ) {
+      maskedSrc =
+        maskedSrc.slice(0, match.index) +
+        "[" +
+        repeatString("a", match[0].length - 2) +
+        "]" +
+        maskedSrc.slice(this.tokenizer.rules.inline.blockSkip.lastIndex);
     }
-    while ((match = this.tokenizer.rules.inline.escapedEmSt.exec(maskedSrc)) != null) {
-      maskedSrc = maskedSrc.slice(0, match.index + match[0].length - 2) + "++" + maskedSrc.slice(this.tokenizer.rules.inline.escapedEmSt.lastIndex);
+    while (
+      (match = this.tokenizer.rules.inline.escapedEmSt.exec(maskedSrc)) != null
+    ) {
+      maskedSrc =
+        maskedSrc.slice(0, match.index + match[0].length - 2) +
+        "++" +
+        maskedSrc.slice(this.tokenizer.rules.inline.escapedEmSt.lastIndex);
       this.tokenizer.rules.inline.escapedEmSt.lastIndex--;
     }
     while (src) {
@@ -20937,22 +22989,26 @@ var Lexer = class {
         prevChar = "";
       }
       keepPrevChar = false;
-      if (this.options.extensions && this.options.extensions.inline && this.options.extensions.inline.some((extTokenizer) => {
-        if (token = extTokenizer.call({ lexer: this }, src, tokens)) {
-          src = src.substring(token.raw.length);
-          tokens.push(token);
-          return true;
-        }
-        return false;
-      })) {
+      if (
+        this.options.extensions &&
+        this.options.extensions.inline &&
+        this.options.extensions.inline.some((extTokenizer) => {
+          if ((token = extTokenizer.call({ lexer: this }, src, tokens))) {
+            src = src.substring(token.raw.length);
+            tokens.push(token);
+            return true;
+          }
+          return false;
+        })
+      ) {
         continue;
       }
-      if (token = this.tokenizer.escape(src)) {
+      if ((token = this.tokenizer.escape(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.tag(src)) {
+      if ((token = this.tokenizer.tag(src))) {
         src = src.substring(token.raw.length);
         lastToken = tokens[tokens.length - 1];
         if (lastToken && token.type === "text" && lastToken.type === "text") {
@@ -20963,12 +23019,12 @@ var Lexer = class {
         }
         continue;
       }
-      if (token = this.tokenizer.link(src)) {
+      if ((token = this.tokenizer.link(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.reflink(src, this.tokens.links)) {
+      if ((token = this.tokenizer.reflink(src, this.tokens.links))) {
         src = src.substring(token.raw.length);
         lastToken = tokens[tokens.length - 1];
         if (lastToken && token.type === "text" && lastToken.type === "text") {
@@ -20979,27 +23035,27 @@ var Lexer = class {
         }
         continue;
       }
-      if (token = this.tokenizer.emStrong(src, maskedSrc, prevChar)) {
+      if ((token = this.tokenizer.emStrong(src, maskedSrc, prevChar))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.codespan(src)) {
+      if ((token = this.tokenizer.codespan(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.br(src)) {
+      if ((token = this.tokenizer.br(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.del(src)) {
+      if ((token = this.tokenizer.del(src))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
       }
-      if (token = this.tokenizer.autolink(src, mangle)) {
+      if ((token = this.tokenizer.autolink(src, mangle))) {
         src = src.substring(token.raw.length);
         tokens.push(token);
         continue;
@@ -21014,7 +23070,7 @@ var Lexer = class {
         let startIndex = Infinity;
         const tempSrc = src.slice(1);
         let tempStart;
-        this.options.extensions.startInline.forEach(function(getStartIndex) {
+        this.options.extensions.startInline.forEach(function (getStartIndex) {
           tempStart = getStartIndex.call({ lexer: this }, tempSrc);
           if (typeof tempStart === "number" && tempStart >= 0) {
             startIndex = Math.min(startIndex, tempStart);
@@ -21024,7 +23080,7 @@ var Lexer = class {
           cutSrc = src.substring(0, startIndex + 1);
         }
       }
-      if (token = this.tokenizer.inlineText(cutSrc, smartypants)) {
+      if ((token = this.tokenizer.inlineText(cutSrc, smartypants))) {
         src = src.substring(token.raw.length);
         if (token.raw.slice(-1) !== "_") {
           prevChar = token.raw.slice(-1);
@@ -21067,9 +23123,20 @@ var Renderer = class {
     }
     code2 = code2.replace(/\n$/, "") + "\n";
     if (!lang) {
-      return "<pre><code>" + (escaped ? code2 : escape(code2, true)) + "</code></pre>\n";
+      return (
+        "<pre><code>" +
+        (escaped ? code2 : escape(code2, true)) +
+        "</code></pre>\n"
+      );
     }
-    return '<pre><code class="' + this.options.langPrefix + escape(lang) + '">' + (escaped ? code2 : escape(code2, true)) + "</code></pre>\n";
+    return (
+      '<pre><code class="' +
+      this.options.langPrefix +
+      escape(lang) +
+      '">' +
+      (escaped ? code2 : escape(code2, true)) +
+      "</code></pre>\n"
+    );
   }
   blockquote(quote) {
     return `<blockquote>
@@ -21092,7 +23159,8 @@ ${quote}</blockquote>
     return this.options.xhtml ? "<hr/>\n" : "<hr>\n";
   }
   list(body, ordered, start) {
-    const type = ordered ? "ol" : "ul", startatt = ordered && start !== 1 ? ' start="' + start + '"' : "";
+    const type = ordered ? "ol" : "ul",
+      startatt = ordered && start !== 1 ? ' start="' + start + '"' : "";
     return "<" + type + startatt + ">\n" + body + "</" + type + ">\n";
   }
   listitem(text2) {
@@ -21100,15 +23168,20 @@ ${quote}</blockquote>
 `;
   }
   checkbox(checked) {
-    return "<input " + (checked ? 'checked="" ' : "") + 'disabled="" type="checkbox"' + (this.options.xhtml ? " /" : "") + "> ";
+    return (
+      "<input " +
+      (checked ? 'checked="" ' : "") +
+      'disabled="" type="checkbox"' +
+      (this.options.xhtml ? " /" : "") +
+      "> "
+    );
   }
   paragraph(text2) {
     return `<p>${text2}</p>
 `;
   }
   table(header, body) {
-    if (body)
-      body = `<tbody>${body}</tbody>`;
+    if (body) body = `<tbody>${body}</tbody>`;
     return "<table>\n<thead>\n" + header + "</thead>\n" + body + "</table>\n";
   }
   tablerow(content) {
@@ -21119,8 +23192,12 @@ ${content}</tr>
   tablecell(content, flags) {
     const type = flags.header ? "th" : "td";
     const tag = flags.align ? `<${type} align="${flags.align}">` : `<${type}>`;
-    return tag + content + `</${type}>
-`;
+    return (
+      tag +
+      content +
+      `</${type}>
+`
+    );
   }
   strong(text2) {
     return `<strong>${text2}</strong>`;
@@ -21199,7 +23276,15 @@ var Slugger = class {
     this.seen = {};
   }
   serialize(value2) {
-    return value2.toLowerCase().trim().replace(/<[!\/a-z].*?>/ig, "").replace(/[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~]/g, "").replace(/\s/g, "-");
+    return value2
+      .toLowerCase()
+      .trim()
+      .replace(/<[!\/a-z].*?>/gi, "")
+      .replace(
+        /[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~]/g,
+        ""
+      )
+      .replace(/\s/g, "-");
   }
   getNextSafeSlug(originalSlug, isDryRun) {
     let slug2 = originalSlug;
@@ -21240,13 +23325,53 @@ var Parser = class {
     return parser2.parseInline(tokens);
   }
   parse(tokens, top = true) {
-    let out = "", i, j, k, l2, l3, row, cell, header, body, token, ordered, start, loose, itemBody, item, checked, task, checkbox, ret;
+    let out = "",
+      i,
+      j,
+      k,
+      l2,
+      l3,
+      row,
+      cell,
+      header,
+      body,
+      token,
+      ordered,
+      start,
+      loose,
+      itemBody,
+      item,
+      checked,
+      task,
+      checkbox,
+      ret;
     const l = tokens.length;
     for (i = 0; i < l; i++) {
       token = tokens[i];
-      if (this.options.extensions && this.options.extensions.renderers && this.options.extensions.renderers[token.type]) {
-        ret = this.options.extensions.renderers[token.type].call({ parser: this }, token);
-        if (ret !== false || !["space", "hr", "heading", "code", "table", "blockquote", "list", "html", "paragraph", "text"].includes(token.type)) {
+      if (
+        this.options.extensions &&
+        this.options.extensions.renderers &&
+        this.options.extensions.renderers[token.type]
+      ) {
+        ret = this.options.extensions.renderers[token.type].call(
+          { parser: this },
+          token
+        );
+        if (
+          ret !== false ||
+          ![
+            "space",
+            "hr",
+            "heading",
+            "code",
+            "table",
+            "blockquote",
+            "list",
+            "html",
+            "paragraph",
+            "text",
+          ].includes(token.type)
+        ) {
           out += ret || "";
           continue;
         }
@@ -21269,11 +23394,7 @@ var Parser = class {
           continue;
         }
         case "code": {
-          out += this.renderer.code(
-            token.text,
-            token.lang,
-            token.escaped
-          );
+          out += this.renderer.code(token.text, token.lang, token.escaped);
           continue;
         }
         case "table": {
@@ -21294,10 +23415,10 @@ var Parser = class {
             cell = "";
             l3 = row.length;
             for (k = 0; k < l3; k++) {
-              cell += this.renderer.tablecell(
-                this.parseInline(row[k].tokens),
-                { header: false, align: token.align[k] }
-              );
+              cell += this.renderer.tablecell(this.parseInline(row[k].tokens), {
+                header: false,
+                align: token.align[k],
+              });
             }
             body += this.renderer.tablerow(cell);
           }
@@ -21323,15 +23444,23 @@ var Parser = class {
             if (item.task) {
               checkbox = this.renderer.checkbox(checked);
               if (loose) {
-                if (item.tokens.length > 0 && item.tokens[0].type === "paragraph") {
+                if (
+                  item.tokens.length > 0 &&
+                  item.tokens[0].type === "paragraph"
+                ) {
                   item.tokens[0].text = checkbox + " " + item.tokens[0].text;
-                  if (item.tokens[0].tokens && item.tokens[0].tokens.length > 0 && item.tokens[0].tokens[0].type === "text") {
-                    item.tokens[0].tokens[0].text = checkbox + " " + item.tokens[0].tokens[0].text;
+                  if (
+                    item.tokens[0].tokens &&
+                    item.tokens[0].tokens.length > 0 &&
+                    item.tokens[0].tokens[0].type === "text"
+                  ) {
+                    item.tokens[0].tokens[0].text =
+                      checkbox + " " + item.tokens[0].tokens[0].text;
                   }
                 } else {
                   item.tokens.unshift({
                     type: "text",
-                    text: checkbox
+                    text: checkbox,
                   });
                 }
               } else {
@@ -21356,7 +23485,9 @@ var Parser = class {
           body = token.tokens ? this.parseInline(token.tokens) : token.text;
           while (i + 1 < l && tokens[i + 1].type === "text") {
             token = tokens[++i];
-            body += "\n" + (token.tokens ? this.parseInline(token.tokens) : token.text);
+            body +=
+              "\n" +
+              (token.tokens ? this.parseInline(token.tokens) : token.text);
           }
           out += top ? this.renderer.paragraph(body) : body;
           continue;
@@ -21376,13 +23507,37 @@ var Parser = class {
   }
   parseInline(tokens, renderer) {
     renderer = renderer || this.renderer;
-    let out = "", i, token, ret;
+    let out = "",
+      i,
+      token,
+      ret;
     const l = tokens.length;
     for (i = 0; i < l; i++) {
       token = tokens[i];
-      if (this.options.extensions && this.options.extensions.renderers && this.options.extensions.renderers[token.type]) {
-        ret = this.options.extensions.renderers[token.type].call({ parser: this }, token);
-        if (ret !== false || !["escape", "html", "link", "image", "strong", "em", "codespan", "br", "del", "text"].includes(token.type)) {
+      if (
+        this.options.extensions &&
+        this.options.extensions.renderers &&
+        this.options.extensions.renderers[token.type]
+      ) {
+        ret = this.options.extensions.renderers[token.type].call(
+          { parser: this },
+          token
+        );
+        if (
+          ret !== false ||
+          ![
+            "escape",
+            "html",
+            "link",
+            "image",
+            "strong",
+            "em",
+            "codespan",
+            "br",
+            "del",
+            "text",
+          ].includes(token.type)
+        ) {
           out += ret || "";
           continue;
         }
@@ -21397,7 +23552,11 @@ var Parser = class {
           break;
         }
         case "link": {
-          out += renderer.link(token.href, token.title, this.parseInline(token.tokens, renderer));
+          out += renderer.link(
+            token.href,
+            token.title,
+            this.parseInline(token.tokens, renderer)
+          );
           break;
         }
         case "image": {
@@ -21447,7 +23606,11 @@ function marked(src, opt, callback) {
     throw new Error("marked(): input parameter is undefined or null");
   }
   if (typeof src !== "string") {
-    throw new Error("marked(): input parameter is of type " + Object.prototype.toString.call(src) + ", string expected");
+    throw new Error(
+      "marked(): input parameter is of type " +
+        Object.prototype.toString.call(src) +
+        ", string expected"
+    );
   }
   if (typeof opt === "function") {
     callback = opt;
@@ -21463,7 +23626,7 @@ function marked(src, opt, callback) {
     } catch (e) {
       return callback(e);
     }
-    const done = function(err) {
+    const done = function (err) {
       let out;
       if (!err) {
         try {
@@ -21482,14 +23645,13 @@ function marked(src, opt, callback) {
       return done();
     }
     delete opt.highlight;
-    if (!tokens.length)
-      return done();
+    if (!tokens.length) return done();
     let pending = 0;
-    marked.walkTokens(tokens, function(token) {
+    marked.walkTokens(tokens, function (token) {
       if (token.type === "code") {
         pending++;
         setTimeout(() => {
-          highlight2(token.text, token.lang, function(err, code2) {
+          highlight2(token.text, token.lang, function (err, code2) {
             if (err) {
               return done(err);
             }
@@ -21513,7 +23675,11 @@ function marked(src, opt, callback) {
   function onError(e) {
     e.message += "\nPlease report this to https://github.com/markedjs/marked.";
     if (opt.silent) {
-      return "<p>An error occurred:</p><pre>" + escape(e.message + "", true) + "</pre>";
+      return (
+        "<p>An error occurred:</p><pre>" +
+        escape(e.message + "", true) +
+        "</pre>"
+      );
     }
     throw e;
   }
@@ -21521,9 +23687,11 @@ function marked(src, opt, callback) {
     const tokens = Lexer.lex(src, opt);
     if (opt.walkTokens) {
       if (opt.async) {
-        return Promise.all(marked.walkTokens(tokens, opt.walkTokens)).then(() => {
-          return Parser.parse(tokens, opt);
-        }).catch(onError);
+        return Promise.all(marked.walkTokens(tokens, opt.walkTokens))
+          .then(() => {
+            return Parser.parse(tokens, opt);
+          })
+          .catch(onError);
       }
       marked.walkTokens(tokens, opt.walkTokens);
     }
@@ -21532,15 +23700,18 @@ function marked(src, opt, callback) {
     onError(e);
   }
 }
-marked.options = marked.setOptions = function(opt) {
+marked.options = marked.setOptions = function (opt) {
   merge2(marked.defaults, opt);
   changeDefaults(marked.defaults);
   return marked;
 };
 marked.getDefaults = getDefaults;
 marked.defaults = defaults;
-marked.use = function(...args) {
-  const extensions = marked.defaults.extensions || { renderers: {}, childTokens: {} };
+marked.use = function (...args) {
+  const extensions = marked.defaults.extensions || {
+    renderers: {},
+    childTokens: {},
+  };
   args.forEach((pack) => {
     const opts = merge2({}, pack);
     opts.async = marked.defaults.async || opts.async;
@@ -21552,7 +23723,7 @@ marked.use = function(...args) {
         if (ext.renderer) {
           const prevRenderer = extensions.renderers[ext.name];
           if (prevRenderer) {
-            extensions.renderers[ext.name] = function(...args2) {
+            extensions.renderers[ext.name] = function (...args2) {
               let ret = ext.renderer.apply(this, args2);
               if (ret === false) {
                 ret = prevRenderer.apply(this, args2);
@@ -21564,7 +23735,7 @@ marked.use = function(...args) {
           }
         }
         if (ext.tokenizer) {
-          if (!ext.level || ext.level !== "block" && ext.level !== "inline") {
+          if (!ext.level || (ext.level !== "block" && ext.level !== "inline")) {
             throw new Error("extension level must be 'block' or 'inline'");
           }
           if (extensions[ext.level]) {
@@ -21624,7 +23795,7 @@ marked.use = function(...args) {
     }
     if (pack.walkTokens) {
       const walkTokens2 = marked.defaults.walkTokens;
-      opts.walkTokens = function(token) {
+      opts.walkTokens = function (token) {
         let values = [];
         values.push(pack.walkTokens.call(this, token));
         if (walkTokens2) {
@@ -21636,7 +23807,7 @@ marked.use = function(...args) {
     marked.setOptions(opts);
   });
 };
-marked.walkTokens = function(tokens, callback) {
+marked.walkTokens = function (tokens, callback) {
   let values = [];
   for (const token of tokens) {
     values = values.concat(callback.call(marked, token));
@@ -21657,9 +23828,17 @@ marked.walkTokens = function(tokens, callback) {
         break;
       }
       default: {
-        if (marked.defaults.extensions && marked.defaults.extensions.childTokens && marked.defaults.extensions.childTokens[token.type]) {
-          marked.defaults.extensions.childTokens[token.type].forEach(function(childTokens) {
-            values = values.concat(marked.walkTokens(token[childTokens], callback));
+        if (
+          marked.defaults.extensions &&
+          marked.defaults.extensions.childTokens &&
+          marked.defaults.extensions.childTokens[token.type]
+        ) {
+          marked.defaults.extensions.childTokens[token.type].forEach(function (
+            childTokens
+          ) {
+            values = values.concat(
+              marked.walkTokens(token[childTokens], callback)
+            );
           });
         } else if (token.tokens) {
           values = values.concat(marked.walkTokens(token.tokens, callback));
@@ -21669,12 +23848,18 @@ marked.walkTokens = function(tokens, callback) {
   }
   return values;
 };
-marked.parseInline = function(src, opt) {
+marked.parseInline = function (src, opt) {
   if (typeof src === "undefined" || src === null) {
-    throw new Error("marked.parseInline(): input parameter is undefined or null");
+    throw new Error(
+      "marked.parseInline(): input parameter is undefined or null"
+    );
   }
   if (typeof src !== "string") {
-    throw new Error("marked.parseInline(): input parameter is of type " + Object.prototype.toString.call(src) + ", string expected");
+    throw new Error(
+      "marked.parseInline(): input parameter is of type " +
+        Object.prototype.toString.call(src) +
+        ", string expected"
+    );
   }
   opt = merge2({}, marked.defaults, opt || {});
   checkSanitizeDeprecation(opt);
@@ -21687,7 +23872,11 @@ marked.parseInline = function(src, opt) {
   } catch (e) {
     e.message += "\nPlease report this to https://github.com/markedjs/marked.";
     if (opt.silent) {
-      return "<p>An error occurred:</p><pre>" + escape(e.message + "", true) + "</pre>";
+      return (
+        "<p>An error occurred:</p><pre>" +
+        escape(e.message + "", true) +
+        "</pre>"
+      );
     }
     throw e;
   }
@@ -21713,7 +23902,7 @@ var lexer = Lexer.lex;
 function createMenu(opts, filePath) {
   const menu = {
     pathname: getMenuPathname(opts, filePath),
-    filePath
+    filePath,
   };
   return menu;
 }
@@ -21747,13 +23936,18 @@ function parseMenu(opts, filePath, content, checkFileExists = true) {
       const parentNode = stack[stack.length - 1];
       for (const h2Token of t.tokens) {
         const lastNode = {
-          text: ""
+          text: "",
         };
         if (h2Token.type === "text") {
           lastNode.text = h2Token.text;
         } else if (h2Token.type === "link") {
           lastNode.text = h2Token.text;
-          lastNode.href = getMarkdownRelativeUrl(opts, filePath, h2Token.href, checkFileExists);
+          lastNode.href = getMarkdownRelativeUrl(
+            opts,
+            filePath,
+            h2Token.href,
+            checkFileExists
+          );
         } else {
           throw new Error(
             `Headings can only be a text or link. Received "${h2Token.type}", value "${h2Token.raw}", in menu: ${filePath}`
@@ -21778,7 +23972,12 @@ function parseMenu(opts, filePath, content, checkFileExists = true) {
                 } else if (liItem.type === "link") {
                   parentNode.items.push({
                     text: liItem.text,
-                    href: getMarkdownRelativeUrl(opts, filePath, liItem.href, checkFileExists)
+                    href: getMarkdownRelativeUrl(
+                      opts,
+                      filePath,
+                      liItem.href,
+                      checkFileExists
+                    ),
                   });
                 } else {
                   throw new Error(
@@ -21789,7 +23988,12 @@ function parseMenu(opts, filePath, content, checkFileExists = true) {
             } else if (liToken.type === "link") {
               parentNode.items.push({
                 text: liToken.text,
-                href: getMarkdownRelativeUrl(opts, filePath, liToken.href, checkFileExists)
+                href: getMarkdownRelativeUrl(
+                  opts,
+                  filePath,
+                  liToken.href,
+                  checkFileExists
+                ),
               });
             } else {
               throw new Error(
@@ -21821,9 +24025,11 @@ function parseMenu(opts, filePath, content, checkFileExists = true) {
 function parseRoutePathname(basePathname, pathname) {
   if (pathname === basePathname) {
     return {
-      pattern: new RegExp("^" + pathname.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "$"),
+      pattern: new RegExp(
+        "^" + pathname.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "$"
+      ),
       paramNames: [],
-      segments: [[{ content: "", dynamic: false, rest: false }]]
+      segments: [[{ content: "", dynamic: false, rest: false }]],
     };
   }
   pathname = pathname.slice(1);
@@ -21831,29 +24037,44 @@ function parseRoutePathname(basePathname, pathname) {
   const paramNames = [];
   let addTrailingSlash = true;
   const pattern = new RegExp(
-    `^${segments.filter((segment) => segment.length > 0).map((s2, i, segments2) => {
-      const segment = decodeURIComponent(s2);
-      const catchAll = /^\[\.\.\.(\w+)?\]$/.exec(segment);
-      if (catchAll) {
-        paramNames.push(catchAll[1]);
-        return "(?:/(.*))?";
-      }
-      const isLast = i === segments2.length - 1;
-      return "/" + segment.split(DYNAMIC_SEGMENT).map((content, i2) => {
-        if (i2 % 2) {
-          const rg = PARAM_PATTERN.exec(content);
-          if (rg) {
-            const [, rest, name] = rg;
-            paramNames.push(name);
-            return rest ? "(.*?)" : "([^/]+?)";
-          }
+    `^${segments
+      .filter((segment) => segment.length > 0)
+      .map((s2, i, segments2) => {
+        const segment = decodeURIComponent(s2);
+        const catchAll = /^\[\.\.\.(\w+)?\]$/.exec(segment);
+        if (catchAll) {
+          paramNames.push(catchAll[1]);
+          return "(?:/(.*))?";
         }
-        if (isLast && content.includes(".")) {
-          addTrailingSlash = false;
-        }
-        return content.normalize().replace(/%5[Bb]/g, "[").replace(/%5[Dd]/g, "]").replace(/#/g, "%23").replace(/\?/g, "%3F").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      }).join("");
-    }).join("")}${addTrailingSlash ? "/?" : ""}$`
+        const isLast = i === segments2.length - 1;
+        return (
+          "/" +
+          segment
+            .split(DYNAMIC_SEGMENT)
+            .map((content, i2) => {
+              if (i2 % 2) {
+                const rg = PARAM_PATTERN.exec(content);
+                if (rg) {
+                  const [, rest, name] = rg;
+                  paramNames.push(name);
+                  return rest ? "(.*?)" : "([^/]+?)";
+                }
+              }
+              if (isLast && content.includes(".")) {
+                addTrailingSlash = false;
+              }
+              return content
+                .normalize()
+                .replace(/%5[Bb]/g, "[")
+                .replace(/%5[Dd]/g, "]")
+                .replace(/#/g, "%23")
+                .replace(/\?/g, "%3F")
+                .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+            })
+            .join("")
+        );
+      })
+      .join("")}${addTrailingSlash ? "/?" : ""}$`
   );
   return {
     pattern,
@@ -21866,12 +24087,12 @@ function parseRoutePathname(basePathname, pathname) {
           parts.push({
             content,
             dynamic,
-            rest: dynamic && content.startsWith("...")
+            rest: dynamic && content.startsWith("..."),
           });
         }
       });
       return parts;
-    })
+    }),
   };
 }
 var PARAM_PATTERN = /^(\.\.\.)?(\w+)?$/;
@@ -21917,19 +24138,34 @@ function routeSortCompare(a, b) {
 
 // packages/qwik-city/buildtime/routing/resolve-source-file.ts
 function resolveSourceFiles(opts, sourceFiles) {
-  const layouts = sourceFiles.filter((s2) => s2.type === "layout").map((s2) => resolveLayout(opts, s2)).sort((a, b) => {
-    return a.id < b.id ? -1 : 1;
-  });
-  const routes = sourceFiles.filter((s2) => s2.type === "route").map((s2) => resolveRoute(opts, layouts, s2)).sort(routeSortCompare);
-  const entries = sourceFiles.filter((s2) => s2.type === "entry").map((s2) => resolveEntry(opts, s2)).sort((a, b) => {
-    return a.chunkFileName < b.chunkFileName ? -1 : 1;
-  });
-  const serviceWorkers = sourceFiles.filter((s2) => s2.type === "service-worker").map((p) => resolveServiceWorkerEntry(opts, p)).sort((a, b) => {
-    return a.chunkFileName < b.chunkFileName ? -1 : 1;
-  });
-  const menus = sourceFiles.filter((s2) => s2.type === "menu").map((p) => resolveMenu(opts, p)).sort((a, b) => {
-    return a.pathname < b.pathname ? -1 : 1;
-  });
+  const layouts = sourceFiles
+    .filter((s2) => s2.type === "layout")
+    .map((s2) => resolveLayout(opts, s2))
+    .sort((a, b) => {
+      return a.id < b.id ? -1 : 1;
+    });
+  const routes = sourceFiles
+    .filter((s2) => s2.type === "route")
+    .map((s2) => resolveRoute(opts, layouts, s2))
+    .sort(routeSortCompare);
+  const entries = sourceFiles
+    .filter((s2) => s2.type === "entry")
+    .map((s2) => resolveEntry(opts, s2))
+    .sort((a, b) => {
+      return a.chunkFileName < b.chunkFileName ? -1 : 1;
+    });
+  const serviceWorkers = sourceFiles
+    .filter((s2) => s2.type === "service-worker")
+    .map((p) => resolveServiceWorkerEntry(opts, p))
+    .sort((a, b) => {
+      return a.chunkFileName < b.chunkFileName ? -1 : 1;
+    });
+  const menus = sourceFiles
+    .filter((s2) => s2.type === "menu")
+    .map((p) => resolveMenu(opts, p))
+    .sort((a, b) => {
+      return a.pathname < b.pathname ? -1 : 1;
+    });
   let inc = 0;
   const ids = /* @__PURE__ */ new Set();
   const uniqueIds = (b) => {
@@ -21970,7 +24206,7 @@ function resolveLayout(opts, layoutSourceFile) {
     filePath,
     dirPath,
     layoutType,
-    layoutName
+    layoutName,
   };
   return layout;
 }
@@ -21981,7 +24217,9 @@ function resolveRoute(opts, appLayouts, sourceFile) {
   const filePath = sourceFile.filePath;
   const layouts = [];
   const routesDir = opts.routesDir;
-  const { layoutName, layoutStop } = parseRouteIndexName(sourceFile.extlessName);
+  const { layoutName, layoutStop } = parseRouteIndexName(
+    sourceFile.extlessName
+  );
   let pathname = getPathnameFromDirPath(opts, sourceFile.dirPath);
   if (sourceFile.extlessName === "404") {
     pathname += sourceFile.extlessName + ".html";
@@ -21993,12 +24231,16 @@ function resolveRoute(opts, appLayouts, sourceFile) {
     for (let i = 0; i < 20; i++) {
       let layout = void 0;
       if (hasNamedLayout && !hasFoundNamedLayout) {
-        layout = appLayouts.find((l) => l.dirPath === currentDir && l.layoutName === layoutName);
+        layout = appLayouts.find(
+          (l) => l.dirPath === currentDir && l.layoutName === layoutName
+        );
         if (layout) {
           hasFoundNamedLayout = true;
         }
       } else {
-        layout = appLayouts.find((l) => l.dirPath === currentDir && l.layoutName === "");
+        layout = appLayouts.find(
+          (l) => l.dirPath === currentDir && l.layoutName === ""
+        );
       }
       if (layout) {
         layouts.push(layout);
@@ -22018,7 +24260,7 @@ function resolveRoute(opts, appLayouts, sourceFile) {
     pathname,
     layouts: layouts.reverse(),
     ext: sourceFile.ext,
-    ...parseRoutePathname(opts.basePathname, pathname)
+    ...parseRoutePathname(opts.basePathname, pathname),
   };
   return buildRoute;
 }
@@ -22029,7 +24271,7 @@ function resolveEntry(opts, sourceFile) {
     id: createFileId(opts.routesDir, sourceFile.filePath),
     filePath: sourceFile.filePath,
     chunkFileName,
-    ...parseRoutePathname(opts.basePathname, pathname)
+    ...parseRoutePathname(opts.basePathname, pathname),
   };
   return buildEntry;
 }
@@ -22041,7 +24283,7 @@ function resolveServiceWorkerEntry(opts, sourceFile) {
     id: createFileId(opts.routesDir, sourceFile.filePath),
     filePath: sourceFile.filePath,
     chunkFileName,
-    ...parseRoutePathname(opts.basePathname, pathname)
+    ...parseRoutePathname(opts.basePathname, pathname),
   };
   return buildEntry;
 }
@@ -22065,23 +24307,27 @@ async function build(ctx) {
 async function updateBuildContext(ctx) {
   if (!ctx.activeBuild) {
     ctx.activeBuild = new Promise((resolve4, reject) => {
-      walkRoutes(ctx.opts.routesDir).then((sourceFiles) => {
-        const resolved = resolveSourceFiles(ctx.opts, sourceFiles);
-        ctx.layouts = resolved.layouts;
-        ctx.routes = resolved.routes;
-        ctx.entries = resolved.entries;
-        ctx.serviceWorkers = resolved.serviceWorkers;
-        ctx.menus = resolved.menus;
-        resolve4();
-      }, reject).finally(() => {
-        ctx.activeBuild = null;
-      });
+      walkRoutes(ctx.opts.routesDir)
+        .then((sourceFiles) => {
+          const resolved = resolveSourceFiles(ctx.opts, sourceFiles);
+          ctx.layouts = resolved.layouts;
+          ctx.routes = resolved.routes;
+          ctx.entries = resolved.entries;
+          ctx.serviceWorkers = resolved.serviceWorkers;
+          ctx.menus = resolved.menus;
+          resolve4();
+        }, reject)
+        .finally(() => {
+          ctx.activeBuild = null;
+        });
     });
   }
   return ctx.activeBuild;
 }
 function validateBuild(ctx) {
-  const pathnames = Array.from(new Set(ctx.routes.map((r2) => r2.pathname))).sort();
+  const pathnames = Array.from(
+    new Set(ctx.routes.map((r2) => r2.pathname))
+  ).sort();
   for (const pathname of pathnames) {
     const foundRoutes = ctx.routes.filter((r2) => r2.pathname === pathname);
     if (foundRoutes.length > 1) {
@@ -22092,12 +24338,14 @@ ${foundRoutes.map((r2) => `  - ${r2.filePath}`).join("\n")}`
       );
     }
   }
-  ctx.layouts.filter((l) => l.layoutType === "top").forEach((l) => {
-    addWarning(
-      ctx,
-      `The "top" layout feature, which is used by "${l.filePath}" has been deprecated and will be removed from future versions. In most cases the "group" layout feature can be used in its place: https://qwik.builder.io/qwikcity/layout/grouped/`
-    );
-  });
+  ctx.layouts
+    .filter((l) => l.layoutType === "top")
+    .forEach((l) => {
+      addWarning(
+        ctx,
+        `The "top" layout feature, which is used by "${l.filePath}" has been deprecated and will be removed from future versions. In most cases the "group" layout feature can be used in its place: https://qwik.builder.io/qwikcity/layout/grouped/`
+      );
+    });
 }
 
 // packages/qwik-city/buildtime/vite/dev-server.ts
@@ -22108,14 +24356,14 @@ var import_node_path7 = require("path");
 var SAMESITE = {
   lax: "Lax",
   none: "None",
-  strict: "Strict"
+  strict: "Strict",
 };
 var UNIT = {
   seconds: 1,
   minutes: 1 * 60,
   hours: 1 * 60 * 60,
   days: 1 * 60 * 60 * 24,
-  weeks: 1 * 60 * 60 * 24 * 7
+  weeks: 1 * 60 * 60 * 24 * 7,
 };
 var createSetCookieValue = (cookieName, cookieValue, options2) => {
   const c2 = [`${cookieName}=${cookieValue}`];
@@ -22126,7 +24374,10 @@ var createSetCookieValue = (cookieName, cookieValue, options2) => {
     c2.push(`Max-Age=${options2.maxAge}`);
   } else if (Array.isArray(options2.maxAge)) {
     c2.push(`Max-Age=${options2.maxAge[0] * UNIT[options2.maxAge[1]]}`);
-  } else if (typeof options2.expires === "number" || typeof options2.expires == "string") {
+  } else if (
+    typeof options2.expires === "number" ||
+    typeof options2.expires == "string"
+  ) {
     c2.push(`Expires=${options2.expires}`);
   } else if (options2.expires instanceof Date) {
     c2.push(`Expires=${options2.expires.toUTCString()}`);
@@ -22180,7 +24431,7 @@ var Cookie = class {
       },
       number() {
         return Number(value2);
-      }
+      },
     };
   }
   getAll() {
@@ -22193,8 +24444,15 @@ var Cookie = class {
     return !!this[REQ_COOKIE][cookieName];
   }
   set(cookieName, cookieValue, options2 = {}) {
-    const resolvedValue = typeof cookieValue === "string" ? cookieValue : encodeURIComponent(JSON.stringify(cookieValue));
-    this[RES_COOKIE][cookieName] = createSetCookieValue(cookieName, resolvedValue, options2);
+    const resolvedValue =
+      typeof cookieValue === "string"
+        ? cookieValue
+        : encodeURIComponent(JSON.stringify(cookieValue));
+    this[RES_COOKIE][cookieName] = createSetCookieValue(
+      cookieName,
+      resolvedValue,
+      options2
+    );
   }
   delete(name, options2) {
     this.set(name, "deleted", { ...options2, maxAge: 0 });
@@ -22203,7 +24461,7 @@ var Cookie = class {
     return Object.values(this[RES_COOKIE]);
   }
 };
-REQ_COOKIE, _a = RES_COOKIE;
+REQ_COOKIE, (_a = RES_COOKIE);
 
 // packages/qwik-city/middleware/request-handler/headers.ts
 var HEADERS = Symbol("headers");
@@ -22212,7 +24470,7 @@ var HeadersPolyfill = class {
   constructor() {
     this[_a2] = {};
   }
-  [(_a2 = HEADERS, Symbol.iterator)]() {
+  [((_a2 = HEADERS), Symbol.iterator)]() {
     return this.entries();
   }
   *keys() {
@@ -22235,11 +24493,14 @@ var HeadersPolyfill = class {
   }
   set(name, value2) {
     const normalizedName = normalizeHeaderName(name);
-    this[HEADERS][normalizedName] = typeof value2 !== "string" ? String(value2) : value2;
+    this[HEADERS][normalizedName] =
+      typeof value2 !== "string" ? String(value2) : value2;
   }
   append(name, value2) {
     const normalizedName = normalizeHeaderName(name);
-    const resolvedValue = this.has(normalizedName) ? `${this.get(normalizedName)}, ${value2}` : value2;
+    const resolvedValue = this.has(normalizedName)
+      ? `${this.get(normalizedName)}, ${value2}`
+      : value2;
     this.set(name, resolvedValue);
   }
   delete(name) {
@@ -22324,8 +24585,12 @@ function minimalHtmlResponse(status, message, stack) {
   </style>
 </head>
 <body>
-  <p><strong>${status}</strong> <span>${message}</span></p>${stack ? `
-  <pre><code>${stack}</code></pre>` : ``}
+  <p><strong>${status}</strong> <span>${message}</span></p>${
+    stack
+      ? `
+  <pre><code>${stack}</code></pre>`
+      : ``
+  }
 </body>
 </html>`;
 }
@@ -22333,16 +24598,14 @@ var COLOR_400 = "#006ce9";
 var COLOR_500 = "#713fc2";
 
 // packages/qwik-city/middleware/request-handler/redirect-handler.ts
-var AbortMessage = class {
-};
-var RedirectMessage = class extends AbortMessage {
-};
+var AbortMessage = class {};
+var RedirectMessage = class extends AbortMessage {};
 
 // packages/qwik-city/middleware/request-handler/response-page.ts
 function getQwikCityEnvData(requestEv) {
   const { url, params, request, status, locale } = requestEv;
   const requestHeaders = {};
-  request.headers.forEach((value2, key) => requestHeaders[key] = value2);
+  request.headers.forEach((value2, key) => (requestHeaders[key] = value2));
   return {
     url: new URL(url.pathname + url.search, url).href,
     requestHeaders,
@@ -22352,9 +24615,9 @@ function getQwikCityEnvData(requestEv) {
       response: {
         status: status(),
         loaders: getRequestLoaders(requestEv),
-        action: getRequestAction(requestEv)
-      }
-    }
+        action: getRequestAction(requestEv),
+      },
+    },
   };
 }
 
@@ -22433,7 +24696,9 @@ function actionsMiddleware(serverLoaders, serverActions) {
     if (method === "POST") {
       const selectedAction = requestEv.query.get(QACTION_KEY);
       if (selectedAction) {
-        const action = serverActions.find((a) => a.__qrl.getHash() === selectedAction);
+        const action = serverActions.find(
+          (a) => a.__qrl.getHash() === selectedAction
+        );
         if (action) {
           setRequestAction(requestEv, selectedAction);
           const formData = await requestEv.request.formData();
@@ -22448,14 +24713,17 @@ function actionsMiddleware(serverLoaders, serverActions) {
         serverLoaders.map(async (loader) => {
           const loaderId = loader.__qrl.getHash();
           const loaderResolved = await loader.__qrl(requestEv);
-          loaders[loaderId] = typeof loaderResolved === "function" ? loaderResolved() : loaderResolved;
+          loaders[loaderId] =
+            typeof loaderResolved === "function"
+              ? loaderResolved()
+              : loaderResolved;
           if (isDevMode) {
             try {
               validateSerializable(loaderResolved);
             } catch (e) {
               throw Object.assign(e, {
                 id: "DEV_SERIALIZE",
-                method
+                method,
               });
             }
           }
@@ -22490,13 +24758,15 @@ async function renderQData(requestEv) {
       return;
     }
     const requestHeaders = {};
-    requestEv.request.headers.forEach((value2, key) => requestHeaders[key] = value2);
+    requestEv.request.headers.forEach(
+      (value2, key) => (requestHeaders[key] = value2)
+    );
     requestEv.headers.set("Content-Type", "application/json; charset=utf-8");
     const qData = {
       loaders: getRequestLoaders(requestEv),
       action: getRequestAction(requestEv),
       status: status !== 200 ? status : 200,
-      href: getPathname(requestEv.url, true)
+      href: getPathname(requestEv.url, true),
     };
     const stream = requestEv.getStream().getWriter();
     stream.write(encoder.encode(serializeData(qData)));
@@ -22509,7 +24779,7 @@ function serializeData(data) {
     if (value2 instanceof FormData) {
       return {
         __brand: "formdata",
-        value: formDataToArray(value2)
+        value: formDataToArray(value2),
       };
     }
     return value2;
@@ -22529,12 +24799,17 @@ function formDataToArray(formData) {
 function makeQDataPath(href) {
   const append = QDATA_JSON;
   const url = new URL(href, "http://localhost");
-  const pathname = url.pathname.endsWith("/") ? url.pathname.slice(0, -1) : url.pathname;
+  const pathname = url.pathname.endsWith("/")
+    ? url.pathname.slice(0, -1)
+    : url.pathname;
   return pathname + (append.startsWith("/") ? "" : "/") + append + url.search;
 }
 function getPathname(url, trailingSlash) {
   if (url.pathname.endsWith(QDATA_JSON)) {
-    return url.pathname.slice(0, -QDATA_JSON.length + (trailingSlash ? 1 : 0)) + url.search;
+    return (
+      url.pathname.slice(0, -QDATA_JSON.length + (trailingSlash ? 1 : 0)) +
+      url.search
+    );
   }
   return url.pathname;
 }
@@ -22546,7 +24821,12 @@ var RequestEvLocale = Symbol("RequestEvLocale");
 var RequestEvMode = Symbol("RequestEvMode");
 var RequestEvStatus = Symbol("RequestEvStatus");
 var RequestEvAction = Symbol("RequestEvAction");
-function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) {
+function createRequestEvent(
+  serverRequestEv,
+  params,
+  requestHandlers,
+  resolved
+) {
   const { request, platform } = serverRequestEv;
   const cookie = new Cookie(request.headers.get("cookie"));
   const headers = createHeaders();
@@ -22630,7 +24910,9 @@ function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) 
         controls.push("public");
       }
       if (cacheControl.staleWhileRevalidate) {
-        controls.push(`stale-while-revalidate=${cacheControl.staleWhileRevalidate}`);
+        controls.push(
+          `stale-while-revalidate=${cacheControl.staleWhileRevalidate}`
+        );
       }
       headers.set("Cache-Control", controls.join(", "));
     },
@@ -22702,7 +24984,7 @@ function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) 
         );
       }
       return streamInternal;
-    }
+    },
   };
   return requestEv;
 }
@@ -22721,26 +25003,58 @@ function getRequestMode(requestEv) {
 var ABORT_INDEX = 999999999;
 
 // packages/qwik-city/middleware/request-handler/user-response.ts
-function runQwikCity(serverRequestEv, params, requestHandlers, isPage, trailingSlash = true, basePathname = "/") {
+function runQwikCity(
+  serverRequestEv,
+  params,
+  requestHandlers,
+  isPage,
+  trailingSlash = true,
+  basePathname = "/"
+) {
   if (requestHandlers.length === 0) {
     throw new ErrorResponse(404 /* NotFound */, `Not Found`);
   }
   let resolve4;
-  const responsePromise = new Promise((r2) => resolve4 = r2);
-  const requestEv = createRequestEvent(serverRequestEv, params, requestHandlers, resolve4);
+  const responsePromise = new Promise((r2) => (resolve4 = r2));
+  const requestEv = createRequestEvent(
+    serverRequestEv,
+    params,
+    requestHandlers,
+    resolve4
+  );
   return {
     response: responsePromise,
     requestEv,
-    completion: runNext(requestEv, isPage, trailingSlash, basePathname, resolve4)
+    completion: runNext(
+      requestEv,
+      isPage,
+      trailingSlash,
+      basePathname,
+      resolve4
+    ),
   };
 }
-async function runNext(requestEv, isPage, trailingSlash, basePathname, resolve4) {
+async function runNext(
+  requestEv,
+  isPage,
+  trailingSlash,
+  basePathname,
+  resolve4
+) {
   try {
     const { pathname, url } = requestEv;
-    if (isPage && !isQDataJson(pathname) && pathname !== basePathname && !pathname.endsWith(".html")) {
+    if (
+      isPage &&
+      !isQDataJson(pathname) &&
+      pathname !== basePathname &&
+      !pathname.endsWith(".html")
+    ) {
       if (trailingSlash) {
         if (!pathname.endsWith("/")) {
-          throw requestEv.redirect(302 /* Found */, pathname + "/" + url.search);
+          throw requestEv.redirect(
+            302 /* Found */,
+            pathname + "/" + url.search
+          );
         }
       } else {
         if (pathname.endsWith("/")) {
@@ -22819,7 +25133,8 @@ async function fromNodeHttp(url, req, res, mode) {
       yield chunk;
     }
   };
-  const body = req.method === "HEAD" || req.method === "GET" ? void 0 : getRequestBody();
+  const body =
+    req.method === "HEAD" || req.method === "GET" ? void 0 : getRequestBody();
   const serverRequestEv = {
     mode,
     url,
@@ -22827,7 +25142,7 @@ async function fromNodeHttp(url, req, res, mode) {
       method: req.method,
       headers: requestHeaders,
       body,
-      duplex: "half"
+      duplex: "half",
     }),
     getWritableStream: (status, headers, cookies) => {
       res.statusCode = status;
@@ -22842,15 +25157,15 @@ async function fromNodeHttp(url, req, res, mode) {
         },
         close() {
           return new Promise((resolve4) => res.end(resolve4));
-        }
+        },
       });
       return stream;
     },
     platform: {
       ssr: true,
-      node: process.versions.node
+      node: process.versions.node,
     },
-    locale: void 0
+    locale: void 0,
   };
   return serverRequestEv;
 }
@@ -22875,20 +25190,20 @@ var findLocation = (e) => {
             return {
               file: parts.join(":"),
               line: nu1,
-              column: nu0
+              column: nu0,
             };
           } else if (typeof nu0 === "number") {
             parts.length -= 1;
             return {
               file: parts.join(":"),
               line: nu0,
-              column: void 0
+              column: void 0,
             };
           } else {
             return {
               file: parts.join(":"),
               line: void 0,
-              column: void 0
+              column: void 0,
             };
           }
         }
@@ -22907,8 +25222,7 @@ var safeParseInt = (nu) => {
 var splitRE = /\r?\n/;
 var range = 2;
 function posToNumber(source, pos) {
-  if (typeof pos === "number")
-    return pos;
+  if (typeof pos === "number") return pos;
   const lines = source.split(splitRE);
   const { line, column } = pos;
   let start = 0;
@@ -22929,14 +25243,20 @@ function generateCodeFrame(source, start = 0, end) {
     count += lines[i].length + 1;
     if (count >= start) {
       for (let j = i - range; j <= i + range || end > count; j++) {
-        if (j < 0 || j >= lines.length)
-          continue;
+        if (j < 0 || j >= lines.length) continue;
         const line = j + 1;
-        res.push(`${line}${" ".repeat(Math.max(3 - String(line).length, 0))}|  ${lines[j]}`);
+        res.push(
+          `${line}${" ".repeat(Math.max(3 - String(line).length, 0))}|  ${
+            lines[j]
+          }`
+        );
         const lineLength = lines[j].length;
         if (j === i) {
           const pad = Math.max(start - (count - lineLength) + 1, 0);
-          const length = Math.max(1, end > count ? lineLength - pad : end - start);
+          const length = Math.max(
+            1,
+            end > count ? lineLength - pad : end - start
+          );
           res.push(`   |  ` + " ".repeat(pad) + "^".repeat(length));
         } else if (j > i) {
           if (end > count) {
@@ -22960,7 +25280,7 @@ function ssrDevMiddleware(ctx, server) {
       if (match) {
         return {
           route,
-          params: getPathParams(route.paramNames, match)
+          params: getPathParams(route.paramNames, match),
         };
       }
     }
@@ -22971,7 +25291,7 @@ function ssrDevMiddleware(ctx, server) {
         if (match) {
           return {
             route,
-            params: getPathParams(route.paramNames, match)
+            params: getPathParams(route.paramNames, match),
           };
         }
       }
@@ -22994,7 +25314,10 @@ function ssrDevMiddleware(ctx, server) {
           console.warn(d.message);
         }
       }
-      const matchPathname = getRouteMatchPathname(url.pathname, ctx.opts.trailingSlash);
+      const matchPathname = getRouteMatchPathname(
+        url.pathname,
+        ctx.opts.trailingSlash
+      );
       const routeResult = matchRouteRequest(matchPathname);
       if (routeResult) {
         const { route, params } = routeResult;
@@ -23022,7 +25345,7 @@ function ssrDevMiddleware(ctx, server) {
                 const envData = getQwikCityEnvData(requestEv);
                 res._qwikEnvData = {
                   ...res._qwikEnvData,
-                  ...envData
+                  ...envData,
                 };
                 return next();
               }
@@ -23089,8 +25412,8 @@ function dev404Middleware() {
 }
 function staticDistMiddleware({ config }) {
   const distDirs = new Set(
-    ["dist", config.build.outDir, config.publicDir].map(
-      (d) => normalizePath((0, import_node_path7.resolve)(config.root, d))
+    ["dist", config.build.outDir, config.publicDir].map((d) =>
+      normalizePath((0, import_node_path7.resolve)(config.root, d))
     )
   );
   return async (req, res, next) => {
@@ -23113,13 +25436,12 @@ function staticDistMiddleware({ config }) {
         if (s2.isFile()) {
           res.writeHead(200, {
             "Content-Type": contentType,
-            "X-Source-Path": filePath
+            "X-Source-Path": filePath,
           });
           import_node_fs4.default.createReadStream(filePath).pipe(res);
           return;
         }
-      } catch (e) {
-      }
+      } catch (e) {}
     }
     next();
   };
@@ -23142,16 +25464,17 @@ function formatDevSerializeError(err, routeModulePaths) {
         err.loc = {
           file: err.id,
           line: void 0,
-          column: void 0
+          column: void 0,
         };
         err.stack = "";
         const lines = code2.split("\n");
-        const line = lines.findIndex((line2) => line2.includes(requestHandler2.name));
+        const line = lines.findIndex((line2) =>
+          line2.includes(requestHandler2.name)
+        );
         if (line > -1) {
           err.loc.line = line + 1;
         }
-      } catch (e) {
-      }
+      } catch (e) {}
     }
   }
   return err;
@@ -23165,7 +25488,11 @@ function skipRequest(pathname) {
   if (pathname.startsWith("/@qwik-city-")) {
     return true;
   }
-  if (pathname.includes("__open-in-editor") || InternalPrefixRE.test(pathname) || pathname.startsWith("/node_modules/")) {
+  if (
+    pathname.includes("__open-in-editor") ||
+    InternalPrefixRE.test(pathname) ||
+    pathname.startsWith("/node_modules/")
+  ) {
     return true;
   }
   if (pathname.includes("favicon")) {
@@ -23180,7 +25507,11 @@ function skipRequest(pathname) {
   return false;
 }
 function isVitePing(url, headers) {
-  return url === "/" && headers.accept === "*/*" && headers["sec-fetch-mode"] === "no-cors";
+  return (
+    url === "/" &&
+    headers.accept === "*/*" &&
+    headers["sec-fetch-mode"] === "no-cors"
+  );
 }
 var SKIP_SRC_EXTS = {
   ".tsx": true,
@@ -23191,7 +25522,7 @@ var SKIP_SRC_EXTS = {
   ".mdx": true,
   ".css": true,
   ".scss": true,
-  ".sass": true
+  ".sass": true,
 };
 var STATIC_CONTENT_TYPES = {
   ".js": "text/javascript",
@@ -23204,7 +25535,7 @@ var STATIC_CONTENT_TYPES = {
   ".gif": "image/gif",
   ".jpeg": "image/jpeg",
   ".jpg": "image/jpeg",
-  ".ico": "image/x-icon"
+  ".ico": "image/x-icon",
 };
 var DEV_SERVICE_WORKER = `/* Qwik City Dev Service Worker */
 addEventListener('install', () => self.skipWaiting());
@@ -23223,10 +25554,12 @@ function formatError(e) {
         if (loc.file) {
           err.id = normalizePath(err.loc.file);
           try {
-            const code2 = import_node_fs4.default.readFileSync(err.loc.file, "utf-8");
+            const code2 = import_node_fs4.default.readFileSync(
+              err.loc.file,
+              "utf-8"
+            );
             err.frame = generateCodeFrame(code2, err.loc);
-          } catch {
-          }
+          } catch {}
         }
       }
     }
@@ -23236,8 +25569,19 @@ function formatError(e) {
 
 // packages/qwik-city/middleware/node/node-fetch.ts
 async function patchGlobalFetch() {
-  if (typeof global !== "undefined" && typeof globalThis.fetch !== "function" && typeof process !== "undefined" && process.versions.node) {
-    const { fetch, Headers: Headers2, Request, Response, FormData: FormData2 } = await import("undici");
+  if (
+    typeof global !== "undefined" &&
+    typeof globalThis.fetch !== "function" &&
+    typeof process !== "undefined" &&
+    process.versions.node
+  ) {
+    const {
+      fetch,
+      Headers: Headers2,
+      Request,
+      Response,
+      FormData: FormData2,
+    } = await import("undici");
     if (!globalThis.fetch) {
       globalThis.fetch = fetch;
       globalThis.Headers = Headers2;
@@ -23252,7 +25596,8 @@ async function patchGlobalFetch() {
 var import_node_fs6 = __toESM(require("fs"), 1);
 
 // sw-reg:@qwik-city-sw-register-build
-var qwik_city_sw_register_build_default = '((s,a,i,r)=>{i=(e,t)=>{t=document.querySelector("[q\\\\:base]"),t&&a.active&&a.active.postMessage({type:"qprefetch",base:t.getAttribute("q:base"),...e})},document.addEventListener("qprefetch",e=>{const t=e.detail;a?i(t):t.bundles&&s.push(...t.bundles)}),navigator.serviceWorker.register("__url").then(e=>{r=()=>{a=e,i({bundles:s})},e.installing?e.installing.addEventListener("statechange",t=>{t.target.state=="activated"&&r()}):e.active&&r()}).catch(e=>console.error(e))})([])';
+var qwik_city_sw_register_build_default =
+  '((s,a,i,r)=>{i=(e,t)=>{t=document.querySelector("[q\\\\:base]"),t&&a.active&&a.active.postMessage({type:"qprefetch",base:t.getAttribute("q:base"),...e})},document.addEventListener("qprefetch",e=>{const t=e.detail;a?i(t):t.bundles&&s.push(...t.bundles)}),navigator.serviceWorker.register("__url").then(e=>{r=()=>{a=e,i({bundles:s})},e.installing?e.installing.addEventListener("statechange",t=>{t.target.state=="activated"&&r()}):e.active&&r()}).catch(e=>console.error(e))})([])';
 
 // packages/qwik-city/buildtime/runtime-generation/generate-service-worker.ts
 function generateServiceWorkerRegister(ctx) {
@@ -23263,8 +25608,8 @@ function generateServiceWorkerRegister(ctx) {
     swReg = qwik_city_sw_register_build_default;
     let swUrl = "/service-worker.js";
     if (ctx.serviceWorkers.length > 0) {
-      const sw = ctx.serviceWorkers.sort(
-        (a, b) => a.chunkFileName.length < b.chunkFileName.length ? -1 : 1
+      const sw = ctx.serviceWorkers.sort((a, b) =>
+        a.chunkFileName.length < b.chunkFileName.length ? -1 : 1
       )[0];
       swUrl = ctx.opts.basePathname + sw.chunkFileName;
     }
@@ -23281,7 +25626,13 @@ function prependManifestToServiceWorker(ctx, manifest, swCode) {
   const appBundlesCode = generateAppBundles(appBundles, manifest);
   const libraryBundlesCode = generateLibraryBundles(appBundles, manifest);
   const linkBundlesCode = generateLinkBundles(ctx, appBundles, manifest);
-  return [key, appBundlesCode, libraryBundlesCode, linkBundlesCode, swCode].join("\n");
+  return [
+    key,
+    appBundlesCode,
+    libraryBundlesCode,
+    linkBundlesCode,
+    swCode,
+  ].join("\n");
 }
 function generateAppBundles(appBundles, manifest) {
   for (const appBundleName in manifest.bundles) {
@@ -23292,14 +25643,19 @@ function generateAppBundles(appBundles, manifest) {
     const importedBundleIds = appBundle[1];
     const symbolHashesInBundle = [];
     const manifestBundle = manifest.bundles[appBundleName];
-    const importedBundleNames = Array.isArray(manifestBundle.imports) ? manifestBundle.imports : [];
+    const importedBundleNames = Array.isArray(manifestBundle.imports)
+      ? manifestBundle.imports
+      : [];
     for (const importedBundleName of importedBundleNames) {
       importedBundleIds.push(getAppBundleId(appBundles, importedBundleName));
     }
     if (manifestBundle.symbols) {
       for (const manifestBundleSymbolName of manifestBundle.symbols) {
         const symbol = manifest.symbols[manifestBundleSymbolName];
-        if ((symbol == null ? void 0 : symbol.hash) && !symbolHashesInBundle.includes(symbol.hash)) {
+        if (
+          (symbol == null ? void 0 : symbol.hash) &&
+          !symbolHashesInBundle.includes(symbol.hash)
+        ) {
           symbolHashesInBundle.push(symbol.hash);
         }
       }
@@ -23352,7 +25708,9 @@ function generateLinkBundles(ctx, appBundles, manifest) {
     addFileBundles(r2.filePath);
     linkBundles.push(
       `[${r2.pattern.toString()},${JSON.stringify(
-        linkBundleNames.map((bundleName) => getAppBundleId(appBundles, bundleName))
+        linkBundleNames.map((bundleName) =>
+          getAppBundleId(appBundles, bundleName)
+        )
       )}]`
     );
   }
@@ -23372,8 +25730,17 @@ navigator.serviceWorker.getRegistrations().then((regs) => {
 // packages/qwik-city/adaptors/shared/vite/post-build.ts
 var import_node_fs5 = __toESM(require("fs"), 1);
 var import_node_path8 = require("path");
-async function postBuild(clientOutDir, basePathname, userStaticPaths, format, cleanStatic) {
-  const ingorePathnames = /* @__PURE__ */ new Set([basePathname + "build/", basePathname + "assets/"]);
+async function postBuild(
+  clientOutDir,
+  basePathname,
+  userStaticPaths,
+  format,
+  cleanStatic
+) {
+  const ingorePathnames = /* @__PURE__ */ new Set([
+    basePathname + "build/",
+    basePathname + "assets/",
+  ]);
   const staticPaths = new Set(userStaticPaths);
   const notFounds = [];
   const loadItem = async (fsDir, fsName, pathname) => {
@@ -23388,7 +25755,10 @@ async function postBuild(clientOutDir, basePathname, userStaticPaths, format, cl
       return;
     }
     if (fsName === "404.html") {
-      const notFoundHtml = await import_node_fs5.default.promises.readFile(fsPath, "utf-8");
+      const notFoundHtml = await import_node_fs5.default.promises.readFile(
+        fsPath,
+        "utf-8"
+      );
       notFounds.push([pathname, notFoundHtml]);
       return;
     }
@@ -23404,23 +25774,27 @@ async function postBuild(clientOutDir, basePathname, userStaticPaths, format, cl
     await Promise.all(itemNames.map((i) => loadItem(fsDir, i, pathname)));
   };
   await loadDir(clientOutDir, basePathname);
-  const notFoundPathsCode = createNotFoundPathsModule(basePathname, notFounds, format);
-  const staticPathsCode = createStaticPathsModule(basePathname, staticPaths, format);
+  const notFoundPathsCode = createNotFoundPathsModule(
+    basePathname,
+    notFounds,
+    format
+  );
+  const staticPathsCode = createStaticPathsModule(
+    basePathname,
+    staticPaths,
+    format
+  );
   return {
     notFoundPathsCode,
-    staticPathsCode
+    staticPathsCode,
   };
 }
 function createNotFoundPathsModule(basePathname, notFounds, format) {
   notFounds.sort((a, b) => {
-    if (a[0].length > b[0].length)
-      return -1;
-    if (a[0].length < b[0].length)
-      return 1;
-    if (a[0] < b[0])
-      return -1;
-    if (a[0] > b[0])
-      return 1;
+    if (a[0].length > b[0].length) return -1;
+    if (a[0].length < b[0].length) return 1;
+    if (a[0] < b[0]) return -1;
+    if (a[0] > b[0]) return 1;
     return 0;
   });
   if (!notFounds.some((r2) => r2[0] === basePathname)) {
@@ -23454,15 +25828,15 @@ function createStaticPathsModule(basePathname, staticPaths, format) {
     )});`
   );
   c2.push(`function isStaticPath(url) {`);
-  c2.push(`  if (url.searchParams.get('qwikcity.static') === "false") {`);
-  c2.push(`    return false;`);
-  c2.push(`  }`);
   c2.push(`  const p = url.pathname;`);
   c2.push(`  if (p.startsWith(${JSON.stringify(baseBuildPath)})) {`);
   c2.push(`    return true;`);
   c2.push(`  }`);
   c2.push(`  if (p.startsWith(${JSON.stringify(assetsPath)})) {`);
   c2.push(`    return true;`);
+  c2.push(`  }`);
+  c2.push(`  if (url.searchParams.get('qwikcity.static') === "false") {`);
+  c2.push(`    return false;`);
   c2.push(`  }`);
   c2.push(`  if (staticPaths.has(p)) {`);
   c2.push(`    return true;`);
@@ -23474,6 +25848,7 @@ function createStaticPathsModule(basePathname, staticPaths, format) {
   } else {
     c2.push("export { isStaticPath };");
   }
+  console.log(c2.join("\n"));
   return c2.join("\n");
 }
 
@@ -23492,13 +25867,14 @@ function qwikCity(userOpts) {
   let ssrFormat = "esm";
   let outDir = null;
   const api = {
-    getBasePathname: () => (ctx == null ? void 0 : ctx.opts.basePathname) ?? "/",
+    getBasePathname: () =>
+      (ctx == null ? void 0 : ctx.opts.basePathname) ?? "/",
     getRoutes: () => {
       return (ctx == null ? void 0 : ctx.routes.slice()) ?? [];
     },
     getServiceWorkers: () => {
       return (ctx == null ? void 0 : ctx.serviceWorkers.slice()) ?? [];
-    }
+    },
   };
   const plugin = {
     name: "vite-plugin-qwik-city",
@@ -23510,18 +25886,32 @@ function qwikCity(userOpts) {
         appType: "custom",
         base: userOpts == null ? void 0 : userOpts.basePathname,
         optimizeDeps: {
-          exclude: [QWIK_CITY, QWIK_CITY_PLAN_ID, QWIK_CITY_ENTRIES_ID, QWIK_CITY_SW_REGISTER]
+          exclude: [
+            QWIK_CITY,
+            QWIK_CITY_PLAN_ID,
+            QWIK_CITY_ENTRIES_ID,
+            QWIK_CITY_SW_REGISTER,
+          ],
         },
         ssr: {
-          noExternal: [QWIK_CITY, QWIK_CITY_PLAN_ID, QWIK_CITY_ENTRIES_ID, QWIK_CITY_SW_REGISTER]
-        }
+          noExternal: [
+            QWIK_CITY,
+            QWIK_CITY_PLAN_ID,
+            QWIK_CITY_ENTRIES_ID,
+            QWIK_CITY_SW_REGISTER,
+          ],
+        },
       };
       return updatedViteConfig;
     },
     async configResolved(config) {
       var _a3, _b, _c;
       rootDir = (0, import_node_path9.resolve)(config.root);
-      const target = ((_a3 = config.build) == null ? void 0 : _a3.ssr) || config.mode === "ssr" ? "ssr" : "client";
+      const target =
+        ((_a3 = config.build) == null ? void 0 : _a3.ssr) ||
+        config.mode === "ssr"
+          ? "ssr"
+          : "client";
       ctx = createBuildContext(rootDir, userOpts, target);
       ctx.isDevServer = config.command === "serve";
       ctx.isDevServerClientOnly = ctx.isDevServer && config.mode !== "ssr";
@@ -23549,19 +25939,23 @@ function qwikCity(userOpts) {
       resetBuildContext(ctx);
     },
     resolveId(id) {
-      if (id === QWIK_CITY_PLAN_ID || id === QWIK_CITY_ENTRIES_ID || id === QWIK_CITY_SW_REGISTER) {
+      if (
+        id === QWIK_CITY_PLAN_ID ||
+        id === QWIK_CITY_ENTRIES_ID ||
+        id === QWIK_CITY_SW_REGISTER
+      ) {
         return (0, import_node_path9.join)(rootDir, id);
       }
       if (id === STATIC_PATHS_ID) {
         return {
           id: "./" + RESOLVED_STATIC_PATHS_ID,
-          external: true
+          external: true,
         };
       }
       if (id === NOT_FOUND_PATHS_ID) {
         return {
           id: "./" + RESOLVED_NOT_FOUND_PATHS_ID,
-          external: true
+          external: true,
         };
       }
       return null;
@@ -23611,9 +26005,9 @@ function qwikCity(userOpts) {
               plugin: "qwik-city-mdx",
               loc: {
                 column,
-                line
+                line,
               },
-              stack: ""
+              stack: "",
             });
             this.error(err);
           }
@@ -23626,14 +26020,16 @@ function qwikCity(userOpts) {
         const entries = [...ctx.entries, ...ctx.serviceWorkers].map((entry) => {
           return {
             chunkFileName: entry.chunkFileName,
-            extensionlessFilePath: removeExtension(entry.filePath)
+            extensionlessFilePath: removeExtension(entry.filePath),
           };
         });
         for (const entry of entries) {
           for (const fileName in bundles) {
             const c2 = bundles[fileName];
             if (c2.type === "chunk" && c2.isDynamicEntry && c2.facadeModuleId) {
-              const extensionlessFilePath = removeExtension(normalizePath(c2.facadeModuleId));
+              const extensionlessFilePath = removeExtension(
+                normalizePath(c2.facadeModuleId)
+              );
               if (entry.extensionlessFilePath === extensionlessFilePath) {
                 c2.fileName = entry.chunkFileName;
                 continue;
@@ -23648,24 +26044,40 @@ function qwikCity(userOpts) {
       async handler() {
         var _a3;
         if ((ctx == null ? void 0 : ctx.target) === "ssr") {
-          const manifest = globalThis.QWIK_MANIFEST || qwikPlugin.api.getManifest();
-          const clientOutDir = globalThis.QWIK_CLIENT_OUT_DIR || qwikPlugin.api.getClientOutDir();
+          const manifest =
+            globalThis.QWIK_MANIFEST || qwikPlugin.api.getManifest();
+          const clientOutDir =
+            globalThis.QWIK_CLIENT_OUT_DIR || qwikPlugin.api.getClientOutDir();
           if (manifest && clientOutDir) {
             for (const swEntry of ctx.serviceWorkers) {
               try {
-                const swClientDistPath = (0, import_node_path9.join)(clientOutDir, swEntry.chunkFileName);
-                const swCode = await import_node_fs6.default.promises.readFile(swClientDistPath, "utf-8");
+                const swClientDistPath = (0, import_node_path9.join)(
+                  clientOutDir,
+                  swEntry.chunkFileName
+                );
+                const swCode = await import_node_fs6.default.promises.readFile(
+                  swClientDistPath,
+                  "utf-8"
+                );
                 try {
-                  const swCodeUpdate = prependManifestToServiceWorker(ctx, manifest, swCode);
+                  const swCodeUpdate = prependManifestToServiceWorker(
+                    ctx,
+                    manifest,
+                    swCode
+                  );
                   if (swCodeUpdate) {
-                    await import_node_fs6.default.promises.mkdir(clientOutDir, { recursive: true });
-                    await import_node_fs6.default.promises.writeFile(swClientDistPath, swCodeUpdate);
+                    await import_node_fs6.default.promises.mkdir(clientOutDir, {
+                      recursive: true,
+                    });
+                    await import_node_fs6.default.promises.writeFile(
+                      swClientDistPath,
+                      swCodeUpdate
+                    );
                   }
                 } catch (e2) {
                   console.error(e2);
                 }
-              } catch (e) {
-              }
+              } catch (e) {}
             }
           }
           const { staticPathsCode, notFoundPathsCode } = await postBuild(
@@ -23676,28 +26088,52 @@ function qwikCity(userOpts) {
             false
           );
           if (outDir) {
-            await import_node_fs6.default.promises.mkdir(outDir, { recursive: true });
-            const serverPackageJsonPath = (0, import_node_path9.join)(outDir, "package.json");
+            await import_node_fs6.default.promises.mkdir(outDir, {
+              recursive: true,
+            });
+            const serverPackageJsonPath = (0, import_node_path9.join)(
+              outDir,
+              "package.json"
+            );
             let packageJson = {};
-            const packageJsonExists = import_node_fs6.default.existsSync(serverPackageJsonPath);
+            const packageJsonExists = import_node_fs6.default.existsSync(
+              serverPackageJsonPath
+            );
             if (packageJsonExists) {
-              const content = await ((_a3 = await import_node_fs6.default.promises.readFile(serverPackageJsonPath)) == null ? void 0 : _a3.toString());
+              const content = await ((_a3 =
+                await import_node_fs6.default.promises.readFile(
+                  serverPackageJsonPath
+                )) == null
+                ? void 0
+                : _a3.toString());
               const contentAsJson = JSON.parse(content);
               packageJson = {
-                ...contentAsJson
+                ...contentAsJson,
               };
             }
             packageJson = { ...packageJson, type: "module" };
             const serverPackageJsonCode = JSON.stringify(packageJson, null, 2);
             await Promise.all([
-              import_node_fs6.default.promises.writeFile((0, import_node_path9.join)(outDir, RESOLVED_STATIC_PATHS_ID), staticPathsCode),
-              import_node_fs6.default.promises.writeFile((0, import_node_path9.join)(outDir, RESOLVED_NOT_FOUND_PATHS_ID), notFoundPathsCode),
-              import_node_fs6.default.promises.writeFile(serverPackageJsonPath, serverPackageJsonCode)
+              import_node_fs6.default.promises.writeFile(
+                (0, import_node_path9.join)(outDir, RESOLVED_STATIC_PATHS_ID),
+                staticPathsCode
+              ),
+              import_node_fs6.default.promises.writeFile(
+                (0, import_node_path9.join)(
+                  outDir,
+                  RESOLVED_NOT_FOUND_PATHS_ID
+                ),
+                notFoundPathsCode
+              ),
+              import_node_fs6.default.promises.writeFile(
+                serverPackageJsonPath,
+                serverPackageJsonCode
+              ),
             ]);
           }
         }
-      }
-    }
+      },
+    },
   };
   return plugin;
 }
@@ -23706,7 +26142,8 @@ var QWIK_CITY_ENTRIES_ID = "@qwik-city-entries";
 var QWIK_CITY = "@builder.io/qwik-city";
 var QWIK_CITY_SW_REGISTER = "@qwik-city-sw-register";
 // Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  extendConfig,
-  qwikCity
-});
+0 &&
+  (module.exports = {
+    extendConfig,
+    qwikCity,
+  });
