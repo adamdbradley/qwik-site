@@ -29,6 +29,7 @@ function createQwikCity(opts) {
         url,
         request,
         getWritableStream: (status, headers, cookies, resolve) => {
+          console.log("getWritableStream");
           const { readable, writable } = new TransformStream();
           const response = new Response(readable, {
             status,
@@ -37,6 +38,7 @@ function createQwikCity(opts) {
           if (response.ok && cache && response.headers.has("Cache-Control")) {
             waitUntil(cache.put(cacheKey, response.clone()));
           }
+          console.log("resolve", response);
           resolve(response);
           return writable;
         },
@@ -46,7 +48,7 @@ function createQwikCity(opts) {
       if (handledResponse) {
         try {
           const response = await handledResponse.response;
-          console.log("handledResponse.response", handledResponse.response);
+          console.log("handledResponse.response", response);
           if (response) {
             return response;
           }
