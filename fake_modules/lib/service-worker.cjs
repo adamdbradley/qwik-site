@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 const qBuildCacheName = 'QwikBuild';
 const existingPrefetchUrls = new Set();
 const awaitingRequests = new Map();

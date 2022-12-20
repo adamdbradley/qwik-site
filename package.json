@@ -28,7 +28,7 @@
     "qwik": "qwik"
   },
   "devDependencies": {
-    "@builder.io/qwik": "0.13.3",
+    "@builder.io/qwik": "0.16.1",
     "@builder.io/qwik-city": "file:./fake_modules/lib",
     "@types/compression": "^1.7.2",
     "@types/eslint": "8.4.9",

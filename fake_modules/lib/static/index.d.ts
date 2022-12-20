@@ -1,4 +1,6 @@
-import type { RenderOptions } from '../../qwik/src/server';
+/// <reference types="node" />
+
+import type { RenderOptions } from '@builder.io/qwik/server';
 
 /**
  * Use this function when SSG should be generated from another module, such as a Vite plugin.

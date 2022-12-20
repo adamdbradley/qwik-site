@@ -53,7 +53,6 @@ declare interface ParsedPathname {
     pattern: RegExp;
     paramNames: string[];
     segments: PathnameSegment[];
-    siteCatchAll: boolean;
 }
 
 declare type PathnameSegment = PathnameSegmentPart[];

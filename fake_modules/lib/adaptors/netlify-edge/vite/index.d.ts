@@ -20,7 +20,7 @@ export declare interface NetlifyEdgeAdaptorOptions {
     /**
      * Determines if the adaptor should also run Static Site Generation (SSG).
      */
-    staticGenerate?: StaticGenerateRenderOptions | true;
+    staticGenerate?: Omit<StaticGenerateRenderOptions, 'outDir'> | true;
     /**
      * Manually add pathnames that should be treated as static paths and not SSR.
      * For example, when these pathnames are requested, their response should
