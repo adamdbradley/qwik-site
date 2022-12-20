@@ -8,10 +8,9 @@ import { isStaticPath } from "@qwik-city-static-paths";
 function createQwikCity(opts) {
   async function onRequest(request) {
     try {
-      console.log("request");
       const url = new URL(request.url);
       console.log("request url", url.href);
-      console.log("isStaticPath(url)", isStaticPath(url));
+      console.log("isStaticPath(url)", isStaticPath(url), url.href);
       if (isStaticPath(url)) {
         return new Response(null, {
           headers: {
@@ -35,11 +34,14 @@ function createQwikCity(opts) {
         },
         platform: process.env,
       };
+      console.log("serverRequestEv", serverRequestEv, url.href);
       const handledResponse = await requestHandler(serverRequestEv, opts);
+      console.log("handledResponse", handledResponse, url.href);
       if (handledResponse) {
         return handledResponse;
       }
       const notFoundHtml = getNotFound(url.pathname);
+      console.log("notFoundHtml", notFoundHtml, url.href);
       return new Response(notFoundHtml, {
         status: 404,
         headers: {
