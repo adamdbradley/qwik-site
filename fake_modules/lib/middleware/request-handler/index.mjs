@@ -987,7 +987,7 @@ function handleErrors(run) {
           }
         },
         (e) => {
-          console.error(e);
+          console.error("handleErrors1", e);
           const status = requestEv.status();
           const html = getErrorHtml(status, e);
           if (requestEv.headersSent) {
@@ -1000,7 +1000,22 @@ function handleErrors(run) {
           }
         }
       )
-      .then(() => requestEv),
+      .then(
+        () => requestEv,
+        (e) => {
+          console.error("handleErrors2", e);
+          const status = requestEv.status();
+          const html = getErrorHtml(status, e);
+          if (requestEv.headersSent) {
+            const stream = requestEv.getStream();
+            if (!stream.locked) {
+              return stream.close();
+            }
+          } else {
+            requestEv.html(status, html);
+          }
+        }
+      ),
   };
 }
 export { createHeaders, getErrorHtml, mergeHeadersCookies, requestHandler };
