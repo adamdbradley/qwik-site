@@ -990,12 +990,16 @@ function handleErrors(run) {
           console.error("handleErrors1", e);
           const status = requestEv.status();
           const html = getErrorHtml(status, e);
+          console.log("error html", html);
           if (requestEv.headersSent) {
+            console.log("requestEv.headersSent");
             const stream = requestEv.getStream();
             if (!stream.locked) {
+              console.log("!stream.locked");
               return stream.close();
             }
           } else {
+            console.log("error html2");
             requestEv.html(status, html);
           }
         }
