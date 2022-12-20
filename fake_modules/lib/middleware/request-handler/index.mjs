@@ -370,8 +370,8 @@ function createRequestEvent(
   const next = async () => {
     routeModuleIndex++;
     while (routeModuleIndex < requestHandlers.length) {
-      const requestHandler2 = requestHandlers[routeModuleIndex];
-      const result = requestHandler2(requestEv);
+      const moduleRequestHandler = requestHandlers[routeModuleIndex];
+      const result = moduleRequestHandler(requestEv);
       if (result instanceof Promise) {
         await result;
       }
@@ -565,7 +565,6 @@ function runQwikCity(
   trailingSlash = true,
   basePathname = "/"
 ) {
-  console.log("runQwikCity", serverRequestEv.request.url);
   if (requestHandlers.length === 0) {
     throw new ErrorResponse(404 /* NotFound */, `Not Found`);
   }
@@ -599,6 +598,8 @@ async function runNext(
 ) {
   try {
     const { pathname, url } = requestEv;
+    console.log("runNext", pathname, url);
+
     if (
       isPage &&
       !isQDataJson(pathname) &&
@@ -804,11 +805,14 @@ function isLastModulePageRoute(routeModules) {
 }
 function renderQwikMiddleware(render, opts) {
   return async (requestEv) => {
+    console.log("renderQwikMiddleware", requestEv.pathname);
     if (requestEv.headersSent) {
+      console.log("requestEv.headersSent", requestEv.pathname);
       return;
     }
     const isPageDataReq = requestEv.pathname.endsWith(QDATA_JSON);
     if (isPageDataReq) {
+      console.log("isPageDataReq", requestEv.pathname);
       return;
     }
     const requestHeaders = {};
@@ -823,6 +827,7 @@ function renderQwikMiddleware(render, opts) {
     const pipe = readable.pipeTo(requestEv.getStream());
     const stream = writable.getWriter();
     try {
+      console.log("render1", requestEv.pathname);
       const result = await render({
         stream,
         envData: getQwikCityEnvData(requestEv),
@@ -831,7 +836,9 @@ function renderQwikMiddleware(render, opts) {
       if ((typeof result).html === "string") {
         await stream.write(result.html);
       }
+      console.log("render2", requestEv.pathname);
     } finally {
+      console.log("render3", requestEv.pathname);
       await stream.ready;
       await stream.close();
       await pipe;
