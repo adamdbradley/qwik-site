@@ -565,6 +565,7 @@ function runQwikCity(
   trailingSlash = true,
   basePathname = "/"
 ) {
+  console.log("runQwikCity");
   if (requestHandlers.length === 0) {
     throw new ErrorResponse(404 /* NotFound */, `Not Found`);
   }
@@ -624,18 +625,25 @@ async function runNext(
     }
     await requestEv.next();
   } catch (e) {
+    console.log("runNext error1", e);
     if (e instanceof RedirectMessage) {
+      console.log("runNext error2", e);
       requestEv.getStream().close();
     } else if (e instanceof ErrorResponse) {
       if (!requestEv.headersSent) {
+        console.log("runNext error3", e);
         const html = getErrorHtml(e.status, e);
         requestEv.html(e.status, html);
+      } else {
+        console.log("runNext error4", e);
       }
       console.error(e);
     } else if (!(e instanceof AbortMessage)) {
+      console.log("runNext error5", e);
       throw e;
     }
   } finally {
+    console.log("runNext finally");
     resolve(null);
   }
   return requestEv;
@@ -960,6 +968,7 @@ async function requestHandler(serverRequestEv, opts) {
     serverRequestEv.request.method,
     render
   );
+  console.log("loadedRoute", loadedRoute);
   if (loadedRoute) {
     return handleErrors(
       runQwikCity(
