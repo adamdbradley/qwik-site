@@ -35,7 +35,10 @@ function createQwikCity(opts) {
       const handledResponse = await requestHandler(serverRequestEv, opts);
       if (handledResponse) {
         console.log("handledResponse", handledResponse, url.href);
-        return handledResponse;
+        const response = await handledResponse.response;
+        if (response) {
+          return response;
+        }
       }
       const notFoundHtml = getNotFound(url.pathname);
       console.log("notFoundHtml", notFoundHtml, url.href);
