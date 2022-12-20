@@ -363,6 +363,8 @@ function createRequestEvent(
   const cookie = new Cookie(request.headers.get("cookie"));
   const headers = createHeaders();
   const url = new URL(request.url);
+
+  console.log("createRequestEvent", url.href);
   let routeModuleIndex = -1;
   let streamInternal = null;
   const next = async () => {
@@ -563,6 +565,7 @@ function runQwikCity(
   trailingSlash = true,
   basePathname = "/"
 ) {
+  console.log("runQwikCity", serverRequestEv.request.url);
   if (requestHandlers.length === 0) {
     throw new ErrorResponse(404 /* NotFound */, `Not Found`);
   }
@@ -574,6 +577,7 @@ function runQwikCity(
     requestHandlers,
     resolve
   );
+  console.log("requestEv", serverRequestEv.request.url);
   return {
     response: responsePromise,
     requestEv,
@@ -950,7 +954,6 @@ async function requestHandler(serverRequestEv, opts) {
     render
   );
   if (loadedRoute) {
-    console.log("loadedRoute", loadedRoute);
     return handleErrors(
       runQwikCity(
         serverRequestEv,

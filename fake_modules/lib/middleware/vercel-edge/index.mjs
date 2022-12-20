@@ -34,7 +34,7 @@ function createQwikCity(opts) {
       };
       const handledResponse = await requestHandler(serverRequestEv, opts);
       if (handledResponse) {
-        console.log("handledResponse", handledResponse, url.href);
+        console.log("handledResponse", url.href);
         const response = await handledResponse.response;
         if (response) {
           return response;
