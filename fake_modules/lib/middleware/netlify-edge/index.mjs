@@ -6,7 +6,7 @@ import {
 import { getNotFound } from "@qwik-city-not-found-paths";
 import { isStaticPath } from "@qwik-city-static-paths";
 function createQwikCity(opts) {
-  async function onRequest(request, context) {
+  async function onNetlifyEdgeRequest(request, context) {
     try {
       const url = new URL(request.url);
       if (isStaticPath(url) || url.pathname.startsWith("/.netlify")) {
@@ -48,7 +48,7 @@ function createQwikCity(opts) {
       });
     }
   }
-  return onRequest;
+  return onNetlifyEdgeRequest;
 }
 export {
   createQwikCity

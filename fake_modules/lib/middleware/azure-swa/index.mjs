@@ -17,7 +17,7 @@ function createQwikRequest(req) {
   };
 }
 function createQwikCity(opts) {
-  async function onRequest(context, req) {
+  async function onAzureSwaRequest(context, req) {
     const res = context.res = {
       status: 200,
       headers: {}
@@ -66,7 +66,7 @@ function createQwikCity(opts) {
       return res;
     }
   }
-  return onRequest;
+  return onAzureSwaRequest;
 }
 function qwikCity(render, opts) {
   return createQwikCity({ render, qwikCityPlan, ...opts });

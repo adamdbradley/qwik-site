@@ -4,7 +4,7 @@ import { mergeHeadersCookies } from "../request-handler/index.mjs";
 import { getNotFound } from "@qwik-city-not-found-paths";
 import { isStaticPath } from "@qwik-city-static-paths";
 function createQwikCity(opts) {
-  async function onRequest({ request, env, waitUntil, next }) {
+  async function onCloudflarePagesRequest({ request, env, waitUntil, next }) {
     try {
       const url = new URL(request.url);
       if (isStaticPath(url)) {
@@ -58,7 +58,7 @@ function createQwikCity(opts) {
       });
     }
   }
-  return onRequest;
+  return onCloudflarePagesRequest;
 }
 export {
   createQwikCity

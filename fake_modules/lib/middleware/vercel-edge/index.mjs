@@ -6,7 +6,7 @@ import {
 import { getNotFound } from "@qwik-city-not-found-paths";
 import { isStaticPath } from "@qwik-city-static-paths";
 function createQwikCity(opts) {
-  async function onRequest(request) {
+  async function onVercelEdgeRequest(request) {
     try {
       const url = new URL(request.url);
       if (isStaticPath(url)) {
@@ -52,7 +52,7 @@ function createQwikCity(opts) {
       });
     }
   }
-  return onRequest;
+  return onVercelEdgeRequest;
 }
 export {
   createQwikCity
