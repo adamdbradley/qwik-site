@@ -9,7 +9,6 @@ function createQwikCity(opts) {
   async function onVercelEdgeRequest(request) {
     try {
       const url = new URL(request.url);
-      console.log("ur", url.href, isStaticPath(url));
       if (isStaticPath(url)) {
         return new Response(null, {
           headers: {
@@ -33,10 +32,11 @@ function createQwikCity(opts) {
         },
         platform: process.env,
       };
+      console.log("url", url.href);
       const handledResponse = await requestHandler(serverRequestEv, opts);
       if (handledResponse) {
         const response = await handledResponse.response;
-        console.log("response", response);
+        console.log("response", response.status);
         if (response) {
           return response;
         }

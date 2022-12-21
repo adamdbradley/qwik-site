@@ -5,7 +5,7 @@ var HeadersPolyfill = class {
   constructor() {
     this[_a] = {};
   }
-  [(_a = HEADERS, Symbol.iterator)]() {
+  [((_a = HEADERS), Symbol.iterator)]() {
     return this.entries();
   }
   *keys() {
@@ -28,11 +28,14 @@ var HeadersPolyfill = class {
   }
   set(name, value) {
     const normalizedName = normalizeHeaderName(name);
-    this[HEADERS][normalizedName] = typeof value !== "string" ? String(value) : value;
+    this[HEADERS][normalizedName] =
+      typeof value !== "string" ? String(value) : value;
   }
   append(name, value) {
     const normalizedName = normalizeHeaderName(name);
-    const resolvedValue = this.has(normalizedName) ? `${this.get(normalizedName)}, ${value}` : value;
+    const resolvedValue = this.has(normalizedName)
+      ? `${this.get(normalizedName)}, ${value}`
+      : value;
     this.set(name, resolvedValue);
   }
   delete(name) {
@@ -138,14 +141,14 @@ var COLOR_500 = "#713fc2";
 var SAMESITE = {
   lax: "Lax",
   none: "None",
-  strict: "Strict"
+  strict: "Strict",
 };
 var UNIT = {
   seconds: 1,
   minutes: 1 * 60,
   hours: 1 * 60 * 60,
   days: 1 * 60 * 60 * 24,
-  weeks: 1 * 60 * 60 * 24 * 7
+  weeks: 1 * 60 * 60 * 24 * 7,
 };
 var createSetCookieValue = (cookieName, cookieValue, options) => {
   const c = [`${cookieName}=${cookieValue}`];
@@ -156,7 +159,10 @@ var createSetCookieValue = (cookieName, cookieValue, options) => {
     c.push(`Max-Age=${options.maxAge}`);
   } else if (Array.isArray(options.maxAge)) {
     c.push(`Max-Age=${options.maxAge[0] * UNIT[options.maxAge[1]]}`);
-  } else if (typeof options.expires === "number" || typeof options.expires == "string") {
+  } else if (
+    typeof options.expires === "number" ||
+    typeof options.expires == "string"
+  ) {
     c.push(`Expires=${options.expires}`);
   } else if (options.expires instanceof Date) {
     c.push(`Expires=${options.expires.toUTCString()}`);
@@ -210,7 +216,7 @@ var Cookie = class {
       },
       number() {
         return Number(value);
-      }
+      },
     };
   }
   getAll() {
@@ -223,8 +229,15 @@ var Cookie = class {
     return !!this[REQ_COOKIE][cookieName];
   }
   set(cookieName, cookieValue, options = {}) {
-    const resolvedValue = typeof cookieValue === "string" ? cookieValue : encodeURIComponent(JSON.stringify(cookieValue));
-    this[RES_COOKIE][cookieName] = createSetCookieValue(cookieName, resolvedValue, options);
+    const resolvedValue =
+      typeof cookieValue === "string"
+        ? cookieValue
+        : encodeURIComponent(JSON.stringify(cookieValue));
+    this[RES_COOKIE][cookieName] = createSetCookieValue(
+      cookieName,
+      resolvedValue,
+      options
+    );
   }
   delete(name, options) {
     this.set(name, "deleted", { ...options, maxAge: 0 });
@@ -233,7 +246,7 @@ var Cookie = class {
     return Object.values(this[RES_COOKIE]);
   }
 };
-REQ_COOKIE, _a2 = RES_COOKIE;
+REQ_COOKIE, (_a2 = RES_COOKIE);
 var mergeHeadersCookies = (headers, cookies) => {
   const cookieHeaders = cookies.headers();
   if (cookieHeaders.length > 0) {
@@ -267,14 +280,15 @@ var loadRoute = async (routes, menus, cacheModules, pathname) => {
           loadModule(
             moduleLoader,
             pendingLoads,
-            (routeModule) => mods[i] = routeModule,
+            (routeModule) => (mods[i] = routeModule),
             cacheModules
           );
         });
         loadModule(
           menuLoader,
           pendingLoads,
-          (menuModule) => menu = menuModule == null ? void 0 : menuModule.default,
+          (menuModule) =>
+            (menu = menuModule == null ? void 0 : menuModule.default),
           cacheModules
         );
         if (pendingLoads.length > 0) {
@@ -312,7 +326,9 @@ var getMenuLoader = (menus, pathname) => {
   if (menus) {
     pathname = pathname.endsWith("/") ? pathname : pathname + "/";
     const menu = menus.find(
-      (m) => m[0] === pathname || pathname.startsWith(m[0] + (pathname.endsWith("/") ? "" : "/"))
+      (m) =>
+        m[0] === pathname ||
+        pathname.startsWith(m[0] + (pathname.endsWith("/") ? "" : "/"))
     );
     if (menu) {
       return menu[1];
@@ -333,10 +349,8 @@ var getPathParams = (paramNames, match) => {
 };
 
 // packages/qwik-city/middleware/request-handler/redirect-handler.ts
-var AbortMessage = class {
-};
-var RedirectMessage = class extends AbortMessage {
-};
+var AbortMessage = class {};
+var RedirectMessage = class extends AbortMessage {};
 
 // packages/qwik-city/middleware/request-handler/cache-control.ts
 function createCacheControl(cacheControl) {
@@ -363,7 +377,9 @@ function createCacheControl(cacheControl) {
     controls.push("public");
   }
   if (cacheControl.staleWhileRevalidate) {
-    controls.push(`stale-while-revalidate=${cacheControl.staleWhileRevalidate}`);
+    controls.push(
+      `stale-while-revalidate=${cacheControl.staleWhileRevalidate}`
+    );
   }
   return controls.join(", ");
 }
@@ -374,7 +390,12 @@ var RequestEvLocale = Symbol("RequestEvLocale");
 var RequestEvMode = Symbol("RequestEvMode");
 var RequestEvStatus = Symbol("RequestEvStatus");
 var RequestEvAction = Symbol("RequestEvAction");
-function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) {
+function createRequestEvent(
+  serverRequestEv,
+  params,
+  requestHandlers,
+  resolved
+) {
   const { request, platform } = serverRequestEv;
   const cookie = new Cookie(request.headers.get("cookie"));
   const headers = createHeaders();
@@ -505,7 +526,7 @@ function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) 
         );
       }
       return streamInternal;
-    }
+    },
   };
   return requestEv;
 }
@@ -527,7 +548,7 @@ var ABORT_INDEX = 999999999;
 function getQwikCityEnvData(requestEv) {
   const { url, params, request, status, locale } = requestEv;
   const requestHeaders = {};
-  request.headers.forEach((value, key) => requestHeaders[key] = value);
+  request.headers.forEach((value, key) => (requestHeaders[key] = value));
   return {
     url: new URL(url.pathname + url.search, url).href,
     requestHeaders,
@@ -537,33 +558,65 @@ function getQwikCityEnvData(requestEv) {
       response: {
         status: status(),
         loaders: getRequestLoaders(requestEv),
-        action: getRequestAction(requestEv)
-      }
-    }
+        action: getRequestAction(requestEv),
+      },
+    },
   };
 }
 
 // packages/qwik-city/middleware/request-handler/user-response.ts
-function runQwikCity(serverRequestEv, params, requestHandlers, isPage, trailingSlash = true, basePathname = "/") {
+function runQwikCity(
+  serverRequestEv,
+  params,
+  requestHandlers,
+  isPage,
+  trailingSlash = true,
+  basePathname = "/"
+) {
   if (requestHandlers.length === 0) {
     throw new ErrorResponse(404 /* NotFound */, `Not Found`);
   }
   let resolve;
-  const responsePromise = new Promise((r) => resolve = r);
-  const requestEv = createRequestEvent(serverRequestEv, params, requestHandlers, resolve);
+  const responsePromise = new Promise((r) => (resolve = r));
+  const requestEv = createRequestEvent(
+    serverRequestEv,
+    params,
+    requestHandlers,
+    resolve
+  );
   return {
     response: responsePromise,
     requestEv,
-    completion: runNext(requestEv, isPage, trailingSlash, basePathname, resolve)
+    completion: runNext(
+      requestEv,
+      isPage,
+      trailingSlash,
+      basePathname,
+      resolve
+    ),
   };
 }
-async function runNext(requestEv, isPage, trailingSlash, basePathname, resolve) {
+async function runNext(
+  requestEv,
+  isPage,
+  trailingSlash,
+  basePathname,
+  resolve
+) {
   try {
     const { pathname, url } = requestEv;
-    if (isPage && !isQDataJson(pathname) && pathname !== basePathname && !pathname.endsWith(".html")) {
+    if (
+      isPage &&
+      !isQDataJson(pathname) &&
+      pathname !== basePathname &&
+      !pathname.endsWith(".html")
+    ) {
       if (trailingSlash) {
         if (!pathname.endsWith("/")) {
-          throw requestEv.redirect(302 /* Found */, pathname + "/" + url.search);
+          throw requestEv.redirect(
+            302 /* Found */,
+            pathname + "/" + url.search
+          );
         }
       } else {
         if (pathname.endsWith("/")) {
@@ -616,7 +669,12 @@ function validateSerializable(val) {
   }
 }
 function isSerializable(val) {
-  if (val == null || typeof val === "string" || typeof val === "boolean" || typeof val === "number") {
+  if (
+    val == null ||
+    typeof val === "string" ||
+    typeof val === "boolean" ||
+    typeof val === "number"
+  ) {
     return true;
   }
   if (Array.isArray(val)) {
@@ -710,7 +768,9 @@ function actionsMiddleware(serverLoaders, serverActions) {
     if (method === "POST") {
       const selectedAction = requestEv.query.get(QACTION_KEY);
       if (selectedAction) {
-        const action = serverActions.find((a) => a.__qrl.getHash() === selectedAction);
+        const action = serverActions.find(
+          (a) => a.__qrl.getHash() === selectedAction
+        );
         if (action) {
           setRequestAction(requestEv, selectedAction);
           const formData = await requestEv.request.formData();
@@ -725,14 +785,17 @@ function actionsMiddleware(serverLoaders, serverActions) {
         serverLoaders.map(async (loader) => {
           const loaderId = loader.__qrl.getHash();
           const loaderResolved = await loader.__qrl(requestEv);
-          loaders[loaderId] = typeof loaderResolved === "function" ? loaderResolved() : loaderResolved;
+          loaders[loaderId] =
+            typeof loaderResolved === "function"
+              ? loaderResolved()
+              : loaderResolved;
           if (isDevMode) {
             try {
               validateSerializable(loaderResolved);
             } catch (e) {
               throw Object.assign(e, {
                 id: "DEV_SERIALIZE",
-                method
+                method,
               });
             }
           }
@@ -755,7 +818,9 @@ function renderQwikMiddleware(render, opts) {
       return;
     }
     const requestHeaders = {};
-    requestEv.request.headers.forEach((value, key) => requestHeaders[key] = value);
+    requestEv.request.headers.forEach(
+      (value, key) => (requestHeaders[key] = value)
+    );
     const responseHeaders = requestEv.headers;
     if (!responseHeaders.has("Content-Type")) {
       responseHeaders.set("Content-Type", "text/html; charset=utf-8");
@@ -767,7 +832,7 @@ function renderQwikMiddleware(render, opts) {
       const result = await render({
         stream,
         envData: getQwikCityEnvData(requestEv),
-        ...opts
+        ...opts,
       });
       if ((typeof result).html === "string") {
         await stream.write(result.html);
@@ -801,13 +866,15 @@ async function renderQData(requestEv) {
       return;
     }
     const requestHeaders = {};
-    requestEv.request.headers.forEach((value, key) => requestHeaders[key] = value);
+    requestEv.request.headers.forEach(
+      (value, key) => (requestHeaders[key] = value)
+    );
     requestEv.headers.set("Content-Type", "application/json; charset=utf-8");
     const qData = {
       loaders: getRequestLoaders(requestEv),
       action: getRequestAction(requestEv),
       status: status !== 200 ? status : 200,
-      href: getPathname(requestEv.url, true)
+      href: getPathname(requestEv.url, true),
     };
     const stream = requestEv.getStream().getWriter();
     stream.write(encoder.encode(serializeData(qData)));
@@ -820,7 +887,7 @@ function serializeData(data) {
     if (value instanceof FormData) {
       return {
         __brand: "formdata",
-        value: formDataToArray(value)
+        value: formDataToArray(value),
       };
     }
     return value;
@@ -840,12 +907,17 @@ function formDataToArray(formData) {
 function makeQDataPath(href) {
   const append = QDATA_JSON;
   const url = new URL(href, "http://localhost");
-  const pathname = url.pathname.endsWith("/") ? url.pathname.slice(0, -1) : url.pathname;
+  const pathname = url.pathname.endsWith("/")
+    ? url.pathname.slice(0, -1)
+    : url.pathname;
   return pathname + (append.startsWith("/") ? "" : "/") + append + url.search;
 }
 function getPathname(url, trailingSlash) {
   if (url.pathname.endsWith(QDATA_JSON)) {
-    return url.pathname.slice(0, -QDATA_JSON.length + (trailingSlash ? 1 : 0)) + url.search;
+    return (
+      url.pathname.slice(0, -QDATA_JSON.length + (trailingSlash ? 1 : 0)) +
+      url.search
+    );
   }
   return url.pathname;
 }
@@ -854,7 +926,8 @@ var encoder = /* @__PURE__ */ new TextEncoder();
 // packages/qwik-city/middleware/request-handler/request-handler.ts
 async function requestHandler(serverRequestEv, opts) {
   const { render, qwikCityPlan } = opts;
-  const { routes, menus, cacheModules, trailingSlash, basePathname } = qwikCityPlan;
+  const { routes, menus, cacheModules, trailingSlash, basePathname } =
+    qwikCityPlan;
   const pathname = serverRequestEv.url.pathname;
   const matchPathname = getRouteMatchPathname(pathname, trailingSlash);
   const loadedRoute = await loadRequestHandlers(
@@ -866,6 +939,7 @@ async function requestHandler(serverRequestEv, opts) {
     render
   );
   if (loadedRoute) {
+    console.log("loadedRoute", loadedRoute);
     return handleErrors(
       runQwikCity(
         serverRequestEv,
@@ -879,7 +953,14 @@ async function requestHandler(serverRequestEv, opts) {
   }
   return null;
 }
-async function loadRequestHandlers(routes, menus, cacheModules, pathname, method, renderFn) {
+async function loadRequestHandlers(
+  routes,
+  menus,
+  cacheModules,
+  pathname,
+  method,
+  renderFn
+) {
   const route = await loadRoute(routes, menus, cacheModules, pathname);
   if (route) {
     let isPageRoute = false;
@@ -898,31 +979,34 @@ function handleErrors(run) {
   return {
     response: run.response,
     requestEv,
-    completion: run.completion.then(
-      () => {
-        if (requestEv.headersSent) {
-          requestEv.getStream();
-        }
-      },
-      (e) => {
-        console.error(e);
-        const status = requestEv.status();
-        const html = getErrorHtml(status, e);
-        if (requestEv.headersSent) {
-          const stream = requestEv.getStream();
-          if (!stream.locked) {
-            return stream.close();
+    completion: run.completion
+      .then(
+        () => {
+          console.log("handleErrors1");
+          if (requestEv.headersSent) {
+            requestEv.getStream();
           }
-        } else {
-          requestEv.html(status, html);
+        },
+        (e) => {
+          console.error(e);
+          const status = requestEv.status();
+          const html = getErrorHtml(status, e);
+          if (requestEv.headersSent) {
+            const stream = requestEv.getStream();
+            if (!stream.locked) {
+              return stream.close();
+            }
+          } else {
+            requestEv.html(status, html);
+          }
         }
-      }
-    ).then(() => requestEv)
+      )
+      .then(
+        () => requestEv,
+        (msg) => {
+          console.error("handleErrors2", msg);
+        }
+      ),
   };
 }
-export {
-  createHeaders,
-  getErrorHtml,
-  mergeHeadersCookies,
-  requestHandler
-};
+export { createHeaders, getErrorHtml, mergeHeadersCookies, requestHandler };
