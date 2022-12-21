@@ -15,6 +15,8 @@ export default component$(() => {
 
   const pageInfo = pageLoader.use();
 
+  console.log("component$ pageInfo", pageInfo.value.now);
+
   return (
     <div>
       <h1>
