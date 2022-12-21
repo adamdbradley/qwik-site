@@ -36,7 +36,6 @@ function createQwikCity(opts) {
       const handledResponse = await requestHandler(serverRequestEv, opts);
       if (handledResponse) {
         const response = await handledResponse.response;
-        console.log("response", response.status);
         if (response) {
           return response;
         }

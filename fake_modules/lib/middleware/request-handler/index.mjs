@@ -573,6 +573,7 @@ function runQwikCity(
   trailingSlash = true,
   basePathname = "/"
 ) {
+  console.log("runQwikCity", requestHandlers.length);
   if (requestHandlers.length === 0) {
     throw new ErrorResponse(404 /* NotFound */, `Not Found`);
   }
@@ -629,6 +630,7 @@ async function runNext(
     }
     await requestEv.next();
   } catch (e) {
+    console.error("runNext", e);
     if (e instanceof RedirectMessage) {
       requestEv.getStream().close();
     } else if (e instanceof ErrorResponse) {
