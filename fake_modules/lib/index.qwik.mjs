@@ -669,6 +669,7 @@ class ServerLoaderImpl {
   use() {
     const state = useContext(RouteStateContext);
     const hash = this.__qrl.getHash();
+    console.log("useContext(RouteStateContext)", hash, state);
     untrack(() => {
       if (!(hash in state)) throw new Error(`Loader not found: ${hash}`);
     });

@@ -396,7 +396,7 @@ function createRequestEvent(
   requestHandlers,
   resolved
 ) {
-  console.log("createRequestEvent1");
+  // console.log("createRequestEvent1");
   const { request, platform } = serverRequestEv;
   const cookie = new Cookie(request.headers.get("cookie"));
   const headers = createHeaders();
