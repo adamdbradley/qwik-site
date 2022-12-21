@@ -202,9 +202,9 @@ var parseCookieString = (cookieString) => {
     for (const cookieSegment of cookieSegments) {
       const cookieSplit = cookieSegment.split("=");
       if (cookieSplit.length > 1) {
-        const cookieName = decodeURIComponent(cookieSplit[0].trim());
-        const cookieValue = decodeURIComponent(cookieSplit[1].trim());
-        cookie[cookieName] = cookieValue;
+        cookie[decodeURIComponent(cookieSplit[0].trim())] = decodeURIComponent(
+          cookieSplit[1].trim()
+        );
       }
     }
   }
@@ -358,6 +358,36 @@ var AbortMessage = class {
 var RedirectMessage = class extends AbortMessage {
 };
 
+// packages/qwik-city/middleware/request-handler/cache-control.ts
+function createCacheControl(cacheControl) {
+  const controls = [];
+  if (cacheControl.immutable) {
+    controls.push("immutable");
+  }
+  if (cacheControl.maxAge) {
+    controls.push(`max-age=${cacheControl.maxAge}`);
+  }
+  if (cacheControl.sMaxAge) {
+    controls.push(`s-maxage=${cacheControl.sMaxAge}`);
+  }
+  if (cacheControl.noStore) {
+    controls.push("no-store");
+  }
+  if (cacheControl.noCache) {
+    controls.push("no-cache");
+  }
+  if (cacheControl.private) {
+    controls.push("private");
+  }
+  if (cacheControl.public) {
+    controls.push("public");
+  }
+  if (cacheControl.staleWhileRevalidate) {
+    controls.push(`stale-while-revalidate=${cacheControl.staleWhileRevalidate}`);
+  }
+  return controls.join(", ");
+}
+
 // packages/qwik-city/middleware/request-handler/request-event.ts
 var RequestEvLoaders = Symbol("RequestEvLoaders");
 var RequestEvLocale = Symbol("RequestEvLocale");
@@ -374,8 +404,8 @@ function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) 
   const next = async () => {
     routeModuleIndex++;
     while (routeModuleIndex < requestHandlers.length) {
-      const requestHandler2 = requestHandlers[routeModuleIndex];
-      const result = requestHandler2(requestEv);
+      const moduleRequestHandler = requestHandlers[routeModuleIndex];
+      const result = moduleRequestHandler(requestEv);
       if (result instanceof Promise) {
         await result;
       }
@@ -425,32 +455,7 @@ function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) 
     },
     cacheControl: (cacheControl) => {
       check();
-      const controls = [];
-      if (cacheControl.immutable) {
-        controls.push("immutable");
-      }
-      if (cacheControl.maxAge) {
-        controls.push(`max-age=${cacheControl.maxAge}`);
-      }
-      if (cacheControl.sMaxAge) {
-        controls.push(`s-maxage=${cacheControl.sMaxAge}`);
-      }
-      if (cacheControl.noStore) {
-        controls.push("no-store");
-      }
-      if (cacheControl.noCache) {
-        controls.push("no-cache");
-      }
-      if (cacheControl.private) {
-        controls.push("private");
-      }
-      if (cacheControl.public) {
-        controls.push("public");
-      }
-      if (cacheControl.staleWhileRevalidate) {
-        controls.push(`stale-while-revalidate=${cacheControl.staleWhileRevalidate}`);
-      }
-      headers.set("Cache-Control", controls.join(", "));
+      headers.set("Cache-Control", createCacheControl(cacheControl));
     },
     getData: (loaderOrAction) => {
       const id = loaderOrAction.__qrl.getHash();
@@ -602,9 +607,8 @@ async function runNext(requestEv, isPage, trailingSlash, basePathname, resolve) 
     } else if (!(e instanceof AbortMessage)) {
       throw e;
     }
-  } finally {
-    resolve(null);
   }
+  resolve(null);
   return requestEv;
 }
 function getRouteMatchPathname(pathname, trailingSlash) {
@@ -867,20 +871,6 @@ function getPathname(url, trailingSlash) {
 var encoder = /* @__PURE__ */ new TextEncoder();
 
 // packages/qwik-city/middleware/request-handler/request-handler.ts
-var loadRequestHandlers = async (routes, menus, cacheModules, pathname, method, renderFn) => {
-  const route = await loadRoute(routes, menus, cacheModules, pathname);
-  if (route) {
-    let isPageRoute = false;
-    const requestHandlers = resolveRequestHandlers(route[1], method);
-    if (isLastModulePageRoute(route[1])) {
-      requestHandlers.unshift(renderQData);
-      requestHandlers.push(renderQwikMiddleware(renderFn));
-      isPageRoute = true;
-    }
-    return [route[0], requestHandlers, isPageRoute];
-  }
-  return null;
-};
 async function requestHandler(serverRequestEv, opts) {
   const { render, qwikCityPlan } = opts;
   const { routes, menus, cacheModules, trailingSlash, basePathname } = qwikCityPlan;
@@ -905,6 +895,20 @@ async function requestHandler(serverRequestEv, opts) {
         basePathname
       )
     );
+  }
+  return null;
+}
+async function loadRequestHandlers(routes, menus, cacheModules, pathname, method, renderFn) {
+  const route = await loadRoute(routes, menus, cacheModules, pathname);
+  if (route) {
+    let isPageRoute = false;
+    const requestHandlers = resolveRequestHandlers(route[1], method);
+    if (isLastModulePageRoute(route[1])) {
+      requestHandlers.unshift(renderQData);
+      requestHandlers.push(renderQwikMiddleware(renderFn));
+      isPageRoute = true;
+    }
+    return [route[0], requestHandlers, isPageRoute];
   }
   return null;
 }

@@ -22142,9 +22142,9 @@ var parseCookieString = (cookieString) => {
     for (const cookieSegment of cookieSegments) {
       const cookieSplit = cookieSegment.split("=");
       if (cookieSplit.length > 1) {
-        const cookieName = decodeURIComponent(cookieSplit[0].trim());
-        const cookieValue = decodeURIComponent(cookieSplit[1].trim());
-        cookie[cookieName] = cookieValue;
+        cookie[decodeURIComponent(cookieSplit[0].trim())] = decodeURIComponent(
+          cookieSplit[1].trim()
+        );
       }
     }
   }
@@ -22530,6 +22530,36 @@ function getPathname(url, trailingSlash) {
 }
 var encoder = /* @__PURE__ */ new TextEncoder();
 
+// packages/qwik-city/middleware/request-handler/cache-control.ts
+function createCacheControl(cacheControl) {
+  const controls = [];
+  if (cacheControl.immutable) {
+    controls.push("immutable");
+  }
+  if (cacheControl.maxAge) {
+    controls.push(`max-age=${cacheControl.maxAge}`);
+  }
+  if (cacheControl.sMaxAge) {
+    controls.push(`s-maxage=${cacheControl.sMaxAge}`);
+  }
+  if (cacheControl.noStore) {
+    controls.push("no-store");
+  }
+  if (cacheControl.noCache) {
+    controls.push("no-cache");
+  }
+  if (cacheControl.private) {
+    controls.push("private");
+  }
+  if (cacheControl.public) {
+    controls.push("public");
+  }
+  if (cacheControl.staleWhileRevalidate) {
+    controls.push(`stale-while-revalidate=${cacheControl.staleWhileRevalidate}`);
+  }
+  return controls.join(", ");
+}
+
 // packages/qwik-city/middleware/request-handler/request-event.ts
 var RequestEvLoaders = Symbol("RequestEvLoaders");
 var RequestEvLocale = Symbol("RequestEvLocale");
@@ -22546,8 +22576,8 @@ function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) 
   const next = async () => {
     routeModuleIndex++;
     while (routeModuleIndex < requestHandlers.length) {
-      const requestHandler2 = requestHandlers[routeModuleIndex];
-      const result = requestHandler2(requestEv);
+      const moduleRequestHandler = requestHandlers[routeModuleIndex];
+      const result = moduleRequestHandler(requestEv);
       if (result instanceof Promise) {
         await result;
       }
@@ -22597,32 +22627,7 @@ function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) 
     },
     cacheControl: (cacheControl) => {
       check();
-      const controls = [];
-      if (cacheControl.immutable) {
-        controls.push("immutable");
-      }
-      if (cacheControl.maxAge) {
-        controls.push(`max-age=${cacheControl.maxAge}`);
-      }
-      if (cacheControl.sMaxAge) {
-        controls.push(`s-maxage=${cacheControl.sMaxAge}`);
-      }
-      if (cacheControl.noStore) {
-        controls.push("no-store");
-      }
-      if (cacheControl.noCache) {
-        controls.push("no-cache");
-      }
-      if (cacheControl.private) {
-        controls.push("private");
-      }
-      if (cacheControl.public) {
-        controls.push("public");
-      }
-      if (cacheControl.staleWhileRevalidate) {
-        controls.push(`stale-while-revalidate=${cacheControl.staleWhileRevalidate}`);
-      }
-      headers.set("Cache-Control", controls.join(", "));
+      headers.set("Cache-Control", createCacheControl(cacheControl));
     },
     getData: (loaderOrAction) => {
       const id = loaderOrAction.__qrl.getHash();
@@ -22754,9 +22759,8 @@ async function runNext(requestEv, isPage, trailingSlash, basePathname, resolve4)
     } else if (!(e instanceof AbortMessage)) {
       throw e;
     }
-  } finally {
-    resolve4(null);
   }
+  resolve4(null);
   return requestEv;
 }
 function getRouteMatchPathname(pathname, trailingSlash) {
@@ -23393,7 +23397,9 @@ async function postBuild(clientOutDir, basePathname, userStaticPaths, format, cl
     const itemNames = await fs4.promises.readdir(fsDir);
     await Promise.all(itemNames.map((i) => loadItem(fsDir, i, pathname)));
   };
-  await loadDir(clientOutDir, basePathname);
+  if (fs4.existsSync(clientOutDir)) {
+    await loadDir(clientOutDir, basePathname);
+  }
   const notFoundPathsCode = createNotFoundPathsModule(basePathname, notFounds, format);
   const staticPathsCode = createStaticPathsModule(basePathname, staticPaths, format);
   return {
@@ -23444,15 +23450,15 @@ function createStaticPathsModule(basePathname, staticPaths, format) {
     )});`
   );
   c2.push(`function isStaticPath(url) {`);
-  c2.push(`  if (url.searchParams.get('qwikcity.static') === "false") {`);
-  c2.push(`    return false;`);
-  c2.push(`  }`);
   c2.push(`  const p = url.pathname;`);
   c2.push(`  if (p.startsWith(${JSON.stringify(baseBuildPath)})) {`);
   c2.push(`    return true;`);
   c2.push(`  }`);
   c2.push(`  if (p.startsWith(${JSON.stringify(assetsPath)})) {`);
   c2.push(`    return true;`);
+  c2.push(`  }`);
+  c2.push(`  if (url.searchParams.get('qwikcity.static') === "false") {`);
+  c2.push(`    return false;`);
   c2.push(`  }`);
   c2.push(`  if (staticPaths.has(p)) {`);
   c2.push(`    return true;`);

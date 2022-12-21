@@ -37,7 +37,9 @@ async function postBuild(clientOutDir, basePathname2, userStaticPaths, format, c
     const itemNames = await fs.promises.readdir(fsDir);
     await Promise.all(itemNames.map((i) => loadItem(fsDir, i, pathname)));
   };
-  await loadDir(clientOutDir, basePathname2);
+  if (fs.existsSync(clientOutDir)) {
+    await loadDir(clientOutDir, basePathname2);
+  }
   const notFoundPathsCode = createNotFoundPathsModule(basePathname2, notFounds, format);
   const staticPathsCode = createStaticPathsModule(basePathname2, staticPaths, format);
   return {
@@ -88,15 +90,15 @@ function createStaticPathsModule(basePathname2, staticPaths, format) {
     )});`
   );
   c.push(`function isStaticPath(url) {`);
-  c.push(`  if (url.searchParams.get('qwikcity.static') === "false") {`);
-  c.push(`    return false;`);
-  c.push(`  }`);
   c.push(`  const p = url.pathname;`);
   c.push(`  if (p.startsWith(${JSON.stringify(baseBuildPath)})) {`);
   c.push(`    return true;`);
   c.push(`  }`);
   c.push(`  if (p.startsWith(${JSON.stringify(assetsPath)})) {`);
   c.push(`    return true;`);
+  c.push(`  }`);
+  c.push(`  if (url.searchParams.get('qwikcity.static') === "false") {`);
+  c.push(`    return false;`);
   c.push(`  }`);
   c.push(`  if (staticPaths.has(p)) {`);
   c.push(`    return true;`);

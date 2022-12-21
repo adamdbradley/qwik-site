@@ -10,6 +10,7 @@ export default extendConfig(baseConfig, () => {
         input: ["src/entry.netlify-edge.tsx", "@qwik-city-plan"],
       },
       outDir: ".netlify/edge-functions/entry.netlify-edge",
+      minify: false,
     },
     plugins: [
       netifyEdgeAdaptor({

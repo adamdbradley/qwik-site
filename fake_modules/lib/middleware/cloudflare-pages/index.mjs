@@ -10,11 +10,7 @@ function createQwikCity(opts) {
       if (isStaticPath(url)) {
         return next();
       }
-      const useCache =
-        url.hostname !== "127.0.0.1" &&
-        url.hostname !== "localhost" &&
-        url.port === "" &&
-        request.method === "GET";
+      const useCache = url.hostname !== "127.0.0.1" && url.hostname !== "localhost" && url.port === "" && request.method === "GET";
       const cacheKey = new Request(url.href, request);
       const cache = useCache ? await caches.open("custom:qwikcity") : null;
       if (cache) {
@@ -29,52 +25,41 @@ function createQwikCity(opts) {
         url,
         request,
         getWritableStream: (status, headers, cookies, resolve) => {
-          console.log("getWritableStream");
           const { readable, writable } = new TransformStream();
           const response = new Response(readable, {
             status,
-            headers: mergeHeadersCookies(headers, cookies),
+            headers: mergeHeadersCookies(headers, cookies)
           });
           if (response.ok && cache && response.headers.has("Cache-Control")) {
             waitUntil(cache.put(cacheKey, response.clone()));
           }
-          console.log("resolve", response);
           resolve(response);
           return writable;
         },
-        platform: env,
+        platform: env
       };
       const handledResponse = await requestHandler(serverRequestEv, opts);
       if (handledResponse) {
-        try {
-          const response = await handledResponse.response;
-          console.log("handledResponse.response", response);
-          if (response) {
-            return response;
-          }
-        } catch (e) {
-          console.log("omg", e);
+        const response = await handledResponse.response;
+        if (response) {
+          return response;
         }
       }
       const notFoundHtml = getNotFound(url.pathname);
       return new Response(notFoundHtml, {
         status: 404,
-        headers: {
-          "Content-Type": "text/html; charset=utf-8",
-          "X-Not-Found": url.pathname,
-        },
+        headers: { "Content-Type": "text/html; charset=utf-8", "X-Not-Found": url.pathname }
       });
     } catch (e) {
       console.error(e);
       return new Response(String(e || "Error"), {
         status: 500,
-        headers: {
-          "Content-Type": "text/plain; charset=utf-8",
-          "X-Error": "cloudflare-pages",
-        },
+        headers: { "Content-Type": "text/plain; charset=utf-8", "X-Error": "cloudflare-pages" }
       });
     }
   }
   return onRequest;
 }
-export { createQwikCity };
+export {
+  createQwikCity
+};

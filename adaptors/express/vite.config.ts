@@ -10,6 +10,7 @@ export default extendConfig(baseConfig, () => {
         input: ["src/entry.express.tsx", "@qwik-city-plan"],
       },
       outDir: ".express",
+      minify: false,
     },
     plugins: [
       expressAdaptor({
