@@ -404,21 +404,21 @@ function createRequestEvent(
   let routeModuleIndex = -1;
   let streamInternal = null;
   const next = async () => {
-    console.log("next1");
+    // console.log("next1");
     routeModuleIndex++;
     while (routeModuleIndex < requestHandlers.length) {
-      console.log("next2");
+      // console.log("next2");
       const moduleRequestHandler = requestHandlers[routeModuleIndex];
-      console.log("next3");
+      // console.log("next3");
       const result = moduleRequestHandler(requestEv);
-      console.log("next4");
+      // console.log("next4");
       if (result instanceof Promise) {
         await result;
       }
-      console.log("next5");
+      // console.log("next5");
       routeModuleIndex++;
     }
-    console.log("next6");
+    // console.log("next6");
   };
   const check = () => {
     if (streamInternal !== null) {
@@ -821,14 +821,18 @@ function isLastModulePageRoute(routeModules) {
   return lastRouteModule && typeof lastRouteModule.default === "function";
 }
 function renderQwikMiddleware(render, opts) {
+  console.log("renderQwikMiddleware1");
   return async (requestEv) => {
+    console.log("renderQwikMiddleware2");
     if (requestEv.headersSent) {
       return;
     }
+    console.log("renderQwikMiddleware3");
     const isPageDataReq = requestEv.pathname.endsWith(QDATA_JSON);
     if (isPageDataReq) {
       return;
     }
+    console.log("renderQwikMiddleware4");
     const requestHeaders = {};
     requestEv.request.headers.forEach(
       (value, key) => (requestHeaders[key] = value)
@@ -841,6 +845,7 @@ function renderQwikMiddleware(render, opts) {
     const pipe = readable.pipeTo(requestEv.getStream());
     const stream = writable.getWriter();
     try {
+      console.log("renderQwikMiddleware5");
       const result = await render({
         stream,
         envData: getQwikCityEnvData(requestEv),
@@ -849,7 +854,9 @@ function renderQwikMiddleware(render, opts) {
       if ((typeof result).html === "string") {
         await stream.write(result.html);
       }
+      console.log("renderQwikMiddleware6");
     } finally {
+      console.log("renderQwikMiddleware7");
       await stream.ready;
       await stream.close();
       await pipe;
@@ -951,8 +958,8 @@ async function requestHandler(serverRequestEv, opts) {
     render
   );
   if (loadedRoute) {
-    console.log("loadedRoute", loadedRoute);
-    return handleErrors(
+    console.log("loadedRoute1", serverRequestEv.url.href);
+    const r = await handleErrors(
       runQwikCity(
         serverRequestEv,
         loadedRoute[0],
@@ -962,6 +969,8 @@ async function requestHandler(serverRequestEv, opts) {
         basePathname
       )
     );
+    console.log("loadedRoute2", serverRequestEv.url.href);
+    return r;
   }
   return null;
 }
