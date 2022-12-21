@@ -821,18 +821,18 @@ function isLastModulePageRoute(routeModules) {
   return lastRouteModule && typeof lastRouteModule.default === "function";
 }
 function renderQwikMiddleware(render, opts) {
-  console.log("renderQwikMiddleware1");
+  // console.log("renderQwikMiddleware1");
   return async (requestEv) => {
-    console.log("renderQwikMiddleware2");
+    // console.log("renderQwikMiddleware2");
     if (requestEv.headersSent) {
       return;
     }
-    console.log("renderQwikMiddleware3");
+    // console.log("renderQwikMiddleware3");
     const isPageDataReq = requestEv.pathname.endsWith(QDATA_JSON);
     if (isPageDataReq) {
       return;
     }
-    console.log("renderQwikMiddleware4");
+    // console.log("renderQwikMiddleware4");
     const requestHeaders = {};
     requestEv.request.headers.forEach(
       (value, key) => (requestHeaders[key] = value)
@@ -845,7 +845,10 @@ function renderQwikMiddleware(render, opts) {
     const pipe = readable.pipeTo(requestEv.getStream());
     const stream = writable.getWriter();
     try {
-      console.log("renderQwikMiddleware5");
+      console.log(
+        "renderQwikMiddleware getQwikCityEnvData",
+        getQwikCityEnvData(requestEv)
+      );
       const result = await render({
         stream,
         envData: getQwikCityEnvData(requestEv),
@@ -854,9 +857,9 @@ function renderQwikMiddleware(render, opts) {
       if ((typeof result).html === "string") {
         await stream.write(result.html);
       }
-      console.log("renderQwikMiddleware6");
+      // console.log("renderQwikMiddleware6");
     } finally {
-      console.log("renderQwikMiddleware7");
+      // console.log("renderQwikMiddleware7");
       await stream.ready;
       await stream.close();
       await pipe;
