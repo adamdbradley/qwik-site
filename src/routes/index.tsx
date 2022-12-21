@@ -3,7 +3,7 @@ import { DocumentHead, loader$ } from "@builder.io/qwik-city";
 import { Link } from "@builder.io/qwik-city";
 
 export const pageLoader = loader$(() => {
-  // throw new Error("fu");
+  console.log("run pageLoader", new Date(Date.now()).toISOString());
   return {
     now: new Date(Date.now()).toISOString(),
     nodeVersion: "process.version",
@@ -11,6 +11,8 @@ export const pageLoader = loader$(() => {
 });
 
 export default component$(() => {
+  console.log("run component$", new Date(Date.now()).toISOString());
+
   const pageInfo = pageLoader.use();
 
   return (
