@@ -6,7 +6,7 @@ export const pageLoader = loader$(() => {
   // throw new Error("fu");
   return {
     now: new Date(Date.now()).toISOString(),
-    nodeVersion: process.version,
+    nodeVersion: "process.version",
   };
 });
 
