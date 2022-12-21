@@ -396,6 +396,7 @@ function createRequestEvent(
   requestHandlers,
   resolved
 ) {
+  console.log("createRequestEvent1");
   const { request, platform } = serverRequestEv;
   const cookie = new Cookie(request.headers.get("cookie"));
   const headers = createHeaders();
@@ -406,10 +407,13 @@ function createRequestEvent(
     routeModuleIndex++;
     while (routeModuleIndex < requestHandlers.length) {
       const moduleRequestHandler = requestHandlers[routeModuleIndex];
+      console.log("next1");
       const result = moduleRequestHandler(requestEv);
+
       if (result instanceof Promise) {
         await result;
       }
+      console.log("next2");
       routeModuleIndex++;
     }
   };
@@ -528,6 +532,7 @@ function createRequestEvent(
       return streamInternal;
     },
   };
+  console.log("createRequestEvent2", requestEv);
   return requestEv;
 }
 function getRequestLoaders(requestEv) {
@@ -573,7 +578,7 @@ function runQwikCity(
   trailingSlash = true,
   basePathname = "/"
 ) {
-  console.log("runQwikCity", requestHandlers.length);
+  console.log("runQwikCity1");
   if (requestHandlers.length === 0) {
     throw new ErrorResponse(404 /* NotFound */, `Not Found`);
   }
@@ -585,6 +590,7 @@ function runQwikCity(
     requestHandlers,
     resolve
   );
+  console.log("runQwikCity2");
   return {
     response: responsePromise,
     requestEv,
