@@ -580,7 +580,6 @@ function runQwikCity(
   trailingSlash = true,
   basePathname = "/"
 ) {
-  console.log("runQwikCity1");
   if (requestHandlers.length === 0) {
     throw new ErrorResponse(404 /* NotFound */, `Not Found`);
   }
@@ -592,7 +591,6 @@ function runQwikCity(
     requestHandlers,
     resolve
   );
-  console.log("runQwikCity2");
   return {
     response: responsePromise,
     requestEv,
@@ -636,11 +634,11 @@ async function runNext(
         }
       }
     }
-    console.log("requestEv.next 1");
+    // console.log("requestEv.next 1");
     await requestEv.next();
-    console.log("requestEv.next 2");
+    // console.log("requestEv.next 2");
   } catch (e) {
-    console.error("runNext", e);
+    // console.error("runNext", e);
     if (e instanceof RedirectMessage) {
       requestEv.getStream().close();
     } else if (e instanceof ErrorResponse) {
@@ -846,8 +844,8 @@ function renderQwikMiddleware(render, opts) {
     const stream = writable.getWriter();
     try {
       console.log(
-        "renderQwikMiddleware getQwikCityEnvData",
-        getQwikCityEnvData(requestEv)
+        "getQwikCityEnvData().qwikcity",
+        getQwikCityEnvData(requestEv).qwikcity
       );
       const result = await render({
         stream,
@@ -961,8 +959,7 @@ async function requestHandler(serverRequestEv, opts) {
     render
   );
   if (loadedRoute) {
-    console.log("loadedRoute1", serverRequestEv.url.href);
-    const r = await handleErrors(
+    return handleErrors(
       runQwikCity(
         serverRequestEv,
         loadedRoute[0],
@@ -972,8 +969,6 @@ async function requestHandler(serverRequestEv, opts) {
         basePathname
       )
     );
-    console.log("loadedRoute2", serverRequestEv.url.href);
-    return r;
   }
   return null;
 }
