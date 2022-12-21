@@ -404,18 +404,21 @@ function createRequestEvent(
   let routeModuleIndex = -1;
   let streamInternal = null;
   const next = async () => {
+    console.log("next1");
     routeModuleIndex++;
     while (routeModuleIndex < requestHandlers.length) {
+      console.log("next2");
       const moduleRequestHandler = requestHandlers[routeModuleIndex];
-      console.log("next1");
+      console.log("next3");
       const result = moduleRequestHandler(requestEv);
-
+      console.log("next4");
       if (result instanceof Promise) {
         await result;
       }
-      console.log("next2");
+      console.log("next5");
       routeModuleIndex++;
     }
+    console.log("next6");
   };
   const check = () => {
     if (streamInternal !== null) {
@@ -532,7 +535,6 @@ function createRequestEvent(
       return streamInternal;
     },
   };
-  console.log("createRequestEvent2", requestEv);
   return requestEv;
 }
 function getRequestLoaders(requestEv) {
@@ -634,7 +636,9 @@ async function runNext(
         }
       }
     }
+    console.log("requestEv.next 1");
     await requestEv.next();
+    console.log("requestEv.next 2");
   } catch (e) {
     console.error("runNext", e);
     if (e instanceof RedirectMessage) {
