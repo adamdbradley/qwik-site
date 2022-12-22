@@ -820,6 +820,7 @@ function isLastModulePageRoute(routeModules) {
 }
 function renderQwikMiddleware(render, opts) {
   return async (requestEv) => {
+    console.log("renderQwikMiddleware");
     if (requestEv.headersSent) {
       return;
     }
@@ -984,6 +985,7 @@ async function loadRequestHandlers(
   return null;
 }
 function handleErrors(run) {
+  console.log("handleErrors1");
   const requestEv = run.requestEv;
   return {
     response: run.response,
@@ -991,6 +993,10 @@ function handleErrors(run) {
     completion: run.completion
       .then(
         () => {
+          console.log(
+            "handleErrors then, requestEv.headersSent",
+            requestEv.headersSent
+          );
           if (requestEv.headersSent) {
             requestEv.getStream();
           }
@@ -1009,7 +1015,13 @@ function handleErrors(run) {
           }
         }
       )
-      .then(() => requestEv),
+      .then(
+        () => requestEv,
+        (e) => {
+          console.error("handleErrors2", e);
+          // requestEv.html(500, getErrorHtml(500, e));
+        }
+      ),
   };
 }
 export { createHeaders, getErrorHtml, mergeHeadersCookies, requestHandler };
