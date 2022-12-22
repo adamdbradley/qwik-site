@@ -6,7 +6,6 @@ export const pageLoader = loader$(() => {
   console.log("run pageLoader", new Date(Date.now()).toISOString());
   return {
     now: new Date(Date.now()).toISOString(),
-    nodeVersion: "process.version",
   };
 });
 
@@ -23,8 +22,9 @@ export default component$(() => {
         Qwik <span class="lightning">⚡️</span>
       </h1>
 
-      <p>Now: {pageInfo.value.now}</p>
-      <p>Node: {pageInfo.value.nodeVersion}</p>
+      <p>
+        Now: <span id="now">{pageInfo.value.now}</span>
+      </p>
 
       <Link class="mindblow" href="/flower/">
         Blow my mind 🤯
