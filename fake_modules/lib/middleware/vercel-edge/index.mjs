@@ -10,11 +10,11 @@ function createQwikCity(opts) {
     try {
       const url = new URL(request.url);
 
-      return new Response("body", {
-        headers: {
-          "Content-Type": "text/text; charset=utf-8",
-        },
-      });
+      // return new Response("body", {
+      //   headers: {
+      //     "Content-Type": "text/text; charset=utf-8",
+      //   },
+      // });
 
       if (isStaticPath(url)) {
         return new Response(null, {

@@ -414,7 +414,7 @@ function vercelEdgeAdaptor(opts = {}) {
       if (opts.outputConfig !== false) {
         const vercelOutputConfig = {
           routes: [
-            { handle: "filesystem" },
+            // { handle: "filesystem" },
             {
               src: basePathname + "(.*)",
               middlewarePath: "_qwik-city",
@@ -449,7 +449,10 @@ function vercelEdgeAdaptor(opts = {}) {
       await import_node_fs3.default.promises.rename(clientOutDir, staticDir);
 
       const indexPath = (0, import_node_path3.join)(staticDir, "index.html");
-      await import_node_fs3.default.promises.writeFile(indexPath, "index.html");
+      await import_node_fs3.default.promises.writeFile(
+        indexPath,
+        "static index.html"
+      );
     },
   });
 }
