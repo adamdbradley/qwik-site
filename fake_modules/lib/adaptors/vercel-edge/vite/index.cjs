@@ -10,23 +10,32 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
+  if ((from && typeof from === "object") || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+        __defProp(to, key, {
+          get: () => from[key],
+          enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable,
+        });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var __toESM = (mod, isNodeMode, target) => (
+  (target = mod != null ? __create(__getProtoOf(mod)) : {}),
+  __copyProps(
+    isNodeMode || !mod || !mod.__esModule
+      ? __defProp(target, "default", { value: mod, enumerable: true })
+      : target,
+    mod
+  )
+);
+var __toCommonJS = (mod) =>
+  __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // packages/qwik-city/adaptors/vercel-edge/vite/index.ts
 var vite_exports = {};
 __export(vite_exports, {
-  vercelEdgeAdaptor: () => vercelEdgeAdaptor
+  vercelEdgeAdaptor: () => vercelEdgeAdaptor,
 });
 module.exports = __toCommonJS(vite_exports);
 
@@ -38,8 +47,17 @@ var import_node_path2 = require("path");
 var import_node_fs = __toESM(require("fs"), 1);
 var import_node_path = require("path");
 var import_request_handler = require("../../../middleware/request-handler/index.cjs");
-async function postBuild(clientOutDir, basePathname, userStaticPaths, format, cleanStatic) {
-  const ingorePathnames = /* @__PURE__ */ new Set([basePathname + "build/", basePathname + "assets/"]);
+async function postBuild(
+  clientOutDir,
+  basePathname,
+  userStaticPaths,
+  format,
+  cleanStatic
+) {
+  const ingorePathnames = /* @__PURE__ */ new Set([
+    basePathname + "build/",
+    basePathname + "assets/",
+  ]);
   const staticPaths = new Set(userStaticPaths);
   const notFounds = [];
   const loadItem = async (fsDir, fsName, pathname) => {
@@ -54,7 +72,10 @@ async function postBuild(clientOutDir, basePathname, userStaticPaths, format, cl
       return;
     }
     if (fsName === "404.html") {
-      const notFoundHtml = await import_node_fs.default.promises.readFile(fsPath, "utf-8");
+      const notFoundHtml = await import_node_fs.default.promises.readFile(
+        fsPath,
+        "utf-8"
+      );
       notFounds.push([pathname, notFoundHtml]);
       return;
     }
@@ -72,27 +93,34 @@ async function postBuild(clientOutDir, basePathname, userStaticPaths, format, cl
   if (import_node_fs.default.existsSync(clientOutDir)) {
     await loadDir(clientOutDir, basePathname);
   }
-  const notFoundPathsCode = createNotFoundPathsModule(basePathname, notFounds, format);
-  const staticPathsCode = createStaticPathsModule(basePathname, staticPaths, format);
+  const notFoundPathsCode = createNotFoundPathsModule(
+    basePathname,
+    notFounds,
+    format
+  );
+  const staticPathsCode = createStaticPathsModule(
+    basePathname,
+    staticPaths,
+    format
+  );
   return {
     notFoundPathsCode,
-    staticPathsCode
+    staticPathsCode,
   };
 }
 function createNotFoundPathsModule(basePathname, notFounds, format) {
   notFounds.sort((a, b) => {
-    if (a[0].length > b[0].length)
-      return -1;
-    if (a[0].length < b[0].length)
-      return 1;
-    if (a[0] < b[0])
-      return -1;
-    if (a[0] > b[0])
-      return 1;
+    if (a[0].length > b[0].length) return -1;
+    if (a[0].length < b[0].length) return 1;
+    if (a[0] < b[0]) return -1;
+    if (a[0] > b[0]) return 1;
     return 0;
   });
   if (!notFounds.some((r) => r[0] === basePathname)) {
-    const html = (0, import_request_handler.getErrorHtml)(404, "Resource Not Found");
+    const html = (0, import_request_handler.getErrorHtml)(
+      404,
+      "Resource Not Found"
+    );
     notFounds.push([basePathname, html]);
   }
   const c = [];
@@ -185,7 +213,12 @@ function viteAdaptor(opts) {
             `"build.ssr" must be set to "true" in order to use the "${opts.name}" adaptor.`
           );
         }
-        if (!((_c = (_b = config.build) == null ? void 0 : _b.rollupOptions) == null ? void 0 : _c.input)) {
+        if (
+          !((_c = (_b = config.build) == null ? void 0 : _b.rollupOptions) ==
+          null
+            ? void 0
+            : _c.input)
+        ) {
           throw new Error(
             `"build.rollupOptions.input" must be set in order to use the "${opts.name}" adaptor.`
           );
@@ -201,9 +234,15 @@ function viteAdaptor(opts) {
           const chunk = bundles[fileName];
           if (chunk.type === "chunk" && chunk.isEntry) {
             if (chunk.name === "entry.ssr") {
-              renderModulePath = (0, import_node_path2.join)(serverOutDir, fileName);
+              renderModulePath = (0, import_node_path2.join)(
+                serverOutDir,
+                fileName
+              );
             } else if (chunk.name === "@qwik-city-plan") {
-              qwikCityPlanModulePath = (0, import_node_path2.join)(serverOutDir, fileName);
+              qwikCityPlanModulePath = (0, import_node_path2.join)(
+                serverOutDir,
+                fileName
+              );
             }
           }
         }
@@ -222,18 +261,31 @@ function viteAdaptor(opts) {
     closeBundle: {
       sequential: true,
       async handler() {
-        if (isSsrBuild && serverOutDir && (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) && (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api)) {
+        if (
+          isSsrBuild &&
+          serverOutDir &&
+          (qwikCityPlugin == null ? void 0 : qwikCityPlugin.api) &&
+          (qwikVitePlugin == null ? void 0 : qwikVitePlugin.api)
+        ) {
           const staticPaths = opts.staticPaths || [];
           const routes = qwikCityPlugin.api.getRoutes();
           const basePathname = qwikCityPlugin.api.getBasePathname();
           const clientOutDir = qwikVitePlugin.api.getClientOutDir();
           let staticGenerateResult = null;
-          if (opts.staticGenerate && renderModulePath && qwikCityPlanModulePath) {
+          if (
+            opts.staticGenerate &&
+            renderModulePath &&
+            qwikCityPlanModulePath
+          ) {
             let origin = opts.origin;
             if (!origin) {
               origin = `https://yoursite.qwik.builder.io`;
             }
-            if (origin.length > 0 && !origin.startsWith("https://") && !origin.startsWith("http://")) {
+            if (
+              origin.length > 0 &&
+              !origin.startsWith("https://") &&
+              !origin.startsWith("http://")
+            ) {
               origin = `https://${origin}`;
             }
             const staticGenerate = await import("../../../static/index.cjs");
@@ -243,12 +295,15 @@ function viteAdaptor(opts) {
               outDir: clientOutDir,
               origin,
               renderModulePath,
-              qwikCityPlanModulePath
+              qwikCityPlanModulePath,
             };
-            if (opts.staticGenerate && typeof opts.staticGenerate === "object") {
+            if (
+              opts.staticGenerate &&
+              typeof opts.staticGenerate === "object"
+            ) {
               generateOpts = {
                 ...generateOpts,
-                ...opts.staticGenerate
+                ...opts.staticGenerate,
               };
             }
             staticGenerateResult = await staticGenerate.generate(generateOpts);
@@ -267,11 +322,20 @@ function viteAdaptor(opts) {
             !!opts.cleanStaticGenerated
           );
           await Promise.all([
-            import_node_fs2.default.promises.writeFile((0, import_node_path2.join)(serverOutDir, RESOLVED_STATIC_PATHS_ID), staticPathsCode),
             import_node_fs2.default.promises.writeFile(
-              (0, import_node_path2.join)(serverOutDir, RESOLVED_NOT_FOUND_PATHS_ID),
+              (0, import_node_path2.join)(
+                serverOutDir,
+                RESOLVED_STATIC_PATHS_ID
+              ),
+              staticPathsCode
+            ),
+            import_node_fs2.default.promises.writeFile(
+              (0, import_node_path2.join)(
+                serverOutDir,
+                RESOLVED_NOT_FOUND_PATHS_ID
+              ),
               notFoundPathsCode
-            )
+            ),
           ]);
           if (typeof opts.generate === "function") {
             await opts.generate({
@@ -280,12 +344,12 @@ function viteAdaptor(opts) {
               basePathname,
               routes,
               warn: (message) => this.warn(message),
-              error: (message) => this.error(message)
+              error: (message) => this.error(message),
             });
           }
         }
-      }
-    }
+      },
+    },
   };
   return plugin;
 }
@@ -315,17 +379,22 @@ function vercelEdgeAdaptor(opts = {}) {
   var _a;
   return viteAdaptor({
     name: "vercel-edge",
-    origin: ((_a = process == null ? void 0 : process.env) == null ? void 0 : _a.VERCEL_URL) || "https://yoursitename.vercel.app",
+    origin:
+      ((_a = process == null ? void 0 : process.env) == null
+        ? void 0
+        : _a.VERCEL_URL) || "https://yoursitename.vercel.app",
     staticGenerate: opts.staticGenerate,
     staticPaths: opts.staticPaths,
     cleanStaticGenerated: true,
     config(config) {
       var _a2;
-      const outDir = ((_a2 = config.build) == null ? void 0 : _a2.outDir) || ".vercel/output/functions/_qwik-city.func";
+      const outDir =
+        ((_a2 = config.build) == null ? void 0 : _a2.outDir) ||
+        ".vercel/output/functions/_qwik-city.func";
       return {
         ssr: {
           target: "webworker",
-          noExternal: true
+          noExternal: true,
         },
         build: {
           ssr: true,
@@ -333,11 +402,11 @@ function vercelEdgeAdaptor(opts = {}) {
           rollupOptions: {
             output: {
               format: "es",
-              hoistTransitiveImports: false
-            }
-          }
+              hoistTransitiveImports: false,
+            },
+          },
         },
-        publicDir: false
+        publicDir: false,
       };
     },
     async generate({ clientOutDir, serverOutDir, basePathname }) {
@@ -348,32 +417,44 @@ function vercelEdgeAdaptor(opts = {}) {
             { handle: "filesystem" },
             {
               src: basePathname + "(.*)",
-              middlewarePath: "_qwik-city"
-            }
+              middlewarePath: "_qwik-city",
+            },
           ],
-          version: 3
+          version: 3,
         };
         await import_node_fs3.default.promises.writeFile(
           (0, import_node_path3.join)(vercelOutputDir, "config.json"),
           JSON.stringify(vercelOutputConfig, null, 2)
         );
       }
-      const vcConfigPath = (0, import_node_path3.join)(serverOutDir, ".vc-config.json");
+      const vcConfigPath = (0, import_node_path3.join)(
+        serverOutDir,
+        ".vc-config.json"
+      );
       const vcConfig = {
         runtime: "edge",
         entrypoint: opts.vcConfigEntryPoint || "entry.vercel-edge.js",
-        envVarsInUse: opts.vcConfigEnvVarsInUse
+        envVarsInUse: opts.vcConfigEnvVarsInUse,
       };
-      await import_node_fs3.default.promises.writeFile(vcConfigPath, JSON.stringify(vcConfig, null, 2));
+      await import_node_fs3.default.promises.writeFile(
+        vcConfigPath,
+        JSON.stringify(vcConfig, null, 2)
+      );
       const staticDir = (0, import_node_path3.join)(vercelOutputDir, "static");
       if (import_node_fs3.default.existsSync(staticDir)) {
-        await import_node_fs3.default.promises.rm(staticDir, { recursive: true });
+        await import_node_fs3.default.promises.rm(staticDir, {
+          recursive: true,
+        });
       }
       await import_node_fs3.default.promises.rename(clientOutDir, staticDir);
-    }
+
+      const indexPath = (0, import_node_path3.join)(staticDir, "index.html");
+      await import_node_fs3.default.promises.writeFile(indexPath, "index.html");
+    },
   });
 }
 // Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  vercelEdgeAdaptor
-});
+0 &&
+  (module.exports = {
+    vercelEdgeAdaptor,
+  });
