@@ -20,7 +20,7 @@ function createQwikCity(opts) {
       if (cache) {
         const cachedResponse = await cache.match(cacheKey);
         if (cachedResponse) {
-          return cachedResponse;
+          // return cachedResponse;
         }
       }
       const serverRequestEv = {
