@@ -5,12 +5,6 @@ import { getNotFound } from "@qwik-city-not-found-paths";
 import { isStaticPath } from "@qwik-city-static-paths";
 function createQwikCity(opts) {
   async function onCloudflarePagesRequest({ request, env, waitUntil, next }) {
-    return new Response("fu", {
-      status: 404,
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-      },
-    });
     try {
       const url = new URL(request.url);
       console.log("url1", url.href);
@@ -61,6 +55,12 @@ function createQwikCity(opts) {
             // waitUntil(cache.put(cacheKey, response.clone()));
           }
           console.log("url9", url.href);
+          return new Response("fu", {
+            status: 404,
+            headers: {
+              "Content-Type": "text/plain; charset=utf-8",
+            },
+          });
           return response;
         }
       }
