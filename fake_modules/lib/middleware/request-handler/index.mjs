@@ -472,7 +472,7 @@ function createRequestEvent(
     },
     status: (statusCode) => {
       if (typeof statusCode === "number") {
-        console.log("status");
+        console.trace("status");
         check();
         requestEv[RequestEvStatus] = statusCode;
         return statusCode;
@@ -648,6 +648,8 @@ async function runNext(
       }
       console.error(e);
     } else if (!(e instanceof AbortMessage)) {
+      console.log("error1", e);
+      console.log("requestEv.headersSent", requestEv.headersSent);
       requestEv.status(500 /* InternalServerError */);
       throw e;
     }

@@ -25,7 +25,6 @@ function createQwikCity(opts) {
         }
       }
 
-      console.log("url3", url.href);
       const serverRequestEv = {
         mode: "server",
         locale: void 0,
@@ -44,9 +43,7 @@ function createQwikCity(opts) {
         platform: env,
       };
 
-      console.log("url4", url.href);
       const handledResponse = await requestHandler(serverRequestEv, opts);
-      console.log("url5", url.href);
       if (handledResponse) {
         console.log("url6", url.href);
         const response = await handledResponse.response;
@@ -56,7 +53,6 @@ function createQwikCity(opts) {
           if (response.ok && cache && response.headers.has("Cache-Control")) {
             // waitUntil(cache.put(cacheKey, response.clone()));
           }
-          console.log("url9", url.href);
           return new Response("fu", {
             status: 404,
             headers: {
