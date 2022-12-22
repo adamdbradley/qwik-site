@@ -132,7 +132,7 @@ function minimalHtmlResponse(status, message) {
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Status" content="${status}"/>
+  <meta http-equiv="Status" content="${status}">
   <title>${status} ${message}</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
