@@ -7,11 +7,10 @@ function createQwikCity(opts) {
   async function onCloudflarePagesRequest({ request, env, waitUntil, next }) {
     try {
       const url = new URL(request.url);
-      console.log("url1", url.href);
       if (isStaticPath(url)) {
         return next();
       }
-      console.log("url2", url.href);
+
       const useCache =
         url.hostname !== "127.0.0.1" &&
         url.hostname !== "localhost" &&
@@ -25,6 +24,7 @@ function createQwikCity(opts) {
           // return cachedResponse;
         }
       }
+
       console.log("url3", url.href);
       const serverRequestEv = {
         mode: "server",
@@ -32,6 +32,7 @@ function createQwikCity(opts) {
         url,
         request,
         getWritableStream: (status, headers, cookies, resolve) => {
+          console.log("getWritableStream", url.href);
           const { readable, writable } = new TransformStream();
           const response = new Response(readable, {
             status,
@@ -42,6 +43,7 @@ function createQwikCity(opts) {
         },
         platform: env,
       };
+
       console.log("url4", url.href);
       const handledResponse = await requestHandler(serverRequestEv, opts);
       console.log("url5", url.href);
@@ -64,7 +66,7 @@ function createQwikCity(opts) {
           return response;
         }
       }
-      console.log("url10", url.href);
+
       const notFoundHtml = getNotFound(url.pathname);
       return new Response(notFoundHtml, {
         status: 404,
