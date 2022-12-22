@@ -9,6 +9,13 @@ function createQwikCity(opts) {
   async function onVercelEdgeRequest(request) {
     try {
       const url = new URL(request.url);
+
+      return new Response("body", {
+        headers: {
+          "Content-Type": "text/text; charset=utf-8",
+        },
+      });
+
       if (isStaticPath(url)) {
         return new Response(null, {
           headers: {
