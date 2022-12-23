@@ -843,12 +843,12 @@ function renderQwikMiddleware(render, opts) {
       pipe = null;
       const encoder = new TextEncoder();
       stream = {
-        write: async (chunk) => {
+        write: (chunk) => {
           if (chunk != null) {
-            await writableStream.write(encoder.encode(chunk));
+            return writableStream.write(encoder.encode(chunk));
           }
         },
-        close: writableStream.close(),
+        close: () => writableStream.close(),
       };
     }
 
