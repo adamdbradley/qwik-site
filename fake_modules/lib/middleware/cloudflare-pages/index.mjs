@@ -8,30 +8,27 @@ function createQwikCity(opts) {
     // minimal implementation of TextEncoderStream
     // since Cloudflare Pages doesn't support readable.pipeTo()
     constructor() {
-      const _this = this;
-      _this._writer = null;
-      _this.ready = Promise.resolve();
-      _this.readable = {
+      this._writer = null;
+      this.ready = Promise.resolve();
+      this.readable = {
         pipeTo: (writableStream) => {
-          _this._writer = writableStream.getWriter();
+          this._writer = writableStream.getWriter();
         },
       };
-      _this.writable = {
+      this.writable = {
         getWriter: () => {
-          if (!_this._writer) {
+          if (!this._writer) {
             throw new Error("No writable stream");
           }
           const encoder = new TextEncoder();
           return {
             write: async (chunk) => {
               if (chunk != null) {
-                await _this._writer.write(encoder.encode(chunk));
+                await this._writer.write(encoder.encode(chunk));
               }
             },
-            close: () => {
-              return _this._writer.close();
-            },
-            ready: _this.ready,
+            close: () => this._writer.close(),
+            ready: this.ready,
           };
         },
       };
