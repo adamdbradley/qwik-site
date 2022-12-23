@@ -1,40 +1,12 @@
 // packages/qwik-city/middleware/cloudflare-pages/index.ts
-import { requestHandler } from "../request-handler/index.mjs";
-import { mergeHeadersCookies } from "../request-handler/index.mjs";
+import {
+  mergeHeadersCookies,
+  requestHandler,
+} from "../request-handler/index.mjs";
 import { getNotFound } from "@qwik-city-not-found-paths";
 import { isStaticPath } from "@qwik-city-static-paths";
 function createQwikCity(opts) {
-  globalThis.TextEncoderStream = class {
-    // minimal implementation of TextEncoderStream
-    // since Cloudflare Pages doesn't support readable.pipeTo()
-    constructor() {
-      this._writer = null;
-      this.ready = Promise.resolve();
-      this.readable = {
-        pipeTo: (writableStream) => {
-          this._writer = writableStream.getWriter();
-        },
-      };
-      this.writable = {
-        getWriter: () => {
-          if (!this._writer) {
-            throw new Error("No writable stream");
-          }
-          const encoder = new TextEncoder();
-          return {
-            write: async (chunk) => {
-              if (chunk != null) {
-                await this._writer.write(encoder.encode(chunk));
-              }
-            },
-            close: () => this._writer.close(),
-            ready: this.ready,
-          };
-        },
-      };
-    }
-  };
-
+  globalThis.TextEncoderStream = TextEncoderStream;
   async function onCloudflarePagesRequest({ request, env, waitUntil, next }) {
     try {
       const url = new URL(request.url);
@@ -74,13 +46,9 @@ function createQwikCity(opts) {
       if (handledResponse) {
         const response = await handledResponse.response;
         if (response) {
-          // if (response.ok && cache && response.headers.has("Cache-Control")) {
-          //   waitUntil(cache.put(cacheKey, response.clone()));
-          // }
-          // return response;
-          // const response = new Response("fu", {
-          //   headers: { "Content-Type": "text/plain" },
-          // });
+          if (response.ok && cache && response.headers.has("Cache-Control")) {
+            waitUntil(cache.put(cacheKey, response.clone()));
+          }
           return response;
         }
       }
@@ -105,4 +73,32 @@ function createQwikCity(opts) {
   }
   return onCloudflarePagesRequest;
 }
+var resolved = Promise.resolve();
+var TextEncoderStream = class {
+  constructor() {
+    this._writer = null;
+    this.readable = {
+      pipeTo: (writableStream) => {
+        this._writer = writableStream.getWriter();
+      },
+    };
+    this.writable = {
+      getWriter: () => {
+        if (!this._writer) {
+          throw new Error("No writable stream");
+        }
+        const encoder = new TextEncoder();
+        return {
+          write: async (chunk) => {
+            if (chunk != null) {
+              await this._writer.write(encoder.encode(chunk));
+            }
+          },
+          close: () => this._writer.close(),
+          ready: resolved,
+        };
+      },
+    };
+  }
+};
 export { createQwikCity };

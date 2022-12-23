@@ -831,12 +831,10 @@ function renderQwikMiddleware(render, opts) {
     if (!responseHeaders.has("Content-Type")) {
       responseHeaders.set("Content-Type", "text/html; charset=utf-8");
     }
-
     const { readable, writable } = new TextEncoderStream();
     const writableStream = requestEv.getWritableStream();
     const pipe = readable.pipeTo(writableStream);
     const stream = writable.getWriter();
-
     try {
       const result = await render({
         stream,
@@ -849,7 +847,9 @@ function renderQwikMiddleware(render, opts) {
     } finally {
       await stream.ready;
       await stream.close();
-      await pipe;
+      if (pipe) {
+        await pipe;
+      }
     }
   };
 }
