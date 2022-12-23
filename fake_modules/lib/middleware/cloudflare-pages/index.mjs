@@ -8,29 +8,30 @@ function createQwikCity(opts) {
     // minimal implementation of TextEncoderStream
     // since Cloudflare Pages doesn't support readable.pipeTo()
     constructor() {
-      this._writableStream = null;
-      this.ready = Promise.resolve();
-      this.readable = {
+      const _this = this;
+      _this._writer = null;
+      _this.ready = Promise.resolve();
+      _this.readable = {
         pipeTo: (writableStream) => {
-          this._writableStream = writableStream;
+          _this._writer = writableStream.getWriter();
         },
       };
-      this.writable = {
+      _this.writable = {
         getWriter: () => {
-          if (!this._writableStream) {
+          if (!_this._writer) {
             throw new Error("No writable stream");
           }
           const encoder = new TextEncoder();
           return {
             write: async (chunk) => {
               if (chunk != null) {
-                await this._writableStream.write(encoder.encode(chunk));
+                await _this._writer.write(encoder.encode(chunk));
               }
             },
             close: () => {
-              return this._writableStream.close();
+              return _this._writer.close();
             },
-            ready: this.ready,
+            ready: _this.ready,
           };
         },
       };
@@ -80,9 +81,9 @@ function createQwikCity(opts) {
           //   waitUntil(cache.put(cacheKey, response.clone()));
           // }
           // return response;
-          // const response = new Response("fu", {
-          //   headers: { "Content-Type": "text/plain" },
-          // });
+          const response = new Response("fu", {
+            headers: { "Content-Type": "text/plain" },
+          });
           return response;
         }
       }
