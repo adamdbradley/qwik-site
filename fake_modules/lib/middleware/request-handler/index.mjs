@@ -833,14 +833,15 @@ function renderQwikMiddleware(render, opts) {
     }
     const { readable, writable } = new TextEncoderStream();
     let pipe;
-    let renderWritable;
-    if (typeof readable.pipeTo !== "function") {
-      pipe = null;
-      renderWritable = requestEv.getWritableStream();
-    } else {
-      pipe = readable.pipeTo(requestEv.getWritableStream());
+    let renderWritable = requestEv.getWritableStream();
+
+    try {
+      pipe = readable.pipeTo(writableStream);
       renderWritable = writable;
+    } catch (e) {
+      pipe = null;
     }
+
     const stream = renderWritable.getWriter();
     try {
       const result = await render({
