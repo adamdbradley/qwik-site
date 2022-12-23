@@ -50,6 +50,7 @@ function createQwikCity(opts) {
           const response = new Response("fu", {
             headers: { "Content-Type": "text/plain" },
           });
+          return response;
         }
       }
       const notFoundHtml = getNotFound(url.pathname);
