@@ -842,13 +842,14 @@ function renderQwikMiddleware(render, opts) {
     } catch (e) {
       pipe = null;
       const encoder = new TextEncoder();
+      const writer = writableStream.getWriter();
       stream = {
         write: (chunk) => {
           if (chunk != null) {
-            return writableStream.write(encoder.encode(chunk));
+            return writer.write(encoder.encode(chunk));
           }
         },
-        close: () => writableStream.close(),
+        close: () => writer.close(),
       };
     }
 
