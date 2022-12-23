@@ -81,9 +81,9 @@ function createQwikCity(opts) {
           //   waitUntil(cache.put(cacheKey, response.clone()));
           // }
           // return response;
-          const response = new Response("fu", {
-            headers: { "Content-Type": "text/plain" },
-          });
+          // const response = new Response("fu", {
+          //   headers: { "Content-Type": "text/plain" },
+          // });
           return response;
         }
       }
