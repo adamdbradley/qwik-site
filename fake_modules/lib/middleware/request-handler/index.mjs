@@ -833,16 +833,25 @@ function renderQwikMiddleware(render, opts) {
     }
     const { readable, writable } = new TextEncoderStream();
     let pipe;
-    let renderWritable = requestEv.getWritableStream();
+    let writableStream = requestEv.getWritableStream();
+    let stream;
 
     try {
       pipe = readable.pipeTo(writableStream);
-      renderWritable = writable;
+      stream = writable.getWriter();
     } catch (e) {
       pipe = null;
+      const encoder = new TextEncoder();
+      stream = {
+        write: async (chunk) => {
+          if (chunk != null) {
+            await writableStream.write(encoder.encode(chunk));
+          }
+        },
+        close: writableStream.close(),
+      };
     }
 
-    const stream = renderWritable.getWriter();
     try {
       const result = await render({
         stream,
@@ -853,7 +862,9 @@ function renderQwikMiddleware(render, opts) {
         await stream.write(result.html);
       }
     } finally {
-      await stream.ready;
+      if (stream.ready) {
+        await stream.ready;
+      }
       await stream.close();
       if (pipe) {
         await pipe;
