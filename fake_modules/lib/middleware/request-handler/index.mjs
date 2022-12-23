@@ -854,17 +854,6 @@ function renderQwikMiddleware(render, opts) {
       };
     }
 
-    const encoder = new TextEncoder();
-    const writer = writableStream.getWriter();
-    stream = {
-      write: (chunk) => {
-        if (chunk != null) {
-          return writer.write(encoder.encode(chunk));
-        }
-      },
-      close: () => writer.close(),
-    };
-
     try {
       const result = await render({
         stream,
