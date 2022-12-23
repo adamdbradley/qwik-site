@@ -43,10 +43,13 @@ function createQwikCity(opts) {
       if (handledResponse) {
         const response = await handledResponse.response;
         if (response) {
-          if (response.ok && cache && response.headers.has("Cache-Control")) {
-            waitUntil(cache.put(cacheKey, response.clone()));
-          }
-          return response;
+          // if (response.ok && cache && response.headers.has("Cache-Control")) {
+          //   waitUntil(cache.put(cacheKey, response.clone()));
+          // }
+          // return response;
+          const response = new Response("fu", {
+            headers: { "Content-Type": "text/plain" },
+          });
         }
       }
       const notFoundHtml = getNotFound(url.pathname);
