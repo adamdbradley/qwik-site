@@ -22337,26 +22337,6 @@ var AbortMessage = class {
 var RedirectMessage = class extends AbortMessage {
 };
 
-// packages/qwik-city/middleware/request-handler/response-page.ts
-function getQwikCityEnvData(requestEv) {
-  const { url, params, request, status, locale } = requestEv;
-  const requestHeaders = {};
-  request.headers.forEach((value2, key) => requestHeaders[key] = value2);
-  return {
-    url: new URL(url.pathname + url.search, url).href,
-    requestHeaders,
-    locale: locale(),
-    qwikcity: {
-      params: { ...params },
-      response: {
-        status: status(),
-        loaders: getRequestLoaders(requestEv),
-        action: getRequestAction(requestEv)
-      }
-    }
-  };
-}
-
 // packages/qwik-city/runtime/src/constants.ts
 var QACTION_KEY = "qaction";
 
@@ -22467,76 +22447,6 @@ function isLastModulePageRoute(routeModules) {
   const lastRouteModule = routeModules[routeModules.length - 1];
   return lastRouteModule && typeof lastRouteModule.default === "function";
 }
-async function renderQData(requestEv) {
-  const isPageDataReq = isQDataJson(requestEv.pathname);
-  if (isPageDataReq) {
-    try {
-      await requestEv.next();
-    } catch (err) {
-      if (!(err instanceof RedirectMessage)) {
-        throw err;
-      }
-    }
-    if (requestEv.headersSent || requestEv.exited) {
-      return;
-    }
-    const status = requestEv.status();
-    const location = requestEv.headers.get("Location");
-    const isRedirect = status >= 301 && status <= 308 && location;
-    if (isRedirect) {
-      requestEv.headers.set("Location", makeQDataPath(location));
-      requestEv.getStream().close();
-      return;
-    }
-    const requestHeaders = {};
-    requestEv.request.headers.forEach((value2, key) => requestHeaders[key] = value2);
-    requestEv.headers.set("Content-Type", "application/json; charset=utf-8");
-    const qData = {
-      loaders: getRequestLoaders(requestEv),
-      action: getRequestAction(requestEv),
-      status: status !== 200 ? status : 200,
-      href: getPathname(requestEv.url, true)
-    };
-    const stream = requestEv.getStream().getWriter();
-    stream.write(encoder.encode(serializeData(qData)));
-    requestEv.sharedMap.set("qData", qData);
-    stream.close();
-  }
-}
-function serializeData(data) {
-  return JSON.stringify(data, (_2, value2) => {
-    if (value2 instanceof FormData) {
-      return {
-        __brand: "formdata",
-        value: formDataToArray(value2)
-      };
-    }
-    return value2;
-  });
-}
-function formDataToArray(formData) {
-  const array = [];
-  formData.forEach((value2, key) => {
-    if (typeof value2 === "string") {
-      array.push([key, value2]);
-    } else {
-      array.push([key, value2.name]);
-    }
-  });
-  return array;
-}
-function makeQDataPath(href) {
-  const append = QDATA_JSON;
-  const url = new URL(href, "http://localhost");
-  const pathname = url.pathname.endsWith("/") ? url.pathname.slice(0, -1) : url.pathname;
-  return pathname + (append.startsWith("/") ? "" : "/") + append + url.search;
-}
-function getPathname(url, trailingSlash) {
-  if (url.pathname.endsWith(QDATA_JSON)) {
-    return url.pathname.slice(0, -QDATA_JSON.length + (trailingSlash ? 1 : 0)) + url.search;
-  }
-  return url.pathname;
-}
 var encoder = /* @__PURE__ */ new TextEncoder();
 
 // packages/qwik-city/middleware/request-handler/cache-control.ts
@@ -22581,7 +22491,7 @@ function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) 
   const headers = createHeaders();
   const url = new URL(request.url);
   let routeModuleIndex = -1;
-  let streamInternal = null;
+  let writableStream = null;
   const next = async () => {
     routeModuleIndex++;
     while (routeModuleIndex < requestHandlers.length) {
@@ -22594,16 +22504,17 @@ function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) 
     }
   };
   const check = () => {
-    if (streamInternal !== null) {
+    if (writableStream !== null) {
       throw new Error("Response already sent");
     }
   };
   const send = (statusCode, body) => {
     check();
     requestEv[RequestEvStatus] = statusCode;
-    const stream = requestEv.getStream().getWriter();
-    stream.write(typeof body === "string" ? encoder.encode(body) : body);
-    stream.close();
+    const writableStream2 = requestEv.getWritableStream();
+    const writer = writableStream2.getWriter();
+    writer.write(typeof body === "string" ? encoder.encode(body) : body);
+    writer.close();
     return new AbortMessage();
   };
   const loaders = {};
@@ -22624,7 +22535,7 @@ function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) 
     url,
     sharedMap: /* @__PURE__ */ new Map(),
     get headersSent() {
-      return streamInternal !== null;
+      return writableStream !== null;
     },
     get exited() {
       return routeModuleIndex >= ABORT_INDEX;
@@ -22695,9 +22606,9 @@ function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) 
       return send(statusCode, JSON.stringify(data));
     },
     send,
-    getStream: () => {
-      if (streamInternal === null) {
-        streamInternal = serverRequestEv.getWritableStream(
+    getWritableStream: () => {
+      if (writableStream === null) {
+        writableStream = serverRequestEv.getWritableStream(
           requestEv[RequestEvStatus],
           headers,
           cookie,
@@ -22705,7 +22616,7 @@ function createRequestEvent(serverRequestEv, params, requestHandlers, resolved) 
           requestEv
         );
       }
-      return streamInternal;
+      return writableStream;
     }
   };
   return requestEv;
@@ -22758,7 +22669,7 @@ async function runNext(requestEv, isPage, trailingSlash, basePathname, resolve4)
     await requestEv.next();
   } catch (e) {
     if (e instanceof RedirectMessage) {
-      requestEv.getStream().close();
+      requestEv.getWritableStream().close();
     } else if (e instanceof ErrorResponse) {
       if (!requestEv.headersSent) {
         const html3 = getErrorHtml(e.status, e);
@@ -22766,7 +22677,9 @@ async function runNext(requestEv, isPage, trailingSlash, basePathname, resolve4)
       }
       console.error(e);
     } else if (!(e instanceof AbortMessage)) {
-      requestEv.status(500 /* InternalServerError */);
+      if (!requestEv.headersSent) {
+        requestEv.status(500 /* InternalServerError */);
+      }
       throw e;
     }
   }
@@ -22788,6 +22701,26 @@ var isQDataJson = (pathname) => {
 };
 var QDATA_JSON = "/q-data.json";
 var QDATA_JSON_LEN = QDATA_JSON.length;
+
+// packages/qwik-city/middleware/request-handler/response-page.ts
+function getQwikCityEnvData(requestEv) {
+  const { url, params, request, status, locale } = requestEv;
+  const requestHeaders = {};
+  request.headers.forEach((value2, key) => requestHeaders[key] = value2);
+  return {
+    url: new URL(url.pathname + url.search, url).href,
+    requestHeaders,
+    locale: locale(),
+    qwikcity: {
+      params: { ...params },
+      response: {
+        status: status(),
+        loaders: getRequestLoaders(requestEv),
+        action: getRequestAction(requestEv)
+      }
+    }
+  };
+}
 
 // packages/qwik-city/runtime/src/routing.ts
 var getPathParams = (paramNames, match) => {
@@ -22955,6 +22888,79 @@ function generateCodeFrame(source, start = 0, end) {
   }
   return res.join("\n");
 }
+
+// packages/qwik-city/middleware/request-handler/render-middleware.ts
+async function renderQData(requestEv) {
+  const isPageDataReq = isQDataJson(requestEv.pathname);
+  if (isPageDataReq) {
+    try {
+      await requestEv.next();
+    } catch (err) {
+      if (!(err instanceof RedirectMessage)) {
+        throw err;
+      }
+    }
+    if (requestEv.headersSent || requestEv.exited) {
+      return;
+    }
+    const status = requestEv.status();
+    const location = requestEv.headers.get("Location");
+    const isRedirect = status >= 301 && status <= 308 && location;
+    if (isRedirect) {
+      requestEv.headers.set("Location", makeQDataPath(location));
+      requestEv.getWritableStream().close();
+      return;
+    }
+    const requestHeaders = {};
+    requestEv.request.headers.forEach((value2, key) => requestHeaders[key] = value2);
+    requestEv.headers.set("Content-Type", "application/json; charset=utf-8");
+    const qData = {
+      loaders: getRequestLoaders(requestEv),
+      action: getRequestAction(requestEv),
+      status: status !== 200 ? status : 200,
+      href: getPathname(requestEv.url, true)
+    };
+    const writer = requestEv.getWritableStream().getWriter();
+    writer.write(encoder2.encode(serializeData(qData)));
+    requestEv.sharedMap.set("qData", qData);
+    writer.close();
+  }
+}
+function serializeData(data) {
+  return JSON.stringify(data, (_2, value2) => {
+    if (value2 instanceof FormData) {
+      return {
+        __brand: "formdata",
+        value: formDataToArray(value2)
+      };
+    }
+    return value2;
+  });
+}
+function formDataToArray(formData) {
+  const array = [];
+  formData.forEach((value2, key) => {
+    if (typeof value2 === "string") {
+      array.push([key, value2]);
+    } else {
+      array.push([key, value2.name]);
+    }
+  });
+  return array;
+}
+function makeQDataPath(href) {
+  const append = QDATA_JSON;
+  const url = new URL(href, "http://localhost");
+  const pathname = url.pathname.endsWith("/") ? url.pathname.slice(0, -1) : url.pathname;
+  return pathname + (append.startsWith("/") ? "" : "/") + append + url.search;
+}
+function getPathname(url, trailingSlash) {
+  if (url.pathname.endsWith(QDATA_JSON)) {
+    return url.pathname.slice(0, -QDATA_JSON.length + (trailingSlash ? 1 : 0)) + url.search;
+  }
+  return url.pathname;
+}
+var encoder2 = /* @__PURE__ */ new TextEncoder();
 
 // packages/qwik-city/buildtime/vite/dev-server.ts
 function ssrDevMiddleware(ctx, server) {

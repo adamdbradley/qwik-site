@@ -10,7 +10,6 @@ function createQwikCity(opts) {
       if (isStaticPath(url)) {
         return next();
       }
-
       const useCache =
         url.hostname !== "127.0.0.1" &&
         url.hostname !== "localhost" &&
@@ -21,17 +20,15 @@ function createQwikCity(opts) {
       if (cache) {
         const cachedResponse = await cache.match(cacheKey);
         if (cachedResponse) {
-          // return cachedResponse;
+          return cachedResponse;
         }
       }
-
       const serverRequestEv = {
         mode: "server",
         locale: void 0,
         url,
         request,
         getWritableStream: (status, headers, cookies, resolve) => {
-          console.log("getWritableStream", url.href);
           const { readable, writable } = new TransformStream();
           const response = new Response(readable, {
             status,
@@ -42,27 +39,16 @@ function createQwikCity(opts) {
         },
         platform: env,
       };
-
       const handledResponse = await requestHandler(serverRequestEv, opts);
       if (handledResponse) {
-        console.log("url6", url.href);
         const response = await handledResponse.response;
-        console.log("url7", url.href);
         if (response) {
-          console.log("url8", url.href);
           if (response.ok && cache && response.headers.has("Cache-Control")) {
-            // waitUntil(cache.put(cacheKey, response.clone()));
+            waitUntil(cache.put(cacheKey, response.clone()));
           }
-          return new Response("fu", {
-            status: 404,
-            headers: {
-              "Content-Type": "text/plain; charset=utf-8",
-            },
-          });
           return response;
         }
       }
-
       const notFoundHtml = getNotFound(url.pathname);
       return new Response(notFoundHtml, {
         status: 404,
@@ -72,7 +58,6 @@ function createQwikCity(opts) {
         },
       });
     } catch (e) {
-      console.log("url11", url.href);
       console.error(e);
       return new Response(String(e || "Error"), {
         status: 500,
