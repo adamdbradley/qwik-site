@@ -837,22 +837,23 @@ function renderQwikMiddleware(render, opts) {
     let writableStream = requestEv.getWritableStream();
     let stream;
 
-    try {
-      pipe = readable.pipeTo(writableStream);
-      stream = writable.getWriter();
-    } catch (e) {
-      pipe = null;
-      const encoder = new TextEncoder();
-      const writer = writableStream.getWriter();
-      stream = {
-        write: (chunk) => {
-          if (chunk != null) {
-            return writer.write(encoder.encode(chunk));
-          }
-        },
-        close: () => writer.close(),
-      };
-    }
+    pipe = readable.pipeTo(writableStream);
+    stream = writable.getWriter();
+
+    // try {
+    // } catch (e) {
+    //   pipe = null;
+    //   const encoder = new TextEncoder();
+    //   const writer = writableStream.getWriter();
+    //   stream = {
+    //     write: (chunk) => {
+    //       if (chunk != null) {
+    //         return writer.write(encoder.encode(chunk));
+    //       }
+    //     },
+    //     close: () => writer.close(),
+    //   };
+    // }
 
     try {
       const result = await render({

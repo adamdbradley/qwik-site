@@ -4,8 +4,37 @@ import { mergeHeadersCookies } from "../request-handler/index.mjs";
 import { getNotFound } from "@qwik-city-not-found-paths";
 import { isStaticPath } from "@qwik-city-static-paths";
 function createQwikCity(opts) {
-  ReadableStream.prototype.pipeTo = function () {
-    throw new Error("Cloudflare ReadableStream pipeTo() not implemented");
+  globalThis.TextEncoderStream = class {
+    // minimal implementation of TextEncoderStream
+    // since Cloudflare Pages doesn't support readable.pipeTo()
+    constructor() {
+      this._writableStream = null;
+      this.ready = Promise.resolve();
+      this.readable = {
+        pipeTo: (writableStream) => {
+          this._writableStream = writableStream;
+        },
+      };
+      this.writable = {
+        getWriter: () => {
+          if (!this._writableStream) {
+            throw new Error("No writable stream");
+          }
+          const encoder = new TextEncoder();
+          return {
+            write: async (chunk) => {
+              if (chunk != null) {
+                await this._writableStream.write(encoder.encode(chunk));
+              }
+            },
+            close: () => {
+              return this._writableStream.close();
+            },
+            ready: this.ready,
+          };
+        },
+      };
+    }
   };
 
   async function onCloudflarePagesRequest({ request, env, waitUntil, next }) {
