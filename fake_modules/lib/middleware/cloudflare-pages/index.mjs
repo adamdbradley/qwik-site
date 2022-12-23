@@ -4,6 +4,10 @@ import { mergeHeadersCookies } from "../request-handler/index.mjs";
 import { getNotFound } from "@qwik-city-not-found-paths";
 import { isStaticPath } from "@qwik-city-static-paths";
 function createQwikCity(opts) {
+  ReadableStream.prototype.pipeTo = function () {
+    throw new Error("Cloudflare ReadableStream pipeTo() not implemented");
+  };
+
   async function onCloudflarePagesRequest({ request, env, waitUntil, next }) {
     try {
       const url = new URL(request.url);

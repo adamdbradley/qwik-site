@@ -832,27 +832,27 @@ function renderQwikMiddleware(render, opts) {
       responseHeaders.set("Content-Type", "text/html; charset=utf-8");
     }
 
-    // const { readable, writable } = new TextEncoderStream();
+    const { readable, writable } = new TextEncoderStream();
     let pipe;
     let writableStream = requestEv.getWritableStream();
     let stream;
 
-    // try {
-    //   pipe = readable.pipeTo(writableStream);
-    //   stream = writable.getWriter();
-    // } catch (e) {
-    //   pipe = null;
-    //   const encoder = new TextEncoder();
-    //   const writer = writableStream.getWriter();
-    //   stream = {
-    //     write: (chunk) => {
-    //       if (chunk != null) {
-    //         return writer.write(encoder.encode(chunk));
-    //       }
-    //     },
-    //     close: () => writer.close(),
-    //   };
-    // }
+    try {
+      pipe = readable.pipeTo(writableStream);
+      stream = writable.getWriter();
+    } catch (e) {
+      pipe = null;
+      const encoder = new TextEncoder();
+      const writer = writableStream.getWriter();
+      stream = {
+        write: (chunk) => {
+          if (chunk != null) {
+            return writer.write(encoder.encode(chunk));
+          }
+        },
+        close: () => writer.close(),
+      };
+    }
 
     const encoder = new TextEncoder();
     const writer = writableStream.getWriter();
@@ -875,13 +875,9 @@ function renderQwikMiddleware(render, opts) {
         await stream.write(result.html);
       }
     } finally {
-      if (stream.ready) {
-        await stream.ready;
-      }
+      await stream.ready;
       await stream.close();
-      if (pipe) {
-        await pipe;
-      }
+      await pipe;
     }
   };
 }
